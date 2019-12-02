@@ -15,8 +15,18 @@ export default class App extends React.Component {
   };
 
   render() {
+
+    let currentView = this.state.view.name;
+    let displayView = null;
+
+    if (currentView === 'add') {
+      displayView = <Add setView={this.setView}/>;
+    }
+
     return (
-      <Add setView={this.setView} />
+      <div >
+        {displayView}
+      </div>
     )
   }
 }

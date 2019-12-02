@@ -12,7 +12,11 @@ export default class Add extends React.Component   {
 
   render() {
     return(
-      <div className="border border-dark mt-5">TEST</div>
+      <div>
+        <input className="w-100 mt-5 border" placeholder="date" type="text"/>
+        <input className="w-100 mt-5 border"  placeholder="category" type="text" />
+        <input className="w-100 mt-5 border"  placeholder="subCategory" type="text" />
+      </div>
     )
   }
 }
