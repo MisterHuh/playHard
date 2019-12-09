@@ -1,4 +1,5 @@
 import React from "react";
+import Test from "./test";
 
 export default class Add extends React.Component   {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class Add extends React.Component   {
       <div>
         <div className="mx-4">
           <input className="w-100 mt-5 border" placeholder="  date" type="text"/>
+          <Test />
         </div>
 
         <div className="mx-4">
