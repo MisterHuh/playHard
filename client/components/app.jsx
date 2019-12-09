@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Navbar setView={this.setView}/>
+        <Navbar setView={this.setView} currentView={currentView}/>
         {displayView}
       </div>
     )

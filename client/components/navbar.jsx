@@ -1,19 +1,36 @@
 import React from "react";
+import { generateKeyPair } from "crypto";
 
-export const Navbar = () => {
+export const Navbar = props => {
+
+  let currentView = props.currentView;
+  let addBackfill, currentBackfill, historyBackfill;
+
+  if (currentView = "add") {
+    addBackfill = {
+      backgroundColor: "grey"
+    };
+    currentBackfill = {
+      backgroundColor: "white"
+    };
+    historyBackfill = {
+      backgroundColor: "white"
+    };
+  }
 
   return (
 
-    <div className="border border-dark w-100">
-      <div className="d-inline w-25 mr-5">
+    <div className="d-flex flex-row justify-content-center">
+      <div className="navbarButtonContainer border" style={addBackfill}>
         <i className="fas fa-plus"></i>
       </div>
-      <div className="d-inline w-25 mr-5">
+      <div className="navbarButtonContainer border" style={currentBackfill}>
         <i className="fas fa-check"></i>
       </div>
-      <div className="d-inline w-25 mr-5">
+      <div className="navbarButtonContainer border" style={historyBackfill}>
         <i className="fas fa-history"></i>
       </div>
+
     </div>
 
   )
