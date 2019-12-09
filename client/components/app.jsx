@@ -16,7 +16,7 @@ export default class App extends React.Component {
 
   render() {
 
-    let currentView = this.state.view.name;
+    let currentView = this.state.view;
     let displayView = null;
 
     if (currentView === 'add') {
