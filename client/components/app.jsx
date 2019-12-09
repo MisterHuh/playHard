@@ -1,6 +1,6 @@
 import React from "react";
 import Add from "./add";
-import { Chargers } from "./chargers";
+import { Navbar } from "./navbar";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -26,7 +26,7 @@ export default class App extends React.Component {
 
     return (
       <div>
-        <Chargers setView={this.setView}/>
+        <Navbar setView={this.setView}/>
         {displayView}
       </div>
     )
