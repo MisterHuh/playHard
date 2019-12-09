@@ -1,5 +1,6 @@
 import React from "react";
 import Add from "./add";
+import { Chargers } from "./chargers";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,8 @@ export default class App extends React.Component {
     }
 
     return (
-      <div >
+      <div>
+        <Chargers setView={this.setView}/>
         {displayView}
       </div>
     )
