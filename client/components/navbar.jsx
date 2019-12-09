@@ -8,7 +8,8 @@ export const Navbar = props => {
 
   if (currentView = "add") {
     addBackfill = {
-      backgroundColor: "grey"
+      backgroundColor: "#96D1E3",
+      color: "white"
     };
     currentBackfill = {
       backgroundColor: "white"
@@ -18,17 +19,25 @@ export const Navbar = props => {
     };
   }
 
+  let setView = props.setView;
+
   return (
 
     <div className="d-flex flex-row justify-content-center">
       <div className="navbarButtonContainer border" style={addBackfill}>
-        <i className="fas fa-plus"></i>
+        <i
+          onClick={() => setView("add")}
+          className="fas fa-plus"></i>
       </div>
       <div className="navbarButtonContainer border" style={currentBackfill}>
-        <i className="fas fa-check"></i>
+        <i
+          onClick={() => setView("current")}
+          className="fas fa-check"></i>
       </div>
       <div className="navbarButtonContainer border" style={historyBackfill}>
-        <i className="fas fa-history"></i>
+        <i
+          onClick={() => setView("history")}
+          className="fas fa-history"></i>
       </div>
 
     </div>

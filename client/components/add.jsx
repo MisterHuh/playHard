@@ -13,9 +13,17 @@ export default class Add extends React.Component   {
   render() {
     return(
       <div>
-        <input className="w-100 mt-5 border" placeholder="date" type="text"/>
-        <input className="w-100 mt-5 border"  placeholder="category" type="text" />
-        <input className="w-100 mt-5 border"  placeholder="subCategory" type="text" />
+        <div className="mx-4">
+          <input className="w-100 mt-5 border" placeholder="  date" type="text"/>
+        </div>
+
+        <div className="mx-4">
+          <input className="w-100 mt-5 border"  placeholder="  category" type="text" />
+        </div>
+
+        <div className="mx-4">
+          <input className="w-100 mt-5 border"  placeholder="  subCategory" type="text" />
+        </div>
       </div>
     )
   }
