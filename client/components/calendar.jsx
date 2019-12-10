@@ -12,18 +12,16 @@ export default class Calendar extends React.Component {
   }
 
   handleChange(date) {
-    this.setState({
-      date: new Date()
-    });
+    this.setState({ date  });
   };
 
   render() {
     return (
       <div>
         <DatePicker
-          selected={this.state.startDate}
+          selected={this.state.date}
           onChange={this.handleChange}
-          // showTimeSelect
+          // placeholderText="  choose a date"
         />
       </div>
     );
