@@ -6,6 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Moment from 'react-moment';
 import 'moment-timezone';
 
+import Dropdown from "react-dropdown";
+
 export default class Add extends React.Component {
   constructor(props) {
     super(props);
@@ -30,6 +32,11 @@ export default class Add extends React.Component {
 
     console.log("raw_date is: ", this.state.date)
 
+    const options = [
+      'Spendings', 'Fixed', 'Credit'
+    ]
+
+
     return (
       <div>
         <div className="mx-4">
@@ -42,7 +49,8 @@ export default class Add extends React.Component {
         </div>
 
         <div className="mx-4">
-          <input className="w-100 mt-5 border" placeholder="  category" type="text" />
+          {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
+          <Dropdown options={options}  placeholder="Select an option" />
         </div>
 
         <div className="mx-4">
