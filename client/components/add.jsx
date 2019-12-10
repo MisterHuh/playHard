@@ -1,5 +1,5 @@
 import React from "react";
-import Test from "./test";
+import Calendar from "./calendar";
 
 export default class Add extends React.Component   {
   constructor(props) {
@@ -15,8 +15,9 @@ export default class Add extends React.Component   {
     return(
       <div>
         <div className="mx-4">
-          <input className="w-100 mt-5 border" placeholder="  date" type="text"/>
-          <Test />
+          <div className="mt-5">
+            <Calendar />
+          </div>
         </div>
 
         <div className="mx-4">

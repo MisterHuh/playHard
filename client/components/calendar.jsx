@@ -1,12 +1,8 @@
 import React from "react";
-// import "react-dates/initialize";
 import DatePicker from "react-datepicker";
-// import { DateRangePicker } from "react-dates";
 import "react-datepicker/dist/react-datepicker.css";
 
-import Calendar from "react-calendar"
-
-export default class Test extends React.Component {
+export default class Calendar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -27,6 +23,7 @@ export default class Test extends React.Component {
         <DatePicker
           selected={this.state.startDate}
           onChange={this.handleChange}
+          // showTimeSelect
         />
       </div>
     );
