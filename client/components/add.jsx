@@ -36,21 +36,25 @@ export default class Add extends React.Component {
       'Spendings', 'Fixed', 'Credit'
     ]
 
-
     return (
       <div>
         <div className="mx-4">
-          <div className="mt-5">
+          {/* <div className="mt-5"> */}
             <DatePicker
               selected={this.state.date}
               onChange={this.handleChange}
+              className="mt-5"
             />
-          </div>
+          {/* </div> */}
         </div>
 
         <div className="mx-4">
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
-          <Dropdown options={options}  placeholder="Select an option" />
+          <Dropdown
+            options={options}
+            placeholder="Select an option"
+            className="mt-5"
+          />
         </div>
 
         <div className="mx-4">
