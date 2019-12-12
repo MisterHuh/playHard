@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 import Dropdown from "react-dropdown";
+// import Select from "react-select";
 
 export default class Add extends React.Component {
   constructor(props) {
@@ -32,8 +33,14 @@ export default class Add extends React.Component {
 
     console.log("raw_date is: ", this.state.date)
 
+    // const options = [
+    //   'Spendings', 'Fixed', 'Credit'
+    // ]
+
     const options = [
-      'Spendings', 'Fixed', 'Credit'
+      { value: 'spendings', label: 'Spendings' },
+      { value: 'fixed', label: 'Fixed' },
+      { value: 'credit', label: 'Credit' },
     ]
 
     return (
@@ -52,8 +59,11 @@ export default class Add extends React.Component {
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
           <Dropdown
             options={options}
+            arrowClosed={<span className="arrow-closed" />}
+            arrowOpen={<span className="arrow-open" />}
             placeholder="Select an option"
             className="mt-5"
+            isSearchable
           />
         </div>
 
