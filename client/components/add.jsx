@@ -9,6 +9,8 @@ import 'moment-timezone';
 import Dropdown from "react-dropdown";
 // import Select from "react-select";
 
+import DropdownInput from "react-dropdown-input";
+
 export default class Add extends React.Component {
   constructor(props) {
     super(props);
@@ -43,6 +45,9 @@ export default class Add extends React.Component {
       { value: 'credit', label: 'Credit' },
     ]
 
+    var searchNames = ['Sydney', 'Melbourne', 'Brisbane',
+      'Adelaide', 'Perth', 'Hobart'];
+
     return (
       <div>
         <div className="mx-4">
@@ -57,14 +62,24 @@ export default class Add extends React.Component {
 
         <div className="mx-4">
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
-          <Dropdown
+
+          {/* <Dropdown
             options={options}
             arrowClosed={<span className="arrow-closed" />}
             arrowOpen={<span className="arrow-open" />}
             placeholder="Select an option"
             className="mt-5"
             isSearchable
+          /> */}
+
+          <DropdownInput
+            options={searchNames}
+            defaultValue={this.props.initialValue}
+            menuClassName='dropdown-input'
+            onSelect={this.handleSelectName}
+            placeholder='Search...'
           />
+
         </div>
 
         <div className="mx-4">
