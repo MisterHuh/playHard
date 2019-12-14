@@ -7,6 +7,7 @@ import Moment from 'react-moment';
 import 'moment-timezone';
 
 import Dropdown from "react-dropdown";
+import 'react-dropdown/style.css'
 // import Select from "react-select";
 
 // import DropdownInput from "react-dropdown-input";
