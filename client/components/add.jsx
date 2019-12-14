@@ -9,7 +9,7 @@ import 'moment-timezone';
 import Dropdown from "react-dropdown";
 // import Select from "react-select";
 
-import DropdownInput from "react-dropdown-input";
+// import DropdownInput from "react-dropdown-input";
 
 export default class Add extends React.Component {
   constructor(props) {
@@ -35,15 +35,15 @@ export default class Add extends React.Component {
 
     console.log("raw_date is: ", this.state.date)
 
-    // const options = [
-    //   'Spendings', 'Fixed', 'Credit'
-    // ]
-
     const options = [
-      { value: 'spendings', label: 'Spendings' },
-      { value: 'fixed', label: 'Fixed' },
-      { value: 'credit', label: 'Credit' },
+      'Spendings', 'Fixed', 'Credit'
     ]
+
+    // const options = [
+    //   { value: 'spendings', label: 'Spendings' },
+    //   { value: 'fixed', label: 'Fixed' },
+    //   { value: 'credit', label: 'Credit' },
+    // ]
 
     var searchNames = ['Sydney', 'Melbourne', 'Brisbane',
       'Adelaide', 'Perth', 'Hobart'];
@@ -63,22 +63,22 @@ export default class Add extends React.Component {
         <div className="mx-4">
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
 
-          {/* <Dropdown
+          <Dropdown
             options={options}
             arrowClosed={<span className="arrow-closed" />}
             arrowOpen={<span className="arrow-open" />}
             placeholder="Select an option"
             className="mt-5"
             isSearchable
-          /> */}
+          />
 
-          <DropdownInput
+          {/* <DropdownInput
             options={searchNames}
             defaultValue={this.props.initialValue}
             menuClassName='dropdown-input'
             onSelect={this.handleSelectName}
             placeholder='Search...'
-          />
+          /> */}
 
         </div>
 
