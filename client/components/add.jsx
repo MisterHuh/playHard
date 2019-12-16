@@ -20,12 +20,14 @@ export default class Add extends React.Component {
       category: "Spendings",
       subCategory: "Food",
       cc: "AmEx",
+      amount: ""
 
     };
     this.handleChange = this.handleChange.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.subCategoryHandleChange = this.subCategoryHandleChange.bind(this);
     this.ccHandleChange = this.ccHandleChange.bind(this);
+    this.amountHandleChangle = this.amountHandleChangle.bind(this);
   }
 
   handleChange(date) {
@@ -59,6 +61,21 @@ export default class Add extends React.Component {
     console.log("event is: ", e);
     console.log("event.value is: ", e.value);
     this.setState({ cc: e.value })
+  }
+
+  amountHandleChangle(e) {
+    e.preventDefault();
+
+    const { name, value } = e.target;
+    console.log("e.target.name is: ", e.target.name);
+    console.log("e.target.value is: ", e.target.value);
+
+    this.setState({ amount: e.target.value})
+
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
+
+
   }
 
 
@@ -139,12 +156,9 @@ export default class Add extends React.Component {
         </div>
 
         <div className="mx-4">
-          <Dropdown
-            onChange={this.ccHandleChange}
-            options={dropdownOptions[2]}
-            arrowClosed={<span className="arrow-closed" />}
-            arrowOpen={<span className="arrow-open" />}
-            placeholder={this.state.cc}
+          <input
+            onChange={this.amountHandleChangle}
+            placeholder={"$ 00.00" + this.state.amount}
             className="mt-5"
           />
         </div>
