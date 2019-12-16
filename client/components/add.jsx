@@ -33,7 +33,7 @@ export default class Add extends React.Component {
 
   };
 
-  categoryHandleChange() {
+  categoryHandleChange(value) {
     this.setState({ category: value })
   }
 
@@ -41,18 +41,14 @@ export default class Add extends React.Component {
 
   render() {
 
+    console.log("this.state is: ", this.state);
+
     console.log("raw_date is: ", this.state.date);
     console.log("category is: ", this.state.category);
 
     const options = [
       'Spendings', 'Fixed', 'Credit'
     ]
-
-    // const options = [
-    //   { value: 'spendings', label: 'Spendings' },
-    //   { value: 'fixed', label: 'Fixed' },
-    //   { value: 'credit', label: 'Credit' },
-    // ]
 
     var searchNames = ['Sydney', 'Melbourne', 'Brisbane',
       'Adelaide', 'Perth', 'Hobart'];
@@ -81,14 +77,6 @@ export default class Add extends React.Component {
             placeholder = "Select an option"
             className = "mt-5"
           />
-
-          {/* <DropdownInput
-            options={searchNames}
-            defaultValue={this.props.initialValue}
-            menuClassName='dropdown-input'
-            onSelect={this.handleSelectName}
-            placeholder='Search...'
-          /> */}
 
         </div>
 
