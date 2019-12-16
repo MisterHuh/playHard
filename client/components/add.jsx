@@ -17,7 +17,7 @@ export default class Add extends React.Component {
     super(props);
     this.state = {
       date: new Date(),
-      category: "spendings",
+      category: "Spendings",
       subCategory: "food"
     };
     this.handleChange = this.handleChange.bind(this);
@@ -29,8 +29,8 @@ export default class Add extends React.Component {
     let current_datetime = date;
     let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
 
-    this.setState({ date: formatted_date });
-    // this.setState({ date });
+    // this.setState({ date: formatted_date });
+    this.setState({ date });
 
     console.log("formatted_date is: ", formatted_date)
 
@@ -45,18 +45,20 @@ export default class Add extends React.Component {
   render() {
 
     console.log("this.state is: ", this.state);
-
     console.log("raw_date is: ", this.state.date);
-    console.log("category is: ", this.state.category);
 
     const options = [
       'Spendings', 'Fixed', 'Credit'
     ]
 
-    const value = this.state.category;
+    const options2 = [
+      'Food', 'Drinks', 'Entertainment'
+    ]
 
-    var searchNames = ['Sydney', 'Melbourne', 'Brisbane',
-      'Adelaide', 'Perth', 'Hobart'];
+    const dropdownList = [
+      ['Spendings', 'Fixed', 'Credit'],
+      ['Food', 'Drinks', 'Entertainment']
+    ]
 
     return (
       <div>
@@ -74,7 +76,7 @@ export default class Add extends React.Component {
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
 
           <Dropdown
-            selected = {this.state.category}
+            // selected = {this.state.category}
             onChange={this.categoryHandleChange}
             options = {options}
             arrowClosed = {<span className="arrow-closed" />}
@@ -86,7 +88,17 @@ export default class Add extends React.Component {
         </div>
 
         <div className="mx-4">
-          <input className="w-100 mt-5 border" placeholder="  subCategory" type="text" />
+          {/* <input className="w-100 mt-5 border" placeholder="  subCategory" type="text" /> */}
+
+          <Dropdown
+            // selected = {this.state.category}
+            onChange={this.categoryHandleChange}
+            options={options1}
+            arrowClosed={<span className="arrow-closed" />}
+            arrowOpen={<span className="arrow-open" />}
+            placeholder="Select an option"
+            className="mt-5"
+          />
         </div>
       </div>
       );
