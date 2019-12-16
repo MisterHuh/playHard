@@ -25,10 +25,13 @@ export default class Add extends React.Component {
   }
 
   handleChange(date) {
-    this.setState({ date });
 
     let current_datetime = date;
     let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
+
+    this.setState({ date: formatted_date });
+    // this.setState({ date });
+
     console.log("formatted_date is: ", formatted_date)
 
   };
@@ -69,7 +72,7 @@ export default class Add extends React.Component {
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
 
           <Dropdown
-            value = {this.state.category}
+            selected = {this.state.category}
             onChange={this.categoryHandleChange}
             options = {options}
             arrowClosed = {<span className="arrow-closed" />}
