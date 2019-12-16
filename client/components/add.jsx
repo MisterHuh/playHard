@@ -23,36 +23,29 @@ export default class Add extends React.Component {
       amount: "",
       description: "",
       notes: ""
-
     };
-    this.handleChange = this.handleChange.bind(this);
+    this.dateHandleChange = this.dateHandleChange.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.subCategoryHandleChange = this.subCategoryHandleChange.bind(this);
     this.ccHandleChange = this.ccHandleChange.bind(this);
-    this.amountHandleChangle = this.amountHandleChangle.bind(this);
-    this.descriptionHandleChangle = this.descriptionHandleChangle.bind(this);
-    this.notesHandleChangle = this.notesHandleChangle.bind(this);
+    this.inputHandleChange = this.inputHandleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(date) {
+  dateHandleChange(date) {
 
-    let current_datetime = date;
-    let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
+    // let current_datetime = date;
+    // let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
+    // console.log("formatted_date is: ", formatted_date)
 
     // this.setState({ date: formatted_date });
     this.setState({ date });
-
-    console.log("formatted_date is: ", formatted_date)
-
   };
 
   categoryHandleChange(e) {
     console.log("event is: ", e);
     console.log("event.value is: ", e.value);
     this.setState({ category: e.value })
-    // switch(e.value) {
-    //   case:
-    // }
   }
 
   subCategoryHandleChange(e) {
@@ -67,64 +60,55 @@ export default class Add extends React.Component {
     this.setState({ cc: e.value })
   }
 
-  amountHandleChangle(e) {
+  inputHandleChange(e) {
     e.preventDefault();
-
     const { name, value } = e.target;
-    console.log("e.target.name is: ", e.target.name);
-    console.log("e.target.value is: ", e.target.value);
-
-    this.setState({ amount: e.target.value})
-
-    // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
-
-
+    // console.log("e.target.name is: ", e.target.name);
+    // console.log("e.target.value is: ", e.target.value);
+    switch(name) {
+      case "amount":
+        this.setState({ amount: e.target.value});
+        break;
+      case "description":
+        this.setState({ description: e.target.value });
+        break;
+      case "notes":
+        this.setState({ notes: e.target.value });
+        break;
+    }
   }
 
-  descriptionHandleChangle(e) {
-    e.preventDefault();
-
-    const { name, value } = e.target;
-    console.log("e.target.name is: ", e.target.name);
-    console.log("e.target.value is: ", e.target.value);
-
-    this.setState({ description: e.target.value })
-
+  handleSubmit() {
+    console.log("handleSubmit clicked");
   }
-
-  notesHandleChangle(e) {
-    e.preventDefault();
-
-    const { name, value } = e.target;
-    console.log("e.target.name is: ", e.target.name);
-    console.log("e.target.value is: ", e.target.value);
-
-    this.setState({ notes: e.target.value })
-
-  }
-
-
 
   render() {
-
     console.log("this.state is: ", this.state);
-    // console.log("raw_date is: ", this.state.date);
 
     const dropdownOptions = [
       [
         { value: 'Spendings', label: 'Spendings' },
         { value: 'Fixed', label: 'Fixed' },
         { value: 'Credit', label: 'Credit' },
+        { value: 'PayDay', label: 'PayDay' },
         { value: 'Vacation', label: 'Vacation' },
         { value: 'Wedding', label: 'Wedding' }
       ],
       [
         { value: 'Food', label: 'Food' },
         { value: 'Drinks', label: 'Drinks' },
+        { value: 'Groceries', label: 'Groceries' },
+        { value: 'Gas', label: 'Gas' },
         { value: 'Entertainment', label: 'Entertainment' },
+        { value: 'Gifts', label: 'Gifts' },
+        { value: 'Home', label: 'Home' },
         { value: 'Dogs', label: 'Dogs' },
-        { value: 'Groceries', label: 'Groceries' }
+        { value: 'Party', label: 'Party' },
+        { value: 'Travel', label: 'Travel' },
+        { value: 'Emergency', label: 'Emergency' },
+        { value: 'Utility', label: 'Utility' },
+        { value: 'Health', label: 'Health' },
+        { value: 'Automobile', label: 'Automobile' }
       ],
       [
         { value: 'AmEx', label: 'AmEx' },
@@ -133,19 +117,16 @@ export default class Add extends React.Component {
         { value: 'Venmo', label: 'Venmo' },
         { value: 'BankAmericard', label: 'BankAmericard' }
       ],
-
     ]
 
     return (
-      <div>
+      <form>
         <div className="mx-4">
-          {/* <div className="mt-5"> */}
             <DatePicker
               selected = {this.state.date}
-              onChange = {this.handleChange}
+              onChange={this.dateHandleChange}
               className = "amount mt-4"
             />
-          {/* </div> */}
         </div>
 
         <div className="mx-4">
@@ -183,36 +164,39 @@ export default class Add extends React.Component {
 
         <div className="mx-4">
           <input
-            onChange={this.amountHandleChangle}
-            placeholder={"$ 00.00" + this.state.amount}
+            onChange={this.inputHandleChange}
+            placeholder="$ 00.00"
+            name="amount"
             className="amount mt-4"
           />
         </div>
 
         <div className="mx-4">
           <input
-            onChange={this.descriptionHandleChangle}
+            onChange={this.inputHandleChange}
             placeholder="Descriptions"
+            name="descriptions"
             className="amount mt-4"
           />
         </div>
 
         <div className="mx-4">
           <input
-            onChange={this.notesHandleChangle}
+            onChange={this.inputHandleChange}
             placeholder="Notes"
+            name="notes"
             className="amount mt-4"
           />
         </div>
 
         <div className="mx-4">
           <div
-            onChange={this.notesHandleChangle}
+            onClick={() => this.handleSubmit()}
             className="amount mt-4"> Add
           </div>
         </div>
 
-      </div>
+      </form>
       );
     }
   }
