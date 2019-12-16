@@ -18,11 +18,14 @@ export default class Add extends React.Component {
     this.state = {
       date: new Date(),
       category: "Spendings",
-      subCategory: "Food"
+      subCategory: "Food",
+      cc: "AmEx",
+
     };
     this.handleChange = this.handleChange.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
-    this.subcategoryHandleChange = this.subcategoryHandleChange.bind(this);
+    this.subCategoryHandleChange = this.subCategoryHandleChange.bind(this);
+    this.ccHandleChange = this.ccHandleChange.bind(this);
   }
 
   handleChange(date) {
@@ -41,15 +44,21 @@ export default class Add extends React.Component {
     console.log("event is: ", e);
     console.log("event.value is: ", e.value);
     this.setState({ category: e.value })
-
-    // const { name, value } = e.target;
-    // this.setState({ [name]: value });
+    // switch(e.value) {
+    //   case:
+    // }
   }
 
-  subcategoryHandleChange(e) {
+  subCategoryHandleChange(e) {
     console.log("event is: ", e);
     console.log("event.value is: ", e.value);
     this.setState({ subCategory: e.value})
+  }
+
+  ccHandleChange(e) {
+    console.log("event is: ", e);
+    console.log("event.value is: ", e.value);
+    this.setState({ cc: e.value })
   }
 
 
@@ -74,6 +83,13 @@ export default class Add extends React.Component {
         { value: 'Dogs', label: 'Dogs' },
         { value: 'Groceries', label: 'Groceries' }
       ],
+      [
+        { value: 'AmEx', label: 'AmEx' },
+        { value: 'Freedom', label: 'Freedom' },
+        { value: 'Sapphire', label: 'Sapphire' },
+        { value: 'Venmo', label: 'Venmo' },
+        { value: 'BankAmericard', label: 'BankAmericard' }
+      ],
 
     ]
 
@@ -90,10 +106,7 @@ export default class Add extends React.Component {
         </div>
 
         <div className="mx-4">
-          {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
-
           <Dropdown
-            // selected = {this.state.category}
             onChange={this.categoryHandleChange}
             options={dropdownOptions[0]}
             arrowClosed = {<span className="arrow-closed" />}
@@ -101,15 +114,11 @@ export default class Add extends React.Component {
             placeholder = {this.state.category}
             className = "mt-5"
           />
-
         </div>
 
         <div className="mx-4">
-          {/* <input className="w-100 mt-5 border" placeholder="  subCategory" type="text" /> */}
-
           <Dropdown
-            // selected = {this.state.category}
-            onChange={this.subcategoryHandleChange}
+            onChange={this.subCategoryHandleChange}
             options={dropdownOptions[1]}
             arrowClosed={<span className="arrow-closed" />}
             arrowOpen={<span className="arrow-open" />}
@@ -117,6 +126,29 @@ export default class Add extends React.Component {
             className="mt-5"
           />
         </div>
+
+        <div className="mx-4">
+          <Dropdown
+            onChange={this.ccHandleChange}
+            options={dropdownOptions[2]}
+            arrowClosed={<span className="arrow-closed" />}
+            arrowOpen={<span className="arrow-open" />}
+            placeholder={this.state.cc}
+            className="mt-5"
+          />
+        </div>
+
+        <div className="mx-4">
+          <Dropdown
+            onChange={this.ccHandleChange}
+            options={dropdownOptions[2]}
+            arrowClosed={<span className="arrow-closed" />}
+            arrowOpen={<span className="arrow-open" />}
+            placeholder={this.state.cc}
+            className="mt-5"
+          />
+        </div>
+
       </div>
       );
     }
