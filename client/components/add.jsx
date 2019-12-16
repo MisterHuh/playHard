@@ -20,7 +20,9 @@ export default class Add extends React.Component {
       category: "Spendings",
       subCategory: "Food",
       cc: "AmEx",
-      amount: ""
+      amount: "",
+      description: "",
+      notes: ""
 
     };
     this.handleChange = this.handleChange.bind(this);
@@ -28,6 +30,8 @@ export default class Add extends React.Component {
     this.subCategoryHandleChange = this.subCategoryHandleChange.bind(this);
     this.ccHandleChange = this.ccHandleChange.bind(this);
     this.amountHandleChangle = this.amountHandleChangle.bind(this);
+    this.descriptionHandleChangle = this.descriptionHandleChangle.bind(this);
+    this.notesHandleChangle = this.notesHandleChangle.bind(this);
   }
 
   handleChange(date) {
@@ -78,6 +82,28 @@ export default class Add extends React.Component {
 
   }
 
+  descriptionHandleChangle(e) {
+    e.preventDefault();
+
+    const { name, value } = e.target;
+    console.log("e.target.name is: ", e.target.name);
+    console.log("e.target.value is: ", e.target.value);
+
+    this.setState({ description: e.target.value })
+
+  }
+
+  notesHandleChangle(e) {
+    e.preventDefault();
+
+    const { name, value } = e.target;
+    console.log("e.target.name is: ", e.target.name);
+    console.log("e.target.value is: ", e.target.value);
+
+    this.setState({ notes: e.target.value })
+
+  }
+
 
 
   render() {
@@ -117,7 +143,7 @@ export default class Add extends React.Component {
             <DatePicker
               selected = {this.state.date}
               onChange = {this.handleChange}
-              className = "amount mt-5"
+              className = "amount mt-4"
             />
           {/* </div> */}
         </div>
@@ -129,7 +155,7 @@ export default class Add extends React.Component {
             arrowClosed = {<span className="arrow-closed" />}
             arrowOpen = {<span className="arrow-open" />}
             placeholder = {this.state.category}
-            className = "mt-5"
+            className = "mt-4"
           />
         </div>
 
@@ -140,7 +166,7 @@ export default class Add extends React.Component {
             arrowClosed={<span className="arrow-closed" />}
             arrowOpen={<span className="arrow-open" />}
             placeholder={this.state.subCategory}
-            className="mt-5"
+            className="mt-4"
           />
         </div>
 
@@ -151,7 +177,7 @@ export default class Add extends React.Component {
             arrowClosed={<span className="arrow-closed" />}
             arrowOpen={<span className="arrow-open" />}
             placeholder={this.state.cc}
-            className="mt-5"
+            className="mt-4"
           />
         </div>
 
@@ -159,8 +185,31 @@ export default class Add extends React.Component {
           <input
             onChange={this.amountHandleChangle}
             placeholder={"$ 00.00" + this.state.amount}
-            className="amount mt-5"
+            className="amount mt-4"
           />
+        </div>
+
+        <div className="mx-4">
+          <input
+            onChange={this.descriptionHandleChangle}
+            placeholder="Descriptions"
+            className="amount mt-4"
+          />
+        </div>
+
+        <div className="mx-4">
+          <input
+            onChange={this.notesHandleChangle}
+            placeholder="Notes"
+            className="amount mt-4"
+          />
+        </div>
+
+        <div className="mx-4">
+          <div
+            onChange={this.notesHandleChangle}
+            className="amount mt-4"> Add
+          </div>
         </div>
 
       </div>
