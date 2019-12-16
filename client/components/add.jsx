@@ -36,8 +36,8 @@ export default class Add extends React.Component {
 
   };
 
-  categoryHandleChange(value) {
-    this.setState({ category: value })
+  categoryHandleChange(event) {
+    this.setState({ category: event.value })
   }
 
 
@@ -52,6 +52,8 @@ export default class Add extends React.Component {
     const options = [
       'Spendings', 'Fixed', 'Credit'
     ]
+
+    const value = this.state.category;
 
     var searchNames = ['Sydney', 'Melbourne', 'Brisbane',
       'Adelaide', 'Perth', 'Hobart'];
