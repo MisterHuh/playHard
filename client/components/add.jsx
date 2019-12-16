@@ -18,10 +18,11 @@ export default class Add extends React.Component {
     this.state = {
       date: new Date(),
       category: "Spendings",
-      subCategory: "food"
+      subCategory: "Food"
     };
     this.handleChange = this.handleChange.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
+    this.subcategoryHandleChange = this.subcategoryHandleChange.bind(this);
   }
 
   handleChange(date) {
@@ -36,8 +37,19 @@ export default class Add extends React.Component {
 
   };
 
-  categoryHandleChange(event) {
-    this.setState({ category: event.value })
+  categoryHandleChange(e) {
+    console.log("event is: ", e);
+    console.log("event.value is: ", e.value);
+    this.setState({ category: e.value })
+
+    // const { name, value } = e.target;
+    // this.setState({ [name]: value });
+  }
+
+  subcategoryHandleChange(e) {
+    console.log("event is: ", e);
+    console.log("event.value is: ", e.value);
+    this.setState({ subCategory: e.value})
   }
 
 
@@ -45,19 +57,24 @@ export default class Add extends React.Component {
   render() {
 
     console.log("this.state is: ", this.state);
-    console.log("raw_date is: ", this.state.date);
+    // console.log("raw_date is: ", this.state.date);
 
-    const options = [
-      'Spendings', 'Fixed', 'Credit'
-    ]
+    const dropdownOptions = [
+      [
+        { value: 'Spendings', label: 'Spendings' },
+        { value: 'Fixed', label: 'Fixed' },
+        { value: 'Credit', label: 'Credit' },
+        { value: 'Vacation', label: 'Vacation' },
+        { value: 'Wedding', label: 'Wedding' }
+      ],
+      [
+        { value: 'Food', label: 'Food' },
+        { value: 'Drinks', label: 'Drinks' },
+        { value: 'Entertainment', label: 'Entertainment' },
+        { value: 'Dogs', label: 'Dogs' },
+        { value: 'Groceries', label: 'Groceries' }
+      ],
 
-    const options2 = [
-      'Food', 'Drinks', 'Entertainment'
-    ]
-
-    const dropdownList = [
-      ['Spendings', 'Fixed', 'Credit'],
-      ['Food', 'Drinks', 'Entertainment']
     ]
 
     return (
@@ -78,10 +95,10 @@ export default class Add extends React.Component {
           <Dropdown
             // selected = {this.state.category}
             onChange={this.categoryHandleChange}
-            options = {options}
+            options={dropdownOptions[0]}
             arrowClosed = {<span className="arrow-closed" />}
             arrowOpen = {<span className="arrow-open" />}
-            placeholder = "Select an option"
+            placeholder = {this.state.category}
             className = "mt-5"
           />
 
@@ -92,11 +109,11 @@ export default class Add extends React.Component {
 
           <Dropdown
             // selected = {this.state.category}
-            onChange={this.categoryHandleChange}
-            options={options1}
+            onChange={this.subcategoryHandleChange}
+            options={dropdownOptions[1]}
             arrowClosed={<span className="arrow-closed" />}
             arrowOpen={<span className="arrow-open" />}
-            placeholder="Select an option"
+            placeholder={this.state.subCategory}
             className="mt-5"
           />
         </div>
