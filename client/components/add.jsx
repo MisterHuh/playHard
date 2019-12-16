@@ -21,6 +21,7 @@ export default class Add extends React.Component {
       subCategory: "food"
     };
     this.handleChange = this.handleChange.bind(this);
+    this.categoryHandleChange = this.categoryHandleChange.bind(this);
   }
 
   handleChange(date) {
@@ -32,9 +33,16 @@ export default class Add extends React.Component {
 
   };
 
+  categoryHandleChange() {
+    this.setState({ category: value })
+  }
+
+
+
   render() {
 
-    console.log("raw_date is: ", this.state.date)
+    console.log("raw_date is: ", this.state.date);
+    console.log("category is: ", this.state.category);
 
     const options = [
       'Spendings', 'Fixed', 'Credit'
@@ -54,9 +62,9 @@ export default class Add extends React.Component {
         <div className="mx-4">
           {/* <div className="mt-5"> */}
             <DatePicker
-              selected={this.state.date}
-              onChange={this.handleChange}
-              className="mt-5"
+              selected = {this.state.date}
+              onChange = {this.handleChange}
+              className = "mt-5"
             />
           {/* </div> */}
         </div>
@@ -65,12 +73,13 @@ export default class Add extends React.Component {
           {/* <input className="w-100 mt-5 border" placeholder="  category" type="text" /> */}
 
           <Dropdown
-            options={options}
-            arrowClosed={<span className="arrow-closed" />}
-            arrowOpen={<span className="arrow-open" />}
-            placeholder="Select an option"
-            className="mt-5"
-            isSearchable
+            value = {this.state.category}
+            onChange={this.categoryHandleChange}
+            options = {options}
+            arrowClosed = {<span className="arrow-closed" />}
+            arrowOpen = {<span className="arrow-open" />}
+            placeholder = "Select an option"
+            className = "mt-5"
           />
 
           {/* <DropdownInput
