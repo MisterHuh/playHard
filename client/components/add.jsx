@@ -117,7 +117,7 @@ export default class Add extends React.Component {
             <DatePicker
               selected = {this.state.date}
               onChange = {this.handleChange}
-              className = "mt-5"
+              className = "amount mt-5"
             />
           {/* </div> */}
         </div>
@@ -159,7 +159,7 @@ export default class Add extends React.Component {
           <input
             onChange={this.amountHandleChangle}
             placeholder={"$ 00.00" + this.state.amount}
-            className="mt-5"
+            className="amount mt-5"
           />
         </div>
 
