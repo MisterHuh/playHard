@@ -21,7 +21,7 @@ export default class Add extends React.Component {
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
-      description: "",
+      where: "",
       notes: ""
     };
     this.dateHandleChange = this.dateHandleChange.bind(this);
@@ -72,8 +72,8 @@ export default class Add extends React.Component {
       case "amount":
         this.setState({ amount: e.target.value});
         break;
-      case "description":
-        this.setState({ description: e.target.value });
+      case "where":
+        this.setState({ where: e.target.value });
         break;
       case "notes":
         this.setState({ notes: e.target.value });
@@ -103,19 +103,18 @@ export default class Add extends React.Component {
       subCategory: this.state.subCategory,
       cc: this.state.cc,
       amount: this.state.amount,
-      description: this.state.amount,
+      where: this.state.amount,
       notes: this.state.notes
     }
 
     const req = {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(entry)
     };
 
     console.log("final entry is: ", entry);
 
-    fetch(`/api/cart.php`, req)
+    fetch(`server/public/api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
         console.error('delete error: ', error);
@@ -127,7 +126,7 @@ export default class Add extends React.Component {
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
-      description: "",
+      where: "",
       notes: ""
      })
   }
@@ -224,10 +223,10 @@ export default class Add extends React.Component {
 
         <div className="mx-4">
           <input
-            value = {this.state.description}
+            value = {this.state.where}
             onChange={this.inputHandleChange}
             placeholder="Where?"
-            name="description"
+            name="where"
             className="amount mt-4"
           />
         </div>
