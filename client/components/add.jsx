@@ -90,7 +90,8 @@ export default class Add extends React.Component {
 
   formatDate() {
     let current_datetime = this.state.date;
-    let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
+    // let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
+    let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
     return formatted_date;
   }
 
@@ -140,7 +141,7 @@ export default class Add extends React.Component {
         { value: 'Spendings', label: 'Spendings' },
         { value: 'Fixed', label: 'Fixed' },
         { value: 'Credit', label: 'Credit' },
-        { value: 'PayDay', label: 'PayDay' },
+        { value: 'Payday', label: 'Payday' },
         { value: 'Vacation', label: 'Vacation' },
         { value: 'Wedding', label: 'Wedding' }
       ],
@@ -150,7 +151,7 @@ export default class Add extends React.Component {
         { value: 'Groceries', label: 'Groceries' },
         { value: 'Gas', label: 'Gas' },
         { value: 'Entertainment', label: 'Entertainment' },
-        { value: 'Gifts', label: 'Gifts' },
+        { value: 'gifts', label: 'Gifts' },
         { value: 'Home', label: 'Home' },
         { value: 'Dogs', label: 'Dogs' },
         { value: 'Party', label: 'Party' },
