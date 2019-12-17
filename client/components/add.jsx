@@ -103,7 +103,7 @@ export default class Add extends React.Component {
       subCategory: this.state.subCategory,
       cc: this.state.cc,
       amount: this.state.amount,
-      where: this.state.amount,
+      where: this.state.where,
       notes: this.state.notes
     }
 
@@ -132,7 +132,7 @@ export default class Add extends React.Component {
   }
 
   render() {
-    console.log("this.state is: ", this.state);
+    // console.log("this.state is: ", this.state);
 
     const dropdownOptions = [
       [
@@ -218,6 +218,7 @@ export default class Add extends React.Component {
             placeholder="$ 00.00"
             name="amount"
             className="amount mt-4"
+            // value="4.50"
           />
         </div>
 
@@ -228,6 +229,7 @@ export default class Add extends React.Component {
             placeholder="Where?"
             name="where"
             className="amount mt-4"
+            // value="Starbucks"
           />
         </div>
 
@@ -238,6 +240,7 @@ export default class Add extends React.Component {
             placeholder="Notes"
             name="notes"
             className="amount mt-4"
+            // value="coffee"
           />
         </div>
 
