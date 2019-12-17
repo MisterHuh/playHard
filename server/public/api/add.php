@@ -1,11 +1,18 @@
 <?php
 
+print("hello world 1");
+
 require_once("functions.php");
 require_once("db_connection.php");
 set_exception_handler("error_handler");
 startUp();
 
 $bodyData = getBodyData();
+
+// var_dump($bodyData["category"]);
+// var_dump($bodyData);
+
+print("hello world 2");
 
 /* not necessary, because these are dropdown and have default value */
 if ($bodyData["date"]) {
@@ -53,11 +60,11 @@ if ($bodyData["where"]) {
 };
 
 /* input */
-if ($bodyData["where"]) {
-  $where = $bodyData["where"];
+if ($bodyData["notes"]) {
+  $notes = $bodyData["notes"];
 } else {
-  $where = "";
-  // throw new Exception("where required");
+  $notes = "";
+  // throw new Exception("notes required");
 };
 
 $query = "INSERT INTO `spendings`
@@ -74,13 +81,6 @@ $result = mysqli_query($conn, $query);
 if (!$result) {
   throw new Exception("error with query " . mysqli_error($conn));
 }
-
-
-
-
-
-
-
 
 
 ?>

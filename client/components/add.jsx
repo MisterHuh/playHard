@@ -97,6 +97,16 @@ export default class Add extends React.Component {
 
   addEntry(formatted_date) {
 
+    // const entry = JSON.stringify({
+    //   date: formatted_date,
+    //   category: this.state.category,
+    //   subCategory: this.state.subCategory,
+    //   cc: this.state.cc,
+    //   amount: this.state.amount,
+    //   where: this.state.where,
+    //   notes: this.state.notes
+    // });
+
     const entry = {
       date: formatted_date,
       category: this.state.category,
@@ -105,16 +115,17 @@ export default class Add extends React.Component {
       amount: this.state.amount,
       where: this.state.where,
       notes: this.state.notes
-    }
+    };
 
     const req = {
       method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(entry)
     };
 
     console.log("final entry is: ", entry);
 
-    fetch(`server/public/api/add.php`, req)
+    fetch(`api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
         console.error('delete error: ', error);
