@@ -1,5 +1,6 @@
 import React from "react";
 import Add from "./add";
+import Current from "./current";
 import { Navbar } from "./navbar";
 
 export default class App extends React.Component {
@@ -22,6 +23,8 @@ export default class App extends React.Component {
 
     if (currentView === 'add') {
       displayView = <Add setView={this.setView}/>;
+    } else if (currentView === "current") {
+      displayView = <Current />
     }
 
     return (

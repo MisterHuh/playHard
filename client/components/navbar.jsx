@@ -17,6 +17,17 @@ export const Navbar = props => {
     historyBackfill = {
       backgroundColor: "white"
     };
+  } else if (currentView = "current") {
+    addBackfill = {
+      backgroundColor: "white",
+      color: "white"
+    };
+    currentBackfill = {
+      backgroundColor: "#96D1E3"
+    };
+    historyBackfill = {
+      backgroundColor: "white"
+    };
   }
 
   let setView = props.setView;

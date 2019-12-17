@@ -226,7 +226,7 @@ export default class Add extends React.Component {
           <input
             value = {this.state.description}
             onChange={this.inputHandleChange}
-            placeholder="Description"
+            placeholder="Where?"
             name="description"
             className="amount mt-4"
           />
