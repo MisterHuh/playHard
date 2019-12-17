@@ -18,3 +18,19 @@
   outline: none;
   padding: 8px 52px 8px 10px;
 }
+
+.addButton {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: #333;
+  background: #999;
+  outline: none;
+  padding: 8px 52px 8px 10px;
+  font-weight: bolder;
+  border-radius: 28px;
+}

@@ -10,31 +10,42 @@ export const Navbar = props => {
     addBackfill = {
       backgroundColor: "#96D1E3",
       color: "white"
-    };
-    currentBackfill = {
-      backgroundColor: "white"
-    };
-    historyBackfill = {
-      backgroundColor: "white"
-    };
+    }
   } else if (currentView = "current") {
-    addBackfill = {
-      backgroundColor: "white",
-      color: "white"
-    };
     currentBackfill = {
-      backgroundColor: "#96D1E3"
-    };
-    historyBackfill = {
-      backgroundColor: "white"
-    };
+      backgroundColor: "#96D1E3",
+      color: "white"
+    }
   }
+
+  // if (currentView = "add") {
+  //   addBackfill = {
+  //     backgroundColor: "#96D1E3",
+  //     color: "white"
+  //   };
+  //   currentBackfill = {
+  //     backgroundColor: "white"
+  //   };
+  //   historyBackfill = {
+  //     backgroundColor: "white"
+  //   };
+  // } else if (currentView = "current") {
+  //   addBackfill = {
+  //     backgroundColor: "white",
+  //   };
+  //   currentBackfill = {
+  //     backgroundColor: "#96D1E3",
+  //     color: "white"
+  //   };
+  //   historyBackfill = {
+  //     backgroundColor: "white"
+  //   };
+  // }
 
   let setView = props.setView;
 
   return (
-
-    <div className="d-flex flex-row justify-content-center">
+      <div className="d-flex flex-row justify-content-center">
       <div className="navbarButtonContainer border" style={addBackfill}>
         <i
           onClick={() => setView("add")}

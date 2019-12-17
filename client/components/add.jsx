@@ -245,7 +245,7 @@ export default class Add extends React.Component {
         <div className="mx-4">
           <div
             onClick={() => this.handleSubmit()}
-            className="amount mt-4"> Add
+            className="amount addButton mt-4 text-center"> Add
           </div>
         </div>
 

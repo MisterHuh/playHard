@@ -27,6 +27,7 @@ export default class App extends React.Component {
       displayView = <Current />
     }
 
+    console.log("currentView is: ", currentView)
     return (
       <div>
         <Navbar setView={this.setView} currentView={currentView}/>
