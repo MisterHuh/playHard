@@ -125,7 +125,7 @@ export default class Add extends React.Component {
 
     console.log("final entry is: ", entry);
 
-    fetch(`api/add.php`, req)
+    fetch(`/api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
         console.error('delete error: ', error);

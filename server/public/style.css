@@ -41,3 +41,7 @@
   /* background-color: #008CBA; */
   color: white;
 }
+
+.currentFixed {
+  display: grid;
+}
