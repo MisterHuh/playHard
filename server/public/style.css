@@ -90,3 +90,9 @@
   text-align: center;
   width: 16.67%;
 }
+
+.currentDataBox:nth-child(1), .currentTableRow:nth-child(1) {
+  border: 1px solid red;
+  text-align: center;
+  width: 16.67%;
+}

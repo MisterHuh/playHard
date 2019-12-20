@@ -15,7 +15,7 @@ export default class Current extends React.Component {
           cc: "Amex",
           amount: 12.00,
           store: "Flame Broiler",
-          notes: ""
+          notes: "delicious"
         },
         {
           id: 2,
