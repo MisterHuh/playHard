@@ -1,4 +1,5 @@
 import React from "react";
+import CurrentData from "./currentData";
 
 export default class Current extends React.Component {
   constructor(props) {
@@ -7,6 +8,7 @@ export default class Current extends React.Component {
   render() {
     return (
 
+      <React.Fragment>
       <div className="currentWrapper mt-4">
 
         <div className="currentContainer">
@@ -31,6 +33,13 @@ export default class Current extends React.Component {
         </div>
 
       </div>
+
+      <div className="mt-4">
+        <CurrentData />
+      </div>
+
+      </React.Fragment>
+
 
 
       // <div className="currentFixed my-4">
