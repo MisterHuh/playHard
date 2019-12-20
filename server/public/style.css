@@ -67,6 +67,10 @@
   text-align: center;
 }
 
+.currentTableHeaderContainer {
+  /* padding: 1%; */
+}
+
 .currentTableHeader {
   display: flex;
   flex-direction: row;
@@ -75,7 +79,7 @@
 
 .currentTableRow {
   border: 1px solid black;
-  background-color: beige;
+  /* background-color: rgba(65, 28, 228, 0.39); */
   text-align: center;
   width: 16.67%;
 }
@@ -92,7 +96,7 @@
 }
 
 .currentDataContainer:nth-child(even) {
-  background-color: rgba(17, 183, 248, 0.1);
+  /* background-color: rgba(17, 183, 248, 0.1); */
 }
 
 .currentDataBox {
@@ -105,7 +109,19 @@
   width: 12%;
 }
 .currentDataBox:nth-child(5), .currentTableRow:nth-child(5), .currentDataBox:nth-child(6), .currentTableRow:nth-child(6) {
-  width: 24%;
+  width: 26%;
+}
+
+.Spendings {
+  background-color:  rgba(231, 66, 51, 0.3);
+}
+
+.Credit {
+  background-color:  rgba(33, 248, 17, 0.2);
+}
+
+.Fixed {
+  background-color:  rgba(248, 213, 17, 0.2);
 }
 
 
