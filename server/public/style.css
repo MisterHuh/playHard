@@ -78,3 +78,15 @@
   text-align: center;
   width: 16.67%;
 }
+
+.currentDataContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+}
+
+.currentDataBox {
+  border: 1px solid black;
+  text-align: center;
+  width: 16.67%;
+}

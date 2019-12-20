@@ -62,6 +62,19 @@ export default class Current extends React.Component {
   }
 
 
+
+// {
+//   id: 1,
+//   date: "2019-12-15",
+//   category: "Spendings",
+//   subCategory: "Food",
+//   cc: "Amex",
+//   amount: 12.00,
+//   store: "Flame Broiler",
+//   notes: ""
+// },
+
+
   /*
     on componentDidMount(), pull the Sun ~ Sat data based on the current week
     the store it as state
