@@ -2,8 +2,17 @@ import React from "react";
 
 export const CurrentData = props => {
   return(
+
     <div>
-      TEST
+      { props.current.map(entry => {
+        return(
+          <div key={entry.id}>
+            {entry.store}
+          </div>
+        )
+      })
+
+      }
     </div>
   )
 }

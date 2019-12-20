@@ -5,58 +5,60 @@ export default class Current extends React.Component {
   constructor(props) {
     super(props);
     // this.state: []
-    // this.state = {
-    //     {
-    //       id: 1,
-    //       date: "2019-12-15",
-    //       category: "Spendings",
-    //       subCategory: "Food",
-    //       cc: "Amex",
-    //       amount: 12.00,
-    //       store: "Flame Broiler",
-    //       notes: ""
-    //     },
-    //     {
-    //       id: 2,
-    //       date: "2019-12-16",
-    //       category: "Spendings",
-    //       subCategory: "Food",
-    //       cc: "Sapphire",
-    //       amount: 4.00,
-    //       store: "Starbucks",
-    //       notes: "happy hour"
-    //     },
-    //     {
-    //       id: 3,
-    //       date: "2019-12-17",
-    //       category: "Fixed",
-    //       subCategory: "Utility",
-    //       cc: "Freedom",
-    //       amount: 4.20,
-    //       store: "Electricity",
-    //       notes: ""
-    //     },
-    //     {
-    //       id: 4,
-    //       date: "2019-12-18",
-    //       category: "Spendings",
-    //       subCategory: "Gifts",
-    //       cc: "Amex",
-    //       amount: 124.20,
-    //       store: "Williams Sonoma",
-    //       notes: "ding ding ding"
-    //     },
-    //     {
-    //       id: 5,
-    //       date: "2019-09-19",
-    //       category: "Credit",
-    //       subCategory: "Food",
-    //       cc: "Venmo",
-    //       amount: -12.50,
-    //       store: "Starbucks",
-    //       notes: "happy hour starbies"
-    //     }
-    // }
+    this.state = {
+      current: [
+        {
+          id: 1,
+          date: "2019-12-15",
+          category: "Spendings",
+          subCategory: "Food",
+          cc: "Amex",
+          amount: 12.00,
+          store: "Flame Broiler",
+          notes: ""
+        },
+        {
+          id: 2,
+          date: "2019-12-16",
+          category: "Spendings",
+          subCategory: "Food",
+          cc: "Sapphire",
+          amount: 4.00,
+          store: "Starbucks",
+          notes: "happy hour"
+        },
+        {
+          id: 3,
+          date: "2019-12-17",
+          category: "Fixed",
+          subCategory: "Utility",
+          cc: "Freedom",
+          amount: 4.20,
+          store: "Electricity",
+          notes: ""
+        },
+        {
+          id: 4,
+          date: "2019-12-18",
+          category: "Spendings",
+          subCategory: "Gifts",
+          cc: "Amex",
+          amount: 124.20,
+          store: "Williams Sonoma",
+          notes: "ding ding ding"
+        },
+        {
+          id: 5,
+          date: "2019-09-19",
+          category: "Credit",
+          subCategory: "Food",
+          cc: "Venmo",
+          amount: -12.50,
+          store: "Starbucks",
+          notes: "happy hour starbies"
+        }
+      ]
+    }
   }
 
 
@@ -72,7 +74,7 @@ export default class Current extends React.Component {
 
 
   render() {
-    // console.log("state is: ", this.state);
+    console.log("this.state.current is: ", this.state.current);
 
     return (
 
@@ -111,7 +113,7 @@ export default class Current extends React.Component {
           <div className="currentTableRow">Store</div>
           <div className="currentTableRow">Notes</div>
         </div>
-        <CurrentData />
+        <CurrentData current={this.state.current}/>
       </div>
 
       </React.Fragment>
