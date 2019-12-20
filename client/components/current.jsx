@@ -117,7 +117,7 @@ export default class Current extends React.Component {
 
       </div>
 
-      <div className="mt-4">
+      <div className="mt-4 currentTableHeaderContainer">
         <div className="currentTableHeader">
           <div className="currentTableRow">Date</div>
           <div className="currentTableRow">subCategory</div>

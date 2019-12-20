@@ -75,8 +75,14 @@
 
 .currentTableRow {
   border: 1px solid black;
+  background-color: beige;
   text-align: center;
   width: 16.67%;
+}
+
+.currentTableHeaderContainer {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .currentDataContainer {
@@ -85,14 +91,30 @@
   width: 100vw;
 }
 
+.currentDataContainer:nth-child(even) {
+  background-color: rgba(17, 183, 248, 0.1);
+}
+
 .currentDataBox {
   border: 1px solid black;
   text-align: center;
-  width: 16.67%;
+  /* width: 16.67%; */
 }
 
-.currentDataBox:nth-child(1), .currentTableRow:nth-child(1) {
+.currentDataBox:nth-child(1), .currentTableRow:nth-child(1), .currentDataBox:nth-child(2), .currentTableRow:nth-child(2), .currentDataBox:nth-child(3), .currentTableRow:nth-child(3), .currentDataBox:nth-child(4), .currentTableRow:nth-child(4) {
+  width: 12%;
+}
+.currentDataBox:nth-child(5), .currentTableRow:nth-child(5), .currentDataBox:nth-child(6), .currentTableRow:nth-child(6) {
+  width: 24%;
+}
+
+
+
+
+
+/* .currentDataBox:nth-child(even), .currentTableRow:nth-child(even) {
   border: 1px solid red;
+  background-color: grey;
   text-align: center;
   width: 16.67%;
-}
+} */

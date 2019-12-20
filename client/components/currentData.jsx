@@ -6,17 +6,22 @@ export const CurrentData = props => {
     <div>
       { props.current.map(entry => {
         return(
-          <div
-            key={entry.id}
-            className="currentDataContainer"
-          >
-            <div className="currentDataBox">{entry.date}</div>
-            <div className="currentDataBox">{entry.subCategory}</div>
-            <div className="currentDataBox">{entry.cc}</div>
-            <div className="currentDataBox">{entry.amount}</div>
-            <div className="currentDataBox">{entry.store}</div>
-            <div className="currentDataBox">{entry.notes}</div>
 
+          <div className="currentDataWrapper">
+            <div
+              key={entry.id}
+              // className={"currentDataContainer" + entry.id}
+              className="currentDataContainer"
+
+            >
+              <div className="currentDataBox">{entry.date}</div>
+              <div className="currentDataBox">{entry.subCategory}</div>
+              <div className="currentDataBox">{entry.cc}</div>
+              <div className="currentDataBox">{entry.amount}</div>
+              <div className="currentDataBox">{entry.store}</div>
+              <div className="currentDataBox">{entry.notes}</div>
+
+            </div>
           </div>
         )
       })
