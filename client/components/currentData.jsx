@@ -12,7 +12,7 @@ export default class currentData extends React.Component {
   render() {
     return(
       <div className="">
-        <div>data will go here</div>
+        <div>currentData</div>
       </div>
     )
   }
