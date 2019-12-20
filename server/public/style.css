@@ -49,12 +49,18 @@
 .currentWrapper {
   border: 1px solid yellow;
   display: flex;
-  flex-direction: column;
-  height: 50vh;
+  flex-direction: row;
+  height: 15vh;
 }
 
 .currentContainer {
-  display: flex;
+  flex-direction: flex;
   border: 1px solid black;
-  height: 33%;
+  width: 33%;
+}
+
+.currentBox {
+  border: 1px solid red;
+  height: 25%;
+  text-align: center;
 }

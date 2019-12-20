@@ -7,10 +7,29 @@ export default class Current extends React.Component {
   render() {
     return (
 
-      <div className="currentWrapper">
-        <div className="currentContainer">Container 1</div>
-        <div className="currentContainer">Container 2</div>
-        <div className="currentContainer">Container 3</div>
+      <div className="currentWrapper mt-4">
+
+        <div className="currentContainer">
+          <div className="currentBox"></div>
+          <div className="currentBox">Total Spent</div>
+          <div className="currentBox">Credit</div>
+          <div className="currentBox">Remaining</div>
+        </div>
+
+        <div className="currentContainer">
+          <div className="currentBox">Spendings</div>
+          <div className="currentBox">$12.00</div>
+          <div className="currentBox">$12.00</div>
+          <div className="currentBox">$12.00</div>
+       </div>
+
+        <div className="currentContainer">
+          <div className="currentBox">Fixed</div>
+          <div className="currentBox">$12.00</div>
+          <div className="currentBox">$12.00</div>
+          <div className="currentBox">$12.00</div>
+        </div>
+
       </div>
 
 
