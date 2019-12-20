@@ -1,6 +1,6 @@
 import React from "react";
 
-export const currentData = props => {
+export const currentData = () => {
   return(
     <div>
       TEST
