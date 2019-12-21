@@ -2,6 +2,7 @@ import React from "react";
 import Add from "./add";
 import Current from "./current";
 import { Navbar } from "./navbar";
+import History from "./history"
 
 export default class App extends React.Component {
   constructor(props) {
@@ -25,6 +26,8 @@ export default class App extends React.Component {
       displayView = <Add setView={this.setView}/>;
     } else if (currentView === "current") {
       displayView = <Current />
+    } else if (currentView === "history") {
+      displayView = <History />
     }
 
     // console.log("currentView is: ", currentView)
