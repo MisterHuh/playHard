@@ -1,5 +1,7 @@
 import React from "react";
 import { CurrentData } from "./currentData";
+import { CurrencyFormatter } from "./currencyFormatter";
+
 
 export default class Current extends React.Component {
   constructor(props) {
@@ -57,23 +59,13 @@ export default class Current extends React.Component {
           store: "Starbucks",
           notes: "happy hour starbies"
         }
-      ]
+      ],
+      spendings: 0,
+      credits: 0,
+      remaining: 0
     }
-  }
-
-
-
-// {
-//   id: 1,
-//   date: "2019-12-15",
-//   category: "Spendings",
-//   subCategory: "Food",
-//   cc: "Amex",
-//   amount: 12.00,
-//   store: "Flame Broiler",
-//   notes: ""
-// },
-
+    this.test = this.test.bind(this);
+  };
 
   /*
     on componentDidMount(), pull the Sun ~ Sat data based on the current week
@@ -85,9 +77,30 @@ export default class Current extends React.Component {
     then join them together by date
   */
 
+  // mapThrough() {
+  //   for (let index = 0; index < this.state.current.length; index++) {
+
+  //   }
+  // }
+
+  test() {
+    let totalSpendings = 0;
+
+    // this.state.current.map(entry => {
+    //   totalSpendings += entry.amount;
+    // })
+
+
+
+    console.log("totalSpendings is: ", totalSpendings);
+    return totalSpendings;
+  }
+
 
   render() {
     console.log("this.state.current is: ", this.state.current);
+
+    let currencyFormatter = CurrencyFormatter.format();
 
     return (
 
@@ -96,23 +109,23 @@ export default class Current extends React.Component {
 
         <div className="currentContainer">
           <div className="currentBox"></div>
-          <div className="currentBox spendings">Total Spent</div>
+          <div className="currentBox spendings">Spendings</div>
           <div className="currentBox credit">Credit</div>
           <div className="currentBox remaining">Remaining</div>
         </div>
 
         <div className="currentContainer">
           <div className="currentBox">Spendings</div>
-          <div className="currentBox spendings">$12.00</div>
-          <div className="currentBox credit">$12.00</div>
-          <div className="currentBox remaining">$12.00</div>
+          <div className="currentBox spendings"></div>
+          <div className="currentBox credit"></div>
+          <div className="currentBox remaining"></div>
        </div>
 
         <div className="currentContainer">
           <div className="currentBox">Fixed</div>
-          <div className="currentBox spendings">$12.00</div>
-          <div className="currentBox credit">$12.00</div>
-          <div className="currentBox remaining">$12.00</div>
+          <div className="currentBox spendings"></div>
+          <div className="currentBox credit"></div>
+          <div className="currentBox remaining"></div>
         </div>
 
       </div>
@@ -130,14 +143,6 @@ export default class Current extends React.Component {
       </div>
 
       </React.Fragment>
-
-
-
-      // <div className="currentFixed my-4">
-      //   <div className="item item-1">item-1</div>
-      //   <div className="item item-2">item-2</div>
-      //   <div className="item item-3">item-3</div>
-      // </div>
 
     )
   }
