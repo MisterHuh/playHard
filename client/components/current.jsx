@@ -96,22 +96,22 @@ export default class Current extends React.Component {
 
         <div className="currentContainer">
           <div className="currentBox"></div>
-          <div className="currentBox">Total Spent</div>
-          <div className="currentBox">Credit</div>
+          <div className="currentBox spendings">Total Spent</div>
+          <div className="currentBox credit">Credit</div>
           <div className="currentBox">Remaining</div>
         </div>
 
         <div className="currentContainer">
           <div className="currentBox">Spendings</div>
-          <div className="currentBox">$12.00</div>
-          <div className="currentBox">$12.00</div>
+          <div className="currentBox spendings">$12.00</div>
+          <div className="currentBox credit">$12.00</div>
           <div className="currentBox">$12.00</div>
        </div>
 
         <div className="currentContainer">
           <div className="currentBox">Fixed</div>
-          <div className="currentBox">$12.00</div>
-          <div className="currentBox">$12.00</div>
+          <div className="currentBox spendings">$12.00</div>
+          <div className="currentBox credit">$12.00</div>
           <div className="currentBox">$12.00</div>
         </div>
 

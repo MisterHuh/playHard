@@ -10,7 +10,7 @@ export const CurrentData = props => {
           <div className="currentDataWrapper">
             <div
               key={entry.id}
-              className={"currentDataContainer " + entry.category}
+              className={"currentDataContainer " + entry.category.toLowerCase()}
               // className="currentDataContainer"
 
             >
