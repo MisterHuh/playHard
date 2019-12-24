@@ -10,15 +10,19 @@ div {
   text-align: center;
 }
 
-form {
-  border: 1px solid black;
+.addForm {
+  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
 
 .addInput {
+  /* border: 1px solid red; */
   width: 50%;
+  /* margin: auto; */
+  /* margin-left: auto; */
+  /* margin-right: auto; */
 }
 
 .amount {
@@ -33,6 +37,7 @@ form {
   cursor: default;
   outline: none;
   padding: 8px 52px 8px 10px;
+  margin: auto;
 }
 
 .addButton {
