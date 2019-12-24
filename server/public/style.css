@@ -68,28 +68,22 @@ div {
 }
 
 .currentWrapper {
-  border: 1px solid yellow;
   display: flex;
   flex-direction: row;
   justify-content: center;
   height: 15vh;
-
-  /* margin-right: auto; */
-  /* margin-left: auto; */
 }
 
 .currentContainer {
   flex-direction: flex;
-  border: 1px solid black;
-  width: 15%;
-  /* margin-right: auto; */
-  /* margin-left: auto; */
+  width: 12%;
 }
 
 .currentBox {
-  border: 1px solid red;
+  border: 1px solid black;
   height: 25%;
   text-align: center;
+  /* margin: 1%; */
 }
 
 .currentTableHeaderContainer {
@@ -135,6 +129,10 @@ div {
 }
 .currentDataBox:nth-child(5), .currentTableRow:nth-child(5), .currentDataBox:nth-child(6), .currentTableRow:nth-child(6) {
   width: 26%;
+}
+
+.remaining {
+  background-color:  rgba(17, 86, 248, 0.2);
 }
 
 .spendings {
