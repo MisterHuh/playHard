@@ -1,6 +1,8 @@
 import React from "react";
+import { CurrencyFormatter } from "./currencyFormatter";
 
 export const CurrentData = props => {
+
   return(
 
     <div>
@@ -17,7 +19,8 @@ export const CurrentData = props => {
               <div className="currentDataBox">{entry.date}</div>
               <div className="currentDataBox">{entry.subCategory}</div>
               <div className="currentDataBox">{entry.cc}</div>
-              <div className="currentDataBox">{"$" + entry.amount.toFixed(2)}</div>
+              {/* <div className="currentDataBox">{"$" + entry.amount.toFixed(2)}</div> */}
+              <div className="currentDataBox">{CurrencyFormatter.format(entry.amount)}</div>
               <div className="currentDataBox">{entry.store}</div>
               <div className="currentDataBox">{entry.notes}</div>
 
