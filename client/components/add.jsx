@@ -189,7 +189,7 @@ export default class Add extends React.Component {
             />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <Dropdown
             onChange={this.categoryHandleChange}
             options={dropdownOptions[0]}
@@ -200,7 +200,7 @@ export default class Add extends React.Component {
           />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <Dropdown
             onChange={this.subCategoryHandleChange}
             options={dropdownOptions[1]}
@@ -211,7 +211,7 @@ export default class Add extends React.Component {
           />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <Dropdown
             onChange={this.ccHandleChange}
             options={dropdownOptions[2]}
@@ -222,7 +222,7 @@ export default class Add extends React.Component {
           />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <input
             value={this.state.amount}
             onChange={this.inputHandleChange}
@@ -233,7 +233,7 @@ export default class Add extends React.Component {
           />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <input
             value = {this.state.where}
             onChange={this.inputHandleChange}
@@ -244,7 +244,7 @@ export default class Add extends React.Component {
           />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <input
             value = {this.state.notes}
             onChange={this.inputHandleChange}
@@ -255,7 +255,7 @@ export default class Add extends React.Component {
           />
         </div>
 
-        <div className="mx-4">
+        <div className="mx-4 addInput">
           <div
             onClick={() => this.handleSubmit()}
             className="addButton mt-4 text-center"> Add
