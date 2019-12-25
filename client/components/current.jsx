@@ -65,8 +65,8 @@ export default class Current extends React.Component {
       remaining: 0
     }
     this.test = this.test.bind(this);
-    this.addNums = this.addNums.bind(this);
   };
+
 
   /*
     on componentDidMount(), pull the Sun ~ Sat data based on the current week
@@ -78,59 +78,52 @@ export default class Current extends React.Component {
     then join them together by date
   */
 
-  // mapThrough() {
-  //   for (let index = 0; index < this.state.current.length; index++) {
-
-  //   }
-  // }
-
   test() {
-    let totalSpendings = 0;
-    this.state.current.map(this.addNums, totalSpendings)
 
-    // this.state.current.map(entry => {
-    //   totalSpendings += entry.amount;
-    // })
+    console.log("test() is being run");
 
+    let current = this.state.current;
+    let spendings = 0;
+    let fixed = 0;
+    let credits = 0;
 
-  }
-
-  addNums(array, totalSpendings) {
-
-    // let totalSpendings = 0;
-    if (array["category"] === "Spendings") {
-      // this.setState({ spendings: "TEST" });
-      totalSpendings += array["amount"];
-      console.log(array["amount"]);
-      console.log(array["category"]);
+    for (let index = 0; index <= current.length; index++) {
+      if (current["category"] === "Spendings") {
+        spendings += current["amount"]
+      } else if (current["category"] === "Fixed") {
+        fixed += current["amount"]
+      } else if (current["category"] === "Credit") {
+        credits += current['amount']
+      }
     }
 
-    console.log("totalSpendings is: ", totalSpendings);
-    // return totalSpendings;
-    /*
-      {
-        id: 1,
-        date: "2019-12-15",
-        category: "Spendings",
-        subCategory: "Food",
-        cc: "Amex",
-        amount: 12.00,
-        store: "Flame Broiler",
-        notes: "delicious"
-      }
-    */
+    console.log("test() spendings is: ", spendings);
+    console.log("test() fixed is: ", fixed);
+    console.log("test() credits is: ", spendings);
 
+
+    this.setState({
+      spendings,
+      fixed,
+      credits
+    })
 
   }
 
 
+  componentDiDMount() {
+    this.test();
+  }
+
   render() {
+    this.test();
+
     console.log("this.state.current is: ", this.state.current);
     console.log("this.state.spendings is: ", this.state.spendings);
+    console.log("this.state.fixed is: ", this.state.fixed);
+    console.log("this.state.credits is: ", this.state.spendings);
 
     let currencyFormatter = CurrencyFormatter.format();
-
-    this.test();
 
     return (
 
