@@ -65,6 +65,7 @@ export default class Current extends React.Component {
       remaining: 0
     }
     this.test = this.test.bind(this);
+    this.addNums = this.addNums.bind(this);
   };
 
   /*
@@ -85,15 +86,34 @@ export default class Current extends React.Component {
 
   test() {
     let totalSpendings = 0;
+    this.state.current.map(this.addNums)
 
     // this.state.current.map(entry => {
     //   totalSpendings += entry.amount;
     // })
 
-
-
     console.log("totalSpendings is: ", totalSpendings);
     return totalSpendings;
+  }
+
+  addNums(array) {
+    if (array["category"] === "Spendings") {
+      console.log(array["amount"]);
+    }
+    /*
+      {
+        id: 1,
+        date: "2019-12-15",
+        category: "Spendings",
+        subCategory: "Food",
+        cc: "Amex",
+        amount: 12.00,
+        store: "Flame Broiler",
+        notes: "delicious"
+      }
+    */
+
+
   }
 
 
@@ -101,6 +121,8 @@ export default class Current extends React.Component {
     console.log("this.state.current is: ", this.state.current);
 
     let currencyFormatter = CurrencyFormatter.format();
+
+    this.test();
 
     return (
 
