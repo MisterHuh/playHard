@@ -86,20 +86,27 @@ export default class Current extends React.Component {
 
   test() {
     let totalSpendings = 0;
-    this.state.current.map(this.addNums)
+    this.state.current.map(this.addNums, totalSpendings)
 
     // this.state.current.map(entry => {
     //   totalSpendings += entry.amount;
     // })
 
-    console.log("totalSpendings is: ", totalSpendings);
-    return totalSpendings;
+
   }
 
-  addNums(array) {
+  addNums(array, totalSpendings) {
+
+    // let totalSpendings = 0;
     if (array["category"] === "Spendings") {
+      // this.setState({ spendings: "TEST" });
+      totalSpendings += array["amount"];
       console.log(array["amount"]);
+      console.log(array["category"]);
     }
+
+    console.log("totalSpendings is: ", totalSpendings);
+    // return totalSpendings;
     /*
       {
         id: 1,
@@ -119,6 +126,7 @@ export default class Current extends React.Component {
 
   render() {
     console.log("this.state.current is: ", this.state.current);
+    console.log("this.state.spendings is: ", this.state.spendings);
 
     let currencyFormatter = CurrencyFormatter.format();
 
