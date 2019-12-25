@@ -1,6 +1,6 @@
 <?php
 
-print("hello world 1");
+// print("hello world 1");
 
 require_once("functions.php");
 require_once("db_connection.php");
@@ -12,7 +12,7 @@ $bodyData = getBodyData();
 // var_dump($bodyData["category"]);
 // var_dump($bodyData);
 
-print("hello world 2");
+// print("hello world 2");
 
 /* not necessary, because these are dropdown and have default value */
 if ($bodyData["date"]) {
@@ -45,9 +45,10 @@ if ($bodyData["cc"]) {
 /* input */
 if ($bodyData["amount"]) {
   $amount = $bodyData["amount"];
-  if (gettype($amount) !== "number") {
-    throw new Exception("amount cannot contain a letter");
-  };
+  // print($amount);
+  // if (gettype($amount) !== "number") {
+    // throw new Exception("amount cannot contain a letter");
+  // };
 } else {
   throw new Exception("amount required");
 };
@@ -73,7 +74,7 @@ $query = "INSERT INTO `spendings`
               `subCategory` = '$subCategory',
               `cc` = '$cc',
               `amount` = '$amount',
-              `store` = '$store',
+              `store` = '$where',
               `notes` = '$notes'";
 
 $result = mysqli_query($conn, $query);
