@@ -22,7 +22,11 @@ export default class Add extends React.Component {
       cc: "Sapphire",
       amount: "",
       where: "",
-      notes: ""
+      notes: "",
+      formErrors: {
+        amount: "",
+        where: ""
+      }
     };
     this.dateHandleChange = this.dateHandleChange.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
@@ -39,11 +43,6 @@ export default class Add extends React.Component {
   // }
 
   dateHandleChange(date) {
-    // console.log("date is: ", date);
-    // let current_datetime = date;
-    // let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
-    // console.log("formatted_date is: ", formatted_date)
-    // this.setState({ date: formatted_date });
     this.setState({ date });
   };
 
@@ -67,18 +66,32 @@ export default class Add extends React.Component {
 
   inputHandleChange(e) {
     e.preventDefault();
+
+    const formErrors = this.state.formErrors;
     const { name, value } = e.target;
+
     switch(name) {
       case "amount":
-        this.setState({ amount: e.target.value});
-        break;
-      case "where":
-        this.setState({ where: e.target.value });
-        break;
-      case "notes":
-        this.setState({ notes: e.target.value });
+      formErrors.amount = value.length < 1
+        ? 'enter amount'
+        : "";
         break;
     }
+
+    // switch(name) {
+    //   case "amount":
+    //     if ()
+    //     this.setState({ amount: e.target.value});
+    //     break;
+    //   case "where":
+    //     this.setState({ where: e.target.value });
+    //     break;
+    //   case "notes":
+    //     this.setState({ notes: e.target.value });
+    //     break;
+    // }
+
+    this.setState({ formErrors, [name]: value });
   }
 
   handleSubmit() {
@@ -96,16 +109,6 @@ export default class Add extends React.Component {
   }
 
   addEntry(formatted_date) {
-
-    // const entry = JSON.stringify({
-    //   date: formatted_date,
-    //   category: this.state.category,
-    //   subCategory: this.state.subCategory,
-    //   cc: this.state.cc,
-    //   amount: this.state.amount,
-    //   where: this.state.where,
-    //   notes: this.state.notes
-    // });
 
     const entry = {
       date: formatted_date,
