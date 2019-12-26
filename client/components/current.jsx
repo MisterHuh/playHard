@@ -96,17 +96,6 @@ export default class Current extends React.Component {
       }
     }
 
-
-    // for (let index = 0; index <= current.length; index++) {
-    //   if (current[index]["category"] === "Spendings") {
-    //     spendings += current["amount"]
-    //   } else if (current[index]["category"] === "Fixed") {
-    //     fixed += current[index]["amount"]
-    //   } else if (current[index]["category"] === "Credit") {
-    //     credits += current[index]['amount']
-    //   }
-    // }
-
     console.log("test() spendings is: ", spendings);
     console.log("test() fixed is: ", fixed);
     console.log("test() credits is: ", spendings);
@@ -122,11 +111,11 @@ export default class Current extends React.Component {
 
 
   componentDiDMount() {
-    // this.test();
+    this.test();
   }
 
   render() {
-    this.test();
+    // this.test();
 
     console.log("this.state.current is: ", this.state.current);
     console.log("this.state.spendings is: ", this.state.spendings);
