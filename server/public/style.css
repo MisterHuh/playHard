@@ -73,7 +73,7 @@ div {
   justify-content: center;
   height: 15vh;
   z-index: 1;
-  margin-top: 4%;
+  margin-top: 3%;
 }
 
 .currentContainer {
@@ -89,8 +89,10 @@ div {
 }
 
 .currentTableHeaderContainer {
-  /* padding: 1%; */
-  margin-top: 8%;
+  padding: 1%;
+  /* margin-top: 3%; */
+  /* padding-left: 1%; */
+  /* padding-right: 1%; */
   /* margin-right: 2%; */
 }
 
@@ -107,10 +109,6 @@ div {
   width: 16.67%;
 }
 
-.currentTableHeaderContainer {
-  margin-left: auto;
-  margin-right: auto;
-}
 
 .currentDataContainer {
   display: flex;
@@ -132,7 +130,7 @@ div {
   width: 12%;
 }
 .currentDataBox:nth-child(5), .currentTableRow:nth-child(5), .currentDataBox:nth-child(6), .currentTableRow:nth-child(6) {
-  width: 26%;
+  width: 22%;
 }
 
 .remaining {

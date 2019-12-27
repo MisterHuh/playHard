@@ -140,7 +140,7 @@ export default class Current extends React.Component {
       <div className="currentWrapper">
 
         <div className="currentContainer">
-          <div className="currentBox">Budget is $100</div>
+          {/* <div className="currentBox">Budget is $100</div> */}
           <div className="currentBox spendings">Spendings</div>
           <div className="currentBox credit">Credit</div>
           <div className="currentBox fixed">Fixed</div>
@@ -148,7 +148,7 @@ export default class Current extends React.Component {
         </div>
 
         <div className="currentContainer">
-          <div className="currentBox">Breakdown</div>
+          {/* <div className="currentBox">Breakdown</div> */}
           <div className="currentBox spendings">{CurrencyFormatter.format(spendings)}</div>
           <div className="currentBox credit">{CurrencyFormatter.format(credits)}</div>
           <div className="currentBox fixed">{CurrencyFormatter.format(fixed)}</div>
