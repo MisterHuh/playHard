@@ -93,6 +93,10 @@ export default class Current extends React.Component {
     for (let index = 0; index <= 4; index++) {
       if (current[index]["category"] == "Spendings") {
         spendings += current[index]["amount"];
+      } else if (current[index]["category"] == "Fixed") {
+        fixed += current[index]["amount"];
+      } else if (current[index]["category"] == "Credit") {
+        credits += current[index]["amount"];
       }
     }
 
@@ -100,14 +104,14 @@ export default class Current extends React.Component {
     console.log("test() fixed is: ", fixed);
     console.log("test() credits is: ", spendings);
 
-    this.setState({ spendings })
+    // this.setState({ spendings })
 
 
-    // this.setState({
-    //   spendings,
-    //   fixed,
-    //   credits
-    // })
+    this.setState({
+      spendings,
+      fixed,
+      credits
+    })
 
   }
 
@@ -118,14 +122,11 @@ export default class Current extends React.Component {
   }
 
   render() {
-    // this.test();
 
     console.log("this.state.current is: ", this.state.current);
     console.log("this.state.spendings is: ", this.state.spendings);
     console.log("this.state.fixed is: ", this.state.fixed);
     console.log("this.state.credits is: ", this.state.spendings);
-
-    let currencyFormatter = CurrencyFormatter.format();
 
     return (
 
@@ -136,22 +137,24 @@ export default class Current extends React.Component {
           <div className="currentBox"></div>
           <div className="currentBox spendings">Spendings</div>
           <div className="currentBox credit">Credit</div>
+          <div className="currentBox fixed">Fixed</div>
           <div className="currentBox remaining">Remaining</div>
         </div>
 
         <div className="currentContainer">
-          <div className="currentBox">Spendings</div>
+          <div className="currentBox">Breakdown</div>
           <div className="currentBox spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
-          <div className="currentBox credit"></div>
-          <div className="currentBox remaining"></div>
+          <div className="currentBox credit">{CurrencyFormatter.format(this.state.credits)}</div>
+          <div className="currentBox fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
+          <div className="currentBox remaining">{}</div>
        </div>
 
-        <div className="currentContainer">
+        {/* <div className="currentContainer">
           <div className="currentBox">Fixed</div>
           <div className="currentBox spendings"></div>
           <div className="currentBox credit"></div>
           <div className="currentBox remaining"></div>
-        </div>
+        </div> */}
 
       </div>
 
