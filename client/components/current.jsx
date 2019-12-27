@@ -156,19 +156,19 @@ export default class Current extends React.Component {
           <div className="currentBox remaining"></div>
         </div> */}
 
-      </div>
-
-      <div className="border border-primary currentTableHeaderContainer">
-        <div className="currentTableHeader">
-          <div className="currentTableRow">Date</div>
-          <div className="currentTableRow">subCategory</div>
-          <div className="currentTableRow">cc</div>
-          <div className="currentTableRow">Amount</div>
-          <div className="currentTableRow">Store</div>
-          <div className="currentTableRow">Notes</div>
+        <div className="border border-primary currentTableHeaderContainer">
+          <div className="currentTableHeader">
+            <div className="currentTableRow">Date</div>
+            <div className="currentTableRow">subCategory</div>
+            <div className="currentTableRow">cc</div>
+            <div className="currentTableRow">Amount</div>
+            <div className="currentTableRow">Store</div>
+            <div className="currentTableRow">Notes</div>
+          </div>
+          <CurrentData current={this.state.current}/>
         </div>
-        <CurrentData current={this.state.current}/>
-      </div>
+
+        </div>
 
       </React.Fragment>
 
