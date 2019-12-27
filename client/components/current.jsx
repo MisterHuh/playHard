@@ -131,7 +131,7 @@ export default class Current extends React.Component {
     return (
 
       <React.Fragment>
-      <div className="currentWrapper mt-4">
+      <div className="currentWrapper">
 
         <div className="currentContainer">
           <div className="currentBox"></div>
@@ -158,7 +158,7 @@ export default class Current extends React.Component {
 
       </div>
 
-      <div className="mt-4 currentTableHeaderContainer">
+      <div className="border border-primary currentTableHeaderContainer">
         <div className="currentTableHeader">
           <div className="currentTableRow">Date</div>
           <div className="currentTableRow">subCategory</div>
