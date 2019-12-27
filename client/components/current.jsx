@@ -128,13 +128,19 @@ export default class Current extends React.Component {
     console.log("this.state.fixed is: ", this.state.fixed);
     console.log("this.state.credits is: ", this.state.spendings);
 
+    let budget = 100;
+    let spendings = this.state.spendings;
+    let credits = this.state.credits;
+    let fixed = this.state.fixed;
+    let remaining = budget - credits - spendings;
+
     return (
 
       <React.Fragment>
       <div className="currentWrapper">
 
         <div className="currentContainer">
-          <div className="currentBox"></div>
+          <div className="currentBox">Budget is $100</div>
           <div className="currentBox spendings">Spendings</div>
           <div className="currentBox credit">Credit</div>
           <div className="currentBox fixed">Fixed</div>
@@ -143,10 +149,10 @@ export default class Current extends React.Component {
 
         <div className="currentContainer">
           <div className="currentBox">Breakdown</div>
-          <div className="currentBox spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
-          <div className="currentBox credit">{CurrencyFormatter.format(this.state.credits)}</div>
-          <div className="currentBox fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
-          <div className="currentBox remaining">{}</div>
+          <div className="currentBox spendings">{CurrencyFormatter.format(spendings)}</div>
+          <div className="currentBox credit">{CurrencyFormatter.format(credits)}</div>
+          <div className="currentBox fixed">{CurrencyFormatter.format(fixed)}</div>
+          <div className="currentBox remaining">{CurrencyFormatter.format(remaining)}</div>
        </div>
 
       </div>
