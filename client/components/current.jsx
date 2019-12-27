@@ -100,6 +100,8 @@ export default class Current extends React.Component {
     console.log("test() fixed is: ", fixed);
     console.log("test() credits is: ", spendings);
 
+    // this.setState({ spendings })
+
 
     // this.setState({
     //   spendings,
@@ -111,11 +113,11 @@ export default class Current extends React.Component {
 
 
   componentDiDMount() {
-    this.test();
+    // this.test();
   }
 
   render() {
-    // this.test();
+    this.test();
 
     console.log("this.state.current is: ", this.state.current);
     console.log("this.state.spendings is: ", this.state.spendings);
@@ -138,7 +140,7 @@ export default class Current extends React.Component {
 
         <div className="currentContainer">
           <div className="currentBox">Spendings</div>
-          <div className="currentBox spendings"></div>
+          <div className="currentBox spendings">{this.state.spendings}</div>
           <div className="currentBox credit"></div>
           <div className="currentBox remaining"></div>
        </div>
