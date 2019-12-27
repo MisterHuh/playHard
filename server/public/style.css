@@ -73,6 +73,7 @@ div {
   justify-content: center;
   height: 15vh;
   z-index: 1;
+  margin-top: 4%;
 }
 
 .currentContainer {
@@ -89,6 +90,7 @@ div {
 
 .currentTableHeaderContainer {
   /* padding: 1%; */
+  margin-top: 8%;
 }
 
 .currentTableHeader {

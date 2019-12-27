@@ -149,6 +149,8 @@ export default class Current extends React.Component {
           <div className="currentBox remaining">{}</div>
        </div>
 
+      </div>
+
         {/* <div className="currentContainer">
           <div className="currentBox">Fixed</div>
           <div className="currentBox spendings"></div>
@@ -168,7 +170,7 @@ export default class Current extends React.Component {
           <CurrentData current={this.state.current}/>
         </div>
 
-        </div>
+        {/* </div> */}
 
       </React.Fragment>
 
