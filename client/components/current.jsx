@@ -117,6 +117,11 @@ export default class Current extends React.Component {
 
 
   componentDidMount() {
+    /*
+    need to pull data first.
+    create a function for this.
+    THEN, either keep the below this.test() or run this.test() on the new function
+    */
     this.test();
     // this.setState()
   }
@@ -139,20 +144,20 @@ export default class Current extends React.Component {
       <React.Fragment>
       <div className="currentWrapper">
 
-        <div className="currentContainer">
+        <div className="currentSummary">
           {/* <div className="currentBox">Budget is $100</div> */}
-          <div className="currentBox spendings">Spendings</div>
-          <div className="currentBox credit">Credit</div>
-          <div className="currentBox fixed">Fixed</div>
-          <div className="currentBox remaining">Remaining</div>
+          <div className="spendings">Spendings</div>
+          <div className="credit">Credit</div>
+          <div className="fixed">Fixed</div>
+          <div className="remaining">Remaining</div>
         </div>
 
-        <div className="currentContainer">
-          {/* <div className="currentBox">Breakdown</div> */}
-          <div className="currentBox spendings">{CurrencyFormatter.format(spendings)}</div>
-          <div className="currentBox credit">{CurrencyFormatter.format(credits)}</div>
-          <div className="currentBox fixed">{CurrencyFormatter.format(fixed)}</div>
-          <div className="currentBox remaining">{CurrencyFormatter.format(remaining)}</div>
+        <div className="currentSummary">
+          {/* <div className=">Breakdown</div> */}
+          <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
+          <div className="credit">{CurrencyFormatter.format(credits)}</div>
+          <div className="fixed">{CurrencyFormatter.format(fixed)}</div>
+          <div className="remaining">{CurrencyFormatter.format(remaining)}</div>
        </div>
 
       </div>

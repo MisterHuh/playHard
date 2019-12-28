@@ -71,17 +71,17 @@ div {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  height: 15vh;
-  z-index: 1;
-  margin-top: 3%;
+  margin-top: 2%;
+  /* height: 15vh; */
+  /* z-index: 1; */
 }
 
-.currentContainer {
+.currentSummary {
   flex-direction: flex;
   width: 12%;
 }
 
-.currentBox {
+.currentSummary > div {
   border: 1px solid black;
   height: 25%;
   text-align: center;
