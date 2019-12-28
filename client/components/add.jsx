@@ -77,20 +77,6 @@ export default class Add extends React.Component {
         : "";
         break;
     }
-
-    // switch(name) {
-    //   case "amount":
-    //     if ()
-    //     this.setState({ amount: e.target.value});
-    //     break;
-    //   case "where":
-    //     this.setState({ where: e.target.value });
-    //     break;
-    //   case "notes":
-    //     this.setState({ notes: e.target.value });
-    //     break;
-    // }
-
     this.setState({ formErrors, [name]: value });
   }
 

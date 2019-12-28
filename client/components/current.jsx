@@ -167,10 +167,7 @@ export default class Current extends React.Component {
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-
-          {/* <div className="currentData"> */}
             <CurrentData current={this.state.current} />
-          {/* </div> */}
         </div>
 
       </div>
