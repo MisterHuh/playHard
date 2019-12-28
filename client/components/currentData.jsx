@@ -9,20 +9,19 @@ export const CurrentData = props => {
       { props.current.map(entry => {
         return(
 
-          <div className="currentDataWrapper">
             <div
               key={entry.id}
-              className={"currentDataContainer " + entry.category.toLowerCase()}
+              // className={"currentDataContainer " + entry.category.toLowerCase()}
+              className={"currentDataContainer"}
             >
-              <div className="currentDataBox">{entry.date}</div>
-              <div className="currentDataBox">{entry.subCategory}</div>
-              <div className="currentDataBox">{entry.cc}</div>
-              <div className="currentDataBox">{CurrencyFormatter.format(entry.amount)}</div>
-              <div className="currentDataBox">{entry.store}</div>
-              <div className="currentDataBox">{entry.notes}</div>
+              <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.date}</div>
+              <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.subCategory}</div>
+              <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.cc}</div>
+              <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{CurrencyFormatter.format(entry.amount)}</div>
+              <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.store}</div>
+              <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.notes}</div>
 
             </div>
-          </div>
         )
       })
 

@@ -159,14 +159,14 @@ export default class Current extends React.Component {
         </div>
 
         <div className="border border-primary currentDataContainer">
-          <div className="currentDataBox">Date</div>
-          <div className="currentDataBox">subCategory</div>
-          <div className="currentDataBox">cc</div>
-          <div className="currentDataBox">Amount</div>
-          <div className="currentDataBox">Store</div>
-          <div className="currentDataBox">Notes</div>
-          {/* <CurrentData current={this.state.current}/> */}
+          <div className="currentDataHeader">Date</div>
+          <div className="currentDataHeader">subCategory</div>
+          <div className="currentDataHeader">cc</div>
+          <div className="currentDataHeader">Amount</div>
+          <div className="currentDataHeader">Store</div>
+          <div className="currentDataHeader">Notes</div>
         </div>
+          <CurrentData current={this.state.current}/>
 
         </div>
 
