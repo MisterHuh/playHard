@@ -11,7 +11,7 @@ export const CurrentData = props => {
 
             <div
               key={entry.id}
-              className={"currentDataContainer"}
+              className={"currentData"}
             >
               <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.date}</div>
               <div className={"currentDataHeader "  + entry.category.toLowerCase()}>{entry.subCategory}</div>
