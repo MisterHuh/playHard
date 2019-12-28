@@ -144,23 +144,22 @@ export default class Current extends React.Component {
       <React.Fragment>
       <div className="currentWrapper">
 
-        <div className="currentSummary">
-          {/* <div className="currentBox">Budget is $100</div> */}
-          <div className="spendings">Spendings</div>
-          <div className="credit">Credit</div>
-          <div className="fixed">Fixed</div>
-          <div className="remaining">Remaining</div>
+        <div className="currentSummaryContainer">
+          <div className="currentSummary">
+            <div className="spendings">Spendings</div>
+            <div className="credit">Credit</div>
+            <div className="fixed">Fixed</div>
+            <div className="remaining">Remaining</div>
+          </div>
+          <div className="currentSummary">
+            <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
+            <div className="credit">{CurrencyFormatter.format(credits)}</div>
+            <div className="fixed">{CurrencyFormatter.format(fixed)}</div>
+            <div className="remaining">{CurrencyFormatter.format(remaining)}</div>
+          </div>
         </div>
 
-        <div className="currentSummary">
-          {/* <div className=">Breakdown</div> */}
-          <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
-          <div className="credit">{CurrencyFormatter.format(credits)}</div>
-          <div className="fixed">{CurrencyFormatter.format(fixed)}</div>
-          <div className="remaining">{CurrencyFormatter.format(remaining)}</div>
-       </div>
-
-      </div>
+      {/* </div> */}
 
         {/* <div className="currentContainer">
           <div className="currentBox">Fixed</div>
@@ -169,8 +168,8 @@ export default class Current extends React.Component {
           <div className="currentBox remaining"></div>
         </div> */}
 
-        <div className="border border-primary currentTableHeaderContainer">
-          <div className="currentTableHeader">
+        <div className="border border-primary currentDataContainer">
+          <div className="currentDataHeader">
             <div className="currentTableRow">Date</div>
             <div className="currentTableRow">subCategory</div>
             <div className="currentTableRow">cc</div>
@@ -181,7 +180,7 @@ export default class Current extends React.Component {
           <CurrentData current={this.state.current}/>
         </div>
 
-        {/* </div> */}
+        </div>
 
       </React.Fragment>
 
