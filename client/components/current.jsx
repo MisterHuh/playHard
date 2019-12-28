@@ -9,86 +9,91 @@ export default class Current extends React.Component {
     // this.state: []
     this.state = {
       current: [
-        {
-          id: 1,
-          date: "2019-12-15",
-          category: "Spendings",
-          subCategory: "Food",
-          cc: "Amex",
-          amount: 12.00,
-          store: "Flame Broiler",
-          notes: "delicious"
-        },
-        {
-          id: 2,
-          date: "2019-12-16",
-          category: "Spendings",
-          subCategory: "Food",
-          cc: "Sapphire",
-          amount: 4.00,
-          store: "Starbucks",
-          notes: "happy hour"
-        },
-        {
-          id: 3,
-          date: "2019-12-17",
-          category: "Fixed",
-          subCategory: "Utility",
-          cc: "Freedom",
-          amount: 4.20,
-          store: "Electricity",
-          notes: ""
-        },
-        {
-          id: 4,
-          date: "2019-12-18",
-          category: "Spendings",
-          subCategory: "Gifts",
-          cc: "Amex",
-          amount: 124.20,
-          store: "Williams Sonoma",
-          notes: "ding ding ding"
-        },
-        {
-          id: 5,
-          date: "2019-09-19",
-          category: "Credit",
-          subCategory: "Food",
-          cc: "Venmo",
-          amount: -12.50,
-          store: "Starbucks",
-          notes: "happy hour starbies"
-        }
+        // {
+        //   id: 1,
+        //   date: "2019-12-15",
+        //   category: "Spendings",
+        //   subCategory: "Food",
+        //   cc: "Amex",
+        //   amount: 12.00,
+        //   store: "Flame Broiler",
+        //   notes: "delicious"
+        // },
+        // {
+        //   id: 2,
+        //   date: "2019-12-16",
+        //   category: "Spendings",
+        //   subCategory: "Food",
+        //   cc: "Sapphire",
+        //   amount: 4.00,
+        //   store: "Starbucks",
+        //   notes: "happy hour"
+        // },
+        // {
+        //   id: 3,
+        //   date: "2019-12-17",
+        //   category: "Fixed",
+        //   subCategory: "Utility",
+        //   cc: "Freedom",
+        //   amount: 4.20,
+        //   store: "Electricity",
+        //   notes: ""
+        // },
+        // {
+        //   id: 4,
+        //   date: "2019-12-18",
+        //   category: "Spendings",
+        //   subCategory: "Gifts",
+        //   cc: "Amex",
+        //   amount: 124.20,
+        //   store: "Williams Sonoma",
+        //   notes: "ding ding ding"
+        // },
+        // {
+        //   id: 5,
+        //   date: "2019-09-19",
+        //   category: "Credit",
+        //   subCategory: "Food",
+        //   cc: "Venmo",
+        //   amount: -12.50,
+        //   store: "Starbucks",
+        //   notes: "happy hour starbies"
+        // }
       ],
       spendings: 0,
       credits: 0,
       remaining: 0
     }
     this.test = this.test.bind(this);
+    this.getCurrentData = this.getCurrentData.bind(this);
   };
 
+  getCurrentData() {
 
-  /*
-    on componentDidMount(), pull the Sun ~ Sat data based on the current week
-    the store it as state
-    map through the state, and spit out <currentData/>, which will be each row
-    each object will be an entry
+    const req = {
 
-    will eventually have to pull data from `Spendings` `Fixed` and `Credits`
-    then join them together by date
-  */
+    }
+    fetch(`/api/get.php`)
+      .then(response => {
+        response.json();
+        console.log("response is:", response);
+      })
+      .then(current => this.setState({ current }))
+      // .then()
+
+  }
 
   test() {
 
-    console.log("test() is being run");
+    // console.log("test() is being run");
 
     let current = this.state.current;
     let spendings = 0;
     let fixed = 0;
     let credits = 0;
 
-    console.log("current is: ", current);
-    console.log("current[0]['category'] is: ", current[0]['category'])
+    // console.log("current is: ", current);
+    // console.log("current[0]['category'] is: ", current[0]['category'])
 
     for (let index = 0; index <= 4; index++) {
       if (current[index]["category"] == "Spendings") {
@@ -115,15 +120,16 @@ export default class Current extends React.Component {
 
   }
 
+/*
+  pull the Sun ~ Sat data based on the current week
+  will eventually have to pull data from `Spendings` `Fixed` and `Credits`
+  then join them together by date
+*/
 
   componentDidMount() {
-    /*
-    need to pull data first.
-    create a function for this.
-    THEN, either keep the below this.test() or run this.test() on the new function
-    */
-    this.test();
-    // this.setState()
+    this.getCurrentData();
+    // this.test();
+
   }
 
   render() {
@@ -167,7 +173,7 @@ export default class Current extends React.Component {
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-            <CurrentData current={this.state.current} />
+            {/* <CurrentData current={this.state.current} /> */}
         </div>
 
       </div>
