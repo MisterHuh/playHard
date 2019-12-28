@@ -99,19 +99,15 @@ div {
 }
 
 .currentDataContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin-top: 2%;
 }
 
 .currentDataHeader {
   display: flex;
   flex-direction: column;
-  /* width: 100vw; */
-}
-
-.currentDataContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
   /* width: 100vw; */
 }
 
