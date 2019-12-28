@@ -3,14 +3,8 @@ import React from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-// import Moment from 'react-moment';
-// import 'moment-timezone';
-
 import Dropdown from "react-dropdown";
 import 'react-dropdown/style.css'
-// import Select from "react-select";
-
-// import DropdownInput from "react-dropdown-input";
 
 export default class Add extends React.Component {
   constructor(props) {
@@ -38,9 +32,9 @@ export default class Add extends React.Component {
     this.addEntry = this.addEntry.bind(this);
   }
 
-  // componentDidMount() {
-  //   this.dateHandleChange();
-  // }
+  componentDidMount() {
+
+  }
 
   dateHandleChange(date) {
     this.setState({ date });
@@ -83,13 +77,11 @@ export default class Add extends React.Component {
   handleSubmit() {
     const formatted_date = this.formatDate();
     // console.log("formatted_date is: ", formatted_date);
-
     this.addEntry(formatted_date)
   }
 
   formatDate() {
     let current_datetime = this.state.date;
-    // let formatted_date = (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate() + "-" + current_datetime.getFullYear()
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
     return formatted_date;
   }
