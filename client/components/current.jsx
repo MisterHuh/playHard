@@ -141,7 +141,6 @@ export default class Current extends React.Component {
 
     return (
 
-      <React.Fragment>
       <div className="currentWrapper">
 
         <div className="currentSummaryContainer">
@@ -159,30 +158,17 @@ export default class Current extends React.Component {
           </div>
         </div>
 
-      {/* </div> */}
-
-        {/* <div className="currentContainer">
-          <div className="currentBox">Fixed</div>
-          <div className="currentBox spendings"></div>
-          <div className="currentBox credit"></div>
-          <div className="currentBox remaining"></div>
-        </div> */}
-
         <div className="border border-primary currentDataContainer">
-          <div className="currentDataHeader">
-            <div className="currentTableRow">Date</div>
-            <div className="currentTableRow">subCategory</div>
-            <div className="currentTableRow">cc</div>
-            <div className="currentTableRow">Amount</div>
-            <div className="currentTableRow">Store</div>
-            <div className="currentTableRow">Notes</div>
-          </div>
-          <CurrentData current={this.state.current}/>
+          <div className="currentDataBox">Date</div>
+          <div className="currentDataBox">subCategory</div>
+          <div className="currentDataBox">cc</div>
+          <div className="currentDataBox">Amount</div>
+          <div className="currentDataBox">Store</div>
+          <div className="currentDataBox">Notes</div>
+          {/* <CurrentData current={this.state.current}/> */}
         </div>
 
         </div>
-
-      </React.Fragment>
 
     )
   }

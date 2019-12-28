@@ -97,8 +97,8 @@ div {
 
 .currentDataHeader {
   display: flex;
-  flex-direction: row;
-  width: 100vw;
+  flex-direction: column;
+  /* width: 100vw; */
 }
 
 .currentTableRow {
@@ -112,6 +112,7 @@ div {
 .currentDataContainer {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   width: 100vw;
 }
 
@@ -122,6 +123,7 @@ div {
 .currentDataBox {
   border: 1px solid black;
   text-align: center;
+  /* margin: auto; */
   /* width: 16.67%; */
 }
 
