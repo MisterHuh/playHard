@@ -6,7 +6,6 @@ import { CurrencyFormatter } from "./currencyFormatter";
 export default class Current extends React.Component {
   constructor(props) {
     super(props);
-    // this.state: []
     this.state = {
       current: [
         // {
@@ -69,13 +68,9 @@ export default class Current extends React.Component {
   };
 
   getCurrentData() {
-
     fetch(`/api/get.php`)
       .then(response => response.json())
-      // .then(current => console.log("current is:", current))
       .then(current => this.setState({ current }))
-      // .then()
-
   }
 
   test() {
@@ -103,9 +98,6 @@ export default class Current extends React.Component {
     console.log("test() spendings is: ", spendings);
     console.log("test() fixed is: ", fixed);
     console.log("test() credits is: ", spendings);
-
-    // this.setState({ spendings })
-
 
     this.setState({
       spendings,
@@ -168,7 +160,7 @@ export default class Current extends React.Component {
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-            {/* <CurrentData current={this.state.current} /> */}
+            <CurrentData current={this.state.current} />
         </div>
 
       </div>
