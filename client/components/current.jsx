@@ -2,7 +2,6 @@ import React from "react";
 import { CurrentData } from "./currentData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
-
 export default class Current extends React.Component {
   constructor(props) {
     super(props);
@@ -70,30 +69,37 @@ export default class Current extends React.Component {
   getCurrentData() {
     fetch(`/api/get.php`)
       .then(response => response.json())
-      .then(current => this.setState({ current }))
+      .then(current => {
+        this.setState({ current });
+        this.test();
+      })
   }
 
   test() {
 
-    // console.log("test() is being run");
+    console.log("test() is being run");
 
     let current = this.state.current;
     let spendings = 0;
     let fixed = 0;
     let credits = 0;
 
-    console.log("current is: ", current);
-    // console.log("current[0]['category'] is: ", current[0]['category'])
+    // let spendings = 10.20;
+    // let fixed = 4.20;
+    // let credits = -12.00;
 
-    for (let index = 0; index <= 4; index++) {
-      if (current[index]["category"] == "Spendings") {
-        spendings += current[index]["amount"];
-      } else if (current[index]["category"] == "Fixed") {
-        fixed += current[index]["amount"];
-      } else if (current[index]["category"] == "Credit") {
-        credits += current[index]["amount"];
-      }
-    }
+    console.log("current is: ", current);
+    console.log("current[0]['category'] is: ", current[0]['category'])
+
+    // for (let index = 0; index <= 4; index++) {
+    //   if (current[index]["category"] == "Spendings") {
+    //     spendings += current[index]["amount"];
+    //   } else if (current[index]["category"] == "Fixed") {
+    //     fixed += current[index]["amount"];
+    //   } else if (current[index]["category"] == "Credit") {
+    //     credits += current[index]["amount"];
+    //   }
+    // }
 
     console.log("test() spendings is: ", spendings);
     console.log("test() fixed is: ", fixed);
@@ -115,6 +121,11 @@ export default class Current extends React.Component {
 
   componentDidMount() {
     this.getCurrentData();
+
+    // if (this.state.current) {
+    //   this.test();
+    // }
+
     // this.test();
 
   }
@@ -122,9 +133,16 @@ export default class Current extends React.Component {
   render() {
 
     console.log("this.state.current is: ", this.state.current);
-    console.log("this.state.spendings is: ", this.state.spendings);
-    console.log("this.state.fixed is: ", this.state.fixed);
-    console.log("this.state.credits is: ", this.state.spendings);
+    console.log("this.state.current.length is: ", this.state.current.length);
+    // console.log("this.state.current[0] is: ", this.state.current[0]);
+    // console.log("this.state.current[0]['category'] is: ", this.state.current[0]['category']);
+
+    // console.log("this.state.current[0]['amount'] is: ", this.state.current[0]['amount']);
+    // console.log("this.state.current[0]['category'] is: ", this.state.current[0]['category'])
+
+    // console.log("this.state.spendings is: ", this.state.spendings);
+    // console.log("this.state.fixed is: ", this.state.fixed);
+    // console.log("this.state.credits is: ", this.state.spendings);
 
     let budget = 100;
     let spendings = this.state.spendings;
