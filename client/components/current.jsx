@@ -70,14 +70,9 @@ export default class Current extends React.Component {
 
   getCurrentData() {
 
-    const req = {
-
-    }
     fetch(`/api/get.php`)
-      .then(response => {
-        response.json();
-        console.log("response is:", response);
-      })
+      .then(response => response.json())
+      // .then(current => console.log("current is:", current))
       .then(current => this.setState({ current }))
       // .then()
 
@@ -92,7 +87,7 @@ export default class Current extends React.Component {
     let fixed = 0;
     let credits = 0;
 
-    // console.log("current is: ", current);
+    console.log("current is: ", current);
     // console.log("current[0]['category'] is: ", current[0]['category'])
 
     for (let index = 0; index <= 4; index++) {
