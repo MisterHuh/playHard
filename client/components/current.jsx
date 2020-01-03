@@ -86,14 +86,14 @@ export default class Current extends React.Component {
 
     for (let index = 0; index <= 4; index++) {
       if (current[index]["category"] == "Spendings") {
-        console.log("Spendings amount is: ", parseInt(current[index]["amount"]))
-        spendings += parseInt(current[index]["amount"]);
+        console.log("Spendings amount is: ", parseFloat(current[index]["amount"]))
+        spendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
-        console.log("Fixed amount is: ", parseInt(current[index]["amount"]))
-        fixed += parseInt(current[index]["amount"]);
+        console.log("Fixed amount is: ", parseFloat(current[index]["amount"]))
+        fixed += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Credit") {
-        console.log("Credit amount is: ", parseInt(current[index]["amount"]))
-        credits += parseInt(current[index]["amount"]);
+        console.log("Credit amount is: ", parseFloat(current[index]["amount"]))
+        credits += parseFloat(current[index]["amount"]);
       }
     }
 
