@@ -28,7 +28,7 @@ export default class Add extends React.Component {
     this.ccHandleChange = this.ccHandleChange.bind(this);
     this.inputHandleChange = this.inputHandleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.formatDate = this.formatDate.bind(this);
+    // this.formatDate = this.formatDate.bind(this);
     this.addEntry = this.addEntry.bind(this);
   }
 
@@ -75,34 +75,28 @@ export default class Add extends React.Component {
   }
 
   handleSubmit() {
-    const formatted_date = this.formatDate();
-    // console.log("formatted_date is: ", formatted_date);
-    this.addEntry(formatted_date)
+    // const formatted_date = this.formatDate();
+    this.addEntry()
   }
 
-  formatDate() {
+  // formatDate() {
+  //   let current_datetime = this.state.date;
+  //   let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
+  //   return formatted_date;
+  // }
+
+  addEntry() {
+
     let current_datetime = this.state.date;
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
-    return formatted_date;
-  }
-
-  addEntry(formatted_date) {
 
     let formatted_amount = parseFloat(this.state.amount);
-    console.log("formatted_amount is: ", formatted_amount);
-
-    if (typeof(formatted_amount) !== "number") {
-      console.log("formatted_amount is NOT a number")
-    } else {
-      console.log("formatted_amount IS a number")
-    }
 
     const entry = {
       date: formatted_date,
       category: this.state.category,
       subCategory: this.state.subCategory,
       cc: this.state.cc,
-      // amount: this.state.amount,
       amount: formatted_amount,
       where: this.state.where,
       notes: this.state.notes

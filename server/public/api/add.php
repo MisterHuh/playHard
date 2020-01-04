@@ -35,25 +35,24 @@ if ($bodyData["cc"]) {
   throw new Exception("cc required");
 };
 
-/* input */
+/* inputs are sanitized on add.jsx & here as well. necessary to sanitize twice? */
 if ($bodyData["amount"]) {
   $amount = $bodyData["amount"];
-  if (gettype($amount) !== "number") {
-    // throw new Exception("amount must be a number");
-    print(gettype($amount));
+  if (gettype($amount) !== "integer") {
+    throw new Exception("amount must be a number");
   };
 } else {
   throw new Exception("amount required");
 };
 
-/* input */
+/* inputs are sanitized on add.jsx & here as well. necessary to sanitize twice? */
 if ($bodyData["where"]) {
   $where = $bodyData["where"];
 } else {
   throw new Exception("where required");
 };
 
-/* input */
+/* inputs are sanitized on add.jsx & here as well. necessary to sanitize twice? */
 if ($bodyData["notes"]) {
   $notes = $bodyData["notes"];
 } else {
