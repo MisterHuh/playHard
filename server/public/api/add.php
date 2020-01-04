@@ -7,7 +7,6 @@ startUp();
 
 $bodyData = getBodyData();
 
-
 /* not necessary, because these are dropdown and have default value */
 if ($bodyData["date"]) {
   $date = $bodyData["date"];
@@ -39,10 +38,10 @@ if ($bodyData["cc"]) {
 /* input */
 if ($bodyData["amount"]) {
   $amount = $bodyData["amount"];
-  // print($amount);
-  // if (gettype($amount) !== "number") {
-    // throw new Exception("amount cannot contain a letter");
-  // };
+  if (gettype($amount) !== "number") {
+    // throw new Exception("amount must be a number");
+    print(gettype($amount));
+  };
 } else {
   throw new Exception("amount required");
 };
@@ -59,39 +58,25 @@ if ($bodyData["notes"]) {
   $notes = $bodyData["notes"];
 } else {
   $notes = "";
-  // throw new Exception("notes required");
 };
+
+$subQuery = "SET `date` = '$date',
+              `category` = '$category',
+              `subCategory` = '$subCategory',
+              `cc` = '$cc',
+              `amount` = '$amount',
+              `store` = '$where',
+              `notes` = '$notes'";
 
 switch($category) {
   case "Spendings":
-    $query = "INSERT INTO `spendings`
-          SET `date` = '$date',
-              `category` = '$category',
-              `subCategory` = '$subCategory',
-              `cc` = '$cc',
-              `amount` = '$amount',
-              `store` = '$where',
-              `notes` = '$notes'";
+    $query = "INSERT INTO `spendings` " . $subQuery;
     break;
   case "Fixed":
-    $query = "INSERT INTO `fixed`
-          SET `date` = '$date',
-              `category` = '$category',
-              `subCategory` = '$subCategory',
-              `cc` = '$cc',
-              `amount` = '$amount',
-              `store` = '$where',
-              `notes` = '$notes'";
+    $query = "INSERT INTO `fixed` " . $subQuery;
     break;
   case "Credit":
-    $query = "INSERT INTO `credits`
-          SET `date` = '$date',
-              `category` = '$category',
-              `subCategory` = '$subCategory',
-              `cc` = '$cc',
-              `amount` = '$amount',
-              `store` = '$where',
-              `notes` = '$notes'";
+    $query = "INSERT INTO `credits` " . $subQuery;
     break;
 }
 

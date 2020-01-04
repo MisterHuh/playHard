@@ -88,12 +88,22 @@ export default class Add extends React.Component {
 
   addEntry(formatted_date) {
 
+    let formatted_amount = parseFloat(this.state.amount);
+    console.log("formatted_amount is: ", formatted_amount);
+
+    if (typeof(formatted_amount) !== "number") {
+      console.log("formatted_amount is NOT a number")
+    } else {
+      console.log("formatted_amount IS a number")
+    }
+
     const entry = {
       date: formatted_date,
       category: this.state.category,
       subCategory: this.state.subCategory,
       cc: this.state.cc,
-      amount: this.state.amount,
+      // amount: this.state.amount,
+      amount: formatted_amount,
       where: this.state.where,
       notes: this.state.notes
     };
