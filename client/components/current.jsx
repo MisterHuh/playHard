@@ -97,6 +97,14 @@ export default class Current extends React.Component {
       }
     }
 
+    spendings = spendings.toFixed(2);
+    fixed = fixed.toFixed(2);
+    credits = credits.toFixed(2);
+
+    // console.log("spendings is: ", spendings);
+    // console.log("fixed is: ", fixed);
+    // console.log("credits is: ", spendings);
+
     this.setState({
       spendings,
       fixed,
