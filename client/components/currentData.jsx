@@ -28,24 +28,3 @@ export const CurrentData = props => {
     </div>
   )
 }
-
-
-
-
-// export default class currentData extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       date: [],
-//       subCategory: []
-//     };
-//   }
-
-//   render() {
-//     return(
-//       <div className="">
-//         <div>currentData</div>
-//       </div>
-//     )
-//   }
-// }

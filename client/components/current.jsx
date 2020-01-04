@@ -12,25 +12,23 @@ export default class Current extends React.Component {
       fixed: 0,
       remaining: 0
     }
-    this.test = this.test.bind(this);
-    this.getCurrentData = this.getCurrentData.bind(this);
+    this.currentSummary = this.currentSummary.bind(this);
+    this.retrieveData = this.retrieveData.bind(this);
   };
 
-  getCurrentData() {
+  retrieveData() {
     fetch(`/api/get.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
-        // console.log("this.current is:", this.state.current)
-        this.test();
+        this.currentSummary();
       })
   }
 
-  test() {
+  currentSummary() {
 
     let current = this.state.current;
     let length = current.length - 1;
-    console.log("current.length is: ", current.length)
     let spendings = 0;
     let fixed = 0;
     let credits = 0;
@@ -58,10 +56,6 @@ export default class Current extends React.Component {
       credits
     })
 
-    console.log("this.state.spendings is: ", this.state.spendings);
-    console.log("this.state.fixed is: ", this.state.fixed);
-    console.log("this.state.credits is: ", this.state.spendings);
-
   }
 
 /*
@@ -71,7 +65,7 @@ export default class Current extends React.Component {
 */
 
   componentDidMount() {
-    this.getCurrentData();
+    this.retrieveData();
   }
 
   render() {
