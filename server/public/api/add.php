@@ -1,7 +1,5 @@
 <?php
 
-// print("hello world 1");
-
 require_once("functions.php");
 require_once("db_connection.php");
 set_exception_handler("error_handler");
@@ -9,10 +7,6 @@ startUp();
 
 $bodyData = getBodyData();
 
-// var_dump($bodyData["category"]);
-// var_dump($bodyData);
-
-// print("hello world 2");
 
 /* not necessary, because these are dropdown and have default value */
 if ($bodyData["date"]) {
@@ -68,7 +62,9 @@ if ($bodyData["notes"]) {
   // throw new Exception("notes required");
 };
 
-$query = "INSERT INTO `spendings`
+switch($category) {
+  case "Spendings":
+    $query = "INSERT INTO `spendings`
           SET `date` = '$date',
               `category` = '$category',
               `subCategory` = '$subCategory',
@@ -76,6 +72,18 @@ $query = "INSERT INTO `spendings`
               `amount` = '$amount',
               `store` = '$where',
               `notes` = '$notes'";
+    break;
+  case "Fixed":
+    $query = "INSERT INTO `fixed`
+          SET `date` = '$date',
+              `category` = '$category',
+              `subCategory` = '$subCategory',
+              `cc` = '$cc',
+              `amount` = '$amount',
+              `store` = '$where',
+              `notes` = '$notes'";
+    break;
+}
 
 $result = mysqli_query($conn, $query);
 
