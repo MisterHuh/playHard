@@ -91,6 +91,8 @@ export default class Add extends React.Component {
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
 
     let formatted_amount = parseFloat(this.state.amount);
+    console.log("formatted_amount is: ", formatted_amount);
+    console.log("formatted_amount type is: ", typeof(formatted_amount));
 
     const entry = {
       date: formatted_date,
