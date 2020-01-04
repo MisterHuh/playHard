@@ -38,8 +38,6 @@ if ($bodyData["cc"]) {
 /* inputs are sanitized on add.jsx & here as well. necessary to sanitize twice? */
 if ($bodyData["amount"]) {
   $amount = $bodyData["amount"];
-  // print($amount);
-  print(gettype($amount));
   if (!is_numeric($amount)) {
     throw new Exception("amount must be a number");
   };

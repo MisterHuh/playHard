@@ -5,6 +5,9 @@ require_once("db_connection.php");
 set_exception_handler("error_handler");
 startUp();
 
+$sunday = date('Y-m-d', strtotime('sunday this week'));
+print($sunday);
+
 $query =  "SELECT * FROM spendings ORDER BY date ASC";
 
 $result = mysqli_query($conn, $query);
