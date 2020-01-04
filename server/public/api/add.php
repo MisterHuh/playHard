@@ -83,6 +83,16 @@ switch($category) {
               `store` = '$where',
               `notes` = '$notes'";
     break;
+  case "Credit":
+    $query = "INSERT INTO `credits`
+          SET `date` = '$date',
+              `category` = '$category',
+              `subCategory` = '$subCategory',
+              `cc` = '$cc',
+              `amount` = '$amount',
+              `store` = '$where',
+              `notes` = '$notes'";
+    break;
 }
 
 $result = mysqli_query($conn, $query);
