@@ -35,13 +35,13 @@ export default class Current extends React.Component {
 
     for (let index = 0; index <= length; index++) {
       if (current[index]["category"] == "Spendings") {
-        console.log("Spendings amount is: ", parseFloat(current[index]["amount"]))
+        // console.log("Spendings amount is: ", parseFloat(current[index]["amount"]))
         spendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
-        console.log("Fixed amount is: ", parseFloat(current[index]["amount"]))
+        // console.log("Fixed amount is: ", parseFloat(current[index]["amount"]))
         fixed += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Credit") {
-        console.log("Credit amount is: ", parseFloat(current[index]["amount"]))
+        // console.log("Credit amount is: ", parseFloat(current[index]["amount"]))
         credits += parseFloat(current[index]["amount"]);
       }
     }
@@ -55,6 +55,8 @@ export default class Current extends React.Component {
       fixed,
       credits
     })
+
+    console.log("this.state.current is: ", this.state.current)
 
   }
 
@@ -83,13 +85,13 @@ export default class Current extends React.Component {
         <div className="currentSummaryContainer">
           <div className="currentSummary">
             <div className="spendings">Spendings</div>
-            <div className="credit">Credit</div>
+            <div className="credits">Credits</div>
             <div className="fixed">Fixed</div>
             <div className="remaining">Remaining</div>
           </div>
           <div className="currentSummary">
             <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
-            <div className="credit">{CurrencyFormatter.format(credits)}</div>
+            <div className="credits">{CurrencyFormatter.format(credits)}</div>
             <div className="fixed">{CurrencyFormatter.format(fixed)}</div>
             <div className="remaining">{CurrencyFormatter.format(remaining)}</div>
           </div>
