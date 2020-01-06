@@ -136,7 +136,7 @@ export default class Add extends React.Component {
       [
         { value: 'Spendings', label: 'Spendings' },
         { value: 'Fixed', label: 'Fixed' },
-        { value: 'Credit', label: 'Credit' },
+        { value: 'Credits', label: 'Credits' },
         { value: 'Payday', label: 'Payday' },
         { value: 'Vacation', label: 'Vacation' },
         { value: 'Wedding', label: 'Wedding' }

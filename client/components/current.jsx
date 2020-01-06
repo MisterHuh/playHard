@@ -40,7 +40,7 @@ export default class Current extends React.Component {
       } else if (current[index]["category"] == "Fixed") {
         // console.log("Fixed amount is: ", parseFloat(current[index]["amount"]))
         fixed += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] == "Credit") {
+      } else if (current[index]["category"] == "Credits") {
         // console.log("Credit amount is: ", parseFloat(current[index]["amount"]))
         credits += parseFloat(current[index]["amount"]);
       }

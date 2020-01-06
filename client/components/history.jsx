@@ -7,14 +7,16 @@ export default class History extends React.Component {
     super(props);
     this.state = {
       current: [],
-      spendings: 0,
-      credits: 0,
-      fixed: 0,
-      remaining: 0
+      totalSpendings: 0,
+      totalCredits: 0,
+      totalFixed: 0,
+      totalRemaining: 0,
+      totalBudget: 0,
+      currentWeekNum: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
-    this.getWeekNumber = this.getWeekNumber.bind(this);
+    this.getTotalBudget = this.getTotalBudget.bind(this);
   }
 
   retrieveAllData() {
@@ -26,44 +28,47 @@ export default class History extends React.Component {
       })
   }
 
-  getWeekNumber() {
-    // let test = new Date();
-    // let firstWeek = test.getTime();
-    // let firstWeek = new Date.getWeek();
+  getTotalBudget() {
 
     let timestamp = new Date();
     console.log("timestamp is: ", timestamp);
-    // let formatted_date = formatted_date.getFullYear() + "/" + (formatted_date.getMonth() + 1) + "/" + formatted_date.getDate();
-
-    // let formatted_date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear() ;
-    // console.log("formatted_date is: ", formatted_date);
 
     let sundayChecker = timestamp.getDay();
-    // let sundayChecker = 0;
-
-    // switch(sundayChecker) {
-    //   case 0:
-    //     console.log("sundayChecker is Sunday");
-    //     break;
-    //   case 1:
-    //     console.log("sundayChecker is NOT Sunday");
-    //     break;
-    // }
-
-    // let currentWeek = require("current-week-number");
-
-    // if (sundayChecker === 0) {
-    //   sundayChecker = 1
-    // }
-
-    // console.log("sundayChecker is:", sundayChecker);
+    console.log("sundayChecker is: ", sundayChecker);
 
     let currentWeek = require("current-week-number");
-    let currentWeekNumber = currentWeek("01/5/2020");
 
-    // let currentWeekNumber = weekNumberSun(new Date());
+    if (sundayChecker === 0) {
+      let followingDay = new Date(timestamp.getTime() + 86400000);
+      console.log("followingDay is: ", followingDay);
+      let currentWeekNumber = currentWeek(followingDay);
+      console.log("sundayChecker is 0");
+      console.log("currentWeekNumber is: ", currentWeekNumber);
+    } else {
+      let currentWeekNumber = currentWeek(timestamp);
+      console.log("sundayChecker is NOT 0");
+      console.log("currentWeekNumber is: ", currentWeekNumber);
+    }
 
-    console.log("currentWeekNumber is: ", currentWeekNumber);
+    // let currentWeekNumber = currentWeek(sundayChecker);
+    // console.log("currentWeekNumber is: ", currentWeekNumber);
+
+    // let timestamp = new Date();
+    // console.log("timestamp is: ", timestamp);
+    // // let formatted_date = formatted_date.getFullYear() + "/" + (formatted_date.getMonth() + 1) + "/" + formatted_date.getDate();
+
+    // // let formatted_date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear() ;
+    // // console.log("formatted_date is: ", formatted_date);
+
+    // // let sundayChecker = timestamp.getDay();
+    // let test = new Date("January 5, 2020");
+    // let sundayChecker = test.getDay();
+    // console.log("sundayChecker is: ", sundayChecker);
+
+
+    // let currentWeek = require("current-week-number");
+    // let currentWeekNumber = currentWeek(test);
+    // console.log("currentWeekNumber is: ", currentWeekNumber);
 
   }
 
@@ -71,44 +76,44 @@ export default class History extends React.Component {
 
     let current = this.state.current;
     let length = current.length - 1;
-    let spendings = 0;
-    let fixed = 0;
-    let credits = 0;
+    let totalSpendings = 0;
+    let totalFixed = 0;
+    let totalCredits = 0;
 
     for (let index = 0; index <= length; index++) {
       if (current[index]["category"] == "Spendings") {
-        spendings += parseFloat(current[index]["amount"]);
+        totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
-        fixed += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] == "Credit") {
-        credits += parseFloat(current[index]["amount"]);
+        totalFixed += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] == "Credits") {
+        totalCredits += parseFloat(current[index]["amount"]);
       }
     }
 
-    spendings = spendings.toFixed(2);
-    fixed = fixed.toFixed(2);
-    credits = credits.toFixed(2);
+    totalSpendings = totalSpendings.toFixed(2);
+    totalFixed = totalFixed.toFixed(2);
+    totalCredits = totalCredits.toFixed(2);
 
     this.setState({
-      spendings,
-      fixed,
-      credits
+      totalSpendings,
+      totalFixed,
+      totalCredits
     })
 
-    console.log("HISTORY VIEW this.state.current is: ", this.state.current)
+    // console.log("HISTORY VIEW this.state.current is: ", this.state.current)
   }
 
   componentDidMount() {
     this.retrieveAllData();
-    this.getWeekNumber();
+    this.getTotalBudget();
   }
 
   render() {
 
     let budget = 500;
-    let spendings = this.state.spendings;
-    let credits = this.state.credits;
-    let fixed = this.state.fixed;
+    let spendings = this.state.totalSpendings;
+    let credits = this.state.totalCredits;
+    let fixed = this.state.totalFixed;
     let remaining = budget - credits - spendings;
 
     return (
