@@ -35,11 +35,34 @@ export default class History extends React.Component {
     console.log("timestamp is: ", timestamp);
     // let formatted_date = formatted_date.getFullYear() + "/" + (formatted_date.getMonth() + 1) + "/" + formatted_date.getDate();
 
-    let formatted_date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear() ;
-    console.log("formatted_date is: ", formatted_date);
+    // let formatted_date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear() ;
+    // console.log("formatted_date is: ", formatted_date);
+
+    let sundayChecker = timestamp.getDay();
+    // let sundayChecker = 0;
+
+    // switch(sundayChecker) {
+    //   case 0:
+    //     console.log("sundayChecker is Sunday");
+    //     break;
+    //   case 1:
+    //     console.log("sundayChecker is NOT Sunday");
+    //     break;
+    // }
+
+    // let currentWeek = require("current-week-number");
+
+    // if (sundayChecker === 0) {
+    //   sundayChecker = 1
+    // }
+
+    // console.log("sundayChecker is:", sundayChecker);
 
     let currentWeek = require("current-week-number");
-    let currentWeekNumber = currentWeek(formatted_date);
+    let currentWeekNumber = currentWeek("01/5/2020");
+
+    // let currentWeekNumber = weekNumberSun(new Date());
+
     console.log("currentWeekNumber is: ", currentWeekNumber);
 
   }
