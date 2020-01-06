@@ -1,5 +1,5 @@
 import React from "react";
-// import { CurrentData } from "./currentData";
+import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
 export default class History extends React.Component {
@@ -12,51 +12,98 @@ export default class History extends React.Component {
       fixed: 0,
       remaining: 0
     }
+    this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.currentSummary = this.currentSummary.bind(this);
+  }
+
+  retrieveAllData() {
+    fetch(`/api/getCurrent.php`)
+      .then(response => response.json())
+      .then(current => {
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
+
+  currentSummary() {
+
+    let current = this.state.current;
+    let length = current.length - 1;
+    let spendings = 0;
+    let fixed = 0;
+    let credits = 0;
+
+    for (let index = 0; index <= length; index++) {
+      if (current[index]["category"] == "Spendings") {
+        // console.log("Spendings amount is: ", parseFloat(current[index]["amount"]))
+        spendings += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] == "Fixed") {
+        // console.log("Fixed amount is: ", parseFloat(current[index]["amount"]))
+        fixed += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] == "Credit") {
+        // console.log("Credit amount is: ", parseFloat(current[index]["amount"]))
+        credits += parseFloat(current[index]["amount"]);
+      }
+    }
+
+    spendings = spendings.toFixed(2);
+    fixed = fixed.toFixed(2);
+    credits = credits.toFixed(2);
+
+    this.setState({
+      spendings,
+      fixed,
+      credits
+    })
+
+    console.log("HISTORY VIEW this.state.current is: ", this.state.current)
+
+  }
+
+  componentDidMount() {
+    this.retrieveAllData();
   }
 
   render() {
+
+    let budget = 500;
+    let spendings = this.state.spendings;
+    let credits = this.state.credits;
+    let fixed = this.state.fixed;
+    let remaining = budget - credits - spendings;
+
     return (
 
-      <React.Fragment>
+      <div className="currentWrapper">
 
-      <div className="currentWrapper mt-4">
-
-        <div className="currentContainer">
-          <div className="currentBox"></div>
-          <div className="currentBox">Total Spent</div>
-          <div className="currentBox">Credit</div>
-          <div className="currentBox">Remaining</div>
+        <div className="currentSummaryContainer">
+          <div className="currentSummary">
+            <div className="spendings">Spendings</div>
+            <div className="credits">Credits</div>
+            <div className="fixed">Fixed</div>
+            <div className="remaining">Remaining</div>
+          </div>
+          <div className="currentSummary">
+            <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
+            <div className="credits">{CurrencyFormatter.format(credits)}</div>
+            <div className="fixed">{CurrencyFormatter.format(fixed)}</div>
+            <div className="remaining">{CurrencyFormatter.format(remaining)}</div>
+          </div>
         </div>
 
-        <div className="currentContainer">
-          <div className="currentBox">Spendings</div>
-          <div className="currentBox">$12.00</div>
-          <div className="currentBox">$12.00</div>
-          <div className="currentBox">$12.00</div>
-        </div>
-
-        <div className="currentContainer">
-          <div className="currentBox">Fixed</div>
-          <div className="currentBox">$12.00</div>
-          <div className="currentBox">$12.00</div>
-          <div className="currentBox">$12.00</div>
+        <div className="currentDataContainer">
+          <div className="currentData">
+            <div className="currentDataHeader">Date</div>
+            <div className="currentDataHeader">subCategory</div>
+            <div className="currentDataHeader">cc</div>
+            <div className="currentDataHeader">Amount</div>
+            <div className="currentDataHeader">Store</div>
+            <div className="currentDataHeader">Notes</div>
+          </div>
+          <RenderData current={this.state.current} />
         </div>
 
       </div>
-
-      <div className="mt-4 currentTableHeaderContainer">
-        <div className="currentTableHeader">
-          <div className="currentTableRow">Date</div>
-          <div className="currentTableRow">subCategory</div>
-          <div className="currentTableRow">cc</div>
-          <div className="currentTableRow">Amount</div>
-          <div className="currentTableRow">Store</div>
-          <div className="currentTableRow">Notes</div>
-        </div>
-        {/* <CurrentData current={this.state.current} /> */}
-      </div>
-
-      </React.Fragment>
 
     )
   }
