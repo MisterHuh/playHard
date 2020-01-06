@@ -1,5 +1,5 @@
 import React from "react";
-import { CurrentData } from "./currentData";
+import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
 export default class Current extends React.Component {
@@ -13,11 +13,11 @@ export default class Current extends React.Component {
       remaining: 0
     }
     this.currentSummary = this.currentSummary.bind(this);
-    this.retrieveData = this.retrieveData.bind(this);
+    this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
   };
 
-  retrieveData() {
-    fetch(`/api/get.php`)
+  retrieveCurrentData() {
+    fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
@@ -56,18 +56,12 @@ export default class Current extends React.Component {
       credits
     })
 
-    console.log("this.state.current is: ", this.state.current)
+    console.log("CURRENT VIEW this.state.current is: ", this.state.current)
 
   }
 
-/*
-  pull the Sun ~ Sat data based on the current week
-  will eventually have to pull data from `Spendings` `Fixed` and `Credits`
-  then join them together by date
-*/
-
   componentDidMount() {
-    this.retrieveData();
+    this.retrieveCurrentData();
   }
 
   render() {
@@ -106,7 +100,7 @@ export default class Current extends React.Component {
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-            <CurrentData current={this.state.current} />
+            <RenderData current={this.state.current} />
         </div>
 
       </div>

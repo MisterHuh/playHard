@@ -1,8 +1,17 @@
 import React from "react";
+// import { CurrentData } from "./currentData";
+import { CurrencyFormatter } from "./currencyFormatter";
 
 export default class History extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      current: [],
+      spendings: 0,
+      credits: 0,
+      fixed: 0,
+      remaining: 0
+    }
   }
 
   render() {

@@ -1,7 +1,7 @@
 import React from "react";
 import { CurrencyFormatter } from "./currencyFormatter";
 
-export const CurrentData = props => {
+export const RenderData = props => {
 
   return(
 
