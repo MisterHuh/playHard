@@ -21,6 +21,7 @@
   "homepage": "https://github.com/MisterHuh/playHard#readme",
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "current-week-number": "^1.0.7",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",

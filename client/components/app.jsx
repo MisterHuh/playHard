@@ -8,7 +8,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "add"
+      view: "history"
     }
     this.setView = this.setView.bind(this);
   }
@@ -30,7 +30,6 @@ export default class App extends React.Component {
       displayView = <History />
     }
 
-    // console.log("currentView is: ", currentView)
     return (
       <div>
         <Navbar setView={this.setView} currentView={currentView}/>

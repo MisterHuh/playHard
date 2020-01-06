@@ -27,8 +27,21 @@ export default class History extends React.Component {
   }
 
   getWeekNumber() {
-    let firstWeek = new Data(this.getFullYear(), 0, 1);
-    console.log("firstWeek is: ", firstWeek);
+    // let test = new Date();
+    // let firstWeek = test.getTime();
+    // let firstWeek = new Date.getWeek();
+
+    let timestamp = new Date();
+    console.log("timestamp is: ", timestamp);
+    // let formatted_date = formatted_date.getFullYear() + "/" + (formatted_date.getMonth() + 1) + "/" + formatted_date.getDate();
+
+    let formatted_date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear() ;
+    console.log("formatted_date is: ", formatted_date);
+
+    let currentWeek = require("current-week-number");
+    let currentWeekNumber = currentWeek(formatted_date);
+    console.log("currentWeekNumber is: ", currentWeekNumber);
+
   }
 
   currentSummary() {
@@ -64,7 +77,7 @@ export default class History extends React.Component {
 
   componentDidMount() {
     this.retrieveAllData();
-    // this.getWeekNumber();
+    this.getWeekNumber();
   }
 
   render() {
