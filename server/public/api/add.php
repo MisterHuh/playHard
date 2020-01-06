@@ -59,7 +59,9 @@ if ($bodyData["notes"]) {
   $notes = "";
 };
 
-$subQuery = "SET `date` = '$date',
+
+$query = "INSERT INTO `2020`
+          SET `date` = '$date',
               `category` = '$category',
               `subCategory` = '$subCategory',
               `cc` = '$cc',
@@ -67,17 +69,25 @@ $subQuery = "SET `date` = '$date',
               `store` = '$where',
               `notes` = '$notes'";
 
-switch($category) {
-  case "Spendings":
-    $query = "INSERT INTO `spendings` " . $subQuery;
-    break;
-  case "Fixed":
-    $query = "INSERT INTO `fixed` " . $subQuery;
-    break;
-  case "Credit":
-    $query = "INSERT INTO `credits` " . $subQuery;
-    break;
-}
+// $subQuery = "SET `date` = '$date',
+//               `category` = '$category',
+//               `subCategory` = '$subCategory',
+//               `cc` = '$cc',
+//               `amount` = '$amount',
+//               `store` = '$where',
+//               `notes` = '$notes'";
+
+// switch($category) {
+//   case "Spendings":
+//     $query = "INSERT INTO `spendings` " . $subQuery;
+//     break;
+//   case "Fixed":
+//     $query = "INSERT INTO `fixed` " . $subQuery;
+//     break;
+//   case "Credit":
+//     $query = "INSERT INTO `credits` " . $subQuery;
+//     break;
+// }
 
 $result = mysqli_query($conn, $query);
 

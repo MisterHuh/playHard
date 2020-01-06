@@ -14,15 +14,21 @@ export default class History extends React.Component {
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
+    this.getWeekNumber = this.getWeekNumber.bind(this);
   }
 
   retrieveAllData() {
-    fetch(`/api/getCurrent.php`)
+    fetch(`/api/getHistory.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
         this.currentSummary();
       })
+  }
+
+  getWeekNumber() {
+    let firstWeek = new Data(this.getFullYear(), 0, 1);
+    console.log("firstWeek is: ", firstWeek);
   }
 
   currentSummary() {
@@ -35,13 +41,10 @@ export default class History extends React.Component {
 
     for (let index = 0; index <= length; index++) {
       if (current[index]["category"] == "Spendings") {
-        // console.log("Spendings amount is: ", parseFloat(current[index]["amount"]))
         spendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
-        // console.log("Fixed amount is: ", parseFloat(current[index]["amount"]))
         fixed += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Credit") {
-        // console.log("Credit amount is: ", parseFloat(current[index]["amount"]))
         credits += parseFloat(current[index]["amount"]);
       }
     }
@@ -57,11 +60,11 @@ export default class History extends React.Component {
     })
 
     console.log("HISTORY VIEW this.state.current is: ", this.state.current)
-
   }
 
   componentDidMount() {
     this.retrieveAllData();
+    // this.getWeekNumber();
   }
 
   render() {
