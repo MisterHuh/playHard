@@ -50,26 +50,6 @@ export default class History extends React.Component {
       console.log("currentWeekNumber is: ", currentWeekNumber);
     }
 
-    // let currentWeekNumber = currentWeek(sundayChecker);
-    // console.log("currentWeekNumber is: ", currentWeekNumber);
-
-    // let timestamp = new Date();
-    // console.log("timestamp is: ", timestamp);
-    // // let formatted_date = formatted_date.getFullYear() + "/" + (formatted_date.getMonth() + 1) + "/" + formatted_date.getDate();
-
-    // // let formatted_date = (timestamp.getMonth() + 1) + "/" + timestamp.getDate() + "/" + timestamp.getFullYear() ;
-    // // console.log("formatted_date is: ", formatted_date);
-
-    // // let sundayChecker = timestamp.getDay();
-    // let test = new Date("January 5, 2020");
-    // let sundayChecker = test.getDay();
-    // console.log("sundayChecker is: ", sundayChecker);
-
-
-    // let currentWeek = require("current-week-number");
-    // let currentWeekNumber = currentWeek(test);
-    // console.log("currentWeekNumber is: ", currentWeekNumber);
-
   }
 
   currentSummary() {
@@ -100,7 +80,7 @@ export default class History extends React.Component {
       totalCredits
     })
 
-    // console.log("HISTORY VIEW this.state.current is: ", this.state.current)
+    console.log("HISTORY VIEW this.state.current is: ", this.state.current)
   }
 
   componentDidMount() {
@@ -122,12 +102,14 @@ export default class History extends React.Component {
 
         <div className="currentSummaryContainer">
           <div className="currentSummary">
-            <div className="spendings">Spendings</div>
-            <div className="credits">Credits</div>
-            <div className="fixed">Fixed</div>
-            <div className="remaining">Remaining</div>
+            <div className="budget">Total Budget</div>
+            <div className="spendings">Total Spendings</div>
+            <div className="credits">Total Credits</div>
+            <div className="fixed">Total Fixed</div>
+            <div className="remaining">Total Remaining</div>
           </div>
           <div className="currentSummary">
+            <div className="budget">{CurrencyFormatter.format(spendings)}</div>
             <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
             <div className="credits">{CurrencyFormatter.format(credits)}</div>
             <div className="fixed">{CurrencyFormatter.format(fixed)}</div>

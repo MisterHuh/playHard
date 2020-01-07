@@ -8,7 +8,8 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "history"
+      view: "history",
+      budget: 150
     }
     this.setView = this.setView.bind(this);
   }
@@ -25,9 +26,9 @@ export default class App extends React.Component {
     if (currentView === 'add') {
       displayView = <Add setView={this.setView}/>;
     } else if (currentView === "current") {
-      displayView = <Current />
+      displayView = <Current budget={this.state.budget} />
     } else if (currentView === "history") {
-      displayView = <History />
+      displayView = <History budget={this.state.budget} />
     }
 
     return (
