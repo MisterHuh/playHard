@@ -83,12 +83,14 @@ export default class Current extends React.Component {
 
           <div className="currentSummaryContainer">
             <div className="currentSummary">
+              <div className="budget">Budget</div>
               <div className="spendings">Spendings</div>
               <div className="credits">Credits</div>
               <div className="fixed">Fixed</div>
               <div className="remaining">Remaining</div>
             </div>
             <div className="currentSummary">
+              <div className="budget">{CurrencyFormatter.format(this.state.budget)}</div>
               <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
               <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
               <div className="fixed">{CurrencyFormatter.format(this.state.fixed)}</div>

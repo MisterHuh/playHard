@@ -78,20 +78,33 @@ div {
   margin: auto;
 }
 
+.budget {
+  /* background-color: rgb(209, 142, 216); */
+  /* color: white; */
+}
 .remaining {
   background-color:  rgba(17, 86, 248, 0.2);
 }
 
 .spendings {
-  background-color:  rgba(231, 66, 51, 0.3);
+  /* background-color:  rgba(231, 66, 51, 0.3); */
+  background-color: rgb(255, 199, 206);
 }
 
 .credits {
-  background-color:  rgba(33, 248, 17, 0.2);
+  /* background-color:  rgba(33, 248, 17, 0.2); */
+  background-color: rgb(198, 239, 206);
+  /* color: rgb(156, 0, 6); */
 }
 
 .fixed {
-  background-color:  rgba(248, 213, 17, 0.2);
+  /* background-color:  rgba(248, 213, 17, 0.2); */
+  background-color: rgb(255, 235, 156);
+}
+
+.creditsFontColor {
+  /* color: rgb(156, 0, 6); */
+  color: red;
 }
 
 .currentDataContainer {

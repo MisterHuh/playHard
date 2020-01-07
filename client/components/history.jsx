@@ -121,7 +121,7 @@ export default class History extends React.Component {
           <div className="currentSummary">
             <div className="budget">{CurrencyFormatter.format(this.state.totalBudget)}</div>
             <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
-            <div className="credits">{CurrencyFormatter.format(this.state.totalCredits)}</div>
+            <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
             <div className="remaining">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
           </div>
