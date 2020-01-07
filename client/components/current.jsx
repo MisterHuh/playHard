@@ -10,8 +10,8 @@ export default class Current extends React.Component {
       spendings: 0,
       credits: 0,
       fixed: 0,
-      remaining: 0,
-      budget: 0
+      budget: 0,
+      remaining: 0
     }
     this.currentSummary = this.currentSummary.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
@@ -31,8 +31,8 @@ export default class Current extends React.Component {
     let current = this.state.current;
     let length = current.length - 1;
     let spendings = 0;
-    let fixed = 0;
     let credits = 0;
+    let fixed = 0;
     let budget = this.props.budget;
     let remaining = 0;
 
@@ -47,8 +47,8 @@ export default class Current extends React.Component {
     }
 
     spendings = spendings.toFixed(2);
-    fixed = fixed.toFixed(2);
     credits = credits.toFixed(2);
+    fixed = fixed.toFixed(2);
     remaining = budget - credits - spendings;
 
     this.setState({
@@ -74,12 +74,6 @@ export default class Current extends React.Component {
       console.log("CURRENT VIEW componentDidMount needs to run");
       return null;
     } else {
-
-      // let budget = this.props.budget;
-      // let spendings = this.state.spendings;
-      // let credits = this.state.credits;
-      // let fixed = this.state.fixed;
-      // let remaining = budget - credits - spendings;
 
       console.log("CURRENT VIEW componentDidMount RAN");
 
