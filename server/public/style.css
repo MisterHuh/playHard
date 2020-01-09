@@ -78,15 +78,12 @@ div {
   margin: auto;
 }
 
-.budget {
-  /* background-color: rgb(209, 142, 216); */
-  /* color: white; */
+.tooltipParent {
   position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black;
+  /* display: inline-block; */
 }
 
-.tooltip .budget{
+.tooltip {
   visibility: hidden;
   width: 120px;
   background-color: black;
@@ -100,6 +97,11 @@ div {
 
 .tooltip:hover {
   visibility: visible;
+}
+
+.budget {
+  /* background-color: rgb(209, 142, 216); */
+  /* color: white; */
 }
 
 .remaining {

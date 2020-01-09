@@ -112,10 +112,10 @@ export default class History extends React.Component {
 
         <div className="currentSummaryContainer">
           <div className="currentSummary">
-            <div className="budget">
+            <div className="budget tooltipParent">
               Total Budget
               {/* <div className="tooltip">{this.state.currentWeekNumber}</div> */}
-              <div className="tooltip">TEST</div>
+              <span className="tooltip">TEST</span>
             </div>
             <div className="spendings">Total Spendings</div>
             <div className="credits">Total Credits</div>
