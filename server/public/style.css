@@ -78,25 +78,20 @@ div {
   margin: auto;
 }
 
-.tooltipParent {
-  position: relative;
-  /* display: inline-block; */
-}
+/* .tooltipParent:hover, .tooltipText:hover {
+  display: block;
+} */
 
-.tooltip {
-  visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
+.tooltipText {
+  display: none;
+  background: #C8C8C8;
   position: absolute;
-  z-index: 1;
+  width: 3.5%;
+  height: 3.5%;
 }
 
-.tooltip:hover {
-  visibility: visible;
+.tooltipParent:hover, .tooltipText {
+  display: block;
 }
 
 .budget {
