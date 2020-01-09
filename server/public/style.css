@@ -78,21 +78,21 @@ div {
   margin: auto;
 }
 
-/* .tooltipParent:hover, .tooltipText:hover {
+.tooltipParent:hover, .tooltipText {
   display: block;
-} */
+}
 
 .tooltipText {
   display: none;
-  background: #C8C8C8;
+  background: rgb(209, 142, 216);
   position: absolute;
   width: 3.5%;
   height: 3.5%;
 }
 
-.tooltipParent:hover, .tooltipText {
+/* .tooltipParent:hover, .tooltipText {
   display: block;
-}
+} */
 
 .budget {
   /* background-color: rgb(209, 142, 216); */
