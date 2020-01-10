@@ -95,16 +95,9 @@ export default class History extends React.Component {
 
   componentDidMount() {
     this.retrieveAllData();
-    // this.getTotalBudget();
   }
 
   render() {
-
-    // let budget = 500;
-    // let spendings = this.state.totalSpendings;
-    // let credits = this.state.totalCredits;
-    // let fixed = this.state.totalFixed;
-    // let remaining = budget - credits - spendings;
 
     return (
 

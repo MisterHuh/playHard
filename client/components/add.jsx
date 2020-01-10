@@ -28,7 +28,6 @@ export default class Add extends React.Component {
     this.ccHandleChange = this.ccHandleChange.bind(this);
     this.inputHandleChange = this.inputHandleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.formatDate = this.formatDate.bind(this);
     this.addEntry = this.addEntry.bind(this);
   }
 
@@ -75,15 +74,8 @@ export default class Add extends React.Component {
   }
 
   handleSubmit() {
-    // const formatted_date = this.formatDate();
     this.addEntry()
   }
-
-  // formatDate() {
-  //   let current_datetime = this.state.date;
-  //   let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
-  //   return formatted_date;
-  // }
 
   addEntry() {
 
@@ -91,8 +83,6 @@ export default class Add extends React.Component {
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
 
     let formatted_amount = parseFloat(this.state.amount);
-    // console.log("formatted_amount is: ", formatted_amount);
-    // console.log("formatted_amount type is: ", typeof(formatted_amount));
 
     const entry = {
       date: formatted_date,
@@ -217,7 +207,6 @@ export default class Add extends React.Component {
               placeholder="$ 00.00"
               name="amount"
               className="amount mt-4"
-              // value="4.50"
             />
           </div>
 
@@ -228,7 +217,6 @@ export default class Add extends React.Component {
               placeholder="Where?"
               name="where"
               className="amount mt-4"
-              // value="Starbucks"
             />
           </div>
 
@@ -239,7 +227,6 @@ export default class Add extends React.Component {
               placeholder="Notes"
               name="notes"
               className="amount mt-4"
-              // value="coffee"
             />
           </div>
 
