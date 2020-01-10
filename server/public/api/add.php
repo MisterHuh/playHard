@@ -1,11 +1,51 @@
 <?php
 
-require_once("functions.php");
-require_once("db_connection.php");
-set_exception_handler("error_handler");
-startUp();
+class CrashLanding
+{
 
-$bodyData = getBodyData();
+  public function __construct()
+  {
+    echo ("the constructor ran");
+  }
+
+  // public function error_handler($error)
+  // {
+  //   $output = array(
+  //     "success" => "false",
+  //     "error" => $error->getMessage()
+  //   );
+
+  //   http_response_code(500);
+  //   $json_output = json_encode($output);
+  //   print($json_output);
+  // }
+
+  public function startup()
+  {
+    header("Content-Type: application/json");
+  }
+
+  public function getBodyData()
+  {
+    $json = file_get_contents('php://input');
+    $data = json_decode($json, true);
+    return $data;
+  }
+}
+
+$function = new CrashLanding;
+
+// require_once("functions.php");
+require_once("db_connection.php");
+
+// $function->error_handler("error_handler");
+// set_exception_handler("error_handler");
+
+$function->startup();
+// startUp();
+
+$bodyData = $function->getBodyData();
+// $bodyData = getBodyData();
 
 /* not necessary, because these are dropdown and have default value */
 if ($bodyData["date"]) {
@@ -68,26 +108,6 @@ $query = "INSERT INTO `2020`
               `amount` = '$amount',
               `store` = '$where',
               `notes` = '$notes'";
-
-// $subQuery = "SET `date` = '$date',
-//               `category` = '$category',
-//               `subCategory` = '$subCategory',
-//               `cc` = '$cc',
-//               `amount` = '$amount',
-//               `store` = '$where',
-//               `notes` = '$notes'";
-
-// switch($category) {
-//   case "Spendings":
-//     $query = "INSERT INTO `spendings` " . $subQuery;
-//     break;
-//   case "Fixed":
-//     $query = "INSERT INTO `fixed` " . $subQuery;
-//     break;
-//   case "Credit":
-//     $query = "INSERT INTO `credits` " . $subQuery;
-//     break;
-// }
 
 $result = mysqli_query($conn, $query);
 
