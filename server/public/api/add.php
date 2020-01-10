@@ -1,51 +1,52 @@
 <?php
 
-class CrashLanding
-{
+// class CrashLanding
+// {
 
-  public function __construct()
-  {
-    echo ("the constructor ran");
-  }
+//   public function __construct()
+//   {
+//     echo ("the constructor ran");
+//   }
 
-  // public function error_handler($error)
-  // {
-  //   $output = array(
-  //     "success" => "false",
-  //     "error" => $error->getMessage()
-  //   );
+//   public function error_handler($error)
+//   {
+//     $output = array(
+//       "success" => "false",
+//       "error" => $error->getMessage()
+//     );
 
-  //   http_response_code(500);
-  //   $json_output = json_encode($output);
-  //   print($json_output);
-  // }
+//     http_response_code(500);
+//     $json_output = json_encode($output);
+//     print($json_output);
+//   }
 
-  public function startup()
-  {
-    header("Content-Type: application/json");
-  }
+//   public function startup()
+//   {
+//     header("Content-Type: application/json");
+//   }
 
-  public function getBodyData()
-  {
-    $json = file_get_contents('php://input');
-    $data = json_decode($json, true);
-    return $data;
-  }
-}
+//   public function getBodyData()
+//   {
+//     $json = file_get_contents('php://input');
+//     $data = json_decode($json, true);
+//     return $data;
+//   }
+// }
 
-$function = new CrashLanding;
+// $function = new CrashLanding;
 
-// require_once("functions.php");
+require_once("functions.php");
 require_once("db_connection.php");
 
 // $function->error_handler("error_handler");
-// set_exception_handler("error_handler");
+/* this function throws an error when it gets to getMessage() in OOP */
+set_exception_handler("error_handler");
 
-$function->startup();
-// startUp();
+// $function->startup();
+startUp();
 
-$bodyData = $function->getBodyData();
-// $bodyData = getBodyData();
+// $bodyData = $function->getBodyData();
+$bodyData = getBodyData();
 
 /* not necessary, because these are dropdown and have default value */
 if ($bodyData["date"]) {
