@@ -84,10 +84,11 @@ div {
 
 .tooltipText {
   display: none;
-  background: rgb(209, 142, 216);
+  /* background: rgb(209, 142, 216); */
   position: absolute;
-  width: 3.5%;
+  width: 24%;
   height: 3.5%;
+  bottom: 86%;
 }
 
 /* .tooltipParent:hover, .tooltipText {

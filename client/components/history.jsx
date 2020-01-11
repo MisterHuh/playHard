@@ -31,27 +31,31 @@ export default class History extends React.Component {
 
   getTotalBudget() {
 
-    let timestamp = new Date();
-    console.log("timestamp is: ", timestamp);
+    // let timestamp = new Date();
+    // console.log("timestamp is: ", timestamp);
 
-    let sundayChecker = timestamp.getDay();
-    console.log("sundayChecker is: ", sundayChecker);
+    // let sundayChecker = timestamp.getDay();
+    // console.log("sundayChecker is: ", sundayChecker);
 
-    let currentWeek = require("current-week-number");
-    let currentWeekNumber;
+    // let currentWeek = require("current-week-number");
+    // let currentWeekNumber;
 
-    if (sundayChecker === 0) {
-      let followingDay = new Date(timestamp.getTime() + 86400000);
-      console.log("followingDay is: ", followingDay);
-      currentWeekNumber = currentWeek(followingDay);
-      console.log("sundayChecker is 0");
-      console.log("currentWeekNumber is: ", currentWeekNumber);
-    } else {
-      currentWeekNumber = currentWeek(timestamp);
-      console.log("sundayChecker is NOT 0");
-      console.log("currentWeekNumber is: ", currentWeekNumber);
-    }
+    // if (sundayChecker === 0) {
+    //   let followingDay = new Date(timestamp.getTime() + 86400000);
+    //   console.log("followingDay is: ", followingDay);
+    //   currentWeekNumber = currentWeek(followingDay);
+    //   console.log("sundayChecker is 0");
+    //   console.log("currentWeekNumber is: ", currentWeekNumber);
+    // } else {
+    //   currentWeekNumber = currentWeek(timestamp);
+    //   console.log("sundayChecker is NOT 0");
+    //   console.log("currentWeekNumber is: ", currentWeekNumber);
+    // }
 
+    // this.setState({ currentWeekNumber })
+
+    let currentWeekNumber = this.props.currentWeekNumber;
+    console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
   }
@@ -107,8 +111,7 @@ export default class History extends React.Component {
           <div className="currentSummary">
             <div className="budget tooltipParent">
               Total Budget
-              {/* <div className="tooltip">{this.state.currentWeekNumber}</div> */}
-              <span className="tooltipText">TEST</span>
+              <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
             </div>
             <div className="spendings">Total Spendings</div>
             <div className="credits">Total Credits</div>
