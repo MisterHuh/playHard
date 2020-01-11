@@ -125,7 +125,10 @@ export default class History extends React.Component {
             <div className="remaining">Total Remaining</div>
           </div>
           <div className="currentSummary">
-            <div className="budget">{CurrencyFormatter.format(this.state.totalBudget)}</div>
+            <div className="budget tooltipParent">
+              {CurrencyFormatter.format(this.state.totalBudget)}
+              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
+            </div>
             <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
             <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
