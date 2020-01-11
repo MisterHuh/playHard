@@ -24,7 +24,7 @@ export default class History extends React.Component {
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
-        this.getTotalBudget();
+        // this.getTotalBudget();
         this.currentSummary();
       })
   }
@@ -61,6 +61,12 @@ export default class History extends React.Component {
   }
 
   currentSummary() {
+
+    /* these 3 lines of code will probably replace getTotalBudget */
+    /* is there too much happening here? */
+    let currentWeekNumber = this.props.currentWeekNumber;
+    console.log("currentWeekNumber is: ", currentWeekNumber);
+    this.setState({ currentWeekNumber })
 
     let current = this.state.current;
     let length = current.length - 1;

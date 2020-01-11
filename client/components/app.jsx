@@ -23,10 +23,10 @@ export default class App extends React.Component {
   getTotalBudget() {
 
     let timestamp = new Date();
-    console.log("timestamp is: ", timestamp);
+    // console.log("timestamp is: ", timestamp);
 
     let sundayChecker = timestamp.getDay();
-    console.log("sundayChecker is: ", sundayChecker);
+    // console.log("sundayChecker is: ", sundayChecker);
 
     let currentWeek = require("current-week-number");
     let currentWeekNumber;
@@ -59,9 +59,9 @@ export default class App extends React.Component {
     if (currentView === 'add') {
       displayView = <Add setView={this.setView}/>;
     } else if (currentView === "current") {
-      displayView = <Current budget={this.state.budget} />
+      displayView = <Current budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber}/>
     } else if (currentView === "history") {
-      displayView = <History budget={this.state.budget} currentWeekNumber={this.currentWeekNumber}/>
+      displayView = <History budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber}/>
     }
 
     return (

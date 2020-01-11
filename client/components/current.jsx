@@ -11,7 +11,8 @@ export default class Current extends React.Component {
       credits: 0,
       fixed: 0,
       budget: 0,
-      remaining: 0
+      remaining: 0,
+      currentWeekNumber: 0
     }
     this.currentSummary = this.currentSummary.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
@@ -27,6 +28,10 @@ export default class Current extends React.Component {
   }
 
   currentSummary() {
+
+    let currentWeekNumber = this.props.currentWeekNumber;
+    console.log("currentWeekNumber is: ", currentWeekNumber);
+    this.setState({ currentWeekNumber })
 
     let current = this.state.current;
     let length = current.length - 1;
@@ -83,7 +88,10 @@ export default class Current extends React.Component {
 
           <div className="currentSummaryContainer">
             <div className="currentSummary">
-              <div className="budget">Budget</div>
+              <div className="budget tooltipParent">
+                Budget
+                <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
+                </div>
               <div className="spendings">Spendings</div>
               <div className="credits">Credits</div>
               <div className="fixed">Fixed</div>
