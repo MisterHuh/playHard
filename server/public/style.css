@@ -38,11 +38,11 @@ div {
 .addButton {
   width: 100%;
   position: relative;
-  background-color: #008CBA;
+  /* background-color: #008CBA; */
   border: 1px solid #ccc;
   border-radius: 2px;
   box-sizing: border-box;
-  color: white;
+  color: black;
   outline: none;
   padding: 8px 0px;
   font-weight: bolder;
@@ -78,7 +78,7 @@ div {
   margin: auto;
 }
 
-.tooltipParent:hover, .tooltipText {
+.tooltipParent:hover .tooltipText {
   display: block;
 }
 
