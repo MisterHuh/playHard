@@ -84,7 +84,8 @@ div {
 
 .tooltipText {
   display: none;
-  background: linear-gradient(90deg, rgba(192,188,249,1) 22%, rgba(62,190,92,1) 75%, rgba(197,204,144,1) 100%);
+  /* background: linear-gradient(90deg, rgba(192,188,249,1) 22%, rgba(62,190,92,1) 75%, rgba(197,204,144,1) 100%); */
+  background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
   /* background: rgb(209, 142, 216); */
   position: absolute;
   width: 24%;
