@@ -105,7 +105,7 @@ export default class Add extends React.Component {
     fetch(`/api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
-        console.error('delete error: ', error);
+        // console.error('delete error: ', error);
       });
 
     this.setState({
@@ -137,7 +137,7 @@ export default class Add extends React.Component {
         { value: 'Groceries', label: 'Groceries' },
         { value: 'Gas', label: 'Gas' },
         { value: 'Entertainment', label: 'Entertainment' },
-        { value: 'gifts', label: 'Gifts' },
+        { value: 'Gifts', label: 'Gifts' },
         { value: 'Home', label: 'Home' },
         { value: 'Dogs', label: 'Dogs' },
         { value: 'Party', label: 'Party' },
