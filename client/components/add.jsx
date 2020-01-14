@@ -156,10 +156,14 @@ export default class Add extends React.Component {
       ],
     ];
 
-    let colorFormatter = "credits";
-
+    // let colorFormatter = "credits";
+    let colorFormatter;
     if (this.state.category === "Spendings") {
       colorFormatter = "spendings"
+    } else if (this.state.category === "Fixed") {
+      colorFormatter = "fixed";
+    } else if (this.state.category === "Credits") {
+      colorFormatter = "credits";
     };
 
     return (
@@ -240,8 +244,8 @@ export default class Add extends React.Component {
           <div className="mx-4 addInput">
             <div
               onClick={() => this.handleSubmit()}
-              // className={"addButton mt-4 text-center " + colorFormatter}> Add
-              className="addButton mt-4 text-center"> Add
+              className={"addButton mt-4 text-center " + colorFormatter}> Add
+              {/* className="addButton mt-4 text-center"> Add */}
             </div>
           </div>
         </div>
