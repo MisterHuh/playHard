@@ -138,6 +138,7 @@ export default class History extends React.Component {
 
         <i class="fas fa-search-location"></i>
         <i class="fas fa-grin-hearts"></i>
+        <i class="fas fa-hand-holding-usd"></i>
 
         <div className="currentDataContainer">
           <div className="currentData">
