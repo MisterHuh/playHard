@@ -245,7 +245,7 @@ export default class Add extends React.Component {
             <div
               onClick={() => this.handleSubmit()}
               className={"addButton mt-4 text-center " + colorFormatter}> Add
-              {/* className="addButton mt-4 text-center"> Add */}
+               {/* className="addButton mt-4 text-center"> Add */}
             </div>
           </div>
         </div>
