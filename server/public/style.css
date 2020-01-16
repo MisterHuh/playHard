@@ -103,12 +103,17 @@ div {
 }
 
 .remaining {
+  /* background-color: #D43931; */
   background-color:  rgba(17, 86, 248, 0.2);
 }
 
 .spendings {
   /* background-color:  rgba(231, 66, 51, 0.3); */
-  background-color: rgb(255, 199, 206);
+  /* background-color: rgb(255, 199, 206); */
+
+  /* use the below tone but for Credits / Fixed / Remaining */
+  /* background-color: #D43931; */
+  background-color: rgba(217, 57, 49, 0.5);
 }
 
 .credits {
@@ -119,7 +124,10 @@ div {
 
 .fixed {
   /* background-color:  rgba(248, 213, 17, 0.2); */
-  background-color: rgb(255, 235, 156);
+
+  /* background-color: #D43931; */
+  /* background-color: rgb(255, 235, 156); */
+  background-color: rgb(201, 212, 49);
 }
 
 .creditsFontColor {
