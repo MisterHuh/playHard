@@ -28,7 +28,7 @@ export const Navbar = props => {
       <div className="d-flex flex-row justify-content-center">
       <div
         onClick={() => setView("add")}
-        className="navbarButtonContainer border"
+        className="navbarButtonContainer"
         style={add}
       >
         <i className="fas fa-plus"></i>
@@ -36,7 +36,7 @@ export const Navbar = props => {
 
       <div
         onClick={() => setView("current")}
-        className="navbarButtonContainer border"
+        className="navbarButtonContainer"
         style={current}
       >
         <i className="fas fa-check"></i>
@@ -44,7 +44,7 @@ export const Navbar = props => {
 
       <div
         onClick={() => setView("history")}
-        className="navbarButtonContainer border"
+        className="navbarButtonContainer"
         style={history}
       >
         <i className="fas fa-history"></i>
