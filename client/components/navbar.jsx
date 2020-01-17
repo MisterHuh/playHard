@@ -7,18 +7,18 @@ export const Navbar = props => {
   let add, current, history;
   if (currentView === "add") {
     add = {
-      background: "#999",
-      color: "white"
+      background: "rgba(195, 187, 187)",
+      // color: "white"
     };
   } else if (currentView === "current") {
     current = {
-      background: "#999",
-      color: "white"
+      background: "rgba(195, 187, 187)",
+      // color: "white"
     };
   } else if (currentView === "history") {
     history = {
-      background: "#999",
-      color: "white"
+      background: "rgba(195, 187, 187)",
+      // color: "white"
     }
   }
 
