@@ -153,7 +153,10 @@ div {
 }
 
 .currentData:hover {
-  border: 1px solid white;
+  /* border: 1px solid white; */
+  /* transform: scale(1.005); */
+  /* background-color: white; */
+  opacity: 0.8;
 }
 
 .currentDataHeader {
