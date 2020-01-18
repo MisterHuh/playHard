@@ -156,23 +156,28 @@ div {
   border: 1px solid white;
 }
 
-.iconBox {
-  display: flex;
-  flex-direction: row;
-}
-
-.test {
-  /* display: inline; */
-}
-
 .currentDataHeader {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
   text-align: center;
   border: 1px solid black;
 }
 
+.helper {
+  /* display: inline-block;
+  height: 100%;
+  vertical-align: middle; */
+}
+
+.iconContainer {
+  margin-right: 5%;
+}
+
+.icon {
+  /* margin-right: 5%; */
+  /* border: 1px solid white; */
+  vertical-align: middle;
+}
 
 .currentDataHeader:nth-child(1), .currentTableRow:nth-child(1), .currentDataHeader:nth-child(2), .currentTableRow:nth-child(2), .currentDataHeader:nth-child(3), .currentTableRow:nth-child(3), .currentDataHeader:nth-child(4), .currentTableRow:nth-child(4) {
   width: 12%;
