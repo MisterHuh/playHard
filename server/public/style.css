@@ -156,16 +156,23 @@ div {
   border: 1px solid white;
 }
 
-.currentDataHeader {
+.iconBox {
   display: flex;
-  flex-direction: column;
-  /* width: 100vw; */
+  flex-direction: row;
+}
+
+.test {
+  /* display: inline; */
 }
 
 .currentDataHeader {
-  border: 1px solid black;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
   text-align: center;
+  border: 1px solid black;
 }
+
 
 .currentDataHeader:nth-child(1), .currentTableRow:nth-child(1), .currentDataHeader:nth-child(2), .currentTableRow:nth-child(2), .currentDataHeader:nth-child(3), .currentTableRow:nth-child(3), .currentDataHeader:nth-child(4), .currentTableRow:nth-child(4) {
   width: 12%;
