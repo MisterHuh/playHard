@@ -120,14 +120,14 @@ export default class History extends React.Component {
             <div className="budget">View</div>
             <div className="">Start Date</div>
             <div className="">End Date</div>
-            {/* <div className="">Total Fixed</div> */}
+            {/* <div className="">BUTTON?</div> */}
             {/* <div className="">Total Remaining</div> */}
           </div>
           <div className="currentSummary">
             <div className="">All</div>
             <div className="">01/05/20</div>
             <div className="">01/11/20</div>
-            {/* <div className="">{CurrencyFormatter.format(this.state.totalFixed)}</div> */}
+            <div className="">BUTTON?</div>
             {/* <div className="">{CurrencyFormatter.format(this.state.totalRemaining)}</div> */}
           </div>
         </div>
