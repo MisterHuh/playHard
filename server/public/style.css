@@ -56,6 +56,11 @@ div {
   border-radius: 28px;
 }
 
+.currentTopWrapper {
+  display: flex;
+  flex-direction: row;
+}
+
 .currentWrapper {
   display: flex;
   flex-direction: column;

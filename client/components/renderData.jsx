@@ -18,16 +18,16 @@ export const RenderData = props => {
           >
             <div className={"currentDataHeader "  + entry.category.toLowerCase()}>
 
-              <div className="iconContainer border">
+              <div className="iconContainer ">
                 <i className="icon fas fa-times"></i>
               </div>
 
-              <div className="iconContainer border">
+              <div className="iconContainer ">
                 <i className="icon fas fa-edit"></i>
               </div>
 
               <div>
-                <div className="border">{entry.date}</div>
+                <div className="">{entry.date}</div>
               </div>
 
             </div>

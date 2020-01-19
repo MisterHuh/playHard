@@ -6,6 +6,7 @@ export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      view: "all",
       current: [],
       totalSpendings: 0,
       totalCredits: 0,
@@ -113,6 +114,7 @@ export default class History extends React.Component {
 
       <div className="currentWrapper">
 
+        {/* one */}
         <div className="currentSummaryContainer">
           <div className="currentSummary">
             <div className="budget tooltipParent">
@@ -136,9 +138,33 @@ export default class History extends React.Component {
           </div>
         </div>
 
-        <i className="fas fa-search-location"></i>
-        <i className="fas fa-grin-hearts"></i>
-        <i className="fas fa-hand-holding-usd"></i>
+        {/* two */}
+        <div className="currentSummaryContainer">
+          <div className="currentSummary">
+            <div className="budget tooltipParent">
+              Total Budget
+              <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
+            </div>
+            <div className="spendings">Total Spendings</div>
+            <div className="credits">Total Credits</div>
+            <div className="fixed">Total Fixed</div>
+            <div className="remaining">Total Remaining</div>
+          </div>
+          <div className="currentSummary">
+            <div className="budget tooltipParent">
+              {CurrencyFormatter.format(this.state.totalBudget)}
+              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
+            </div>
+            <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
+            <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
+            <div className="remaining">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+          </div>
+        </div>
+
+        {/* <i className="icon fas fa-search-location border"></i> */}
+        {/* <i className="icon fas fa-grin-hearts border"></i> */}
+        {/* <i className="icon fas fa-hand-holding-usd border"></i> */}
 
         <div className="currentDataContainer">
           <div className="currentData">
