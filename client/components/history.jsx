@@ -2,11 +2,15 @@ import React from "react";
 import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
+import Dropdown from "react-dropdown";
+import 'react-dropdown/historyDropdown.css'
+
+
 export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "all",
+      view: "All",
       current: [],
       totalSpendings: 0,
       totalCredits: 0,
@@ -18,6 +22,13 @@ export default class History extends React.Component {
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.getTotalBudget = this.getTotalBudget.bind(this);
+    this.categoryHandleChange = this.categoryHandleChange(this);
+  }
+
+  categoryHandleChange(e) {
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
+    this.setState({ view: e.value })
   }
 
   retrieveAllData() {
@@ -110,6 +121,13 @@ export default class History extends React.Component {
 
   render() {
 
+    const dropdownOptions = [
+      { value: "all", name: "All"},
+      { value: "spendings", name: "Spendings" },
+      { value: "credits", name: "Credits" },
+      { value: "fixed", name: "Fixed" }
+    ];
+
     return (
 
       <div className="currentWrapper">
@@ -117,14 +135,29 @@ export default class History extends React.Component {
         {/* one */}
         <div className="currentSummaryContainer">
           <div className="currentSummary">
-            <div className="budget">View</div>
+            <div className="budget">Filter By</div>
             <div className="">Start Date</div>
             <div className="">End Date</div>
             {/* <div className="">BUTTON?</div> */}
             {/* <div className="">Total Remaining</div> */}
           </div>
           <div className="currentSummary">
-            <div className="">All</div>
+
+            {/* <div className="mx-4 addInput">
+              <Dropdown
+                onChange={this.categoryHandleChange}
+                options={dropdownOptions}
+                arrowClosed={<span className="arrow-closed" />}
+                arrowOpen={<span className="arrow-open" />}
+                placeholder={this.state.view}
+                className=""
+              />
+            </div> */}
+            <select value={this.state.view} onChange={this.categoryHandleChange} >
+              {dropdownOptions.map((e, key) => {
+                return <option key={key} value={e.value}>{e.name}</option>;
+              })}
+            </select>
             <div className="">01/05/20</div>
             <div className="">01/11/20</div>
             <div className="">BUTTON?</div>
