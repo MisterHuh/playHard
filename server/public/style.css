@@ -14,6 +14,7 @@ div {
 .navbarButtonContainer:hover {
   border: 1px solid rgba(195, 187, 187, 0.2);
   background: rgba(195, 187, 187, 0.3);
+  cursor: pointer;
 }
 
 .addForm {
@@ -179,7 +180,8 @@ div {
 .icon {
   /* margin-right: 5%; */
   /* border: 1px solid white; */
-  vertical-align: middle;
+  cursor: pointer;
+  /* vertical-align: middle; */
 }
 
 .currentDataHeader:nth-child(1), .currentTableRow:nth-child(1), .currentDataHeader:nth-child(2), .currentTableRow:nth-child(2), .currentDataHeader:nth-child(3), .currentTableRow:nth-child(3), .currentDataHeader:nth-child(4), .currentTableRow:nth-child(4) {
