@@ -85,6 +85,12 @@ div {
   margin: auto;
 }
 
+.historyDropdown {
+  width: 161.88px;
+  height: 26px;
+  text-align: center;
+}
+
 .tooltipParent:hover .tooltipText {
   display: block;
 }

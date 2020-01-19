@@ -153,7 +153,9 @@ export default class History extends React.Component {
                 className=""
               />
             </div> */}
-            <select value={this.state.view} onChange={this.categoryHandleChange} >
+            <select
+              onChange={this.categoryHandleChange}
+              className="historyDropdown" >
               {dropdownOptions.map((e, key) => {
                 return <option key={key} value={e.value}>{e.name}</option>;
               })}
