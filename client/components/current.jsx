@@ -84,41 +84,46 @@ export default class Current extends React.Component {
 
       return (
 
-        <div className="currentWrapper">
+        <React.Fragment>
+          <div className="currentWrapperTop">
 
-          <div className="currentSummaryContainer">
-            <div className="currentSummary">
-              <div className="budget tooltipParent">
-                Budget
-                <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
-                </div>
-              <div className="spendings">Spendings</div>
-              <div className="credits">Credits</div>
-              <div className="fixed">Fixed</div>
-              <div className="remaining">Remaining</div>
-            </div>
-            <div className="currentSummary">
-              <div className="budget">{CurrencyFormatter.format(this.state.budget)}</div>
-              <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
-              <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
-              <div className="fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
-              <div className="remaining">{CurrencyFormatter.format(this.state.remaining)}</div>
+            <div className="currentSummaryContainer">
+              <div className="currentSummary">
+                <div className="budget tooltipParent">
+                  Budget
+                  <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
+                  </div>
+                <div className="spendings">Spendings</div>
+                <div className="credits">Credits</div>
+                <div className="fixed">Fixed</div>
+                <div className="remaining">Remaining</div>
+              </div>
+              <div className="currentSummary">
+                <div className="budget">{CurrencyFormatter.format(this.state.budget)}</div>
+                <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
+                <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
+                <div className="fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
+                <div className="remaining">{CurrencyFormatter.format(this.state.remaining)}</div>
+              </div>
             </div>
           </div>
 
-          <div className="currentDataContainer">
-            <div className="currentData">
-              <div className="currentDataHeader">Date</div>
-              <div className="currentDataHeader">subCategory</div>
-              <div className="currentDataHeader">cc</div>
-              <div className="currentDataHeader">Amount</div>
-              <div className="currentDataHeader">Store</div>
-              <div className="currentDataHeader">Notes</div>
+          <div className="currentWrapperBottom">
+            <div className="currentDataContainer">
+              <div className="currentData">
+                <div className="currentDataHeader">Date</div>
+                <div className="currentDataHeader">subCategory</div>
+                <div className="currentDataHeader">cc</div>
+                <div className="currentDataHeader">Amount</div>
+                <div className="currentDataHeader">Store</div>
+                <div className="currentDataHeader">Notes</div>
+              </div>
+              <RenderData current={this.state.current} />
             </div>
-            <RenderData current={this.state.current} />
           </div>
+        </React.Fragment>
 
-        </div>
+
       )
     }
 

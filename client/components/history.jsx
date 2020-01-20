@@ -130,10 +130,11 @@ export default class History extends React.Component {
 
     return (
 
-      <div className="currentWrapper">
+      <React.Fragment>
+      <div className="currentWrapperTop border">
 
         {/* one */}
-        <div className="currentSummaryContainer">
+        <div className="currentSummaryContainer border border-primary">
           <div className="currentSummary">
             <div className="budget">Filter By</div>
             <div className="">Start Date</div>
@@ -142,17 +143,6 @@ export default class History extends React.Component {
             {/* <div className="">Total Remaining</div> */}
           </div>
           <div className="currentSummary">
-
-            {/* <div className="mx-4 addInput">
-              <Dropdown
-                onChange={this.categoryHandleChange}
-                options={dropdownOptions}
-                arrowClosed={<span className="arrow-closed" />}
-                arrowOpen={<span className="arrow-open" />}
-                placeholder={this.state.view}
-                className=""
-              />
-            </div> */}
             <select
               onChange={this.categoryHandleChange}
               className="historyDropdown" >
@@ -168,7 +158,7 @@ export default class History extends React.Component {
         </div>
 
         {/* two */}
-        <div className="currentSummaryContainer">
+        <div className="currentSummaryContainer border border-primary">
           <div className="currentSummary">
             <div className="budget tooltipParent">
               Total Budget
@@ -192,32 +182,40 @@ export default class History extends React.Component {
         </div>
 
         {/* three */}
-        <div className="currentSummaryContainer">
+        <div className="currentSummaryContainer border border-primary">
           <div className="currentSummary">
-            <div className="budget tooltipParent">
-              Groceries
-              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
-            </div>
-            <div className="credits">Gas</div>
+            <div className="fixed">Groceries</div>
+            <div className="fixed">Gas</div>
             <div className="fixed">Utilities</div>
-            <div className="remaining">Total Remaining</div>
+            <div className="fixed">Total Remaining</div>
           </div>
           <div className="currentSummary">
-            <div className="budget tooltipParent">
-              {CurrencyFormatter.format(this.state.totalBudget)}
-              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
-            </div>
-            <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalBudget)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
-            <div className="remaining">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
           </div>
         </div>
+
+      </div>
 
         {/* <i className="icon fas fa-search-location border"></i> */}
         {/* <i className="icon fas fa-grin-hearts border"></i> */}
         {/* <i className="icon fas fa-hand-holding-usd border"></i> */}
 
-        <div className="currentDataContainer">
+        {/* <div className="currentDataContainer">
+          <div className="currentData">
+            <div className="currentDataHeader">Date</div>
+            <div className="currentDataHeader">subCategory</div>
+            <div className="currentDataHeader">cc</div>
+            <div className="currentDataHeader">Amount</div>
+            <div className="currentDataHeader">Store</div>
+            <div className="currentDataHeader">Notes</div>
+          </div>
+          <RenderData current={this.state.current} />
+        </div> */}
+
+        <div className="currentWrapperBottom">
           <div className="currentData">
             <div className="currentDataHeader">Date</div>
             <div className="currentDataHeader">subCategory</div>
@@ -229,7 +227,9 @@ export default class History extends React.Component {
           <RenderData current={this.state.current} />
         </div>
 
-      </div>
+        </React.Fragment>
+
+
 
     )
   }
