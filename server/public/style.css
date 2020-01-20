@@ -64,15 +64,16 @@ div {
   border-radius: 28px;
 }
 
-.currentTopWrapper {
+/* .currentWrapper {
   display: flex;
   flex-direction: row;
-}
+} */
 
 .currentWrapperTop {
   /* padding-top: 40px; */
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 .currentSummaryContainer {
@@ -93,8 +94,6 @@ div {
 
 .currentSummary > div {
   border: 1px solid black;
-  height: 25%;
-  /* padding: 5%; */
   text-align: center;
   margin: auto;
 }
@@ -168,7 +167,7 @@ div {
   display: flex;
   flex-direction: column;
   /* justify-content: center; */
-  margin-top: 2%;
+  /* margin-top: 2%; */
   margin-bottom: 2%;
 }
 
