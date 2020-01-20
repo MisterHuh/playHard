@@ -138,7 +138,7 @@ export default class History extends React.Component {
             <div className="budget">Filter By</div>
             <div className="">Start Date</div>
             <div className="">End Date</div>
-            {/* <div className="">BUTTON?</div> */}
+            <div className="">Reset</div>
             {/* <div className="">Total Remaining</div> */}
           </div>
           <div className="currentSummary">
@@ -162,7 +162,7 @@ export default class History extends React.Component {
             </select>
             <div className="">01/05/20</div>
             <div className="">01/11/20</div>
-            <div className="">BUTTON?</div>
+            <div className="">Search</div>
             {/* <div className="">{CurrencyFormatter.format(this.state.totalRemaining)}</div> */}
           </div>
         </div>
@@ -176,7 +176,7 @@ export default class History extends React.Component {
             </div>
             <div className="spendings">Total Spendings</div>
             <div className="credits">Total Credits</div>
-            <div className="fixed">Total Fixed</div>
+            {/* <div className="fixed">Total Fixed</div> */}
             <div className="remaining">Total Remaining</div>
           </div>
           <div className="currentSummary">
@@ -185,6 +185,28 @@ export default class History extends React.Component {
               {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
             </div>
             <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
+            <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
+            {/* <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div> */}
+            <div className="remaining">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+          </div>
+        </div>
+
+        {/* three */}
+        <div className="currentSummaryContainer">
+          <div className="currentSummary">
+            <div className="budget tooltipParent">
+              Groceries
+              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
+            </div>
+            <div className="credits">Gas</div>
+            <div className="fixed">Utilities</div>
+            <div className="remaining">Total Remaining</div>
+          </div>
+          <div className="currentSummary">
+            <div className="budget tooltipParent">
+              {CurrencyFormatter.format(this.state.totalBudget)}
+              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
+            </div>
             <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
             <div className="remaining">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
