@@ -9,6 +9,14 @@ div {
   font-size: 250%;
   text-align: center;
   border: 1px solid rgba(195, 187, 187);
+
+  /* to make it sticky */
+  /* also add padding-top to the content */
+  /* position:fixed;
+  top:0;
+  width:100%;
+  z-index:100;
+  padding-top: 10px; */
 }
 
 .navbarButtonContainer:hover {
@@ -62,6 +70,7 @@ div {
 }
 
 .currentWrapper {
+  /* padding-top: 40px; */
   display: flex;
   flex-direction: column;
 }
@@ -162,13 +171,17 @@ div {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  /* margin-right: 5%; */
+  /* margin-left: 5%; */
 }
 
 .currentData:hover {
   /* border: 1px solid white; */
   /* transform: scale(1.005); */
   /* background-color: white; */
-  opacity: 0.8;
+  opacity: 0.7;
+  font-weight: bold;
+  background-color: rgba(195, 187, 187);
 }
 
 .currentDataHeader {
