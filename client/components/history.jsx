@@ -2,15 +2,22 @@ import React from "react";
 import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
-import Dropdown from "react-dropdown";
-import 'react-dropdown/historyDropdown.css'
+// import Dropdown from "react-dropdown";
+// import 'react-dropdown/historyDropdown.css'
+
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "All",
+      // view: "All",
+      search: {
+        startDate: new Date(),
+        endDate: new Date()
+      },
       current: [],
       totalSpendings: 0,
       totalCredits: 0,
@@ -23,6 +30,7 @@ export default class History extends React.Component {
     this.currentSummary = this.currentSummary.bind(this);
     this.getTotalBudget = this.getTotalBudget.bind(this);
     this.categoryHandleChange = this.categoryHandleChange(this);
+    this.dateHandleChange = this.dateHandleChange.bind(this);
   }
 
   categoryHandleChange(e) {
@@ -30,6 +38,10 @@ export default class History extends React.Component {
     // console.log("event.value is: ", e.value);
     this.setState({ view: e.value })
   }
+
+  dateHandleChange(date) {
+    this.setState({ date });
+  };
 
   retrieveAllData() {
     fetch(`/api/getHistory.php`)
@@ -110,9 +122,9 @@ export default class History extends React.Component {
       totalBudget,
       totalRemaining
     })
-    console.log("HISTORY VIEW totalBudget is: ", totalBudget);
-    console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
-    console.log("HISTORY VIEW this.state.current is: ", this.state.current)
+    // console.log("HISTORY VIEW totalBudget is: ", totalBudget);
+    // console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
+    // console.log("HISTORY VIEW this.state.current is: ", this.state.current)
   }
 
   componentDidMount() {
@@ -150,8 +162,20 @@ export default class History extends React.Component {
                 return <option key={key} value={e.value}>{e.name}</option>;
               })}
             </select>
-            <div className="">01/05/20</div>
-            <div className="">01/11/20</div>
+            <div className="">
+                <DatePicker
+                  selected={this.state.search.startDate}
+                  onChange={this.dateHandleChange}
+                  className="amount1"
+                />
+            </div>
+            <div className="">
+                <DatePicker
+                  selected={this.state.search.endDate}
+                  onChange={this.dateHandleChange}
+                  className="amount1"
+                />
+            </div>
             <div className="">Search</div>
             {/* <div className="">{CurrencyFormatter.format(this.state.totalRemaining)}</div> */}
           </div>
@@ -228,8 +252,6 @@ export default class History extends React.Component {
         </div>
 
         </React.Fragment>
-
-
 
     )
   }
