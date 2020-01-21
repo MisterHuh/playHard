@@ -21,6 +21,10 @@ export default class SearchBox extends React.Component {
     this.setState({ view: e.value })
   }
 
+  componentDidMount() {
+    console.log("this.state.filterBy is: ", this.state.filterBy)
+  }
+
   render() {
 
     const dropdownOptions = [

@@ -5,10 +5,8 @@ import { CurrencyFormatter } from "./currencyFormatter";
 // import Dropdown from "react-dropdown";
 // import 'react-dropdown/historyDropdown.css'
 
-// import DatePicker from "react-datepicker";
-// import "react-datepicker/dist/react-datepicker.css";
-
-import SearchBox from "./searchBox"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 export default class History extends React.Component {
@@ -31,13 +29,15 @@ export default class History extends React.Component {
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.getTotalBudget = this.getTotalBudget.bind(this);
-    // this.categoryHandleChange = this.categoryHandleChange(this);
+    this.categoryHandleChange = this.categoryHandleChange(this);
     this.dateHandleChange = this.dateHandleChange.bind(this);
   }
 
-  // categoryHandleChange(e) {
-  //   this.setState({ view: e.value })
-  // }
+  categoryHandleChange(e) {
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
+    this.setState({ view: e.value })
+  }
 
   dateHandleChange(date) {
     this.setState({ date });
@@ -133,19 +133,51 @@ export default class History extends React.Component {
 
   render() {
 
-    // const dropdownOptions = [
-    //   { value: "all", name: "All"},
-    //   { value: "spendings", name: "Spendings" },
-    //   { value: "credits", name: "Credits" },
-    //   { value: "fixed", name: "Fixed" }
-    // ];
+    const dropdownOptions = [
+      { value: "all", name: "All"},
+      { value: "spendings", name: "Spendings" },
+      { value: "credits", name: "Credits" },
+      { value: "fixed", name: "Fixed" }
+    ];
 
     return (
 
       <React.Fragment>
       <div className="currentWrapperTop border">
 
-      <SearchBox />
+        {/* one */}
+        <div className="currentSummaryContainer border border-primary">
+          <div className="currentSummary">
+            <div className="budget">Filter By</div>
+            <div className="">Start Date</div>
+            <div className="">End Date</div>
+            <div className="">Reset</div>
+          </div>
+          <div className="currentSummary">
+            <select
+              onChange={this.categoryHandleChange}
+              className="historyDropdown" >
+              {dropdownOptions.map((e, key) => {
+                return <option key={key} value={e.value}>{e.name}</option>;
+              })}
+            </select>
+            <div className="">
+                <DatePicker
+                  selected={this.state.search.startDate}
+                  onChange={this.dateHandleChange}
+                  className="amount1"
+                />
+            </div>
+            <div className="">
+                <DatePicker
+                  selected={this.state.search.endDate}
+                  onChange={this.dateHandleChange}
+                  className="amount1"
+                />
+            </div>
+            <div className="">Search</div>
+          </div>
+        </div>
 
         {/* two */}
         <div className="currentSummaryContainer border border-primary">
