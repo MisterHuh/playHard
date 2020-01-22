@@ -27,6 +27,7 @@ export default class History extends React.Component {
       currentWeekNumber: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.getTotalBudget = this.getTotalBudget.bind(this);
     this.categoryHandleChange = this.categoryHandleChange(this);
@@ -34,9 +35,9 @@ export default class History extends React.Component {
   }
 
   categoryHandleChange(e) {
-    // console.log("event is: ", e);
+    console.log("event is: ", e);
     // console.log("event.value is: ", e.value);
-    this.setState({ search["filterBy"]: e.value })
+    // this.setState({ search["filterBy"]: e.value })
   }
 
   dateHandleChange(date) {
@@ -47,6 +48,16 @@ export default class History extends React.Component {
     fetch(`/api/getHistory.php`)
       .then(response => response.json())
       .then(current => {
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
+
+  retrieveSpendingsData() {
+    fetch(`/api/spendings.php`)
+      .then(response => response.json())
+      .then(current => {
+        console.log("current is: ", current);
         this.setState({ current });
         this.currentSummary();
       })
@@ -127,7 +138,8 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    this.retrieveAllData();
+    // this.retrieveAllData();
+    this.retrieveSpendingsData();
   }
 
   render() {
