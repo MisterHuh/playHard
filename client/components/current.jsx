@@ -64,8 +64,8 @@ export default class Current extends React.Component {
       remaining
     })
 
-    console.log("CURRENT VIEW this.state.budget is: ", this.state.budget);
-    console.log("CURRENT VIEW this.state.current is: ", this.state.current)
+    // console.log("CURRENT VIEW this.state.budget is: ", this.state.budget);
+    // console.log("CURRENT VIEW this.state.current is: ", this.state.current)
 
   }
 
@@ -76,12 +76,8 @@ export default class Current extends React.Component {
   render() {
 
     if (!this.state.budget) {
-      console.log("CURRENT VIEW componentDidMount needs to run");
       return null;
     } else {
-
-      console.log("CURRENT VIEW componentDidMount RAN");
-
       return (
 
         <React.Fragment>
@@ -123,49 +119,7 @@ export default class Current extends React.Component {
           </div>
         </React.Fragment>
 
-
       )
     }
-
-    // let budget = this.props.budget;
-    // let spendings = this.state.spendings;
-    // let credits = this.state.credits;
-    // let fixed = this.state.fixed;
-    // let remaining = budget - credits - spendings;
-
-    // return (
-
-      // <div className="currentWrapper">
-
-      //   <div className="currentSummaryContainer">
-      //     <div className="currentSummary">
-      //       <div className="spendings">Spendings</div>
-      //       <div className="credits">Credits</div>
-      //       <div className="fixed">Fixed</div>
-      //       <div className="remaining">Remaining</div>
-      //     </div>
-      //     <div className="currentSummary">
-      //       <div className="spendings">{CurrencyFormatter.format(spendings)}</div>
-      //       <div className="credits">{CurrencyFormatter.format(credits)}</div>
-      //       <div className="fixed">{CurrencyFormatter.format(fixed)}</div>
-      //       <div className="remaining">{CurrencyFormatter.format(remaining)}</div>
-      //     </div>
-      //   </div>
-
-      //   <div className="currentDataContainer">
-      //     <div className="currentData">
-      //       <div className="currentDataHeader">Date</div>
-      //       <div className="currentDataHeader">subCategory</div>
-      //       <div className="currentDataHeader">cc</div>
-      //       <div className="currentDataHeader">Amount</div>
-      //       <div className="currentDataHeader">Store</div>
-      //       <div className="currentDataHeader">Notes</div>
-      //     </div>
-      //       <RenderData current={this.state.current} />
-      //   </div>
-
-      // </div>
-
-    // )
   }
 }

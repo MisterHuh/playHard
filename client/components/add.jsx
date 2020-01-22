@@ -31,10 +31,6 @@ export default class Add extends React.Component {
     this.addEntry = this.addEntry.bind(this);
   }
 
-  // componentDidMount() {
-
-  // }
-
   dateHandleChange(date) {
     this.setState({ date });
   };
@@ -156,7 +152,6 @@ export default class Add extends React.Component {
       ],
     ];
 
-    // let colorFormatter = "credits";
     let colorFormatter;
     if (this.state.category === "Spendings") {
       colorFormatter = "spendings"
@@ -168,7 +163,6 @@ export default class Add extends React.Component {
 
     return (
       <form>
-        {/* <div className={"addForm " + colorFormatter}> */}
         <div className="addForm">
           <div className="mx-4">
               <DatePicker

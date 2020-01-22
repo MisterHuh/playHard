@@ -13,8 +13,8 @@ export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // view: "All",
       search: {
+        filterBy: "all",
         startDate: new Date(),
         endDate: new Date()
       },
@@ -36,7 +36,7 @@ export default class History extends React.Component {
   categoryHandleChange(e) {
     // console.log("event is: ", e);
     // console.log("event.value is: ", e.value);
-    this.setState({ view: e.value })
+    this.setState({ search["filterBy"]: e.value })
   }
 
   dateHandleChange(date) {
@@ -48,7 +48,6 @@ export default class History extends React.Component {
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
-        // this.getTotalBudget();
         this.currentSummary();
       })
   }
@@ -145,13 +144,13 @@ export default class History extends React.Component {
       <React.Fragment>
       <div className="currentWrapperTop border">
 
-        {/* one */}
+        {/* left */}
         <div className="currentSummaryContainer border border-primary">
           <div className="currentSummary">
             <div className="budget">Filter By</div>
             <div className="">Start Date</div>
             <div className="">End Date</div>
-            <div className="">Reset</div>
+            <div className="mt-3">Reset</div>
           </div>
           <div className="currentSummary">
             <select
@@ -175,11 +174,11 @@ export default class History extends React.Component {
                   className="amount1"
                 />
             </div>
-            <div className="">Search</div>
+            <div className="mt-3">Search</div>
           </div>
         </div>
 
-        {/* two */}
+        {/* middle */}
         <div className="currentSummaryContainer border border-primary">
           <div className="currentSummary">
             <div className="budget tooltipParent">
@@ -188,34 +187,31 @@ export default class History extends React.Component {
             </div>
             <div className="spendings">Total Spendings</div>
             <div className="credits">Total Credits</div>
-            {/* <div className="fixed">Total Fixed</div> */}
-            <div className="remaining">Total Remaining</div>
+            <div className="remaining mt-3">Total Remaining</div>
           </div>
           <div className="currentSummary">
             <div className="budget tooltipParent">
               {CurrencyFormatter.format(this.state.totalBudget)}
-              {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
             </div>
             <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
             <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
-            {/* <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div> */}
-            <div className="remaining">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+            <div className="remaining mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
           </div>
         </div>
 
-        {/* three */}
+        {/* right */}
         <div className="currentSummaryContainer border border-primary">
           <div className="currentSummary">
             <div className="fixed">Groceries</div>
             <div className="fixed">Gas</div>
             <div className="fixed">Utilities</div>
-            <div className="fixed">Total Remaining</div>
+            <div className="fixed mt-3">Total Remaining</div>
           </div>
           <div className="currentSummary">
             <div className="fixed">{CurrencyFormatter.format(this.state.totalBudget)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+            <div className="fixed mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
           </div>
         </div>
 
@@ -224,18 +220,6 @@ export default class History extends React.Component {
         {/* <i className="icon fas fa-search-location border"></i> */}
         {/* <i className="icon fas fa-grin-hearts border"></i> */}
         {/* <i className="icon fas fa-hand-holding-usd border"></i> */}
-
-        {/* <div className="currentDataContainer">
-          <div className="currentData">
-            <div className="currentDataHeader">Date</div>
-            <div className="currentDataHeader">subCategory</div>
-            <div className="currentDataHeader">cc</div>
-            <div className="currentDataHeader">Amount</div>
-            <div className="currentDataHeader">Store</div>
-            <div className="currentDataHeader">Notes</div>
-          </div>
-          <RenderData current={this.state.current} />
-        </div> */}
 
         <div className="currentWrapperBottom">
           <div className="currentData">
