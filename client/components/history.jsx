@@ -2,8 +2,8 @@ import React from "react";
 import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
-// import Dropdown from "react-dropdown";
-// import 'react-dropdown/historyDropdown.css'
+import Dropdown from "react-dropdown";
+import 'react-dropdown/historyDropdown.css'
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -15,8 +15,8 @@ export default class History extends React.Component {
     this.state = {
       search: {
         filterBy: "all",
-        startDate: new Date(),
-        endDate: new Date()
+        // startDate: new Date(),
+        // endDate: new Date()
       },
       current: [],
       totalSpendings: 0,
@@ -36,8 +36,9 @@ export default class History extends React.Component {
 
   categoryHandleChange(e) {
     console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
-    // this.setState({ search["filterBy"]: e.value })
+    console.log("event.value is: ", e.value);
+    let filterBy = e.value;
+    this.setState({ view: {filterBy} })
   }
 
   dateHandleChange(date) {
@@ -169,13 +170,25 @@ export default class History extends React.Component {
             </div>
           </div>
           <div className="currentSummary">
-            <select
+
+            <Dropdown
+              onChange={this.categoryHandleChange}
+              options={dropdownOptions}
+              arrowClosed={<span className="arrow-closed" />}
+              arrowOpen={<span className="arrow-open" />}
+              // placeholder={}
+              className=""
+            />
+
+            {/* <select
               onChange={this.categoryHandleChange}
               className="historyDropdown" >
               {dropdownOptions.map((e, key) => {
                 return <option key={key} value={e.value}>{e.name}</option>;
               })}
-            </select>
+            </select> */}
+
+
             <div className="">
                 <DatePicker
                   selected={this.state.search.startDate}
