@@ -162,7 +162,11 @@ export default class History extends React.Component {
             <div className="budget">Filter By</div>
             <div className="">Start Date</div>
             <div className="">End Date</div>
-            <div className="mt-3">Reset</div>
+            <div
+              onClick={() => this.retrieveAllData()}
+              className="mt-3"
+              >Reset
+            </div>
           </div>
           <div className="currentSummary">
             <select
