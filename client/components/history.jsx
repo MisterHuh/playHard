@@ -15,8 +15,8 @@ export default class History extends React.Component {
     this.state = {
       search: {
         filterBy: "all",
-        // startDate: new Date(),
-        // endDate: new Date()
+        startDate: new Date(),
+        endDate: new Date()
       },
       current: [],
       totalSpendings: 0,
@@ -203,7 +203,9 @@ export default class History extends React.Component {
                   className="amount1"
                 />
             </div>
-            <div className="mt-3">Search</div>
+            <div
+              onClick={() => this.retrieveSpendingsData()}
+              className="mt-3">Search</div>
           </div>
         </div>
 
