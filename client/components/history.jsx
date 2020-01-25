@@ -13,17 +13,24 @@ export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: {
-        filterBy: "all",
-        startDate: new Date(2019,11,29),
-        endDate: new Date()
-      },
+      // search: {
+      //   filterBy: "all",
+      //   startDate: new Date(2019,11,29),
+      //   endDate: new Date()
+      // },
+
+      filterBy: "all",
+      startDate: new Date(2019, 11, 29),
+      endDate: new Date(),
+
       current: [],
+
       totalSpendings: 0,
       totalCredits: 0,
       totalFixed: 0,
       totalBudget: 0,
       totalRemaining: 0,
+
       currentWeekNumber: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
@@ -34,11 +41,18 @@ export default class History extends React.Component {
     this.dateHandleChange = this.dateHandleChange.bind(this);
   }
 
+  // categoryHandleChange(e) {
+  //   // this.setState({ search: {...this.state.search, filterBy: "spendings"}})
+  //   // let filterBy = e.value;
+  //   this.setState({ filterBy: e.value })
+  //   // console.log("new this.state.search.filterBy is: ", this.state.search.filterBy)
+  // }
+
   categoryHandleChange(e) {
-    // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
-    let filterBy = e.value;
-    this.setState({ view: {filterBy} })
+    console.log("event is: ", e);
+    console.log("event.value is: ", e.value);
+    console.log("setting sate for Category Dropdown");
+    this.setState({ filterBy: e.value })
   }
 
   dateHandleChange(date) {
@@ -176,7 +190,7 @@ export default class History extends React.Component {
               options={dropdownOptions}
               arrowClosed={<span className="arrow-closed" />}
               arrowOpen={<span className="arrow-open" />}
-              // placeholder={}
+              placeholder={this.state.filterBy}
               className=""
             />
 
@@ -191,14 +205,16 @@ export default class History extends React.Component {
 
             <div className="">
                 <DatePicker
-                  selected={this.state.search.startDate}
+                  // selected={this.state.search.startDate}
+                  selected={this.state.startDate}
                   onChange={this.dateHandleChange}
                   className="amount1"
                 />
             </div>
             <div className="">
                 <DatePicker
-                  selected={this.state.search.endDate}
+                  // selected={this.state.search.endDate}
+                  selected={this.state.endDate}
                   onChange={this.dateHandleChange}
                   className="amount1"
                 />
