@@ -42,12 +42,6 @@ export default class History extends React.Component {
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
   }
 
-  // categoryHandleChange(e) {
-  //   // this.setState({ search: {...this.state.search, filterBy: "spendings"}})
-  //   // let filterBy = e.value;
-  //   this.setState({ filterBy: e.value })
-  //   // console.log("new this.state.search.filterBy is: ", this.state.search.filterBy)
-  // }
 
   categoryHandleChange(e) {
     console.log("event is: ", e);
@@ -57,28 +51,13 @@ export default class History extends React.Component {
   }
 
   startDateHandleChange(startDate) {
-    console.log("dateHandleChange fired");
-    console.log("new date is: ", startDate);
     this.setState({ startDate });
-    // console.log("event is: ", e);
-
-    // const {name, value } = e.target;
-    // console.log("name is: ", name);
-    // console.log("value is: ", value);
-    // this.setState({ [name]: value });
   };
 
   endDateHandleChange(endDate) {
-    console.log("dateHandleChange fired");
-    console.log("new date is: ", endDate);
     this.setState({ endDate });
-    // console.log("event is: ", e);
-
-    // const {name, value } = e.target;
-    // console.log("name is: ", name);
-    // console.log("value is: ", value);
-    // this.setState({ [name]: value });
   };
+
   retrieveAllData() {
     fetch(`/api/getHistory.php`)
       .then(response => response.json())
