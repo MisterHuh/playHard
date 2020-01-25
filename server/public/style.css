@@ -242,6 +242,11 @@ div {
   width: 22%;
 }
 
+.Dropdown-placeholder {
+  margin-top: -10%;
+  margin-left: 25%;
+}
+
 
 /* .currentDataHeader:nth-child(even), .currentTableRow:nth-child(even) {
   border: 1px solid red;
