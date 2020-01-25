@@ -13,6 +13,7 @@ export default class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       // search: {
       //   filterBy: "all",
       //   startDate: new Date(2019,11,29),
@@ -37,7 +38,7 @@ export default class History extends React.Component {
     this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.getTotalBudget = this.getTotalBudget.bind(this);
-    this.categoryHandleChange = this.categoryHandleChange(this);
+    this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
   }
@@ -47,15 +48,35 @@ export default class History extends React.Component {
     console.log("event is: ", e);
     console.log("event.value is: ", e.value);
     console.log("setting sate for Category Dropdown");
-    this.setState({ filterBy: e.value })
-  }
+
+    let filterBy = e.value;
+    this.setState({ filterBy: e.value });
+
+    // this.setState({
+    //   search: {
+    //     filterBy: e.value
+    //   }
+    // })
+  };
 
   startDateHandleChange(startDate) {
     this.setState({ startDate });
+
+    // this.setState({
+    //   search: {
+    //     startDate
+    //   }
+    // });
   };
 
   endDateHandleChange(endDate) {
     this.setState({ endDate });
+
+    // this.setState({
+    //   search: {
+    //     endDate
+    //   }
+    // });
   };
 
   retrieveAllData() {
@@ -159,12 +180,10 @@ export default class History extends React.Component {
   render() {
 
     const dropdownOptions = [
-      [
         { value: "all", name: "All"},
         { value: "spendings", name: "Spendings" },
         { value: "credits", name: "Credits" },
         { value: "fixed", name: "Fixed" }
-      ]
     ];
 
     return (
@@ -188,9 +207,10 @@ export default class History extends React.Component {
 
             <Dropdown
               onChange={this.categoryHandleChange}
-              options={dropdownOptions[0]}
+              options={dropdownOptions}
               arrowClosed={<span className="arrow-closed" />}
               arrowOpen={<span className="arrow-open" />}
+              // placeholder={this.state.search.filterBy}
               placeholder={this.state.filterBy}
               className=""
             />
@@ -207,8 +227,8 @@ export default class History extends React.Component {
             <div className="">
                 <DatePicker
                   // selected={this.state.search.startDate}
-                  name="startDate"
                   selected={this.state.startDate}
+                  name="startDate"
                   onChange={this.startDateHandleChange}
                   className="amount1"
                 />
@@ -216,8 +236,8 @@ export default class History extends React.Component {
             <div className="">
                 <DatePicker
                   // selected={this.state.search.endDate}
-                  name="endDate"
                   selected={this.state.endDate}
+                  name="endDate"
                   onChange={this.endDateHandleChange}
                   className="amount1"
                 />
