@@ -15,7 +15,7 @@ export default class History extends React.Component {
     this.state = {
       search: {
         filterBy: "all",
-        startDate: new Date(),
+        startDate: new Date(2019,11,29),
         endDate: new Date()
       },
       current: [],
@@ -35,8 +35,8 @@ export default class History extends React.Component {
   }
 
   categoryHandleChange(e) {
-    console.log("event is: ", e);
-    console.log("event.value is: ", e.value);
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
     let filterBy = e.value;
     this.setState({ view: {filterBy} })
   }
@@ -100,7 +100,7 @@ export default class History extends React.Component {
     /* these 3 lines of code will probably replace getTotalBudget */
     /* is there too much happening here? */
     let currentWeekNumber = this.props.currentWeekNumber;
-    console.log("currentWeekNumber is: ", currentWeekNumber);
+    // console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
@@ -139,8 +139,8 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    // this.retrieveAllData();
-    this.retrieveSpendingsData();
+    this.retrieveAllData();
+    // this.retrieveSpendingsData();
   }
 
   render() {

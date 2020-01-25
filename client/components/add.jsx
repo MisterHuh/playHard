@@ -38,6 +38,7 @@ export default class Add extends React.Component {
   categoryHandleChange(e) {
     // console.log("event is: ", e);
     // console.log("event.value is: ", e.value);
+    console.log("setting sate for Category Dropdown");
     this.setState({ category: e.value })
   }
 

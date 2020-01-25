@@ -39,8 +39,8 @@ export default class App extends React.Component {
       console.log("currentWeekNumber is: ", currentWeekNumber);
     } else {
       currentWeekNumber = currentWeek(timestamp);
-      console.log("sundayChecker is NOT 0");
-      console.log("currentWeekNumber is: ", currentWeekNumber);
+      // console.log("sundayChecker is NOT 0");
+      // console.log("currentWeekNumber is: ", currentWeekNumber);
     }
 
     this.setState({ currentWeekNumber })
