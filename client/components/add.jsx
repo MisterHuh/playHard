@@ -83,9 +83,9 @@ export default class Add extends React.Component {
 
     const entry = {
       date: formatted_date,
-      category: this.state.category,
-      subCategory: this.state.subCategory,
-      cc: this.state.cc,
+      category: this.state.category.toString().toLowerCase(),
+      subCategory: this.state.subCategory.toString().toLowerCase(),
+      cc: this.state.cc.toString().toLowerCase(),
       amount: formatted_amount,
       where: this.state.where,
       notes: this.state.notes
@@ -102,7 +102,8 @@ export default class Add extends React.Component {
     fetch(`/api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
-        // console.error('delete error: ', error);
+        console.error('delete error: ', error);
+        alert("need input!");
       });
 
     this.setState({

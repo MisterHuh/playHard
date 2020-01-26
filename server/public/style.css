@@ -114,6 +114,12 @@ div {
   margin: auto;
 }
 
+.currentSummaryHistory > div {
+  /* height: 42px; */
+  text-align: center;
+  border: 1px solid black;
+}
+
 .historyDropdown {
   width: 100%;
   height: 26px;
@@ -134,10 +140,6 @@ div {
   height: 3.5%;
   bottom: 86%;
 }
-
-/* .tooltipParent:hover, .tooltipText {
-  display: block;
-} */
 
 .budget {
   /* background-color: rgb(209, 142, 216); */
@@ -229,10 +231,7 @@ div {
 }
 
 .icon {
-  /* margin-right: 5%; */
-  /* border: 1px solid white; */
   cursor: pointer;
-  /* vertical-align: middle; */
 }
 
 .currentDataHeader:nth-child(1), .currentTableRow:nth-child(1), .currentDataHeader:nth-child(2), .currentTableRow:nth-child(2), .currentDataHeader:nth-child(3), .currentTableRow:nth-child(3), .currentDataHeader:nth-child(4), .currentTableRow:nth-child(4) {
@@ -241,11 +240,6 @@ div {
 .currentDataHeader:nth-child(5), .currentTableRow:nth-child(5), .currentDataHeader:nth-child(6), .currentTableRow:nth-child(6) {
   width: 22%;
 }
-
-/* .Dropdown-placeholder {
-  margin-top: -7%;
-  margin-left: 25%;
-} */
 
 
 /* .currentDataHeader:nth-child(even), .currentTableRow:nth-child(even) {

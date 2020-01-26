@@ -20,6 +20,7 @@ export default class History extends React.Component {
       //   endDate: new Date()
       // },
 
+      // dropdownOpen: false,
       filterBy: "all",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
@@ -41,16 +42,26 @@ export default class History extends React.Component {
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
+    // this.toggleDropdown = this.toggleDropdown.bind(this);
   }
 
+  // toggleDropdown() {
+  //   this.setState({ dropdownOpen: !dropdownOptions });
+  // };
 
   categoryHandleChange(e) {
-    console.log("event is: ", e);
-    console.log("event.value is: ", e.value);
     console.log("setting sate for Category Dropdown");
 
-    let filterBy = e.value;
-    this.setState({ filterBy: e.value });
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
+
+    // let filterBy = e.value;
+    // this.setState({ filterBy: e.value });
+
+    console.log("event is: ", e);
+    console.log("event.target is: ", event.target);
+    console.log("event.target.value is: ", e.target.value);
+    this.setState({ filterBy: e.targetvalue });
 
     // this.setState({
     //   search: {
@@ -180,10 +191,10 @@ export default class History extends React.Component {
   render() {
 
     const dropdownOptions = [
-        { value: "all", name: "All"},
-        { value: "spendings", name: "Spendings" },
-        { value: "credits", name: "Credits" },
-        { value: "fixed", name: "Fixed" }
+        { value: "All", name: "All"},
+        { value: "Spendings", name: "Spendings" },
+        { value: "Credits", name: "Credits" },
+        { value: "Fixed", name: "Fixed" }
     ];
 
     return (
@@ -193,7 +204,7 @@ export default class History extends React.Component {
 
         {/* left */}
         <div className="currentSummaryContainer border border-primary">
-          <div className="currentSummary">
+          <div className="currentSummaryHistory">
             <div className="budget">Filter By</div>
             <div className="">Start Date</div>
             <div className="">End Date</div>
@@ -203,9 +214,10 @@ export default class History extends React.Component {
               >Reset
             </div>
           </div>
-          <div className="currentSummary">
 
-            <Dropdown
+          <div className="currentSummaryHistory">
+
+            {/* <Dropdown
               onChange={this.categoryHandleChange}
               options={dropdownOptions}
               arrowClosed={<span className="arrow-closed" />}
@@ -213,15 +225,16 @@ export default class History extends React.Component {
               // placeholder={this.state.search.filterBy}
               placeholder={this.state.filterBy}
               className=""
-            />
+            /> */}
 
-            {/* <select
+            <select
               onChange={this.categoryHandleChange}
-              className="historyDropdown" >
+              className="historyDropdown"
+              placeholder="All" >
               {dropdownOptions.map((e, key) => {
                 return <option key={key} value={e.value}>{e.name}</option>;
               })}
-            </select> */}
+            </select>
 
 
             <div className="">
@@ -250,7 +263,7 @@ export default class History extends React.Component {
 
         {/* middle */}
         <div className="currentSummaryContainer border border-primary">
-          <div className="currentSummary">
+          <div className="currentSummaryHistory">
             <div className="budget tooltipParent">
               Total Budget
               <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
@@ -259,7 +272,7 @@ export default class History extends React.Component {
             <div className="credits">Total Credits</div>
             <div className="remaining mt-3">Total Remaining</div>
           </div>
-          <div className="currentSummary">
+          <div className="currentSummaryHistory">
             <div className="budget tooltipParent">
               {CurrencyFormatter.format(this.state.totalBudget)}
             </div>
@@ -271,13 +284,13 @@ export default class History extends React.Component {
 
         {/* right */}
         <div className="currentSummaryContainer border border-primary">
-          <div className="currentSummary">
+          <div className="currentSummaryHistory">
             <div className="fixed">Groceries</div>
             <div className="fixed">Gas</div>
             <div className="fixed">Utilities</div>
             <div className="fixed mt-3">Total Remaining</div>
           </div>
-          <div className="currentSummary">
+          <div className="currentSummaryHistory">
             <div className="fixed">{CurrencyFormatter.format(this.state.totalBudget)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
