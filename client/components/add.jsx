@@ -76,6 +76,7 @@ export default class Add extends React.Component {
 
   addEntry() {
 
+    console.log("this.state.date is: ", this.state.date);
     let current_datetime = this.state.date;
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
 

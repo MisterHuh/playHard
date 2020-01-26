@@ -65,8 +65,32 @@ export default class History extends React.Component {
     console.log("Search Button clicked");
     console.log("this.state.filterBy is: ", this.state.filterBy);
 
+    let notFormattedStartDate = this.state.startDate;
+    let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
+    // console.log("formattedStartDate is: ", formattedStartDate);
+
+    let notFormattedEndDate = this.state.endDate;
+    let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
+    // console.log("formattedEndDate is: ", formattedEndDate);
+
+    const sanitizedData = {
+      category: this.state.filterBy,
+      startDate: formattedStartDate,
+      endDate: formattedEndDate
+    };
+
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        category: this.state.filterBy,
+        startDate: formattedStartDate,
+        endDate: formattedEndDate
+      })
+    };
+
     if (this.state.filterBy === "All") {
-      this.retrieveAllData();
+      this.retrieveAllData(req);
     } else if (this.state.filterBy === "Spendings") {
       this.retrieveSpendingsData();
     } else if (this.state.filterBy === "Credits") {
@@ -85,8 +109,8 @@ export default class History extends React.Component {
       })
   }
 
-  retrieveSpendingsData() {
-    fetch(`/api/getSpendings.php`)
+  retrieveSpendingsData(req) {
+    fetch(`/api/getSpendings.php`, req)
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current);
