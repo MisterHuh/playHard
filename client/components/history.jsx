@@ -21,7 +21,7 @@ export default class History extends React.Component {
       // },
 
       // dropdownOpen: false,
-      filterBy: "all",
+      filterBy: "All",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
 
@@ -42,53 +42,33 @@ export default class History extends React.Component {
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
-    // this.toggleDropdown = this.toggleDropdown.bind(this);
+    this.retrieveSearchData = this.retrieveSearchData.bind(this);
   }
 
-  // toggleDropdown() {
-  //   this.setState({ dropdownOpen: !dropdownOptions });
-  // };
 
   categoryHandleChange(e) {
-    console.log("setting sate for Category Dropdown");
-
     // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
-
-    // let filterBy = e.value;
-    // this.setState({ filterBy: e.value });
-
-    console.log("event is: ", e);
-    console.log("event.target is: ", event.target);
+    // console.log("event.target is: ", event.target);
     console.log("event.target.value is: ", e.target.value);
-    this.setState({ filterBy: e.targetvalue });
-
-    // this.setState({
-    //   search: {
-    //     filterBy: e.value
-    //   }
-    // })
+    this.setState({ filterBy: e.target.value });
   };
 
   startDateHandleChange(startDate) {
     this.setState({ startDate });
-
-    // this.setState({
-    //   search: {
-    //     startDate
-    //   }
-    // });
   };
 
   endDateHandleChange(endDate) {
     this.setState({ endDate });
-
-    // this.setState({
-    //   search: {
-    //     endDate
-    //   }
-    // });
   };
+
+  retrieveSearchData() {
+    console.log("Search Button clicked");
+    console.log("this.state.filterBy is: ", this.state.filterBy);
+
+    if (this.state.filterBy === "Spendings") {
+      this.retrieveSpendingsData();
+    }
+  }
 
   retrieveAllData() {
     fetch(`/api/getHistory.php`)
@@ -184,8 +164,8 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
+    console.log("this.state.filterBy is: ", this.state.filterBy);
     this.retrieveAllData();
-    // this.retrieveSpendingsData();
   }
 
   render() {
@@ -221,21 +201,11 @@ export default class History extends React.Component {
 
           <div className="currentSummaryHistory">
 
-            {/* <Dropdown
-              onChange={this.categoryHandleChange}
-              options={dropdownOptions}
-              arrowClosed={<span className="arrow-closed" />}
-              arrowOpen={<span className="arrow-open" />}
-              // placeholder={this.state.search.filterBy}
-              placeholder={this.state.filterBy}
-              className=""
-            /> */}
-
             <select
               onChange={this.categoryHandleChange}
               style={textCenter}
               className="historyDropdown"
-              placeholder="All" >
+              placeholder={this.state.filterBy} >
               {dropdownOptions.map((e, key) => {
                 return <option key={key} value={e.value}>{e.name}</option>;
               })}
@@ -261,7 +231,7 @@ export default class History extends React.Component {
                 />
             </div>
             <div
-              onClick={() => this.retrieveSpendingsData()}
+              onClick={() => this.retrieveSearchData()}
               className="mt-3">Search</div>
           </div>
         </div>
