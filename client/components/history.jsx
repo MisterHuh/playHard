@@ -197,6 +197,10 @@ export default class History extends React.Component {
         { value: "Fixed", name: "Fixed" }
     ];
 
+    const textCenter = {
+      textAlignLast: "center"
+    }
+
     return (
 
       <React.Fragment>
@@ -229,6 +233,7 @@ export default class History extends React.Component {
 
             <select
               onChange={this.categoryHandleChange}
+              style={textCenter}
               className="historyDropdown"
               placeholder="All" >
               {dropdownOptions.map((e, key) => {
