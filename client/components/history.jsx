@@ -65,10 +65,16 @@ export default class History extends React.Component {
     console.log("Search Button clicked");
     console.log("this.state.filterBy is: ", this.state.filterBy);
 
-    if (this.state.filterBy === "Spendings") {
+    if (this.state.filterBy === "All") {
+      this.retrieveAllData();
+    } else if (this.state.filterBy === "Spendings") {
       this.retrieveSpendingsData();
+    } else if (this.state.filterBy === "Credits") {
+      this.retrieveCreditsData();
+    } else if (this.state.filterBy === "Fixed") {
+      this.retrieveFixedData();
     }
-  }
+  };
 
   retrieveAllData() {
     fetch(`/api/getHistory.php`)
@@ -80,7 +86,7 @@ export default class History extends React.Component {
   }
 
   retrieveSpendingsData() {
-    fetch(`/api/spendings.php`)
+    fetch(`/api/getSpendings.php`)
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current);
@@ -88,6 +94,28 @@ export default class History extends React.Component {
         this.currentSummary();
       })
   }
+
+  retrieveCreditsData() {
+    fetch(`/api/getCredits.php`)
+      .then(response => response.json())
+      .then(current => {
+        console.log("current is: ", current);
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
+
+  retrieveFixedData() {
+    fetch(`/api/getFixed.php`)
+      .then(response => response.json())
+      .then(current => {
+        console.log("current is: ", current);
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
+
+
 
   getTotalBudget() {
 
