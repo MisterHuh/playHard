@@ -21,7 +21,7 @@ export default class History extends React.Component {
       // },
 
       // dropdownOpen: false,
-      filterBy: "All",
+      filterBy: "Spendings",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
 
@@ -90,9 +90,9 @@ export default class History extends React.Component {
     };
 
     if (this.state.filterBy === "All") {
-      this.retrieveAllData(req);
+      this.retrieveAllData();
     } else if (this.state.filterBy === "Spendings") {
-      this.retrieveSpendingsData();
+      this.retrieveSpendingsData(req);
     } else if (this.state.filterBy === "Credits") {
       this.retrieveCreditsData();
     } else if (this.state.filterBy === "Fixed") {
@@ -110,6 +110,7 @@ export default class History extends React.Component {
   }
 
   retrieveSpendingsData(req) {
+    console.log("req is: ", req);
     fetch(`/api/getSpendings.php`, req)
       .then(response => response.json())
       .then(current => {
