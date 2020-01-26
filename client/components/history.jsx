@@ -73,11 +73,11 @@ export default class History extends React.Component {
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
     // console.log("formattedEndDate is: ", formattedEndDate);
 
-    const sanitizedData = {
-      category: this.state.filterBy,
-      startDate: formattedStartDate,
-      endDate: formattedEndDate
-    };
+    // const sanitizedData = {
+    //   category: this.state.filterBy,
+    //   startDate: formattedStartDate,
+    //   endDate: formattedEndDate
+    // };
 
     const req = {
       method: 'PUT',
@@ -94,9 +94,9 @@ export default class History extends React.Component {
     } else if (this.state.filterBy === "Spendings") {
       this.retrieveSpendingsData(req);
     } else if (this.state.filterBy === "Credits") {
-      this.retrieveCreditsData();
+      this.retrieveCreditsData(req);
     } else if (this.state.filterBy === "Fixed") {
-      this.retrieveFixedData();
+      this.retrieveFixedData(req);
     }
   };
 
@@ -110,7 +110,6 @@ export default class History extends React.Component {
   }
 
   retrieveSpendingsData(req) {
-    console.log("req is: ", req);
     fetch(`/api/getSpendings.php`, req)
       .then(response => response.json())
       .then(current => {
@@ -120,8 +119,8 @@ export default class History extends React.Component {
       })
   }
 
-  retrieveCreditsData() {
-    fetch(`/api/getCredits.php`)
+  retrieveCreditsData(req) {
+    fetch(`/api/getCredits.php`, req)
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current);
@@ -130,8 +129,8 @@ export default class History extends React.Component {
       })
   }
 
-  retrieveFixedData() {
-    fetch(`/api/getFixed.php`)
+  retrieveFixedData(req) {
+    fetch(`/api/getFixed.php`, req)
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current);
