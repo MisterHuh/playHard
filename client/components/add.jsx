@@ -83,9 +83,9 @@ export default class Add extends React.Component {
 
     const entry = {
       date: formatted_date,
-      category: this.state.category.toString().toLowerCase(),
-      subCategory: this.state.subCategory.toString().toLowerCase(),
-      cc: this.state.cc.toString().toLowerCase(),
+      category: this.state.category,
+      subCategory: this.state.subCategory,
+      cc: this.state.cc,
       amount: formatted_amount,
       where: this.state.where,
       notes: this.state.notes
