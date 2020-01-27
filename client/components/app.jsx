@@ -33,10 +33,10 @@ export default class App extends React.Component {
 
     if (sundayChecker === 0) {
       let followingDay = new Date(timestamp.getTime() + 86400000);
-      console.log("followingDay is: ", followingDay);
+      // console.log("followingDay is: ", followingDay);
       currentWeekNumber = currentWeek(followingDay);
-      console.log("sundayChecker is 0");
-      console.log("currentWeekNumber is: ", currentWeekNumber);
+      // console.log("sundayChecker is 0");
+      // console.log("currentWeekNumber is: ", currentWeekNumber);
     } else {
       currentWeekNumber = currentWeek(timestamp);
       // console.log("sundayChecker is NOT 0");

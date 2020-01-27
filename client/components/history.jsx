@@ -21,7 +21,7 @@ export default class History extends React.Component {
       // },
 
       // dropdownOpen: false,
-      filterBy: "Spendings",
+      filterBy: "All",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
 
@@ -36,9 +36,12 @@ export default class History extends React.Component {
       currentWeekNumber: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.retrieveAllData2 = this.retrieveAllData2.bind(this);
     this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
+    this.retrieveCreditsData = this.retrieveCreditsData.bind(this);
+    this.retrieveFixedData = this.retrieveFixedData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
-    this.getTotalBudget = this.getTotalBudget.bind(this);
+    // this.getTotalBudget = this.getTotalBudget.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
@@ -90,7 +93,7 @@ export default class History extends React.Component {
     };
 
     if (this.state.filterBy === "All") {
-      this.retrieveAllData();
+      this.retrieveAllData2(req);
     } else if (this.state.filterBy === "Spendings") {
       this.retrieveSpendingsData(req);
     } else if (this.state.filterBy === "Credits") {
@@ -104,6 +107,17 @@ export default class History extends React.Component {
     fetch(`/api/getHistory.php`)
       .then(response => response.json())
       .then(current => {
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
+
+  retrieveAllData2(req) {
+    console.log("retrieveAllData2 triggered");
+    fetch(`/api/getAll.php`, req)
+      .then(response => response.json())
+      .then(current => {
+        console.log("current is: ", current);
         this.setState({ current });
         this.currentSummary();
       })
