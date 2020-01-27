@@ -20,7 +20,6 @@ export default class History extends React.Component {
       //   endDate: new Date()
       // },
 
-      // dropdownOpen: false,
       filterBy: "All",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
@@ -36,6 +35,7 @@ export default class History extends React.Component {
       currentWeekNumber: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    // this.pullSearchQuery = this.pullSearchQuery.bind(this);
     this.retrieveAllData2 = this.retrieveAllData2.bind(this);
     this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
     this.retrieveCreditsData = this.retrieveCreditsData.bind(this);
@@ -50,10 +50,9 @@ export default class History extends React.Component {
 
 
   categoryHandleChange(e) {
-    // console.log("event is: ", e);
-    // console.log("event.target is: ", event.target);
     console.log("event.target.value is: ", e.target.value);
-    this.setState({ filterBy: e.target.value });
+    let filterBy = e.target.value;
+    this.setState({ filterBy });
   };
 
   startDateHandleChange(startDate) {
@@ -70,17 +69,9 @@ export default class History extends React.Component {
 
     let notFormattedStartDate = this.state.startDate;
     let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
-    // console.log("formattedStartDate is: ", formattedStartDate);
 
     let notFormattedEndDate = this.state.endDate;
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
-    // console.log("formattedEndDate is: ", formattedEndDate);
-
-    // const sanitizedData = {
-    //   category: this.state.filterBy,
-    //   startDate: formattedStartDate,
-    //   endDate: formattedEndDate
-    // };
 
     const req = {
       method: 'PUT',
@@ -113,7 +104,6 @@ export default class History extends React.Component {
   }
 
   retrieveAllData2(req) {
-    console.log("retrieveAllData2 triggered");
     fetch(`/api/getAll.php`, req)
       .then(response => response.json())
       .then(current => {
@@ -230,7 +220,6 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    console.log("this.state.filterBy is: ", this.state.filterBy);
     this.retrieveAllData();
   }
 
