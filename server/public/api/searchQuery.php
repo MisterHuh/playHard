@@ -8,7 +8,6 @@ startUp();
 // $item = file_get_contents('php://input');
 $jsonBody = getBodyData();
 
-/* this is the category query for all 4 GET requests */
 if ($jsonBody["category"]) {
   $category = $jsonBody["category"];
 } else {
@@ -27,10 +26,16 @@ if ($jsonBody["endDate"]) {
   throw new Exception("endDate required");
 };
 
-$query = "SELECT * FROM `2020`
+if ($category == "All") {
+  $query = "SELECT * FROM `2020`
+	        WHERE Date between '$startDate' and '$endDate'
+          ORDER BY date ASC";
+} else {
+  $query = "SELECT * FROM `2020`
 	        WHERE `category` = '$category'
 	        and Date between '$startDate' and '$endDate'
 	        ORDER BY date ASC";
+}
 
 $result = mysqli_query($conn, $query);
 

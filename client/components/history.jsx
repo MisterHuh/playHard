@@ -35,11 +35,11 @@ export default class History extends React.Component {
       currentWeekNumber: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
-    // this.pullSearchQuery = this.pullSearchQuery.bind(this);
-    this.retrieveAllData2 = this.retrieveAllData2.bind(this);
-    this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
-    this.retrieveCreditsData = this.retrieveCreditsData.bind(this);
-    this.retrieveFixedData = this.retrieveFixedData.bind(this);
+    this.searchQuery = this.searchQuery.bind(this);
+    // this.retrieveAllData2 = this.retrieveAllData2.bind(this);
+    // this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
+    // this.retrieveCreditsData = this.retrieveCreditsData.bind(this);
+    // this.retrieveFixedData = this.retrieveFixedData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     // this.getTotalBudget = this.getTotalBudget.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
@@ -83,16 +83,28 @@ export default class History extends React.Component {
       })
     };
 
-    if (this.state.filterBy === "All") {
-      this.retrieveAllData2(req);
-    } else if (this.state.filterBy === "Spendings") {
-      this.retrieveSpendingsData(req);
-    } else if (this.state.filterBy === "Credits") {
-      this.retrieveCreditsData(req);
-    } else if (this.state.filterBy === "Fixed") {
-      this.retrieveFixedData(req);
-    }
+    this.searchQuery(req);
+
+    // if (this.state.filterBy === "All") {
+    //   this.retrieveAllData2(req);
+    // } else if (this.state.filterBy === "Spendings") {
+    //   this.retrieveSpendingsData(req);
+    // } else if (this.state.filterBy === "Credits") {
+    //   this.retrieveCreditsData(req);
+    // } else if (this.state.filterBy === "Fixed") {
+    //   this.retrieveFixedData(req);
+    // }
   };
+
+  searchQuery(req) {
+    fetch(`/api/searchQuery.php`, req)
+      .then(response => response.json())
+      .then(current => {
+        console.log("current is: ", current)
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
 
   retrieveAllData() {
     fetch(`/api/getHistory.php`)
@@ -103,45 +115,45 @@ export default class History extends React.Component {
       })
   }
 
-  retrieveAllData2(req) {
-    fetch(`/api/getAll.php`, req)
-      .then(response => response.json())
-      .then(current => {
-        console.log("current is: ", current);
-        this.setState({ current });
-        this.currentSummary();
-      })
-  }
+  // retrieveAllData2(req) {
+  //   fetch(`/api/getAll.php`, req)
+  //     .then(response => response.json())
+  //     .then(current => {
+  //       console.log("current is: ", current);
+  //       this.setState({ current });
+  //       this.currentSummary();
+  //     })
+  // }
 
-  retrieveSpendingsData(req) {
-    fetch(`/api/getSpendings.php`, req)
-      .then(response => response.json())
-      .then(current => {
-        console.log("current is: ", current);
-        this.setState({ current });
-        this.currentSummary();
-      })
-  }
+  // retrieveSpendingsData(req) {
+  //   fetch(`/api/getSpendings.php`, req)
+  //     .then(response => response.json())
+  //     .then(current => {
+  //       console.log("current is: ", current);
+  //       this.setState({ current });
+  //       this.currentSummary();
+  //     })
+  // }
 
-  retrieveCreditsData(req) {
-    fetch(`/api/getCredits.php`, req)
-      .then(response => response.json())
-      .then(current => {
-        console.log("current is: ", current);
-        this.setState({ current });
-        this.currentSummary();
-      })
-  }
+  // retrieveCreditsData(req) {
+  //   fetch(`/api/getCredits.php`, req)
+  //     .then(response => response.json())
+  //     .then(current => {
+  //       console.log("current is: ", current);
+  //       this.setState({ current });
+  //       this.currentSummary();
+  //     })
+  // }
 
-  retrieveFixedData(req) {
-    fetch(`/api/getFixed.php`, req)
-      .then(response => response.json())
-      .then(current => {
-        console.log("current is: ", current);
-        this.setState({ current });
-        this.currentSummary();
-      })
-  }
+  // retrieveFixedData(req) {
+  //   fetch(`/api/getFixed.php`, req)
+  //     .then(response => response.json())
+  //     .then(current => {
+  //       console.log("current is: ", current);
+  //       this.setState({ current });
+  //       this.currentSummary();
+  //     })
+  // }
 
 
 
