@@ -29,12 +29,12 @@ if ($jsonBody["endDate"]) {
 if ($category == "All") {
   $query = "SELECT * FROM `2020`
 	        WHERE Date between '$startDate' and '$endDate'
-          ORDER BY date ASC";
+          ORDER BY date DESC";
 } else {
   $query = "SELECT * FROM `2020`
 	        WHERE `category` = '$category'
 	        and Date between '$startDate' and '$endDate'
-	        ORDER BY date ASC";
+	        ORDER BY date DESC";
 }
 
 $result = mysqli_query($conn, $query);

@@ -64,9 +64,6 @@ export default class History extends React.Component {
   };
 
   retrieveSearchData() {
-    console.log("Search Button clicked");
-    console.log("this.state.filterBy is: ", this.state.filterBy);
-
     let notFormattedStartDate = this.state.startDate;
     let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
 
