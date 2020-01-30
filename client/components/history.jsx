@@ -199,6 +199,7 @@ export default class History extends React.Component {
 
     let current = this.state.current;
     let length = current.length - 1;
+    console.log("currentSummary length is: ", length);
     let totalSpendings = 0;
     let totalCredits = 0;
     let totalFixed = 0;
@@ -206,6 +207,7 @@ export default class History extends React.Component {
     let totalRemaining = 0;
 
     for (let index = 0; index <= length; index++) {
+      console.log("for loop staratd");
       if (current[index]["category"] == "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
@@ -358,7 +360,7 @@ export default class History extends React.Component {
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-          {/* <RenderData current={this.state.current} /> */}
+          <RenderData current={this.state.current} />
         </div>
 
         </React.Fragment>
