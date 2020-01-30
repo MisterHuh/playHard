@@ -94,7 +94,7 @@ export default class History extends React.Component {
   };
 
   searchQuery(req) {
-    fetch(`/api/searchQuery.php`, req)
+    fetch(`/api/historySearchQuery.php`, req)
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current)
@@ -104,7 +104,7 @@ export default class History extends React.Component {
   }
 
   retrieveAllData() {
-    fetch(`/api/getHistory.php`)
+    fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
