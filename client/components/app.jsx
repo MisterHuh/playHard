@@ -13,14 +13,14 @@ export default class App extends React.Component {
       currentWeekNumber: 1
     }
     this.setView = this.setView.bind(this);
-    this.getTotalBudget = this.getTotalBudget.bind(this);
+    this.getWeekNum = this.getWeekNum.bind(this);
   }
 
   setView(view) {
     this.setState({  view  })
   };
 
-  getTotalBudget() {
+  getWeekNum() {
 
     let timestamp = new Date();
     // console.log("timestamp is: ", timestamp);
@@ -42,13 +42,11 @@ export default class App extends React.Component {
       // console.log("sundayChecker is NOT 0");
       // console.log("currentWeekNumber is: ", currentWeekNumber);
     }
-
     this.setState({ currentWeekNumber })
-
   }
 
   componentDidMount() {
-    this.getTotalBudget();
+    this.getWeekNum();
   }
 
   render() {

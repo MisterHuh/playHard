@@ -43,7 +43,7 @@ export default class History extends React.Component {
     // this.retrieveCreditsData = this.retrieveCreditsData.bind(this);
     // this.retrieveFixedData = this.retrieveFixedData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
-    // this.getTotalBudget = this.getTotalBudget.bind(this);
+    // this.getWeekNum = this.getWeekNum.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
@@ -55,10 +55,27 @@ export default class History extends React.Component {
 
   sortByDate(order) {
     console.log("date button clicked");
-    console.log("this.state.query is: ", this.state.query);
-    console.log("this.state.currentWeekNumber is: ", this.state.currentWeekNumber);
+    // console.log("this.state.query is: ", this.state.query);
+    // console.log("this.state.currentWeekNumber is: ", this.state.currentWeekNumber);
 
-  };
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        query: this.state.query
+      })
+    };
+
+    // fetch(`/api/sortByDate.php`, req)
+    //   .then(response => response.json())
+    //   .then(current => {
+    //     console.log("current is: ", current)
+
+    //     this.setState({ current });
+    //     this.currentSummary();
+    //   })
+
+  }
 
   // currentQuery(filterBy) {
   //   let currentQuery = ""
@@ -78,7 +95,7 @@ export default class History extends React.Component {
 
     // let query = current.splice(0);
     console.log("extracted query is: ", query);
-    console.log("new current is: ", current);
+    console.log("final current is: ", current);
     this.setState({ query });
     this.setState({ current });
     this.currentSummary();
@@ -144,7 +161,7 @@ export default class History extends React.Component {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("before extraction current is: ", current)
+        // console.log("before extraction current is: ", current)
         this.extractQuery(current);
       })
       // .then(current => {
@@ -154,7 +171,7 @@ export default class History extends React.Component {
       // })
   }
 
-  getTotalBudget() {
+  getWeekNum() {
 
     // let timestamp = new Date();
     // console.log("timestamp is: ", timestamp);
@@ -187,19 +204,19 @@ export default class History extends React.Component {
 
   currentSummary() {
 
-    console.log("currentSummary fired");
-    console.log("this.state.current is: ", this.state.current);
-    console.log("this.state.query is: ", this.state.query);
+    // console.log("currentSummary fired");
+    // console.log("this.state.current is: ", this.state.current);
+    // console.log("this.state.query is: ", this.state.query);
 
-    /* these 3 lines of code will probably replace getTotalBudget */
+    /* these 3 lines of code will probably replace getWeekNum */
     /* is there too much happening here? */
     let currentWeekNumber = this.props.currentWeekNumber;
-    console.log("currentWeekNumber is: ", currentWeekNumber);
+    // console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
     let length = current.length - 1;
-    console.log("currentSummary length is: ", length);
+    // console.log("currentSummary length is: ", length);
     let totalSpendings = 0;
     let totalCredits = 0;
     let totalFixed = 0;
@@ -207,7 +224,7 @@ export default class History extends React.Component {
     let totalRemaining = 0;
 
     for (let index = 0; index <= length; index++) {
-      console.log("for loop staratd");
+      // console.log("for loop staratd");
       if (current[index]["category"] == "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
