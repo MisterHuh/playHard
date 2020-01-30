@@ -241,6 +241,10 @@ div {
   width: 22%;
 }
 
+.sortButton:hover {
+  cursor: pointer;
+}
+
 
 /* .currentDataHeader:nth-child(even), .currentTableRow:nth-child(even) {
   border: 1px solid red;

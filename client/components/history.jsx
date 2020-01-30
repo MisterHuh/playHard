@@ -23,6 +23,8 @@ export default class History extends React.Component {
       filterBy: "All",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
+      query: "SELECT * FROM `2020` ORDER BY date DESC",
+      order: "DESC",
 
       current: [],
 
@@ -46,7 +48,41 @@ export default class History extends React.Component {
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
     this.retrieveSearchData = this.retrieveSearchData.bind(this);
+
+    this.extractQuery = this.extractQuery.bind(this);
+    this.sortByDate = this.sortByDate.bind(this);
   }
+
+  sortByDate(order) {
+    console.log("date button clicked");
+    console.log("this.state.query is: ", this.state.query);
+    console.log("this.state.currentWeekNumber is: ", this.state.currentWeekNumber);
+
+  };
+
+  // currentQuery(filterBy) {
+  //   let currentQuery = ""
+  //   if (filterBy === "All") {
+  //     currentQuery = "SELECT * FROM `2020` WHERE Date between ";
+  //   };
+
+  //   let startDate = this.state.startDate;
+  //   let endDate = this.state.endDate;
+
+  // }
+
+  extractQuery(current) {
+
+    let query = current[0]["query"];
+    let discard = current.shift();
+
+    // let query = current.splice(0);
+    console.log("extracted query is: ", query);
+    console.log("new current is: ", current);
+    this.setState({ query });
+    this.setState({ current });
+    this.currentSummary();
+  };
 
 
   categoryHandleChange(e) {
@@ -98,6 +134,7 @@ export default class History extends React.Component {
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current)
+
         this.setState({ current });
         this.currentSummary();
       })
@@ -107,52 +144,15 @@ export default class History extends React.Component {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        this.setState({ current });
-        this.currentSummary();
+        console.log("before extraction current is: ", current)
+        this.extractQuery(current);
       })
+      // .then(current => {
+      //   console.log("after extraction current is: ", current);
+      //   this.setState({ current });
+      //   this.currentSummary();
+      // })
   }
-
-  // retrieveAllData2(req) {
-  //   fetch(`/api/getAll.php`, req)
-  //     .then(response => response.json())
-  //     .then(current => {
-  //       console.log("current is: ", current);
-  //       this.setState({ current });
-  //       this.currentSummary();
-  //     })
-  // }
-
-  // retrieveSpendingsData(req) {
-  //   fetch(`/api/getSpendings.php`, req)
-  //     .then(response => response.json())
-  //     .then(current => {
-  //       console.log("current is: ", current);
-  //       this.setState({ current });
-  //       this.currentSummary();
-  //     })
-  // }
-
-  // retrieveCreditsData(req) {
-  //   fetch(`/api/getCredits.php`, req)
-  //     .then(response => response.json())
-  //     .then(current => {
-  //       console.log("current is: ", current);
-  //       this.setState({ current });
-  //       this.currentSummary();
-  //     })
-  // }
-
-  // retrieveFixedData(req) {
-  //   fetch(`/api/getFixed.php`, req)
-  //     .then(response => response.json())
-  //     .then(current => {
-  //       console.log("current is: ", current);
-  //       this.setState({ current });
-  //       this.currentSummary();
-  //     })
-  // }
-
-
 
   getTotalBudget() {
 
@@ -187,10 +187,14 @@ export default class History extends React.Component {
 
   currentSummary() {
 
+    console.log("currentSummary fired");
+    console.log("this.state.current is: ", this.state.current);
+    console.log("this.state.query is: ", this.state.query);
+
     /* these 3 lines of code will probably replace getTotalBudget */
     /* is there too much happening here? */
     let currentWeekNumber = this.props.currentWeekNumber;
-    // console.log("currentWeekNumber is: ", currentWeekNumber);
+    console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
@@ -345,14 +349,16 @@ export default class History extends React.Component {
 
         <div className="currentWrapperBottom">
           <div className="currentData">
-            <div className="currentDataHeader">Date</div>
+            <div
+              onClick={() => this.sortByDate()}
+              className="currentDataHeader sortButton">Date</div>
             <div className="currentDataHeader">subCategory</div>
             <div className="currentDataHeader">cc</div>
             <div className="currentDataHeader">Amount</div>
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-          <RenderData current={this.state.current} />
+          {/* <RenderData current={this.state.current} /> */}
         </div>
 
         </React.Fragment>
