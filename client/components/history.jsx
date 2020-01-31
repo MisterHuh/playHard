@@ -51,12 +51,22 @@ export default class History extends React.Component {
 
     this.extractQuery = this.extractQuery.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
+    // this.toggleDate = this.toggleDate.bind(this);
   }
 
   sortByDate(order) {
     console.log("date button clicked");
     // console.log("this.state.query is: ", this.state.query);
     // console.log("this.state.currentWeekNumber is: ", this.state.currentWeekNumber);
+
+    // this.toggleDate();
+
+
+    let beforeQuery = this.state.query.split("date");
+    console.log("this.state.query is: ", this.state.query);
+    console.log("beforeQuery is: ", beforeQuery);
+    let afterQuery = beforeQuery + " ASC";
+    console.log("afterQuery is: ", afterQuery);
 
     const req = {
       method: 'PUT',
@@ -65,6 +75,12 @@ export default class History extends React.Component {
         query: this.state.query
       })
     };
+
+    // toggleDate() {
+    //   let beforeQuery = this.state.query.split("date");
+    //   console.log("this.state.query is: ", this.state.query);
+    //   console.log("beforeQuery is: ", beforeQuery);
+    // };
 
     // fetch(`/api/sortByDate.php`, req)
     //   .then(response => response.json())
@@ -253,6 +269,7 @@ export default class History extends React.Component {
 
   componentDidMount() {
     this.retrieveAllData();
+    // this.toggleDate();
   }
 
   render() {
