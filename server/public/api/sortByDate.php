@@ -14,7 +14,7 @@ if ($jsonBody["query"]) {
   throw new Exception("query required");
 };
 
-var_dump($query);
+// var_dump($query);
 
 // if ($category == "All") {
 //   $query = "SELECT * FROM `2020`
