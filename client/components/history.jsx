@@ -63,9 +63,11 @@ export default class History extends React.Component {
 
 
     let beforeQuery = this.state.query.split("date");
-    console.log("this.state.query is: ", this.state.query);
-    console.log("beforeQuery is: ", beforeQuery);
+    // console.log("this.state.query is: ", this.state.query);
+    // console.log("beforeQuery is: ", beforeQuery);
     let afterQuery = beforeQuery[0] + "ASC";
+    let thisOrder = beforeQuery[1].replace(/ /g, "");
+    console.log("beforeQuery[1] is: ", beforeQuery[1]);
     console.log("afterQuery is: ", afterQuery);
 
     const req = {
@@ -107,10 +109,12 @@ export default class History extends React.Component {
   extractQuery(current) {
 
     let query = current[0]["query"];
+    // console.log("current[0] is: ", current[0]);
     let discard = current.shift();
 
     // let query = current.splice(0);
     console.log("extracted query is: ", query);
+    this.sortByDate(query);
     console.log("final current is: ", current);
     this.setState({ query });
     this.setState({ current });
