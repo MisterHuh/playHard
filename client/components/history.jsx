@@ -65,7 +65,7 @@ export default class History extends React.Component {
     let beforeQuery = this.state.query.split("date");
     console.log("this.state.query is: ", this.state.query);
     console.log("beforeQuery is: ", beforeQuery);
-    let afterQuery = beforeQuery + " ASC";
+    let afterQuery = beforeQuery[0] + "ASC";
     console.log("afterQuery is: ", afterQuery);
 
     const req = {
