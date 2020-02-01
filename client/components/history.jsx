@@ -54,18 +54,7 @@ export default class History extends React.Component {
   }
 
   sortByDate() {
-    // console.log("order is: ", order); // grabs the last query used
-
-    // let beforeQuery = this.state.query.split("date");
-    // // console.log("this.state.query is: ", this.state.query);
-    // console.log("beforeQuery is: ", beforeQuery);
-    // let afterQuery = beforeQuery[0];
-    // let thisOrder = beforeQuery[1].replace(/ /g, "");
-
-    // this.setState({ order: thisOrder });
-    // // console.log("beforeQuery[1] is: ", beforeQuery[1]);
-    // console.log("thisOrder is: ", thisOrder);
-    // console.log("afterQuery is: ", afterQuery);
+    console.log("sortByDate fired");
 
     let beforeQuery = this.state.query.split("date");
     let afterQuery = beforeQuery[0];
@@ -83,7 +72,10 @@ export default class History extends React.Component {
 
     const req = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
       body: JSON.stringify({ query })
     };
 

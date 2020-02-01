@@ -5,15 +5,20 @@ require_once("db_connection.php");
 set_exception_handler("error_handler");
 startUp();
 
+// echo "sortByDate.php fired";
+
 // $item = file_get_contents('php://input');
-$jsonBody = getBodyData();
+// $jsonBody = getBodyData();
 
-if ($jsonBody["query"]) {
-  return $query = $jsonBody["query"];
-} else {
-  throw new Exception("query required");
-};
+// echo "before jsonBody function to grab query";
 
+// if ($jsonBody["query"]) {
+//   return $query = $jsonBody["query"];
+// } else {
+//   throw new Exception("query required");
+// };
+
+// echo "got the query";
 // var_dump($query);
 
 // if ($category == "All") {
@@ -27,6 +32,7 @@ if ($jsonBody["query"]) {
 // 	        ORDER BY date DESC";
 // }
 
+$query = "SELECT * FROM `2020` ORDER BY DATE ASC";
 
 
 $result = mysqli_query($conn, $query);
