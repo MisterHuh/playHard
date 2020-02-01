@@ -241,7 +241,11 @@ div {
   width: 22%;
 }
 
-.sortButton:hover {
+.fa-sort-up {
+  float: right;
+}
+
+.fa-sort-up:hover {
   cursor: pointer;
 }
 

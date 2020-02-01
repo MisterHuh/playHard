@@ -49,76 +49,77 @@ export default class History extends React.Component {
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
     this.retrieveSearchData = this.retrieveSearchData.bind(this);
 
-    this.extractQuery = this.extractQuery.bind(this);
+    this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
-    // this.toggleDate = this.toggleDate.bind(this);
   }
 
-  sortByDate(order) {
-    console.log("date button clicked");
-    // console.log("this.state.query is: ", this.state.query);
-    // console.log("this.state.currentWeekNumber is: ", this.state.currentWeekNumber);
+  sortByDate() {
+    // console.log("order is: ", order); // grabs the last query used
 
-    // this.toggleDate();
+    // let beforeQuery = this.state.query.split("date");
+    // // console.log("this.state.query is: ", this.state.query);
+    // console.log("beforeQuery is: ", beforeQuery);
+    // let afterQuery = beforeQuery[0];
+    // let thisOrder = beforeQuery[1].replace(/ /g, "");
 
+    // this.setState({ order: thisOrder });
+    // // console.log("beforeQuery[1] is: ", beforeQuery[1]);
+    // console.log("thisOrder is: ", thisOrder);
+    // console.log("afterQuery is: ", afterQuery);
 
     let beforeQuery = this.state.query.split("date");
-    // console.log("this.state.query is: ", this.state.query);
-    // console.log("beforeQuery is: ", beforeQuery);
-    let afterQuery = beforeQuery[0] + "ASC";
-    let thisOrder = beforeQuery[1].replace(/ /g, "");
-    console.log("beforeQuery[1] is: ", beforeQuery[1]);
-    console.log("afterQuery is: ", afterQuery);
+    let afterQuery = beforeQuery[0];
+    let currentOrder = this.state.order;
+
+    if (currentOrder === "ASC") {
+      currentOrder = "DESC";
+    };
+    if (currentOrder === "DESC") {
+      currentOrder = "ASC";
+    };
+
+    let query = afterQuery + currentOrder;
+    console.log("query is: ", query);
 
     const req = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        query: this.state.query
-      })
+      body: JSON.stringify({ query })
     };
 
-    // toggleDate() {
-    //   let beforeQuery = this.state.query.split("date");
-    //   console.log("this.state.query is: ", this.state.query);
-    //   console.log("beforeQuery is: ", beforeQuery);
-    // };
+    fetch(`/api/sortByDate.php`, req)
+      .then(response => response.json())
+      .then(current => {
+        console.log("current is: ", current)
 
-    // fetch(`/api/sortByDate.php`, req)
-    //   .then(response => response.json())
-    //   .then(current => {
-    //     console.log("current is: ", current)
-
-    //     this.setState({ current });
-    //     this.currentSummary();
-    //   })
+        this.setState({ current });
+        this.currentSummary();
+      })
 
   }
 
-  // currentQuery(filterBy) {
-  //   let currentQuery = ""
-  //   if (filterBy === "All") {
-  //     currentQuery = "SELECT * FROM `2020` WHERE Date between ";
-  //   };
+  // need to update both state.query and state.order here;
+  // then write a click handler to sort everything out;
+  extractQueryAndOrder(current) {
 
-  //   let startDate = this.state.startDate;
-  //   let endDate = this.state.endDate;
-
-  // }
-
-  extractQuery(current) {
-
-    let query = current[0]["query"];
-    // console.log("current[0] is: ", current[0]);
+    let query = current[0]["query"]; // extracts the first row
     let discard = current.shift();
 
-    // let query = current.splice(0);
-    console.log("extracted query is: ", query);
-    this.sortByDate(query);
-    console.log("final current is: ", current);
-    this.setState({ query });
-    this.setState({ current });
-    this.currentSummary();
+    let beforeQuery = this.state.query.split("date");
+    let afterQuery = beforeQuery[0];
+    let order = beforeQuery[1].replace(/ /g, "");
+    console.log("beforeQuery is: ", beforeQuery);
+    console.log("afterQuery is: ", afterQuery);
+    console.log("order is: ", order);
+    console.log("current is: ", current);
+
+    this.setState({
+      query, current, order
+    });
+
+    this.currentSummary(); // calculates middleTable;
+    // this.setState({ query }); // updates this.state.query for toggling. last query used
+    // this.setState({ current }); // updates this.state.current so currentSummary() could run
   };
 
 
@@ -182,7 +183,7 @@ export default class History extends React.Component {
       .then(response => response.json())
       .then(current => {
         // console.log("before extraction current is: ", current)
-        this.extractQuery(current);
+        this.extractQueryAndOrder(current);
       })
       // .then(current => {
       //   console.log("after extraction current is: ", current);
@@ -274,6 +275,9 @@ export default class History extends React.Component {
   componentDidMount() {
     this.retrieveAllData();
     // this.toggleDate();
+    console.log("this.state.order is: ", this.state.order);
+    console.log("this.state.query is: ", this.state.query);
+    // console.log("current is: ", current);
   }
 
   render() {
@@ -389,9 +393,12 @@ export default class History extends React.Component {
 
         <div className="currentWrapperBottom">
           <div className="currentData">
-            <div
-              onClick={() => this.sortByDate()}
-              className="currentDataHeader sortButton">Date</div>
+            <div className="currentDataHeader">
+                Date
+                <i
+                onClick={() => this.sortByDate()}
+                className="fas fa-sort-up"></i>
+            </div>
             <div className="currentDataHeader">subCategory</div>
             <div className="currentDataHeader">cc</div>
             <div className="currentDataHeader">Amount</div>
