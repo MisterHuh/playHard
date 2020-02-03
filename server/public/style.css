@@ -243,6 +243,7 @@ div {
 
 .fa-sort-up {
   float: right;
+  border: 1px solid black;
 }
 
 .fa-sort-up:hover {
