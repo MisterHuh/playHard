@@ -151,7 +151,8 @@ export default class Add extends React.Component {
         { value: 'Freedom', label: 'Freedom' },
         { value: 'Sapphire', label: 'Sapphire' },
         { value: 'Venmo', label: 'Venmo' },
-        { value: 'BankAmericard', label: 'BankAmericard' }
+        { value: 'BankAmericard', label: 'BankAmericard' },
+        { value: 'BetterBalance', label: 'BetterBalance' }
       ],
     ];
 
