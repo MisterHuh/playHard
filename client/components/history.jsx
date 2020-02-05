@@ -393,15 +393,15 @@ export default class History extends React.Component {
 
                 <i
                   onClick={() => this.sortByDate()}
-                  class="fas fa-chevron-up border"></i>
+                  className="fas fa-chevron-up border"></i>
 
               <i
                 onClick={() => this.sortByDate()}
-                class="fas fa-angle-up border"></i>
+                className="fas fa-angle-up border"></i>
 
               <i
                 onClick={() => this.sortByDate()}
-                class="fas fa-caret-square-up"></i>
+                className="fas fa-caret-square-up"></i>
 
             </div>
             <div className="currentDataHeader">subCategory</div>

@@ -83,7 +83,7 @@ export default class Current extends React.Component {
         <React.Fragment>
           <div className="currentWrapperTop">
 
-            <div className="currentSummaryContainer">
+            <div className="currentSummaryContainer border">
               <div className="currentSummary">
                 <div className="budget tooltipParent">
                   Budget
@@ -107,7 +107,11 @@ export default class Current extends React.Component {
           <div className="currentWrapperBottom">
             <div className="currentDataContainer">
               <div className="currentData">
-                <div className="currentDataHeader">Date</div>
+                <div className="currentDataHeader">
+                  <i class="arrow fas fa-caret-left"></i>
+                  Date
+                  <i class="arrow fas fa-caret-right"></i>
+                </div>
                 <div className="currentDataHeader">subCategory</div>
                 <div className="currentDataHeader">cc</div>
                 <div className="currentDataHeader">Amount</div>
