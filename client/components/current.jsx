@@ -91,25 +91,18 @@ export default class Current extends React.Component {
       return (
 
         <React.Fragment>
-          <div className="currentWrapperTop">
+          <div className="currentWrapperTop border border-primary">
 
             <div className="currentSummaryContainer border">
               <div className="currentSummary">
-                <div className="budget tooltipParent">
-                  Budget
-                  <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
-                </div>
-                <div className="spendings">Spendings</div>
-                <div className="credits">Credits</div>
-                <div className="fixed">Fixed</div>
-                <div className="remaining">Remaining</div>
+                <div className="">Start Date</div>
+                <div className="">End Date</div>
+                <div className="">Today's Date</div>
               </div>
               <div className="currentSummary">
-                <div className="budget">{CurrencyFormatter.format(this.state.budget)}</div>
-                <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
-                <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
-                <div className="fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
-                <div className="remaining">{CurrencyFormatter.format(this.state.remaining)}</div>
+                <div className="">12/29/2019</div>
+                <div className="">01/04/2020</div>
+                <div className="">12/25/2019</div>
               </div>
             </div>
 
@@ -132,6 +125,22 @@ export default class Current extends React.Component {
                 <div className="remaining">{CurrencyFormatter.format(this.state.remaining)}</div>
               </div>
             </div>
+
+            <div className="currentSummaryContainer border border-primary">
+              <div className="currentSummaryHistory">
+                <div className="fixed">Groceries</div>
+                <div className="fixed">Gas</div>
+                <div className="fixed">Utilities</div>
+                <div className="fixed mt-3">Total Remaining</div>
+              </div>
+              <div className="currentSummaryHistory">
+                <div className="fixed">{CurrencyFormatter.format(900)}</div>
+                <div className="fixed">{CurrencyFormatter.format(123)}</div>
+                <div className="fixed">{CurrencyFormatter.format(456)}</div>
+                <div className="fixed mt-3">{CurrencyFormatter.format(789)}</div>
+              </div>
+            </div>
+
           </div>
 
           <div className="currentWrapperBottom">
