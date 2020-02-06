@@ -16,10 +16,20 @@ export default class Current extends React.Component {
     }
     this.currentSummary = this.currentSummary.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
+    this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
   };
 
   retrieveCurrentData() {
     fetch(`/api/getCurrent.php`)
+      .then(response => response.json())
+      .then(current => {
+        this.setState({ current });
+        this.currentSummary();
+      })
+  }
+
+  retrieveNextWeek() {
+    fetch(`/api/getNextWeek.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
@@ -88,6 +98,26 @@ export default class Current extends React.Component {
                 <div className="budget tooltipParent">
                   Budget
                   <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
+                </div>
+                <div className="spendings">Spendings</div>
+                <div className="credits">Credits</div>
+                <div className="fixed">Fixed</div>
+                <div className="remaining">Remaining</div>
+              </div>
+              <div className="currentSummary">
+                <div className="budget">{CurrencyFormatter.format(this.state.budget)}</div>
+                <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
+                <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
+                <div className="fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
+                <div className="remaining">{CurrencyFormatter.format(this.state.remaining)}</div>
+              </div>
+            </div>
+
+            <div className="currentSummaryContainer border">
+              <div className="currentSummary">
+                <div className="budget tooltipParent">
+                  Budget
+                  <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
                   </div>
                 <div className="spendings">Spendings</div>
                 <div className="credits">Credits</div>
@@ -108,9 +138,11 @@ export default class Current extends React.Component {
             <div className="currentDataContainer">
               <div className="currentData">
                 <div className="currentDataHeader">
-                  <i class="arrow fas fa-caret-left"></i>
+                  <i className="arrow fas fa-caret-left"></i>
                   Date
-                  <i class="arrow fas fa-caret-right"></i>
+                  <i
+                    onClick={() => this.retrieveNextWeek()}
+                    className="arrow fas fa-caret-right"></i>
                 </div>
                 <div className="currentDataHeader">subCategory</div>
                 <div className="currentDataHeader">cc</div>
