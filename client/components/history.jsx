@@ -137,6 +137,7 @@ export default class History extends React.Component {
     let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
 
     let notFormattedEndDate = this.state.endDate;
+    console.log("formattedStartDate is: ", formattedStartDate);
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
 
     const req = {
@@ -149,8 +150,20 @@ export default class History extends React.Component {
       })
     };
 
-    console.log("notFormattedStartDate - notFormattedEndDate is: ", (notFormattedStartDate - notFormattedEndDate) / (1000 * 3600 * 24) );
-    console.log("formattedStartDate - formattedEndDate is: ", formattedStartDate - notFormattedEndDate);
+    // console.log("notFormattedStartDate - notFormattedEndDate is: ", (notFormattedStartDate - notFormattedEndDate) / (1000 * 3600 * 24) );
+    // console.log("formattedStartDate - formattedEndDate is: ", formattedStartDate - notFormattedEndDate);
+
+    let test = ((new Date(formattedStartDate)) - (new Date(formattedEndDate))) / (-1000 * 3600 * 24);
+    console.log("test is: ", test);
+    // let answer = test / (1000 * 60 * 60 * 24);
+    // console.log("answer is: ", answer);
+
+    // let testStart = moment(formattedStartDate);
+    // let testEnd = moment(formattedEndDate);
+    // let test2 = future.diff(testStart, "days");
+    // console.log("testStart is: ", testStart);
+    // console.log("testEnd is: ", testEnd);
+    // console.log("test2 is: ", test2);
 
     this.searchQuery(req);
 
