@@ -44,21 +44,16 @@ export default class Current extends React.Component {
       })
   }
 
+/* is there too much happening here? */
   currentSummary() {
 
-    // console.log("currentSummary fired");
-    // console.log("this.state.current is: ", this.state.current);
-    // console.log("this.state.query is: ", this.state.query);
-
-    /* these 3 lines of code will probably replace getWeekNum */
-    /* is there too much happening here? */
+    /* these 2 lines of code will probably replace getWeekNum */
     let currentWeekNumber = this.props.currentWeekNumber;
-    // console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
     let length = current.length - 1;
-    // console.log("currentSummary length is: ", length);
+
     let totalSpendings = 0;
     let totalCredits = 0;
     let totalBudget = this.props.budget;
@@ -101,9 +96,7 @@ export default class Current extends React.Component {
       gas: totalGas,
       ficedEtc: totalFixedEtc
     })
-    // console.log("HISTORY VIEW totalBudget is: ", totalBudget);
-    // console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
-    // console.log("HISTORY VIEW this.state.current is: ", this.state.current)
+
   }
 
   componentDidMount() {

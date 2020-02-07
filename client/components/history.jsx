@@ -147,15 +147,6 @@ export default class History extends React.Component {
 
     this.searchQuery(req);
 
-    // if (this.state.filterBy === "All") {
-    //   this.retrieveAllData2(req);
-    // } else if (this.state.filterBy === "Spendings") {
-    //   this.retrieveSpendingsData(req);
-    // } else if (this.state.filterBy === "Credits") {
-    //   this.retrieveCreditsData(req);
-    // } else if (this.state.filterBy === "Fixed") {
-    //   this.retrieveFixedData(req);
-    // }
   };
 
   searchQuery(req) {
@@ -183,52 +174,15 @@ export default class History extends React.Component {
       // })
   }
 
-  getWeekNum() {
-
-    // let timestamp = new Date();
-    // console.log("timestamp is: ", timestamp);
-
-    // let sundayChecker = timestamp.getDay();
-    // console.log("sundayChecker is: ", sundayChecker);
-
-    // let currentWeek = require("current-week-number");
-    // let currentWeekNumber;
-
-    // if (sundayChecker === 0) {
-    //   let followingDay = new Date(timestamp.getTime() + 86400000);
-    //   console.log("followingDay is: ", followingDay);
-    //   currentWeekNumber = currentWeek(followingDay);
-    //   console.log("sundayChecker is 0");
-    //   console.log("currentWeekNumber is: ", currentWeekNumber);
-    // } else {
-    //   currentWeekNumber = currentWeek(timestamp);
-    //   console.log("sundayChecker is NOT 0");
-    //   console.log("currentWeekNumber is: ", currentWeekNumber);
-    // }
-
-    // this.setState({ currentWeekNumber })
-
-    let currentWeekNumber = this.props.currentWeekNumber;
-    console.log("currentWeekNumber is: ", currentWeekNumber);
-    this.setState({ currentWeekNumber })
-
-  }
-
+/* is there too much happening here? */
   currentSummary() {
 
-    // console.log("currentSummary fired");
-    // console.log("this.state.current is: ", this.state.current);
-    // console.log("this.state.query is: ", this.state.query);
-
-    /* these 3 lines of code will probably replace getWeekNum */
-    /* is there too much happening here? */
     let currentWeekNumber = this.props.currentWeekNumber;
-    // console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
     let length = current.length - 1;
-    // console.log("currentSummary length is: ", length);
+
     let totalSpendings = 0;
     let totalCredits = 0;
     let totalBudget = this.props.budget * this.state.currentWeekNumber;
@@ -271,14 +225,10 @@ export default class History extends React.Component {
       totalGas,
       totalFixedEtc
     })
-    // console.log("HISTORY VIEW totalBudget is: ", totalBudget);
-    // console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
-    // console.log("HISTORY VIEW this.state.current is: ", this.state.current)
   }
 
   componentDidMount() {
     this.retrieveAllData();
-    // this.toggleDate();
     console.log("this.state.order is: ", this.state.order);
     console.log("this.state.query is: ", this.state.query);
     // console.log("current is: ", current);
