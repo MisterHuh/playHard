@@ -11,6 +11,9 @@ startUp();
 
             // WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))
 
+//             "NOW()" back 1 week
+// "DATE_SUB(NOW(), '1 week')
+
 
 $query = "SELECT * FROM `2020`
           WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))

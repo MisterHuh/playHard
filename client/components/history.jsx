@@ -30,20 +30,20 @@ export default class History extends React.Component {
 
       totalSpendings: 0,
       totalCredits: 0,
-      totalFixed: 0,
       totalBudget: 0,
       totalRemaining: 0,
+
+      totalFixed: 0,
+      totalGroceries: 0,
+      totalGas: 0,
+      totalUtilities: 0,
+      totalHealth: 0,
 
       currentWeekNumber: 0
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
-    // this.retrieveAllData2 = this.retrieveAllData2.bind(this);
-    // this.retrieveSpendingsData = this.retrieveSpendingsData.bind(this);
-    // this.retrieveCreditsData = this.retrieveCreditsData.bind(this);
-    // this.retrieveFixedData = this.retrieveFixedData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
-    // this.getWeekNum = this.getWeekNum.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
@@ -343,21 +343,21 @@ export default class History extends React.Component {
         {/* middle */}
         <div className="currentSummaryContainer border border-primary">
           <div className="currentSummaryHistory">
-            <div className="budget tooltipParent">
+              <div className="budget remaining tooltipParent">
               Total Budget
               <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
             </div>
             <div className="spendings">Total Spendings</div>
             <div className="credits">Total Credits</div>
-            <div className="remaining mt-3">Total Remaining</div>
+            <div className="mt-3">Total Remaining</div>
           </div>
           <div className="currentSummaryHistory">
-            <div className="budget tooltipParent">
+              <div className="budget remaining tooltipParent">
               {CurrencyFormatter.format(this.state.totalBudget)}
             </div>
             <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
             <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
-            <div className="remaining mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+            <div className="mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
           </div>
         </div>
 
@@ -366,14 +366,14 @@ export default class History extends React.Component {
           <div className="currentSummaryHistory">
             <div className="fixed">Groceries</div>
             <div className="fixed">Gas</div>
-            <div className="fixed">Utilities</div>
-            <div className="fixed mt-3">Total Remaining</div>
+            <div className="fixed">Utilities & Health</div>
+            <div className="mt-3">Total Remaining</div>
           </div>
           <div className="currentSummaryHistory">
             <div className="fixed">{CurrencyFormatter.format(this.state.totalBudget)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalCredits)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
-            <div className="fixed mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+            <div className="mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
           </div>
         </div>
 
