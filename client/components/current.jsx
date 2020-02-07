@@ -6,12 +6,19 @@ export default class Current extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       current: [],
+
       spendings: 0,
       credits: 0,
-      fixed: 0,
       budget: 0,
       remaining: 0,
+
+      fixed: 0,
+      groceries: 0,
+      gas: 0,
+      fixedEtc: 0,
+
       currentWeekNumber: 0
     }
     this.currentSummary = this.currentSummary.bind(this);
@@ -39,44 +46,64 @@ export default class Current extends React.Component {
 
   currentSummary() {
 
+    // console.log("currentSummary fired");
+    // console.log("this.state.current is: ", this.state.current);
+    // console.log("this.state.query is: ", this.state.query);
+
+    /* these 3 lines of code will probably replace getWeekNum */
+    /* is there too much happening here? */
     let currentWeekNumber = this.props.currentWeekNumber;
-    console.log("currentWeekNumber is: ", currentWeekNumber);
+    // console.log("currentWeekNumber is: ", currentWeekNumber);
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
     let length = current.length - 1;
-    let spendings = 0;
-    let credits = 0;
-    let fixed = 0;
-    let budget = this.props.budget;
-    let remaining = 0;
+    // console.log("currentSummary length is: ", length);
+    let totalSpendings = 0;
+    let totalCredits = 0;
+    let totalBudget = this.props.budget;
+    let totalRemaining = 0;
 
-    for (let index = 0; index <= length; index++) {
-      if (current[index]["category"] == "Spendings") {
-        spendings += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] == "Fixed") {
-        fixed += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] == "Credits") {
-        credits += parseFloat(current[index]["amount"]);
+    let totalFixed = 0;
+    let totalGroceries = 0;
+    let totalGas = 0;
+    let totalFixedEtc = 0;
+
+    for (let index = 0; index < length; index++) {
+      if (current[index]["ctegory"] === "Spendings") {
+        totalSpendings += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] === "Credits") {
+        totalCredits += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] === "Fixed") {
+        if (current[index]["subcategory"] === "Groceries") {
+          totalGroceries += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Gas") {
+          totalGas += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
+          totalFixedEtc += parseFloat(current[index]["amount"]);
+        };
+        totalFixed += parseFloat(current[index]["amount"]);
       }
     }
 
-    spendings = spendings.toFixed(2);
-    credits = credits.toFixed(2);
-    fixed = fixed.toFixed(2);
-    remaining = budget - credits - spendings;
+    totalSpendings = totalSpendings.toFixed(2);
+    totalCredits = totalCredits.toFixed(2);
+    totalFixed = totalFixed.toFixed(2);
+    totalRemaining = totalBudget - totalCredits - totalSpendings;
 
     this.setState({
-      spendings,
-      credits,
-      fixed,
-      budget,
-      remaining
+      spendings: totalSpendings,
+      credits: totalCredits,
+      budget: totalBudget,
+      remaining: totalRemaining,
+      fixed: totalFixed,
+      groceries: totalGroceries,
+      gas: totalGas,
+      ficedEtc: totalFixedEtc
     })
-
-    // console.log("CURRENT VIEW this.state.budget is: ", this.state.budget);
-    // console.log("CURRENT VIEW this.state.current is: ", this.state.current)
-
+    // console.log("HISTORY VIEW totalBudget is: ", totalBudget);
+    // console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
+    // console.log("HISTORY VIEW this.state.current is: ", this.state.current)
   }
 
   componentDidMount() {
@@ -95,34 +122,34 @@ export default class Current extends React.Component {
 
             <div className="currentSummaryContainer border">
               <div className="currentSummary">
+                <div className="">Current Week</div>
                 <div className="">Start Date</div>
                 <div className="">End Date</div>
-                <div className="">Today's Date</div>
+                <div className="mt-3">Today's Date</div>
               </div>
               <div className="currentSummary">
+                <div className="">{this.state.currentWeekNumber}</div>
                 <div className="">12/29/2019</div>
                 <div className="">01/04/2020</div>
-                <div className="">12/25/2019</div>
+                <div className="mt-3">12/25/2019</div>
               </div>
             </div>
 
             <div className="currentSummaryContainer border">
               <div className="currentSummary">
-                <div className="budget tooltipParent">
+                <div className="budget remaining tooltipParent">
                   Budget
-                  <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
+                  {/* <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span> */}
                   </div>
                 <div className="spendings">Spendings</div>
                 <div className="credits">Credits</div>
-                <div className="fixed">Fixed</div>
-                <div className="remaining">Remaining</div>
+                <div className="mt-3">Remaining</div>
               </div>
               <div className="currentSummary">
-                <div className="budget">{CurrencyFormatter.format(this.state.budget)}</div>
+                <div className="remaining budget">{CurrencyFormatter.format(this.state.budget)}</div>
                 <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
                 <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
-                <div className="fixed">{CurrencyFormatter.format(this.state.fixed)}</div>
-                <div className="remaining">{CurrencyFormatter.format(this.state.remaining)}</div>
+                <div className="mt-3">{CurrencyFormatter.format(this.state.remaining)}</div>
               </div>
             </div>
 
@@ -130,14 +157,17 @@ export default class Current extends React.Component {
               <div className="currentSummaryHistory">
                 <div className="fixed">Groceries</div>
                 <div className="fixed">Gas</div>
-                <div className="fixed">Utilities</div>
-                <div className="fixed mt-3">Total Remaining</div>
+                <div className="fixed tooltipParent">
+                  Etc
+                  <span className="tooltipText">Utilities & Entertainment</span>
+                </div>
+                <div className="mt-3">Total Remaining</div>
               </div>
               <div className="currentSummaryHistory">
-                <div className="fixed">{CurrencyFormatter.format(900)}</div>
-                <div className="fixed">{CurrencyFormatter.format(123)}</div>
-                <div className="fixed">{CurrencyFormatter.format(456)}</div>
-                <div className="fixed mt-3">{CurrencyFormatter.format(789)}</div>
+                <div className="fixed">{CurrencyFormatter.format(this.state.groceries)}</div>
+                <div className="fixed">{CurrencyFormatter.format(this.state.gas)}</div>
+                <div className="fixed">{CurrencyFormatter.format(this.state.fixedEtc)}</div>
+                <div className="mt-3">{CurrencyFormatter.format(this.state.fixed)}</div>
               </div>
             </div>
 

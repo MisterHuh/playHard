@@ -136,7 +136,8 @@ div {
   background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
   /* background: rgb(209, 142, 216); */
   position: absolute;
-  width: 24%;
+  /* width: 24%; */
+  width: 28.5%;
   height: 3.5%;
   bottom: 86%;
 }

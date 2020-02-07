@@ -36,8 +36,7 @@ export default class History extends React.Component {
       totalFixed: 0,
       totalGroceries: 0,
       totalGas: 0,
-      totalUtilities: 0,
-      totalHealth: 0,
+      totalFixedEtc: 0,
 
       currentWeekNumber: 0
     }
@@ -238,8 +237,7 @@ export default class History extends React.Component {
     let totalFixed = 0;
     let totalGroceries = 0;
     let totalGas = 0;
-    let totalUtilities = 0;
-    let totalHealth = 0;
+    let totalFixedEtc = 0;
 
     for (let index = 0; index < length; index++) {
       if (current[index]["ctegory"] === "Spendings") {
@@ -251,12 +249,8 @@ export default class History extends React.Component {
           totalGroceries += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Gas") {
           totalGas += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Utility") {
-          totalUtilities += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Health") {
-          totalHealth += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Entertainment") {
-          totalHealth += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
+          totalFixedEtc += parseFloat(current[index]["amount"]);
         };
         totalFixed += parseFloat(current[index]["amount"]);
       }
@@ -275,8 +269,7 @@ export default class History extends React.Component {
       totalFixed,
       totalGroceries,
       totalGas,
-      totalUtilities,
-      totalHealth
+      totalFixedEtc
     })
     // console.log("HISTORY VIEW totalBudget is: ", totalBudget);
     // console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
@@ -385,13 +378,16 @@ export default class History extends React.Component {
           <div className="currentSummaryHistory">
             <div className="fixed">Groceries</div>
             <div className="fixed">Gas</div>
-            <div className="fixed">Utilities & Health</div>
+            <div className="fixed tooltipParent">
+              Etc
+                <span className="tooltipText">Utilities & Entertainment</span>
+            </div>
             <div className="mt-3">Total Fixed</div>
           </div>
           <div className="currentSummaryHistory">
             <div className="fixed">{CurrencyFormatter.format(this.state.totalGroceries)}</div>
             <div className="fixed">{CurrencyFormatter.format(this.state.totalGas)}</div>
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalUtilities + this.state.totalHealth)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalFixedEtc)}</div>
             <div className="mt-3">{CurrencyFormatter.format(this.state.totalFixed)}</div>
           </div>
         </div>
@@ -412,15 +408,18 @@ export default class History extends React.Component {
 
                 <i
                   onClick={() => this.sortByDate()}
-                  className="fas fa-chevron-up border"></i>
+                  className="fas fa-chevron-up border"
+                ></i>
 
               <i
                 onClick={() => this.sortByDate()}
-                className="fas fa-angle-up border"></i>
+                className="fas fa-angle-up border"
+              ></i>
 
               <i
                 onClick={() => this.sortByDate()}
-                className="fas fa-caret-square-up"></i>
+                className="fas fa-caret-square-up"
+              ></i>
 
             </div>
             <div className="currentDataHeader">subCategory</div>
