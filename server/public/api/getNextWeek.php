@@ -15,9 +15,7 @@ startUp();
 // "DATE_SUB(NOW(), '1 week')
 
 
-$query = "SELECT * FROM `2020`
-          WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))
-          ORDER BY date ASC";
+$query = "SELECT * FROM `2020` WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 week)) ORDER BY date ASC";
 
 $result = mysqli_query($conn, $query);
 

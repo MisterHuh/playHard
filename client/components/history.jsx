@@ -21,7 +21,8 @@ export default class History extends React.Component {
       // },
 
       filterBy: "All",
-      startDate: new Date(2019, 11, 29),
+      // startDate: new Date(2019, 11, 29),
+      startDate: new Date(2020, 1, 5),
       endDate: new Date(),
       query: "SELECT * FROM `2020` ORDER BY date DESC",
       order: "DESC",
@@ -38,7 +39,9 @@ export default class History extends React.Component {
       totalGas: 0,
       totalFixedEtc: 0,
 
-      currentWeekNumber: 0
+      currentWeekNumber: 0,
+      queryWeekNumber: 0
+
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
@@ -130,6 +133,7 @@ export default class History extends React.Component {
 
   retrieveSearchData() {
     let notFormattedStartDate = this.state.startDate;
+    console.log("notFormattedStartDate is: ", notFormattedStartDate );
     let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
 
     let notFormattedEndDate = this.state.endDate;
@@ -144,6 +148,9 @@ export default class History extends React.Component {
         endDate: formattedEndDate
       })
     };
+
+    console.log("notFormattedStartDate - notFormattedEndDate is: ", (notFormattedStartDate - notFormattedEndDate) / (1000 * 3600 * 24) );
+    console.log("formattedStartDate - formattedEndDate is: ", formattedStartDate - notFormattedEndDate);
 
     this.searchQuery(req);
 
@@ -164,14 +171,8 @@ export default class History extends React.Component {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        // console.log("before extraction current is: ", current)
         this.extractQueryAndOrder(current);
       })
-      // .then(current => {
-      //   console.log("after extraction current is: ", current);
-      //   this.setState({ current });
-      //   this.currentSummary();
-      // })
   }
 
 /* is there too much happening here? */
@@ -194,7 +195,7 @@ export default class History extends React.Component {
     let totalFixedEtc = 0;
 
     for (let index = 0; index < length; index++) {
-      if (current[index]["ctegory"] === "Spendings") {
+      if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Credits") {
         totalCredits += parseFloat(current[index]["amount"]);
@@ -231,7 +232,6 @@ export default class History extends React.Component {
     this.retrieveAllData();
     console.log("this.state.order is: ", this.state.order);
     console.log("this.state.query is: ", this.state.query);
-    // console.log("current is: ", current);
   }
 
   render() {
@@ -352,9 +352,10 @@ export default class History extends React.Component {
           <div className="currentData">
             <div className="currentDataHeader">
                 Date
-                {/* <i
+
+                <i
                 onClick={() => this.sortByDate()}
-                className="fas fa-sort-up"></i> */}
+                className="fas fa-sort-up"></i>
 
                 <i
                   onClick={() => this.sortByDate()}
