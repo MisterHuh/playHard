@@ -241,31 +241,26 @@ export default class History extends React.Component {
     let totalUtilities = 0;
     let totalHealth = 0;
 
-    for (let index = 0; index <= length; index++) {
-      if (current[index]["category"] == "Spendings") {
+    for (let index = 0; index < length; index++) {
+      if (current[index]["ctegory"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] == "Fixed") {
-        totalFixed += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] == "Credits") {
+      } else if (current[index]["category"] === "Credits") {
         totalCredits += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] === "Fixed") {
+        if (current[index]["subcategory"] === "Groceries") {
+          totalGroceries += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Gas") {
+          totalGas += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Utility") {
+          totalUtilities += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Health") {
+          totalHealth += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Entertainment") {
+          totalHealth += parseFloat(current[index]["amount"]);
+        };
+        totalFixed += parseFloat(current[index]["amount"]);
       }
     }
-
-    // for (let index = 0; index < length; index++) {
-    //   if (current[index]["ctegory"] === "Spendings") {
-    //     totalSpendings += parseFloat(current[index]["amount"]);
-    //   } else if (current[index]["category"] === "Credits") {
-    //     totalCredits += parseFloat(current[index]["amount"]);
-    //   } else if (current[index]["category"] === "Fixed") {
-    //     if (current[index]) {
-
-    //     }
-    //     totalFixed += parseFloat(current[index]["amount"])''
-    //   }
-    // }
-
-
-
 
     totalSpendings = totalSpendings.toFixed(2);
     totalCredits = totalCredits.toFixed(2);
@@ -275,9 +270,13 @@ export default class History extends React.Component {
     this.setState({
       totalSpendings,
       totalCredits,
-      totalFixed,
       totalBudget,
-      totalRemaining
+      totalRemaining,
+      totalFixed,
+      totalGroceries,
+      totalGas,
+      totalUtilities,
+      totalHealth
     })
     // console.log("HISTORY VIEW totalBudget is: ", totalBudget);
     // console.log("HISTORY VIEW totalRemaining is: ", totalRemaining);
@@ -387,13 +386,13 @@ export default class History extends React.Component {
             <div className="fixed">Groceries</div>
             <div className="fixed">Gas</div>
             <div className="fixed">Utilities & Health</div>
-            <div className="mt-3">Total Remaining</div>
+            <div className="mt-3">Total Fixed</div>
           </div>
           <div className="currentSummaryHistory">
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalBudget)}</div>
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalCredits)}</div>
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalFixed)}</div>
-            <div className="mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalGroceries)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalGas)}</div>
+            <div className="fixed">{CurrencyFormatter.format(this.state.totalUtilities + this.state.totalHealth)}</div>
+            <div className="mt-3">{CurrencyFormatter.format(this.state.totalFixed)}</div>
           </div>
         </div>
 
