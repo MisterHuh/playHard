@@ -232,12 +232,16 @@ export default class History extends React.Component {
     // console.log("currentSummary length is: ", length);
     let totalSpendings = 0;
     let totalCredits = 0;
-    let totalFixed = 0;
     let totalBudget = this.props.budget * this.state.currentWeekNumber;
     let totalRemaining = 0;
 
+    let totalFixed = 0;
+    let totalGroceries = 0;
+    let totalGas = 0;
+    let totalUtilities = 0;
+    let totalHealth = 0;
+
     for (let index = 0; index <= length; index++) {
-      // console.log("for loop staratd");
       if (current[index]["category"] == "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] == "Fixed") {
@@ -246,6 +250,22 @@ export default class History extends React.Component {
         totalCredits += parseFloat(current[index]["amount"]);
       }
     }
+
+    // for (let index = 0; index < length; index++) {
+    //   if (current[index]["ctegory"] === "Spendings") {
+    //     totalSpendings += parseFloat(current[index]["amount"]);
+    //   } else if (current[index]["category"] === "Credits") {
+    //     totalCredits += parseFloat(current[index]["amount"]);
+    //   } else if (current[index]["category"] === "Fixed") {
+    //     if (current[index]) {
+
+    //     }
+    //     totalFixed += parseFloat(current[index]["amount"])''
+    //   }
+    // }
+
+
+
 
     totalSpendings = totalSpendings.toFixed(2);
     totalCredits = totalCredits.toFixed(2);
