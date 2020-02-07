@@ -53,6 +53,7 @@ export default class History extends React.Component {
 
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
+    this.querySummary = this.querySummary.bind(this);
   }
 
   sortByDate() {
@@ -133,11 +134,9 @@ export default class History extends React.Component {
 
   retrieveSearchData() {
     let notFormattedStartDate = this.state.startDate;
-    console.log("notFormattedStartDate is: ", notFormattedStartDate );
     let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
 
     let notFormattedEndDate = this.state.endDate;
-    console.log("formattedStartDate is: ", formattedStartDate);
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
 
     const req = {
@@ -150,20 +149,9 @@ export default class History extends React.Component {
       })
     };
 
-    // console.log("notFormattedStartDate - notFormattedEndDate is: ", (notFormattedStartDate - notFormattedEndDate) / (1000 * 3600 * 24) );
-    // console.log("formattedStartDate - formattedEndDate is: ", formattedStartDate - notFormattedEndDate);
-
-    let test = ((new Date(formattedStartDate)) - (new Date(formattedEndDate))) / (-1000 * 3600 * 24);
-    console.log("test is: ", test);
-    // let answer = test / (1000 * 60 * 60 * 24);
-    // console.log("answer is: ", answer);
-
-    // let testStart = moment(formattedStartDate);
-    // let testEnd = moment(formattedEndDate);
-    // let test2 = future.diff(testStart, "days");
-    // console.log("testStart is: ", testStart);
-    // console.log("testEnd is: ", testEnd);
-    // console.log("test2 is: ", test2);
+    let queryWeekNumber = ((new Date(formattedStartDate)) - (new Date(formattedEndDate))) / (-1000 * 3600 * 24);
+    // console.log("queryWeekNumber is: ", queryWeekNumber);
+    this.setState({ queryWeekNumber });
 
     this.searchQuery(req);
 
@@ -176,7 +164,14 @@ export default class History extends React.Component {
         console.log("current is: ", current)
 
         this.setState({ current });
-        this.currentSummary();
+
+        // this.setState({
+        //   current,
+        //   queryWeekNumber
+        // });
+
+        this.querySummary();
+        // this.currentSummary();
       })
   }
 
@@ -186,6 +181,60 @@ export default class History extends React.Component {
       .then(current => {
         this.extractQueryAndOrder(current);
       })
+  }
+
+  querySummary() {
+
+    let queryWeekNumber = this.state.queryWeekNumber;
+    // this.setState({ queryWeekNumber });
+    console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
+    console.log("this.props.budget is: ", this.props.budget);
+
+    let current = this.state.current;
+    let length = current.length - 1;
+
+    let totalSpendings = 0;
+    let totalCredits = 0;
+    let totalBudget = this.props.budget * this.state.queryWeekNumber;
+    let totalRemaining = 0;
+
+    let totalFixed = 0;
+    let totalGroceries = 0;
+    let totalGas = 0;
+    let totalFixedEtc = 0;
+
+    for (let index = 0; index < length; index++) {
+      if (current[index]["category"] === "Spendings") {
+        totalSpendings += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] === "Credits") {
+        totalCredits += parseFloat(current[index]["amount"]);
+      } else if (current[index]["category"] === "Fixed") {
+        if (current[index]["subcategory"] === "Groceries") {
+          totalGroceries += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Gas") {
+          totalGas += parseFloat(current[index]["amount"]);
+        } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
+          totalFixedEtc += parseFloat(current[index]["amount"]);
+        };
+        totalFixed += parseFloat(current[index]["amount"]);
+      }
+    }
+
+    totalSpendings = totalSpendings.toFixed(2);
+    totalCredits = totalCredits.toFixed(2);
+    totalFixed = totalFixed.toFixed(2);
+    totalRemaining = totalBudget - totalCredits - totalSpendings;
+
+    this.setState({
+      totalSpendings,
+      totalCredits,
+      totalBudget,
+      totalRemaining,
+      totalFixed,
+      totalGroceries,
+      totalGas,
+      totalFixedEtc
+    })
   }
 
 /* is there too much happening here? */
