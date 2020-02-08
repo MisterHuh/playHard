@@ -150,28 +150,19 @@ export default class History extends React.Component {
     };
 
     let notFormattedDateDiff = new Date(formattedStartDate) - new Date(formattedEndDate)
-    // let queryWeekNumber = ((new Date(formattedStartDate)) - (new Date(formattedEndDate))) / (-1000 * 3600 * 24);
     let notFormattedQueryWeekNumber = notFormattedDateDiff / (-1000 * 3600 * 24);
-    console.log("notFormattedQueryWeekNumber is: ", notFormattedQueryWeekNumber);
 
     let modulusTest = notFormattedQueryWeekNumber % 7
-    console.log("modulusTest is: ", modulusTest);
-
     let divisionTest = notFormattedQueryWeekNumber / 7
-    // console.log("divisionTest is: ", divisionTest);
     let queryWeekNumber;
 
     if (!modulusTest) {
       queryWeekNumber = divisionTest;
-      console.log("queryWeekNumber is: ", queryWeekNumber);
     } else {
       queryWeekNumber = Math.ceil(divisionTest);
-      console.log("queryWeekNumber is: ", queryWeekNumber);
     };
 
-    // console.log("queryWeekNumber is: ", queryWeekNumber);
     this.setState({ queryWeekNumber });
-
     this.searchQuery(req);
 
   };
@@ -183,14 +174,7 @@ export default class History extends React.Component {
         console.log("current is: ", current)
 
         this.setState({ current });
-
-        // this.setState({
-        //   current,
-        //   queryWeekNumber
-        // });
-
         this.querySummary();
-        // this.currentSummary();
       })
   }
 
@@ -205,11 +189,6 @@ export default class History extends React.Component {
   querySummary() {
 
     let queryWeekNumber = this.state.queryWeekNumber;
-    // this.setState({ queryWeekNumber });
-
-
-    console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
-    console.log("this.props.budget is: ", this.props.budget);
 
     let current = this.state.current;
     let length = current.length - 1;
@@ -218,6 +197,9 @@ export default class History extends React.Component {
     let totalCredits = 0;
     let totalBudget = this.props.budget * this.state.queryWeekNumber;
     let totalRemaining = 0;
+
+    // console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
+    // console.log("totalBudget is: ", totalBudget);
 
     let totalFixed = 0;
     let totalGroceries = 0;

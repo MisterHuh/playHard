@@ -25,10 +25,22 @@ div {
   cursor: pointer;
 }
 
+.addWrapper {
+  width: 100vw;
+  border: 1px solid yellow;
+}
+
 .addForm {
+  width: 70%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid blue;
+}
+
+.previousRecords {
+  width: 30%;
+  border: 1px solid black;
 }
 
 .addInput {

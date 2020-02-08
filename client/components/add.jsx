@@ -10,6 +10,7 @@ export default class Add extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       date: new Date(),
       category: "Spendings",
       subCategory: "Food",
@@ -17,10 +18,12 @@ export default class Add extends React.Component {
       amount: "",
       where: "",
       notes: "",
+
       formErrors: {
         amount: "",
         where: ""
       }
+
     };
     this.dateHandleChange = this.dateHandleChange.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
@@ -36,9 +39,9 @@ export default class Add extends React.Component {
   };
 
   categoryHandleChange(e) {
-    console.log("event is: ", e);
-    console.log("event.value is: ", e.value);
-    console.log("setting sate for Category Dropdown");
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
+    // console.log("setting sate for Category Dropdown");
     this.setState({ category: e.value })
   }
 
@@ -76,7 +79,7 @@ export default class Add extends React.Component {
 
   addEntry() {
 
-    console.log("this.state.date is: ", this.state.date);
+    // console.log("this.state.date is: ", this.state.date);
     let current_datetime = this.state.date;
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
 
@@ -166,89 +169,107 @@ export default class Add extends React.Component {
     };
 
     return (
-      <form>
-        <div className="addForm">
-          <div className="mx-4">
-              <DatePicker
-                selected = {this.state.date}
-                onChange={this.dateHandleChange}
-                className = "amount mt-4"
+      <div className="addWrapper">
+
+        {/* right */}
+        <form className="">
+          <div className="addForm">
+            <div className="mx-4">
+                <DatePicker
+                  selected = {this.state.date}
+                  onChange={this.dateHandleChange}
+                  className = "amount mt-4"
+                />
+            </div>
+
+            <div className="mx-4 addInput">
+              <Dropdown
+                onChange={this.categoryHandleChange}
+                options={dropdownOptions[0]}
+                arrowClosed = {<span className="arrow-closed" />}
+                arrowOpen = {<span className="arrow-open" />}
+                placeholder = {this.state.category}
+                className = "mt-4"
               />
-          </div>
+            </div>
 
-          <div className="mx-4 addInput">
-            <Dropdown
-              onChange={this.categoryHandleChange}
-              options={dropdownOptions[0]}
-              arrowClosed = {<span className="arrow-closed" />}
-              arrowOpen = {<span className="arrow-open" />}
-              placeholder = {this.state.category}
-              className = "mt-4"
-            />
-          </div>
+            <div className="mx-4 addInput">
+              <Dropdown
+                onChange={this.subCategoryHandleChange}
+                options={dropdownOptions[1]}
+                arrowClosed={<span className="arrow-closed" />}
+                arrowOpen={<span className="arrow-open" />}
+                placeholder={this.state.subCategory}
+                className="mt-4"
+              />
+            </div>
 
-          <div className="mx-4 addInput">
-            <Dropdown
-              onChange={this.subCategoryHandleChange}
-              options={dropdownOptions[1]}
-              arrowClosed={<span className="arrow-closed" />}
-              arrowOpen={<span className="arrow-open" />}
-              placeholder={this.state.subCategory}
-              className="mt-4"
-            />
-          </div>
+            <div className="mx-4 addInput">
+              <Dropdown
+                onChange={this.ccHandleChange}
+                options={dropdownOptions[2]}
+                arrowClosed={<span className="arrow-closed" />}
+                arrowOpen={<span className="arrow-open" />}
+                placeholder={this.state.cc}
+                className="mt-4"
+              />
+            </div>
 
-          <div className="mx-4 addInput">
-            <Dropdown
-              onChange={this.ccHandleChange}
-              options={dropdownOptions[2]}
-              arrowClosed={<span className="arrow-closed" />}
-              arrowOpen={<span className="arrow-open" />}
-              placeholder={this.state.cc}
-              className="mt-4"
-            />
-          </div>
+            <div className="mx-4 addInput">
+              <input
+                value={this.state.amount}
+                onChange={this.inputHandleChange}
+                placeholder="$ 00.00"
+                name="amount"
+                className="amount mt-4"
+              />
+            </div>
 
-          <div className="mx-4 addInput">
-            <input
-              value={this.state.amount}
-              onChange={this.inputHandleChange}
-              placeholder="$ 00.00"
-              name="amount"
-              className="amount mt-4"
-            />
-          </div>
+            <div className="mx-4 addInput">
+              <input
+                value = {this.state.where}
+                onChange={this.inputHandleChange}
+                placeholder="Where?"
+                name="where"
+                className="amount mt-4"
+              />
+            </div>
 
-          <div className="mx-4 addInput">
-            <input
-              value = {this.state.where}
-              onChange={this.inputHandleChange}
-              placeholder="Where?"
-              name="where"
-              className="amount mt-4"
-            />
-          </div>
+            <div className="mx-4 addInput">
+              <input
+                value = {this.state.notes}
+                onChange={this.inputHandleChange}
+                placeholder="Notes"
+                name="notes"
+                className="amount mt-4"
+              />
+            </div>
 
-          <div className="mx-4 addInput">
-            <input
-              value = {this.state.notes}
-              onChange={this.inputHandleChange}
-              placeholder="Notes"
-              name="notes"
-              className="amount mt-4"
-            />
-          </div>
-
-          <div className="mx-4 addInput">
-            <div
-              onClick={() => this.handleSubmit()}
-              className={"addButton mt-4 text-center " + colorFormatter}> Add
-               {/* className="addButton mt-4 text-center"> Add */}
+            <div className="mx-4 addInput">
+              <div
+                onClick={() => this.handleSubmit()}
+                className={"addButton mt-4 text-center " + colorFormatter}> Add
+                {/* className="addButton mt-4 text-center"> Add */}
+              </div>
             </div>
           </div>
+
+        </form>
+        {/* left */}
+        <div className="previousRecordsWrapper">
+        <div className="previousRecordsContainer">
+          <div>Date</div>
+          <div>Category</div>
+          <div>SubCategory</div>
+          <div>CC</div>
+          <div>Amount</div>
+          <div>Where?</div>
+          <div>Notes</div>
         </div>
 
-      </form>
+        </div>
+
+      </div>
       );
     }
   }
