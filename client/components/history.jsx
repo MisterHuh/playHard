@@ -22,7 +22,7 @@ export default class History extends React.Component {
 
       filterBy: "All",
       // startDate: new Date(2019, 11, 29),
-      startDate: new Date(2020, 1, 5),
+      startDate: new Date(2020, 0, 31),
       endDate: new Date(),
       query: "SELECT * FROM `2020` ORDER BY date DESC",
       order: "DESC",
@@ -149,7 +149,26 @@ export default class History extends React.Component {
       })
     };
 
-    let queryWeekNumber = ((new Date(formattedStartDate)) - (new Date(formattedEndDate))) / (-1000 * 3600 * 24);
+    let notFormattedDateDiff = new Date(formattedStartDate) - new Date(formattedEndDate)
+    // let queryWeekNumber = ((new Date(formattedStartDate)) - (new Date(formattedEndDate))) / (-1000 * 3600 * 24);
+    let notFormattedQueryWeekNumber = notFormattedDateDiff / (-1000 * 3600 * 24);
+    console.log("notFormattedQueryWeekNumber is: ", notFormattedQueryWeekNumber);
+
+    let modulusTest = notFormattedQueryWeekNumber % 7
+    console.log("modulusTest is: ", modulusTest);
+
+    let divisionTest = notFormattedQueryWeekNumber / 7
+    // console.log("divisionTest is: ", divisionTest);
+    let queryWeekNumber;
+
+    if (!modulusTest) {
+      queryWeekNumber = divisionTest;
+      console.log("queryWeekNumber is: ", queryWeekNumber);
+    } else {
+      queryWeekNumber = Math.ceil(divisionTest);
+      console.log("queryWeekNumber is: ", queryWeekNumber);
+    };
+
     // console.log("queryWeekNumber is: ", queryWeekNumber);
     this.setState({ queryWeekNumber });
 
@@ -187,6 +206,8 @@ export default class History extends React.Component {
 
     let queryWeekNumber = this.state.queryWeekNumber;
     // this.setState({ queryWeekNumber });
+
+
     console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
     console.log("this.props.budget is: ", this.props.budget);
 
