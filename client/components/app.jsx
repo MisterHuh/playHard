@@ -50,7 +50,10 @@ export default class App extends React.Component {
   retrieveAllData() {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
-      .then(current => this.setState({ current }))
+      .then(current => {
+        this.setState({ current })
+        console.log("APP current is: ", current);
+      })
   }
 
   componentDidMount() {

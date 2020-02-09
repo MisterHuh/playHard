@@ -122,11 +122,13 @@ export default class Add extends React.Component {
   }
 
   componentDidMount() {
-    console.log("ADD this.props.current is: ", this.props.current);
+    // console.log("ADD this.props.current is: ", this.props.current);
   }
 
   render() {
     // console.log("this.state is: ", this.state);
+
+    console.log("ADD this.props.current is: ", this.props.current);
 
     const dropdownOptions = [
       [
