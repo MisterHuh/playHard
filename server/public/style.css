@@ -28,6 +28,8 @@ div {
 .addWrapper {
   width: 100vw;
   border: 1px solid yellow;
+  display: flex;
+  flex-direction: row;
 }
 
 .addForm {
@@ -38,9 +40,28 @@ div {
   border: 1px solid blue;
 }
 
-.previousRecords {
+.previousRecordsWrapper {
   width: 30%;
   border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+}
+
+.previousRecordsContainer {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid red;
+}
+
+.prevRec {
+  border: 1px solid black;
+  width: 80%;
+  height: 8%;
+  text-align: center;
+  line-height: 40px;
 }
 
 .addInput {

@@ -172,7 +172,8 @@ export default class Add extends React.Component {
       <div className="addWrapper">
 
         {/* right */}
-        <form className="">
+        {/* <form className=""> */}
+        <React.Fragment>
           <div className="addForm">
             <div className="mx-4">
                 <DatePicker
@@ -254,18 +255,30 @@ export default class Add extends React.Component {
             </div>
           </div>
 
-        </form>
+        </React.Fragment>
+
+        {/* </form> */}
         {/* left */}
         <div className="previousRecordsWrapper">
-        <div className="previousRecordsContainer">
-          <div>Date</div>
-          <div>Category</div>
-          <div>SubCategory</div>
-          <div>CC</div>
-          <div>Amount</div>
-          <div>Where?</div>
-          <div>Notes</div>
-        </div>
+          <div className="previousRecordsContainer">
+            <div className="prevRec mt-4">Date</div>
+            <div className="prevRec mt-4">Category</div>
+            <div className="prevRec mt-4">SubCategory</div>
+            <div className="prevRec mt-4">CC</div>
+            <div className="prevRec mt-4">Amount</div>
+            <div className="prevRec mt-4">Where?</div>
+            <div className="prevRec mt-4">Notes</div>
+          </div>
+
+          <div className="previousRecordsContainer">
+            <div className="prevRec mt-4">02/05/20</div>
+            <div className="prevRec mt-4">Fixed</div>
+            <div className="prevRec mt-4">Groceries</div>
+            <div className="prevRec mt-4">Sapphire</div>
+            <div className="prevRec mt-4">$123.42</div>
+            <div className="prevRec mt-4">Godiva</div>
+            <div className="prevRec mt-4">Valentine's day</div>
+          </div>
 
         </div>
 
