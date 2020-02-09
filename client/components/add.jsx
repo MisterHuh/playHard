@@ -260,25 +260,35 @@ export default class Add extends React.Component {
         {/* </form> */}
         {/* left */}
         <div className="previousRecordsWrapper">
-          <div className="previousRecordsContainer">
-            <div className="prevRec mt-4">Date</div>
-            <div className="prevRec mt-4">Category</div>
-            <div className="prevRec mt-4">SubCategory</div>
-            <div className="prevRec mt-4">CC</div>
-            <div className="prevRec mt-4">Amount</div>
-            <div className="prevRec mt-4">Where?</div>
-            <div className="prevRec mt-4">Notes</div>
+
+          <div className="prevRecTop"> {/* top */}
+            <div className="previousRecordsContainer">
+              <div className="prevRec mt-3">Date</div>
+              <div className="prevRec mt-3">Category</div>
+              <div className="prevRec mt-3">SubCategory</div>
+              <div className="prevRec mt-3">CC</div>
+              <div className="prevRec mt-3">Amount</div>
+              <div className="prevRec mt-3">Where?</div>
+              <div className="prevRec mt-3">Notes</div>
+              <div className="prevRecButton mt-4">Next</div>
+              {/* <i className="arrow fas fa-caret-left mt-4"></i> */}
+            </div>
+
+            <div className="previousRecordsContainer">
+              <div className="prevRec mt-3">02/05/20</div>
+              <div className="prevRec mt-3">Fixed</div>
+              <div className="prevRec mt-3">Groceries</div>
+              <div className="prevRec mt-3">Sapphire</div>
+              <div className="prevRec mt-3">$123.42</div>
+              <div className="prevRec mt-3">Godiva</div>
+              <div className="prevRec mt-3">Valentine's day</div>
+              <div className="prevRecButton mt-4">Previous</div>
+              {/* <i className="arrow fas fa-caret-right mt-4"></i> */}
+            </div>
           </div>
 
-          <div className="previousRecordsContainer">
-            <div className="prevRec mt-4">02/05/20</div>
-            <div className="prevRec mt-4">Fixed</div>
-            <div className="prevRec mt-4">Groceries</div>
-            <div className="prevRec mt-4">Sapphire</div>
-            <div className="prevRec mt-4">$123.42</div>
-            <div className="prevRec mt-4">Godiva</div>
-            <div className="prevRec mt-4">Valentine's day</div>
-          </div>
+          {/* bottom */}
+          <div className="prevRecBottom">1 of 20</div>
 
         </div>
 
