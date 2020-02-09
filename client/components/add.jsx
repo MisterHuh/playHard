@@ -35,6 +35,7 @@ export default class Add extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addEntry = this.addEntry.bind(this);
 
+    this.retrieveAllData = this.retrieveAllData.bind(this);
     this.retrieveCurrentToState = this.retrieveCurrentToState.bind(this);
   }
 
@@ -125,16 +126,29 @@ export default class Add extends React.Component {
      })
   }
 
-  retrieveCurrentToState () {
-    console.log("retrieveCurrentToState fired");
-    let current = this.props.current;
+  retrieveCurrentToState ( current ) {
+    // console.log("retrieveCurrentToState fired");
+    // let current = this.props.current;
     // console.log("current is: ", current);
     // console.log("this.state.current is: ", this.state.current);
     this.setState({ current });
   }
 
+  retrieveAllData() {
+    fetch(`/api/retrieveAllData.php`)
+      .then(response => response.json())
+      .then(current => {
+        this.setState({ current })
+        console.log("current is: ", current);
+      })
+  }
+
   componentDidMount() {
-    this.retrieveCurrentToState();
+    this.retrieveAllData();
+    // this.retrieveCurrentToState();
+    // let current = this.props.retrieveAllData();
+    // console.log("returning current is: ", current);
+    // this.retrieveCurrentToState(current);
     // console.log("ADD this.props.current is: ", this.props.current);
   }
 

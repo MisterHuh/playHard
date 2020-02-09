@@ -52,7 +52,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
-        // console.log("APP current is: ", current);
+        console.log("current is: ", current);
       })
   }
 
@@ -68,7 +68,7 @@ export default class App extends React.Component {
     let displayView = null;
 
     if (currentView === 'add') {
-      displayView = <Add setView={this.setView} current={this.state.current}/>;
+      displayView = <Add setView={this.setView} current={this.state.current} retrieveAllData={this.retrieveAllData}/>;
     } else if (currentView === "current") {
       displayView = <Current budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber}/>
     } else if (currentView === "history") {
