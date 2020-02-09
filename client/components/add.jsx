@@ -121,6 +121,10 @@ export default class Add extends React.Component {
      })
   }
 
+  componentDidMount() {
+    console.log("ADD this.props.current is: ", this.props.current);
+  }
+
   render() {
     // console.log("this.state is: ", this.state);
 
@@ -169,6 +173,7 @@ export default class Add extends React.Component {
     };
 
     return (
+
       <div className="addWrapper">
 
         {/* right */}
