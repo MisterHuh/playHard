@@ -52,7 +52,7 @@ export default class App extends React.Component {
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
-        console.log("APP current is: ", current);
+        // console.log("APP current is: ", current);
       })
   }
 

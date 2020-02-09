@@ -11,6 +11,8 @@ export default class Add extends React.Component {
     super(props);
     this.state = {
 
+      current: [],
+
       date: new Date(),
       category: "Spendings",
       subCategory: "Food",
@@ -32,6 +34,8 @@ export default class Add extends React.Component {
     this.inputHandleChange = this.inputHandleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addEntry = this.addEntry.bind(this);
+
+    this.retrieveCurrentToState = this.retrieveCurrentToState.bind(this);
   }
 
   dateHandleChange(date) {
@@ -121,7 +125,16 @@ export default class Add extends React.Component {
      })
   }
 
+  retrieveCurrentToState () {
+    console.log("retrieveCurrentToState fired");
+    let current = this.props.current;
+    // console.log("current is: ", current);
+    // console.log("this.state.current is: ", this.state.current);
+    this.setState({ current });
+  }
+
   componentDidMount() {
+    this.retrieveCurrentToState();
     // console.log("ADD this.props.current is: ", this.props.current);
   }
 
@@ -129,6 +142,7 @@ export default class Add extends React.Component {
     // console.log("this.state is: ", this.state);
 
     console.log("ADD this.props.current is: ", this.props.current);
+    console.log("this.state.current is: ", this.state.current);
 
     const dropdownOptions = [
       [
@@ -173,6 +187,10 @@ export default class Add extends React.Component {
     } else if (this.state.category === "Credits") {
       colorFormatter = "credits";
     };
+
+    if (!this.state.current) {
+      return null;
+    }
 
     return (
 
