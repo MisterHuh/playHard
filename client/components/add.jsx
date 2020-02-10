@@ -36,6 +36,7 @@ export default class Add extends React.Component {
     this.addEntry = this.addEntry.bind(this);
 
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.renderSideBox = this.renderSideBox.bind(this);
   }
 
   dateHandleChange(date) {
@@ -138,6 +139,21 @@ export default class Add extends React.Component {
 
     // console.log("ADD this.state.current is: ", this.state.current);
 
+  }
+
+  renderSideBox() {
+    return (
+      <div >
+        <div className="prevRec mt-3">{this.state.current[0]["amount"]}</div>
+        <div className="prevRec mt-3">TEST</div>
+        <div className="prevRec mt-3">Groceries</div>
+        <div className="prevRec mt-3">Sapphire</div>
+        <div className="prevRec mt-3">$123.42</div>
+        <div className="prevRec mt-3">Godiva</div>
+        <div className="prevRec mt-3">Valentine's day</div>
+        <div className="prevRecButton mt-4">Previous</div>
+      </div>
+    )
   }
 
   componentDidMount() {
@@ -312,14 +328,18 @@ export default class Add extends React.Component {
               <div className="prevRec mt-3">Valentine's day</div>
               <div className="prevRecButton mt-4">Previous</div> */}
 
-                <div className="prevRec mt-3">{!this.state.current ? "test" : this.state.current["amount"]}</div>
+              {
+                this.renderSideBox()
+              }
+
+                {/* <div className="prevRec mt-3">{!this.state.current ? "test" : this.state.current[0]["amount"]}</div>
                 <div className="prevRec mt-3">Fixed</div>
                 <div className="prevRec mt-3">Groceries</div>
                 <div className="prevRec mt-3">Sapphire</div>
                 <div className="prevRec mt-3">$123.42</div>
                 <div className="prevRec mt-3">Godiva</div>
                 <div className="prevRec mt-3">Valentine's day</div>
-                <div className="prevRecButton mt-4">Previous</div>
+                <div className="prevRecButton mt-4">Previous</div> */}
 
               </div>
             </div>
