@@ -21,8 +21,8 @@ export default class History extends React.Component {
       // },
 
       filterBy: "All",
-      // startDate: new Date(2019, 11, 29),
-      startDate: new Date(2020, 0, 31),
+      startDate: new Date(2019, 11, 29),
+      // startDate: new Date(2020, 0, 31),
       endDate: new Date(),
       query: "SELECT * FROM `2020` ORDER BY date DESC",
       order: "DESC",
@@ -182,7 +182,9 @@ export default class History extends React.Component {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        this.extractQueryAndOrder(current);
+        this.setState({ current });
+        this.currentSummary();
+        // this.extractQueryAndOrder(current);
       })
   }
 
@@ -295,8 +297,8 @@ export default class History extends React.Component {
 
   componentDidMount() {
     this.retrieveAllData();
-    console.log("this.state.order is: ", this.state.order);
-    console.log("this.state.query is: ", this.state.query);
+    // console.log("this.state.order is: ", this.state.order);
+    // console.log("this.state.query is: ", this.state.query);
   }
 
   render() {

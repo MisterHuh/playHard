@@ -25,6 +25,7 @@ export default class Current extends React.Component {
     this.currentSummary = this.currentSummary.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
+    this.test = this.test.bind(this);
   };
 
   retrieveCurrentData() {
@@ -44,6 +45,12 @@ export default class Current extends React.Component {
         this.setState({ current });
         this.currentSummary();
       })
+  }
+
+  test() {
+    let current = this.props.current;
+    console.log("current is: ", current);
+    this.setState({ current });
   }
 
 /* is there too much happening here? */
@@ -103,6 +110,7 @@ export default class Current extends React.Component {
 
   componentDidMount() {
     this.retrieveCurrentData();
+    // this.test();
   }
 
   render() {

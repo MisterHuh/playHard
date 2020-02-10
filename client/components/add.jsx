@@ -35,6 +35,8 @@ export default class Add extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addEntry = this.addEntry.bind(this);
 
+    this.test = this.test.bind(this);
+
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.retrieveCurrentToState = this.retrieveCurrentToState.bind(this);
   }
@@ -143,20 +145,37 @@ export default class Add extends React.Component {
       })
   }
 
+  test() {
+    // let current = this.props.currentOriginal.shift();
+    // this.setState({ current });
+    // console.log("ADD test fired");
+    console.log("ADD test fired");
+    console.log("this.state.current is: ", this.state.current);
+  }
+
   componentDidMount() {
-    this.retrieveAllData();
+    // this.retrieveAllData();
     // this.retrieveCurrentToState();
     // let current = this.props.retrieveAllData();
     // console.log("returning current is: ", current);
     // this.retrieveCurrentToState(current);
     // console.log("ADD this.props.current is: ", this.props.current);
+    console.log("when does this run 1");
+    this.props.retrieveAllData();
+    console.log("when does this run 2");
+    // this.test();
+    // console.log("ADD this.props.current is: ", this.props.current);
+    // console.log("ADD this.state.current is: ", this.state.current);
+
   }
 
   render() {
     // console.log("this.state is: ", this.state);
 
-    console.log("ADD this.props.current is: ", this.props.current);
-    console.log("this.state.current is: ", this.state.current);
+    let current = this.props.currentOriginal;
+    // console.log("ADD this.props.current is: ", this.props.currentOriginal);
+    // console.log("ADD this.state.current is: ", this.state.current);
+    // console.log("ADD current is: ", current);
 
     const dropdownOptions = [
       [

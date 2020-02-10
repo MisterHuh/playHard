@@ -11,7 +11,8 @@ export default class App extends React.Component {
       view: "add",
       budget: 150,
       currentWeekNumber: 1,
-      current: []
+      current: [],
+      query: ""
     }
     this.setView = this.setView.bind(this);
     this.getWeekNum = this.getWeekNum.bind(this);
@@ -24,6 +25,8 @@ export default class App extends React.Component {
 
   getWeekNum() {
 
+    console.log(2);
+    console.log("APP getWeekNum fired");
     let timestamp = new Date();
     // console.log("timestamp is: ", timestamp);
 
@@ -45,21 +48,26 @@ export default class App extends React.Component {
       // console.log("currentWeekNumber is: ", currentWeekNumber);
     }
     this.setState({ currentWeekNumber })
+
+    // this.retrieveAllData();
   }
 
   retrieveAllData() {
+    console.log(1);
+    console.log("retrieveAllData fired");
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
-        console.log("current is: ", current);
+        // console.log("current is: ", current);
       })
   }
 
   componentDidMount() {
     this.getWeekNum();
-    this.retrieveAllData();
-    // console.log("ADD this.state.current is: ", this.state.current);
+    console.log(3);
+    // this.retrieveAllData();
+    // console.log("APP this.state.current is: ", this.state.current);
   }
 
   render() {

@@ -16,9 +16,9 @@ if (!$result) {
 
 $allData = [];
 
-$allData[] = [
-  "query" => $query
-];
+// $allData[] = [
+//   "query" => $query
+// ];
 
 while ($row = mysqli_fetch_assoc($result)) {
   $allData[] = $row;
