@@ -11,12 +11,11 @@ export default class App extends React.Component {
       view: "add",
       budget: 150,
       currentWeekNumber: 1,
-      current: [],
-      query: ""
+      // current: [],
+      // query: ""
     }
     this.setView = this.setView.bind(this);
     this.getWeekNum = this.getWeekNum.bind(this);
-    this.retrieveAllData = this.retrieveAllData.bind(this);
   }
 
   setView(view) {
@@ -25,8 +24,8 @@ export default class App extends React.Component {
 
   getWeekNum() {
 
-    console.log(2);
-    console.log("APP getWeekNum fired");
+    // console.log(2);
+    // console.log("APP getWeekNum fired");
     let timestamp = new Date();
     // console.log("timestamp is: ", timestamp);
 
@@ -49,25 +48,21 @@ export default class App extends React.Component {
     }
     this.setState({ currentWeekNumber })
 
-    // this.retrieveAllData();
   }
 
-  retrieveAllData() {
-    console.log(1);
-    console.log("retrieveAllData fired");
-    fetch(`/api/retrieveAllData.php`)
-      .then(response => response.json())
-      .then(current => {
-        this.setState({ current })
-        // console.log("current is: ", current);
-      })
-  }
+  // retrieveAllData() {
+  //   console.log(1);
+  //   console.log("retrieveAllData fired");
+  //   fetch(`/api/retrieveAllData.php`)
+  //     .then(response => response.json())
+  //     .then(current => {
+  //       this.setState({ current })
+  //       console.log("current is: ", current);
+  //     })
+  // }
 
   componentDidMount() {
     this.getWeekNum();
-    console.log(3);
-    // this.retrieveAllData();
-    // console.log("APP this.state.current is: ", this.state.current);
   }
 
   render() {
@@ -76,7 +71,7 @@ export default class App extends React.Component {
     let displayView = null;
 
     if (currentView === 'add') {
-      displayView = <Add setView={this.setView} current={this.state.current} retrieveAllData={this.retrieveAllData}/>;
+      displayView = <Add setView={this.setView} />;
     } else if (currentView === "current") {
       displayView = <Current budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber}/>
     } else if (currentView === "history") {

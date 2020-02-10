@@ -11,7 +11,7 @@ export default class Add extends React.Component {
     super(props);
     this.state = {
 
-      current: [],
+      current: false,
 
       date: new Date(),
       category: "Spendings",
@@ -35,10 +35,7 @@ export default class Add extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addEntry = this.addEntry.bind(this);
 
-    this.test = this.test.bind(this);
-
     this.retrieveAllData = this.retrieveAllData.bind(this);
-    this.retrieveCurrentToState = this.retrieveCurrentToState.bind(this);
   }
 
   dateHandleChange(date) {
@@ -128,54 +125,27 @@ export default class Add extends React.Component {
      })
   }
 
-  retrieveCurrentToState ( current ) {
-    // console.log("retrieveCurrentToState fired");
-    // let current = this.props.current;
-    // console.log("current is: ", current);
-    // console.log("this.state.current is: ", this.state.current);
-    this.setState({ current });
-  }
-
   retrieveAllData() {
+
+    console.log("ADD retrieveAllData fired");
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
         console.log("current is: ", current);
+        console.log("ADD this.state.current is: ", this.state.current);
       })
-  }
 
-  test() {
-    // let current = this.props.currentOriginal.shift();
-    // this.setState({ current });
-    // console.log("ADD test fired");
-    console.log("ADD test fired");
-    console.log("this.state.current is: ", this.state.current);
+    // console.log("ADD this.state.current is: ", this.state.current);
+
   }
 
   componentDidMount() {
-    // this.retrieveAllData();
-    // this.retrieveCurrentToState();
-    // let current = this.props.retrieveAllData();
-    // console.log("returning current is: ", current);
-    // this.retrieveCurrentToState(current);
-    // console.log("ADD this.props.current is: ", this.props.current);
-    console.log("when does this run 1");
-    this.props.retrieveAllData();
-    console.log("when does this run 2");
-    // this.test();
-    // console.log("ADD this.props.current is: ", this.props.current);
-    // console.log("ADD this.state.current is: ", this.state.current);
-
+    console.log("componentDidMount fired");
+    this.retrieveAllData();
   }
 
   render() {
-    // console.log("this.state is: ", this.state);
-
-    let current = this.props.currentOriginal;
-    // console.log("ADD this.props.current is: ", this.props.currentOriginal);
-    // console.log("ADD this.state.current is: ", this.state.current);
-    // console.log("ADD current is: ", current);
 
     const dropdownOptions = [
       [
@@ -222,135 +192,147 @@ export default class Add extends React.Component {
     };
 
     if (!this.state.current) {
-      return null;
-    }
+      console.log("this.state.current is empty");
+      return false;
+    } else {
+      return (
 
-    return (
+        <div className="addWrapper">
 
-      <div className="addWrapper">
-
-        {/* right */}
-        {/* <form className=""> */}
-        <React.Fragment>
-          <div className="addForm">
-            <div className="mx-4">
+          {/* right */}
+          {/* <form className=""> */}
+          <React.Fragment>
+            <div className="addForm">
+              <div className="mx-4">
                 <DatePicker
-                  selected = {this.state.date}
+                  selected={this.state.date}
                   onChange={this.dateHandleChange}
-                  className = "amount mt-4"
+                  className="amount mt-4"
                 />
-            </div>
+              </div>
 
-            <div className="mx-4 addInput">
-              <Dropdown
-                onChange={this.categoryHandleChange}
-                options={dropdownOptions[0]}
-                arrowClosed = {<span className="arrow-closed" />}
-                arrowOpen = {<span className="arrow-open" />}
-                placeholder = {this.state.category}
-                className = "mt-4"
-              />
-            </div>
+              <div className="mx-4 addInput">
+                <Dropdown
+                  onChange={this.categoryHandleChange}
+                  options={dropdownOptions[0]}
+                  arrowClosed={<span className="arrow-closed" />}
+                  arrowOpen={<span className="arrow-open" />}
+                  placeholder={this.state.category}
+                  className="mt-4"
+                />
+              </div>
 
-            <div className="mx-4 addInput">
-              <Dropdown
-                onChange={this.subCategoryHandleChange}
-                options={dropdownOptions[1]}
-                arrowClosed={<span className="arrow-closed" />}
-                arrowOpen={<span className="arrow-open" />}
-                placeholder={this.state.subCategory}
-                className="mt-4"
-              />
-            </div>
+              <div className="mx-4 addInput">
+                <Dropdown
+                  onChange={this.subCategoryHandleChange}
+                  options={dropdownOptions[1]}
+                  arrowClosed={<span className="arrow-closed" />}
+                  arrowOpen={<span className="arrow-open" />}
+                  placeholder={this.state.subCategory}
+                  className="mt-4"
+                />
+              </div>
 
-            <div className="mx-4 addInput">
-              <Dropdown
-                onChange={this.ccHandleChange}
-                options={dropdownOptions[2]}
-                arrowClosed={<span className="arrow-closed" />}
-                arrowOpen={<span className="arrow-open" />}
-                placeholder={this.state.cc}
-                className="mt-4"
-              />
-            </div>
+              <div className="mx-4 addInput">
+                <Dropdown
+                  onChange={this.ccHandleChange}
+                  options={dropdownOptions[2]}
+                  arrowClosed={<span className="arrow-closed" />}
+                  arrowOpen={<span className="arrow-open" />}
+                  placeholder={this.state.cc}
+                  className="mt-4"
+                />
+              </div>
 
-            <div className="mx-4 addInput">
-              <input
-                value={this.state.amount}
-                onChange={this.inputHandleChange}
-                placeholder="$ 00.00"
-                name="amount"
-                className="amount mt-4"
-              />
-            </div>
+              <div className="mx-4 addInput">
+                <input
+                  value={this.state.amount}
+                  onChange={this.inputHandleChange}
+                  placeholder="$ 00.00"
+                  name="amount"
+                  className="amount mt-4"
+                />
+              </div>
 
-            <div className="mx-4 addInput">
-              <input
-                value = {this.state.where}
-                onChange={this.inputHandleChange}
-                placeholder="Where?"
-                name="where"
-                className="amount mt-4"
-              />
-            </div>
+              <div className="mx-4 addInput">
+                <input
+                  value={this.state.where}
+                  onChange={this.inputHandleChange}
+                  placeholder="Where?"
+                  name="where"
+                  className="amount mt-4"
+                />
+              </div>
 
-            <div className="mx-4 addInput">
-              <input
-                value = {this.state.notes}
-                onChange={this.inputHandleChange}
-                placeholder="Notes"
-                name="notes"
-                className="amount mt-4"
-              />
-            </div>
+              <div className="mx-4 addInput">
+                <input
+                  value={this.state.notes}
+                  onChange={this.inputHandleChange}
+                  placeholder="Notes"
+                  name="notes"
+                  className="amount mt-4"
+                />
+              </div>
 
-            <div className="mx-4 addInput">
-              <div
-                onClick={() => this.handleSubmit()}
-                className={"addButton mt-4 text-center " + colorFormatter}> Add
+              <div className="mx-4 addInput">
+                <div
+                  onClick={() => this.handleSubmit()}
+                  className={"addButton mt-4 text-center " + colorFormatter}> Add
                 {/* className="addButton mt-4 text-center"> Add */}
+                </div>
               </div>
             </div>
-          </div>
 
-        </React.Fragment>
+          </React.Fragment>
 
-        {/* </form> */}
-        {/* left */}
-        <div className="previousRecordsWrapper">
+          {/* </form> */}
+          {/* left */}
+          <div className="previousRecordsWrapper">
 
-          <div className="prevRecTop"> {/* top */}
-            <div className="previousRecordsContainer">
-              <div className="prevRec mt-3">Date</div>
-              <div className="prevRec mt-3">Category</div>
-              <div className="prevRec mt-3">SubCategory</div>
-              <div className="prevRec mt-3">CC</div>
-              <div className="prevRec mt-3">Amount</div>
-              <div className="prevRec mt-3">Where?</div>
-              <div className="prevRec mt-3">Notes</div>
-              <div className="prevRecButton mt-4">Next</div>
-              {/* <i className="arrow fas fa-caret-left mt-4"></i> */}
-            </div>
+            <div className="prevRecTop"> {/* top */}
+              <div className="previousRecordsContainer">
+                <div className="prevRec mt-3">Date</div>
+                <div className="prevRec mt-3">Category</div>
+                <div className="prevRec mt-3">SubCategory</div>
+                <div className="prevRec mt-3">CC</div>
+                <div className="prevRec mt-3">Amount</div>
+                <div className="prevRec mt-3">Where?</div>
+                <div className="prevRec mt-3">Notes</div>
+                <div className="prevRecButton mt-4">Next</div>
+                {/* <i className="arrow fas fa-caret-left mt-4"></i> */}
+              </div>
 
-            <div className="previousRecordsContainer">
-              <div className="prevRec mt-3">02/05/20</div>
+              <div className="previousRecordsContainer">
+                {/* <div className="prevRec mt-3">02/05/20</div>
               <div className="prevRec mt-3">Fixed</div>
               <div className="prevRec mt-3">Groceries</div>
               <div className="prevRec mt-3">Sapphire</div>
               <div className="prevRec mt-3">$123.42</div>
               <div className="prevRec mt-3">Godiva</div>
               <div className="prevRec mt-3">Valentine's day</div>
-              <div className="prevRecButton mt-4">Previous</div>
-              {/* <i className="arrow fas fa-caret-right mt-4"></i> */}
+              <div className="prevRecButton mt-4">Previous</div> */}
+
+                <div className="prevRec mt-3">{!this.state.current ? "test" : this.state.current["amount"]}</div>
+                <div className="prevRec mt-3">Fixed</div>
+                <div className="prevRec mt-3">Groceries</div>
+                <div className="prevRec mt-3">Sapphire</div>
+                <div className="prevRec mt-3">$123.42</div>
+                <div className="prevRec mt-3">Godiva</div>
+                <div className="prevRec mt-3">Valentine's day</div>
+                <div className="prevRecButton mt-4">Previous</div>
+
+              </div>
             </div>
+
+            {/* bottom */}
+            <div className="prevRecBottom">1 of 20</div>
+
           </div>
 
-          {/* bottom */}
-          <div className="prevRecBottom">1 of 20</div>
-
         </div>
-
-      </div>
       );
+    }
+
+
     }
   }
