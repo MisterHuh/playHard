@@ -61,6 +61,7 @@ div {
 .previousRecordsContainer {
   width: 100%;
   margin: auto;
+  padding: 5%;
   display: flex;
   flex-direction: column;
   align-items: center;

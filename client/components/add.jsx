@@ -12,6 +12,7 @@ export default class Add extends React.Component {
     this.state = {
 
       current: false,
+      currentIndex: 0,
 
       date: new Date(),
       category: "Spendings",
@@ -37,6 +38,7 @@ export default class Add extends React.Component {
 
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.renderSideBox = this.renderSideBox.bind(this);
+    this.previousButton = this.previousButton.bind(this);
   }
 
   dateHandleChange(date) {
@@ -142,18 +144,28 @@ export default class Add extends React.Component {
   }
 
   renderSideBox() {
+    let currentIndex = this.state.currentIndex;
+
     return (
       <div >
-        <div className="prevRec mt-3">{this.state.current[0]["amount"]}</div>
-        <div className="prevRec mt-3">TEST</div>
-        <div className="prevRec mt-3">Groceries</div>
-        <div className="prevRec mt-3">Sapphire</div>
-        <div className="prevRec mt-3">$123.42</div>
-        <div className="prevRec mt-3">Godiva</div>
-        <div className="prevRec mt-3">Valentine's day</div>
-        <div className="prevRecButton mt-4">Previous</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["cc"]}</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["amount"]}</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
+        <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div>
+        <div
+          onClick={()=> this.previousButton()}
+          className="prevRecButton mt-4">Previous</div>
       </div>
     )
+  }
+
+  previousButton() {
+    let currentIndex = this.state.currentIndex;
+    currentIndex += 1;
+    this.setState({ currentIndex });
   }
 
   componentDidMount() {
