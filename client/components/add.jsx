@@ -13,7 +13,7 @@ export default class Add extends React.Component {
     super(props);
     this.state = {
 
-      current: false,
+      current: [],
       currentIndex: 0,
 
       date: new Date(),
@@ -131,24 +131,6 @@ export default class Add extends React.Component {
      })
   }
 
-  retrieveAllData() {
-
-    console.log("ADD retrieveAllData fired");
-    fetch(`/api/retrieveAllData.php`)
-      .then(response => response.json())
-      .then(current => {
-        this.setState({ current })
-        // console.log("this.state.currentIndex is: ", this.state.currentIndex);
-        console.log("ADD this.state.current is: ", this.state.current);
-      })
-
-      this.setState({ currentIndex: this.state.current.length});
-
-
-    // console.log("ADD this.state.current is: ", this.state.current);
-
-  }
-
   renderSideBox() {
     let currentIndex = this.state.currentIndex;
 
@@ -182,10 +164,26 @@ export default class Add extends React.Component {
     this.setState({ currentIndex });
   }
 
+  retrieveAllData() {
+
+    console.log("ADD retrieveAllData fired");
+    fetch(`/api/retrieveAllData.php`)
+      .then(response => response.json())
+      .then(current => {
+        this.setState({ current })
+        console.log("ADD this.state.current is: ", this.state.current);
+      })
+
+    // this.setState({ currentIndex: this.state.current.length });
+    // console.log("this.state.currentIndex is: ", this.state.currentIndex);
+
+  }
+
   componentDidMount() {
     console.log("componentDidMount fired");
     this.retrieveAllData();
-    // this.setState({ currentIndex: this.current.length, });
+    this.setState({ currentIndex: this.state.current.length });
+    console.log("this.state.currentIndex is: ", this.state.currentIndex);
   }
 
   render() {
@@ -240,7 +238,9 @@ export default class Add extends React.Component {
     // if (!this.state.currentIndex) {
     //   console.log("test");
     //   return null;
-    // } else {
+    // } else
+
+    if (this.state.currentIndex) {
       return (
 
         <div className="addWrapper">
@@ -352,13 +352,13 @@ export default class Add extends React.Component {
 
               <div className="previousRecordsContainer">
               {/* {this.renderSideBox()} */}
-                {/* <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["cc"]}</div>
                 <div className="prevRec mt-3">{CurrencyFormatter.format(this.state.current[currentIndex]["amount"])}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div> */}
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div>
                 <div
                   onClick={() => this.previousButton()}
                   className="prevRecButton mt-4">Previous</div>
@@ -372,7 +372,7 @@ export default class Add extends React.Component {
 
         </div>
       );
-    // }
+    }
 
 
     }
