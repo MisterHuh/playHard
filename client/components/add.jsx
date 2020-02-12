@@ -6,6 +6,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Dropdown from "react-dropdown";
 import 'react-dropdown/style.css'
 
+import { CurrencyFormatter } from "./currencyFormatter";
+
 export default class Add extends React.Component {
   constructor(props) {
     super(props);
@@ -37,8 +39,9 @@ export default class Add extends React.Component {
     this.addEntry = this.addEntry.bind(this);
 
     this.retrieveAllData = this.retrieveAllData.bind(this);
-    this.renderSideBox = this.renderSideBox.bind(this);
+    // this.renderSideBox = this.renderSideBox.bind(this);
     this.previousButton = this.previousButton.bind(this);
+    this.nextButton = this.nextButton.bind(this);
   }
 
   dateHandleChange(date) {
@@ -135,9 +138,12 @@ export default class Add extends React.Component {
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
-        console.log("current is: ", current);
+        // console.log("this.state.currentIndex is: ", this.state.currentIndex);
         console.log("ADD this.state.current is: ", this.state.current);
       })
+
+      this.setState({ currentIndex: this.state.current.length});
+
 
     // console.log("ADD this.state.current is: ", this.state.current);
 
@@ -147,7 +153,7 @@ export default class Add extends React.Component {
     let currentIndex = this.state.currentIndex;
 
     return (
-      <div >
+      <React.Fragment>
         <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
         <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
         <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
@@ -158,7 +164,7 @@ export default class Add extends React.Component {
         <div
           onClick={()=> this.previousButton()}
           className="prevRecButton mt-4">Previous</div>
-      </div>
+      </React.Fragment>
     )
   }
 
@@ -168,9 +174,18 @@ export default class Add extends React.Component {
     this.setState({ currentIndex });
   }
 
+  nextButton() {
+    let currentIndex = this.state.currentIndex;
+
+    // if (currentIndex )
+    currentIndex -= 1;
+    this.setState({ currentIndex });
+  }
+
   componentDidMount() {
     console.log("componentDidMount fired");
     this.retrieveAllData();
+    // this.setState({ currentIndex: this.current.length, });
   }
 
   render() {
@@ -219,8 +234,10 @@ export default class Add extends React.Component {
       colorFormatter = "credits";
     };
 
-    if (!this.state.current) {
-      console.log("this.state.current is empty");
+    let currentIndex = this.state.currentIndex;
+    // let creditsFontColor = this.state.current[currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
+
+    if (!this.state.currentIndex) {
       return false;
     } else {
       return (
@@ -326,38 +343,29 @@ export default class Add extends React.Component {
                 <div className="prevRec mt-3">Amount</div>
                 <div className="prevRec mt-3">Where?</div>
                 <div className="prevRec mt-3">Notes</div>
-                <div className="prevRecButton mt-4">Next</div>
+                <div
+                  onClick={() => this.nextButton()}
+                  className="prevRecButton mt-4">Next</div>
                 {/* <i className="arrow fas fa-caret-left mt-4"></i> */}
               </div>
 
               <div className="previousRecordsContainer">
-                {/* <div className="prevRec mt-3">02/05/20</div>
-              <div className="prevRec mt-3">Fixed</div>
-              <div className="prevRec mt-3">Groceries</div>
-              <div className="prevRec mt-3">Sapphire</div>
-              <div className="prevRec mt-3">$123.42</div>
-              <div className="prevRec mt-3">Godiva</div>
-              <div className="prevRec mt-3">Valentine's day</div>
-              <div className="prevRecButton mt-4">Previous</div> */}
-
-              {
-                this.renderSideBox()
-              }
-
-                {/* <div className="prevRec mt-3">{!this.state.current ? "test" : this.state.current[0]["amount"]}</div>
-                <div className="prevRec mt-3">Fixed</div>
-                <div className="prevRec mt-3">Groceries</div>
-                <div className="prevRec mt-3">Sapphire</div>
-                <div className="prevRec mt-3">$123.42</div>
-                <div className="prevRec mt-3">Godiva</div>
-                <div className="prevRec mt-3">Valentine's day</div>
-                <div className="prevRecButton mt-4">Previous</div> */}
-
+              {/* {this.renderSideBox()} */}
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["cc"]}</div>
+                <div className="prevRec mt-3">{CurrencyFormatter.format(this.state.current[currentIndex]["amount"])}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div>
+                <div
+                  onClick={() => this.previousButton()}
+                  className="prevRecButton mt-4">Previous</div>
               </div>
             </div>
 
             {/* bottom */}
-            <div className="prevRecBottom">1 of 20</div>
+      <div className="prevRecBottom">{currentIndex} of {this.state.current.length}</div>
 
           </div>
 
