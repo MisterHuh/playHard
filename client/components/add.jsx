@@ -237,9 +237,10 @@ export default class Add extends React.Component {
     let currentIndex = this.state.currentIndex;
     // let creditsFontColor = this.state.current[currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
 
-    if (!this.state.currentIndex) {
-      return false;
-    } else {
+    // if (!this.state.currentIndex) {
+    //   console.log("test");
+    //   return null;
+    // } else {
       return (
 
         <div className="addWrapper">
@@ -351,13 +352,13 @@ export default class Add extends React.Component {
 
               <div className="previousRecordsContainer">
               {/* {this.renderSideBox()} */}
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
+                {/* <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["cc"]}</div>
                 <div className="prevRec mt-3">{CurrencyFormatter.format(this.state.current[currentIndex]["amount"])}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div> */}
                 <div
                   onClick={() => this.previousButton()}
                   className="prevRecButton mt-4">Previous</div>
@@ -371,7 +372,7 @@ export default class Add extends React.Component {
 
         </div>
       );
-    }
+    // }
 
 
     }
