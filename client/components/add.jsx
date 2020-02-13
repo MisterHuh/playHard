@@ -1,12 +1,14 @@
 import React from "react";
 
+import { CurrencyFormatter } from "./currencyFormatter";
+import { RenderSideBox } from "./renderSideBox";
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/style.css'
 
-import { CurrencyFormatter } from "./currencyFormatter";
 
 export default class Add extends React.Component {
   constructor(props) {
@@ -240,7 +242,7 @@ export default class Add extends React.Component {
     //   return null;
     // } else
 
-    if (this.state.currentIndex) {
+    // if (this.state.currentIndex) {
       return (
 
         <div className="addWrapper">
@@ -351,14 +353,18 @@ export default class Add extends React.Component {
               </div>
 
               <div className="previousRecordsContainer">
+
               {/* {this.renderSideBox()} */}
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
+
+                {/* <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["cc"]}</div>
                 <div className="prevRec mt-3">{CurrencyFormatter.format(this.state.current[currentIndex]["amount"])}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div>
+                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div> */}
+
+                <RenderSideBox current={this.state.current} currentIndex={this.state.currentIndex}/>
                 <div
                   onClick={() => this.previousButton()}
                   className="prevRecButton mt-4">Previous</div>
@@ -372,7 +378,7 @@ export default class Add extends React.Component {
 
         </div>
       );
-    }
+    // }
 
 
     }
