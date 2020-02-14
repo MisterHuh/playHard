@@ -41,6 +41,7 @@ export default class Add extends React.Component {
     this.addEntry = this.addEntry.bind(this);
 
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.setCurrentIndex = this.setCurrentIndex.bind(this);
     // this.renderSideBox = this.renderSideBox.bind(this);
     this.previousButton = this.previousButton.bind(this);
     this.nextButton = this.nextButton.bind(this);
@@ -173,19 +174,26 @@ export default class Add extends React.Component {
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
-        console.log("ADD this.state.current is: ", this.state.current);
+        this.setCurrentIndex(current.length)
+        // console.log("ADD this.state.current is: ", this.state.current);
       })
+
+      // let currentIndex = this.state.current.length;
 
     // this.setState({ currentIndex: this.state.current.length });
     // console.log("this.state.currentIndex is: ", this.state.currentIndex);
 
   }
 
+  setCurrentIndex( currentIndex) {
+    this.setState({ currentIndex: currentIndex })
+  };
+
   componentDidMount() {
     console.log("componentDidMount fired");
     this.retrieveAllData();
-    this.setState({ currentIndex: this.state.current.length });
-    console.log("this.state.currentIndex is: ", this.state.currentIndex);
+    // this.setState({ currentIndex: this.state.current.length });
+    // console.log("this.state.currentIndex is: ", this.state.currentIndex);
   }
 
   render() {
@@ -355,6 +363,7 @@ export default class Add extends React.Component {
               <div className="previousRecordsContainer">
 
               {/* {this.renderSideBox()} */}
+              {console.log("test")}
 
                 {/* <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>

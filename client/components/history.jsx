@@ -179,10 +179,12 @@ export default class History extends React.Component {
   }
 
   retrieveAllData() {
+    console.log("HISTORY retrieveAllData fired");
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
+        console.log("HISTORY this.state.current is: ", this.state.current);
         this.currentSummary();
         // this.extractQueryAndOrder(current);
       })

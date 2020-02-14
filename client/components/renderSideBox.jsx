@@ -2,6 +2,8 @@ import React from "react";
 import { CurrencyFormatter } from "./currencyFormatter";
 
 export const RenderSideBox = props => {
+  console.log("props.currentIndex is: ", props.currentIndex);
+  console.log("props.current is: ", props.current);
 
   if (props.currentIndex) {
     return (
@@ -10,6 +12,7 @@ export const RenderSideBox = props => {
         {props.current.map(entry => {
 
           let creditsFontColor = entry.amount < 0 ? "creditsFontColor" : null;
+          console.log("entry is: ", entry);
 
           return (
 
@@ -33,5 +36,8 @@ export const RenderSideBox = props => {
       <div>TEST</div>
     )
   }
+
+
+
 
 }
