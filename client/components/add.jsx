@@ -135,14 +135,14 @@ export default class Add extends React.Component {
   }
 
   renderSideBox() {
-    let currentIndex = this.state.current.length -1;
+    let currentIndex = this.state.current.length;
     console.log("rendreSideBox this.state.current.length is:", currentIndex);
 
     if (currentIndex) {
       return (
         <React.Fragment>
           <div className="prevRec mt-3">TEST</div>
-          <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
+          <div className="prevRec mt-3">{this.state.current[0]["date"]}</div>
           {/* <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
           <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
           <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
@@ -382,9 +382,11 @@ export default class Add extends React.Component {
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div> */}
 
                 {/* <RenderSideBox current={this.state.current} currentIndex={this.state.currentIndex}/> */}
-                <div
+
+                {/* <div
                   onClick={() => this.previousButton()}
-                  className="prevRecButton mt-4">Previous</div>
+                  className="prevRecButton mt-4">Previous</div> */}
+
               </div>
             </div>
 
