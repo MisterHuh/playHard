@@ -194,7 +194,8 @@ export default class History extends React.Component {
   deleteEntry(event) {
     console.log("deleteButtonTriggered");
     console.log("event is: ", event);
-    console.log("event.target is: ", event.target);
+    console.log("event.value is: ", event.value);
+    console.log("event.key is: ", event.key);
     // const req = {
     //   method: 'DELETE',
     //   headers: { 'Content-Type': 'application/json' },
@@ -439,8 +440,12 @@ export default class History extends React.Component {
             <div className="currentDataHeader">
                 Date
 
-                <i
+                {/* <i
                 onClick={() => this.sortByDate()}
+                className="fas fa-sort-up"></i> */}
+
+              <i
+                onClick={() => this.props.deleteEntry()}
                 className="fas fa-sort-up"></i>
 
                 <i

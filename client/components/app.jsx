@@ -8,7 +8,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "add",
+      view: "history",
       budget: 150,
       currentWeekNumber: 1,
       // current: [],
@@ -75,7 +75,7 @@ export default class App extends React.Component {
     } else if (currentView === "current") {
       displayView = <Current budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber}/>
     } else if (currentView === "history") {
-      displayView = <History budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber}/>
+      displayView = <History budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber} />
     }
 
     return (
