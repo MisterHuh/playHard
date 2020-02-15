@@ -16,7 +16,7 @@ export default class Add extends React.Component {
     this.state = {
 
       current: [],
-      currentIndex: 0,
+      currentIndex: 100,
 
       date: new Date(),
       category: "Spendings",
@@ -173,18 +173,18 @@ export default class Add extends React.Component {
     //   this.setState({ currentIndex });
     // }
 
-    // if (currentIndex === this.state.current.length - 1) {
-    //   alert ("test")
-    // } else {
+    if (currentIndex === this.state.current.length - 1) {
+      alert ("you are at the end")
+    } else {
 
-    //   currentIndex -= 1;
-    //   console.log("previousButton currentIndex is: ", currentIndex);
-    //   this.setState({ currentIndex });
-    // }
+      currentIndex += 1;
+      console.log("previousButton currentIndex is: ", currentIndex);
+      this.setState({ currentIndex });
+    }
 
-    currentIndex += 1;
-    console.log("previousButton currentIndex is: ", currentIndex);
-    this.setState({ currentIndex });
+    // currentIndex += 1;
+    // console.log("previousButton currentIndex is: ", currentIndex);
+    // this.setState({ currentIndex });
 
   }
 
@@ -413,7 +413,7 @@ export default class Add extends React.Component {
             </div>
 
             {/* bottom */}
-      <div className="prevRecBottom">{currentIndex} of {this.state.current.length}</div>
+      <div className="prevRecBottom">{currentIndex} of {this.state.current.length - 1}</div>
 
           </div>
 
