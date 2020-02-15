@@ -16,7 +16,7 @@ export default class Add extends React.Component {
     this.state = {
 
       current: [],
-      currentIndex: 100,
+      currentIndex: 0,
 
       date: new Date(),
       category: "Spendings",
@@ -138,20 +138,21 @@ export default class Add extends React.Component {
     console.log("this.state.currentIndex is: ", this.state.currentIndex);
     console.log("this.state.current is: ", this.state.current);
 
+    let creditsFontColor = this.state.current[this.state.currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
+    let noteFiller = this.state.current[this.state.currentIndex]["notes"] ? this.state.current[this.state.currentIndex]["notes"]  : "-";
+
     if (this.state.current) {
       console.log("this.state.current[this.state.currentIndex]['id'] is: ", this.state.current[this.state.currentIndex]['id']);
       return (
         <React.Fragment>
-          {/* <div className="prevRec mt-3">{this.state.current[1]["date"]}</div> */}
-
-          <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["id"]}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["date"]}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["category"]}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["subcategory"]}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["cc"]}</div>
-          <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["amount"]}</div>
+          <div className={"prevRec mt-3 " + creditsFontColor}>{CurrencyFormatter.format(this.state.current[this.state.currentIndex]["amount"])}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["store"]}</div>
           {/* <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["notes"]}</div> */}
+          <div className="prevRec mt-3">{noteFiller}</div>
 
         </React.Fragment>
       )
@@ -160,39 +161,30 @@ export default class Add extends React.Component {
   }
 
   previousButton() {
-    // let currentIndex = this.state.current.length;
-    // console.log("currentIndex is: ", currentIndex);
-
     let currentIndex = this.state.currentIndex;
     console.log("currentIndex is: ", currentIndex);
-
-    // if (currentIndex === 101) {
-    //   this.setState({ currentIndex: 100 })
-    // } else {
-    //   currentIndex -= 1;
-    //   this.setState({ currentIndex });
-    // }
 
     if (currentIndex === this.state.current.length - 1) {
       alert ("you are at the end")
     } else {
-
       currentIndex += 1;
       console.log("previousButton currentIndex is: ", currentIndex);
       this.setState({ currentIndex });
     }
 
-    // currentIndex += 1;
-    // console.log("previousButton currentIndex is: ", currentIndex);
-    // this.setState({ currentIndex });
-
   }
 
   nextButton() {
-    let currentIndex = this.state.current.length;
-    currentIndex += 1;
+    let currentIndex = this.state.currentIndex;
     console.log("currentIndex is: ", currentIndex);
-    this.setState({ currentIndex });
+    if (currentIndex === 0) {
+      alert ("you are at the end")
+    } else {
+      currentIndex -= 1;
+      console.log("nextButton currentIndex is: ", currentIndex);
+      this.setState({ currentIndex });
+    }
+
   }
 
   retrieveAllData() {
@@ -413,7 +405,7 @@ export default class Add extends React.Component {
             </div>
 
             {/* bottom */}
-      <div className="prevRecBottom">{currentIndex} of {this.state.current.length - 1}</div>
+      <div className="prevRecBottom">{currentIndex + 1} of {this.state.current.length}</div>
 
           </div>
 
