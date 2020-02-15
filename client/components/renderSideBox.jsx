@@ -20,9 +20,9 @@ export const RenderSideBox = props => {
         <div className="prevRec mt-3">{current[props.currentIndex]["amount"]}</div>
         <div className="prevRec mt-3">{current[props.currentIndex]["store"]}</div>
         <div className="prevRec mt-3">{current[props.currentIndex]["notes"]}</div>
-        <div
-          onClick={() => this.previousButton()}
-          className="prevRecButton mt-4">Previous</div>
+        {/* <div
+          onClick={() => props.previousButton()}
+          className="prevRecButton mt-4">Previous</div> */}
       </React.Fragment>
 
     )

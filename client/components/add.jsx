@@ -164,16 +164,16 @@ export default class Add extends React.Component {
   }
 
   previousButton() {
-    let currentIndex = this.state.currentIndex;
-    currentIndex += 1;
+    let currentIndex = this.state.current.length;
+    currentIndex -= 1;
+    console.log("currentIndex is: ", currentIndex);
     this.setState({ currentIndex });
   }
 
   nextButton() {
-    let currentIndex = this.state.currentIndex;
-
-    // if (currentIndex )
-    currentIndex -= 1;
+    let currentIndex = this.state.current.length;
+    currentIndex += 1;
+    console.log("currentIndex is: ", currentIndex);
     this.setState({ currentIndex });
   }
 
@@ -385,11 +385,11 @@ export default class Add extends React.Component {
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
                 <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div> */}
 
-                <RenderSideBox current={this.state.current} currentIndex={this.state.currentIndex}/>
+                <RenderSideBox current={this.state.current} currentIndex={this.state.currentIndex} previousButton={this.previousButton}/>
 
-                {/* <div
+                <div
                   onClick={() => this.previousButton()}
-                  className="prevRecButton mt-4">Previous</div> */}
+                  className="prevRecButton mt-4">Previous</div>
 
               </div>
             </div>
