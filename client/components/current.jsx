@@ -25,7 +25,6 @@ export default class Current extends React.Component {
     this.currentSummary = this.currentSummary.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
-    this.test = this.test.bind(this);
   };
 
   retrieveCurrentData() {
@@ -47,12 +46,6 @@ export default class Current extends React.Component {
       })
   }
 
-  test() {
-    let current = this.props.current;
-    console.log("current is: ", current);
-    this.setState({ current });
-  }
-
 /* is there too much happening here? */
   currentSummary() {
 
@@ -61,7 +54,6 @@ export default class Current extends React.Component {
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
-    let length = current.length - 1;
 
     let totalSpendings = 0;
     let totalCredits = 0;
@@ -73,8 +65,8 @@ export default class Current extends React.Component {
     let totalGas = 0;
     let totalFixedEtc = 0;
 
-    for (let index = 0; index < length; index++) {
-      if (current[index]["ctegory"] === "Spendings") {
+    for (let index = 0; index < current.length ; index++) {
+      if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Credits") {
         totalCredits += parseFloat(current[index]["amount"]);
@@ -110,7 +102,6 @@ export default class Current extends React.Component {
 
   componentDidMount() {
     this.retrieveCurrentData();
-    // this.test();
   }
 
   render() {
