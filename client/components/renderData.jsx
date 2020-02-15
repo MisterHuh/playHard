@@ -12,17 +12,11 @@ export const RenderData = props => {
 
         return(
 
-          <div
-            key={entry.id}
-            className={"currentData"}
-          >
+          <div key={entry.id} className={"currentData"} >
               <div className={"currentDataHeader renderDataHover "  + entry.category.toLowerCase()}>
 
                 <div className="iconContainer ">
-                  <i
-                    key={entry.id}
-                    onClick={props.deleteEntry}
-                    className="icon fas fa-times"></i>
+                  <i key={entry.id} onClick={props.deleteEntry} className="icon fas fa-times"></i>
                 </div>
 
                 <div className="iconContainer ">
