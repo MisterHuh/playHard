@@ -19,7 +19,9 @@ export const RenderData = props => {
             <div className={"currentDataHeader "  + entry.category.toLowerCase()}>
 
               <div className="iconContainer ">
-                <i className="icon fas fa-times"></i>
+                <i
+                  onClick={props.deleteEntry}
+                  className="icon fas fa-times"></i>
               </div>
 
               <div className="iconContainer ">

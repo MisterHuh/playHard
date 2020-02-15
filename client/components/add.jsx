@@ -170,6 +170,7 @@ export default class Add extends React.Component {
 
   nextButton() {
     let currentIndex = this.state.currentIndex;
+
     if (currentIndex === 0) {
       alert ("you are at the end")
     } else {

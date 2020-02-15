@@ -44,6 +44,7 @@ export default class History extends React.Component {
 
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.deleteEntry = this.deleteEntry.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
@@ -188,6 +189,23 @@ export default class History extends React.Component {
         this.currentSummary();
         // this.extractQueryAndOrder(current);
       })
+  }
+
+  deleteEntry(event) {
+    console.log("deleteButtonTriggered");
+    console.log("event is: ", event);
+    console.log("event.target is: ", event.target);
+    // const req = {
+    //   method: 'DELETE',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     id: parseInt(entry.id)
+    //   })
+    // };
+    // fetch(`/api/cart.php`, req)
+    //   .then(response => response.json())
+
+    // this.retrieveAllData();
   }
 
   querySummary() {
@@ -448,7 +466,7 @@ export default class History extends React.Component {
             <div className="currentDataHeader">Store</div>
             <div className="currentDataHeader">Notes</div>
           </div>
-          <RenderData current={this.state.current} />
+          <RenderData current={this.state.current} deleteEntry={this.deleteEntry}/>
         </div>
 
         </React.Fragment>
