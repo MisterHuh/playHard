@@ -8,7 +8,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "history",
+      view: "add",
       budget: 150,
       currentWeekNumber: 1,
       // current: [],

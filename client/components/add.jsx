@@ -115,8 +115,9 @@ export default class Add extends React.Component {
     fetch(`/api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
-        console.error('delete error: ', error);
-        alert("need input!");
+        // console.error('delete error: ', error);
+        // console.log("entry is: ", entry);
+        // alert("entry is: ", entry);
       });
 
     this.setState({
@@ -166,6 +167,8 @@ export default class Add extends React.Component {
       this.setState({ currentIndex });
     }
 
+    this.retrieveAllData();
+
   }
 
   nextButton() {
@@ -177,6 +180,8 @@ export default class Add extends React.Component {
       currentIndex -= 1;
       this.setState({ currentIndex });
     }
+
+    this.retrieveAllData();
 
   }
 
