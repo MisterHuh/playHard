@@ -269,7 +269,6 @@ export default class History extends React.Component {
     this.setState({ currentWeekNumber })
 
     let current = this.state.current;
-    let length = current.length - 1;
 
     let totalSpendings = 0;
     let totalCredits = 0;
@@ -281,7 +280,7 @@ export default class History extends React.Component {
     let totalGas = 0;
     let totalFixedEtc = 0;
 
-    for (let index = 0; index < length; index++) {
+    for (let index = 0; index < current.length; index++) {
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Credits") {

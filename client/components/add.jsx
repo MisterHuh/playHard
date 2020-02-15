@@ -161,12 +161,12 @@ export default class Add extends React.Component {
     let currentIndex = this.state.currentIndex;
 
     if (currentIndex === this.state.current.length - 1) {
-      alert ("you are at the end")
+      currentIndex = 0;
     } else {
       currentIndex += 1;
-      this.setState({ currentIndex });
     }
 
+    this.setState({ currentIndex });
     this.retrieveAllData();
 
   }
@@ -175,12 +175,12 @@ export default class Add extends React.Component {
     let currentIndex = this.state.currentIndex;
 
     if (currentIndex === 0) {
-      alert ("you are at the end")
+      currentIndex = this.state.current.length - 1
     } else {
       currentIndex -= 1;
-      this.setState({ currentIndex });
     }
 
+    this.setState({ currentIndex });
     this.retrieveAllData();
 
   }
@@ -350,8 +350,10 @@ export default class Add extends React.Component {
                 <div className="prevRec mt-3">Notes</div>
                 <div
                   onClick={() => this.nextButton()}
-                  className="prevRecButton mt-4">Next</div>
-                {/* <i className="arrow fas fa-caret-left mt-4"></i> */}
+                  className="mt-4">
+                  <i className="far addArrow fa-arrow-alt-circle-left"></i>
+                </div>
+
               </div>
 
               <div className="previousRecordsContainer">
@@ -360,7 +362,9 @@ export default class Add extends React.Component {
 
                 <div
                   onClick={() => this.previousButton()}
-                  className="prevRecButton mt-4">Previous</div>
+                  className="mt-4">
+                  <i className="far addArrow fa-arrow-alt-circle-right"></i>
+                  </div>
 
               </div>
             </div>

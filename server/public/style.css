@@ -300,7 +300,7 @@ div {
   border: 1px solid black;
 }
 
-.fa-sort-up:hover, .arrow:hover, .prevRecButton:hover {
+.fa-sort-up:hover, .arrow:hover, .prevRecButton:hover, .addArrow:hover {
   cursor: pointer;
 }
 
@@ -315,6 +315,14 @@ div {
 .fa-caret-left {
   margin-right: 10%;
 }
+
+.addArrow {
+  font-size: 175%;
+}
+
+.addArrow:hover {
+  color: rgba(56, 170, 236, 0.637);
+ }
 
 
 
