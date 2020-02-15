@@ -160,19 +160,31 @@ export default class Add extends React.Component {
   }
 
   previousButton() {
-    let currentIndex = this.state.current.length;
+    // let currentIndex = this.state.current.length;
+    // console.log("currentIndex is: ", currentIndex);
+
+    let currentIndex = this.state.currentIndex;
     console.log("currentIndex is: ", currentIndex);
 
-    if (currentIndex === 101) {
-      this.setState({ currentIndex: 100 })
-    } else {
-      currentIndex -= 1;
-      this.setState({ currentIndex });
-    }
+    // if (currentIndex === 101) {
+    //   this.setState({ currentIndex: 100 })
+    // } else {
+    //   currentIndex -= 1;
+    //   this.setState({ currentIndex });
+    // }
 
-    // currentIndex -= 1;
-    // console.log("currentIndex is: ", currentIndex);
-    // this.setState({ currentIndex });
+    // if (currentIndex === this.state.current.length - 1) {
+    //   alert ("test")
+    // } else {
+
+    //   currentIndex -= 1;
+    //   console.log("previousButton currentIndex is: ", currentIndex);
+    //   this.setState({ currentIndex });
+    // }
+
+    currentIndex += 1;
+    console.log("previousButton currentIndex is: ", currentIndex);
+    this.setState({ currentIndex });
 
   }
 
