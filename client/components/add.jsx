@@ -1,7 +1,6 @@
 import React from "react";
 
 import { CurrencyFormatter } from "./currencyFormatter";
-import { RenderSideBox } from "./renderSideBox";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -41,8 +40,6 @@ export default class Add extends React.Component {
     this.addEntry = this.addEntry.bind(this);
 
     this.retrieveAllData = this.retrieveAllData.bind(this);
-    this.setCurrentIndex = this.setCurrentIndex.bind(this);
-    // this.renderSideBox = this.renderSideBox.bind(this);
     this.previousButton = this.previousButton.bind(this);
     this.nextButton = this.nextButton.bind(this);
   }
@@ -92,7 +89,6 @@ export default class Add extends React.Component {
 
   addEntry() {
 
-    // console.log("this.state.date is: ", this.state.date);
     let current_datetime = this.state.date;
     let formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate();
 
@@ -132,17 +128,19 @@ export default class Add extends React.Component {
       where: "",
       notes: ""
      })
+
+     this.retrieveAllData();
   }
 
   renderSideBox() {
-    console.log("this.state.currentIndex is: ", this.state.currentIndex);
-    console.log("this.state.current is: ", this.state.current);
+    // console.log("this.state.currentIndex is: ", this.state.currentIndex);
+    // console.log("this.state.current is: ", this.state.current);
 
     let creditsFontColor = this.state.current[this.state.currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
     let noteFiller = this.state.current[this.state.currentIndex]["notes"] ? this.state.current[this.state.currentIndex]["notes"]  : "-";
 
     if (this.state.current) {
-      console.log("this.state.current[this.state.currentIndex]['id'] is: ", this.state.current[this.state.currentIndex]['id']);
+      // console.log("this.state.current[this.state.currentIndex]['id'] is: ", this.state.current[this.state.currentIndex]['id']);
       return (
         <React.Fragment>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["date"]}</div>
@@ -151,9 +149,7 @@ export default class Add extends React.Component {
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["cc"]}</div>
           <div className={"prevRec mt-3 " + creditsFontColor}>{CurrencyFormatter.format(this.state.current[this.state.currentIndex]["amount"])}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["store"]}</div>
-          {/* <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["notes"]}</div> */}
           <div className="prevRec mt-3">{noteFiller}</div>
-
         </React.Fragment>
       )
     }
@@ -162,13 +158,11 @@ export default class Add extends React.Component {
 
   previousButton() {
     let currentIndex = this.state.currentIndex;
-    console.log("currentIndex is: ", currentIndex);
 
     if (currentIndex === this.state.current.length - 1) {
       alert ("you are at the end")
     } else {
       currentIndex += 1;
-      console.log("previousButton currentIndex is: ", currentIndex);
       this.setState({ currentIndex });
     }
 
@@ -176,46 +170,27 @@ export default class Add extends React.Component {
 
   nextButton() {
     let currentIndex = this.state.currentIndex;
-    console.log("currentIndex is: ", currentIndex);
     if (currentIndex === 0) {
       alert ("you are at the end")
     } else {
       currentIndex -= 1;
-      console.log("nextButton currentIndex is: ", currentIndex);
       this.setState({ currentIndex });
     }
 
   }
 
   retrieveAllData() {
-
-    // console.log("ADD retrieveAllData fired");
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current })
-        // this.setCurrentIndex(current.length)
-        // console.log("ADD current.length is: ", current.length);
-        // console.log("ADD this.state.current is: ", this.state.current);
+
       })
-
-      // let currentIndex = this.state.current.length;
-
-    // this.setState({ currentIndex: this.state.current.length });
-    // console.log("this.state.currentIndex is: ", this.state.currentIndex);
-
   }
 
-  setCurrentIndex( currentIndex) {
-    this.setState({ currentIndex: currentIndex })
-  };
 
   componentDidMount() {
-    // console.log("componentDidMount fired");
     this.retrieveAllData();
-    // this.setState({ currentIndex: this.state.current.length });
-    // console.log("this.state.currentIndex is: ", this.state.currentIndex);
-    // console.log("this.state.current is: ", this.state.current);
   }
 
   render() {
@@ -264,15 +239,6 @@ export default class Add extends React.Component {
       colorFormatter = "credits";
     };
 
-    let currentIndex = this.state.currentIndex;
-    // let creditsFontColor = this.state.current[currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
-
-    // if (!this.state.currentIndex) {
-    //   console.log("test");
-    //   return null;
-    // } else
-
-    // if (this.state.currentIndex) {
       return (
 
         <div className="addWrapper">
@@ -385,17 +351,6 @@ export default class Add extends React.Component {
               <div className="previousRecordsContainer">
 
               {this.state.current.length ? this.renderSideBox() : null }
-              {/* {console.log("test")} */}
-
-                {/* <div className="prevRec mt-3">{this.state.current[currentIndex]["date"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["category"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["subcategory"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["cc"]}</div>
-                <div className="prevRec mt-3">{CurrencyFormatter.format(this.state.current[currentIndex]["amount"])}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["store"]}</div>
-                <div className="prevRec mt-3">{this.state.current[currentIndex]["notes"]}</div> */}
-
-                {/* <RenderSideBox current={this.state.current} currentIndex={this.state.currentIndex} previousButton={this.previousButton}/> */}
 
                 <div
                   onClick={() => this.previousButton()}
@@ -405,7 +360,7 @@ export default class Add extends React.Component {
             </div>
 
             {/* bottom */}
-      <div className="prevRecBottom">{currentIndex + 1} of {this.state.current.length}</div>
+            <div className="prevRecBottom">{this.state.currentIndex + 1} of {this.state.current.length}</div>
 
           </div>
 
