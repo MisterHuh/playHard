@@ -51,6 +51,7 @@ export default class History extends React.Component {
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
     this.retrieveSearchData = this.retrieveSearchData.bind(this);
+    this.testFunction = this.testFunction.bind(this);
 
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
@@ -315,6 +316,21 @@ export default class History extends React.Component {
     })
   }
 
+  testFunction() {
+    this.state.current.map(entry => {
+      console.log("RenderData fired");
+      return (
+
+        <RenderData
+          key={entry.id}
+          current={this.state.current}
+          deleteEntry={this.deleteEntry}
+        />
+      )
+
+    })
+  }
+
   componentDidMount() {
     this.retrieveAllData();
     // console.log("this.state.order is: ", this.state.order);
@@ -471,19 +487,23 @@ export default class History extends React.Component {
             <div className="currentDataHeader">Notes</div>
           </div>
 
-          {/* <React.Fragment>
-            {this.state.current.map(entry => {
+          {/* <React.Fragment> */}
+
+            {/* {this.state.current ? this.testFunction() : null } */}
+            {/* {this.state.current.map(entry => {
+              console.log("RenderData fired");
               return (
 
                 <RenderData
+                  key={entry.id}
                   current={this.state.current}
                   deleteEntry={this.deleteEntry}
                 />
               )
             })
 
-            }
-          </React.Fragment> */}
+            } */}
+          {/* </React.Fragment> */}
 
           <RenderData current={this.state.current} deleteEntry={this.deleteEntry}/>
         </div>
