@@ -24,6 +24,7 @@ export default class Current extends React.Component {
 
     this.deleteEntry = this.deleteEntry.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
+    this.test = this.test.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
   };
@@ -126,14 +127,44 @@ export default class Current extends React.Component {
 
 
   componentDidMount() {
-    this.retrieveCurrentData();
+
+    console.log("componentDidMount fired");
+
+
+    // let currentWeekNumber = this.props.currentWeekNumber;
+    // this.setState({ currentWeekNumber })
+    // let current = this.props.current;
+    // this.setState({ current });
+    // this.props.currentSummary();
+
+    this.test();
+
+    // this.retrieveCurrentData();
+    // this.props.retrieveAllData();
+    // console.log("componentDidMount finished");
+  }
+
+  test() {
+    console.log("test() fired");
+    console.log("this.props.current is: ", this.props.current);
+    let currentWeekNumber = this.props.currentWeekNumber;
+    let current = this.props.current;
+
+    this.setState({
+      currentWeekNumber,
+      current
+     })
+
+    this.props.currentSummary();
+
   }
 
   render() {
 
-    if (!this.state.budget) {
-      return null;
-    } else {
+    // if (!this.state.budget) {
+    //   <div>TEST</div>
+    //   return null;
+    // } else {
       return (
 
         <React.Fragment>
@@ -230,6 +261,6 @@ export default class Current extends React.Component {
         </React.Fragment>
 
       )
-    }
+    // }
   }
 }
