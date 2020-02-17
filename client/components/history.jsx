@@ -193,27 +193,21 @@ export default class History extends React.Component {
       })
   }
 
-  deleteEntry(test) {
+  deleteEntry(id) {
     console.log("deleteButtonTriggered");
-    console.log("event is: ", event);
-    console.log("event.target is: ", event.target);
-    // console.log("event.key is: ", event.key);
-    // console.log("event.attribute is: ", event.attribute);
-    // console.log("event.entry['id'] is: ", event.entry['id']);
+    console.log("id is: ", id);
 
-    // let test = event;
-    console.log("test is: ", test);
-    // const req = {
-    //   method: 'DELETE',
-    //   headers: { 'Content-Type': 'application/json' },
-    //   body: JSON.stringify({
-    //     id: parseInt(entry.id)
-    //   })
-    // };
-    // fetch(`/api/cart.php`, req)
-    //   .then(response => response.json())
+    let entryId = id;
 
-    // this.retrieveAllData();
+    const req = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({entryId})
+    };
+    fetch(`/api/deleteEntry.php`, req)
+      .then(response => response.json())
+
+    this.retrieveAllData();
   }
 
   querySummary() {

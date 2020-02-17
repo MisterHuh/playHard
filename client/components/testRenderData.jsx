@@ -3,6 +3,7 @@ import { CurrencyFormatter } from "./currencyFormatter";
 
 export const RenderData = props => {
   let entry = props.entry;
+  let id = entry["id"];
 
   let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
   // console.log("entry is: ", entry);
@@ -14,7 +15,7 @@ export const RenderData = props => {
         <div className={"currentDataHeader renderDataHover " + entry["category"].toLowerCase()}>
 
           <div className="iconContainer ">
-            <i key={entry["id"]} onClick={() => props.deleteEntry(entry["id"])} className="icon fas fa-times"></i>
+            <i onClick={() => props.deleteEntry(id)} className="icon fas fa-times"></i>
           </div>
 
           <div className="iconContainer ">
