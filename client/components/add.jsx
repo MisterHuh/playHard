@@ -133,6 +133,7 @@ export default class Add extends React.Component {
      this.retrieveAllData();
   }
 
+  /* refactor this code into the actual html body? */
   renderSideBox() {
     // console.log("this.state.currentIndex is: ", this.state.currentIndex);
     // console.log("this.state.current is: ", this.state.current);
