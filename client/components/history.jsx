@@ -506,7 +506,23 @@ export default class History extends React.Component {
             } */}
           {/* </React.Fragment> */}
 
-          <RenderData current={this.state.current} deleteEntry={this.deleteEntry}/>
+          <React.Fragment>
+            {!this.state.current
+              ? this.state.current.map (entry => {
+                return (
+                  <RenderData
+                    current={this.state.current}
+                    entry={entry}
+                    deletEntry={this.deleteEntry}
+                  />
+                )
+              })
+              : null
+            }
+
+          </React.Fragment>
+
+          {/* <RenderData current={this.state.current} deleteEntry={this.deleteEntry}/> */}
         </div>
 
         </React.Fragment>
