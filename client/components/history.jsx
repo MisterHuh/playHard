@@ -193,11 +193,16 @@ export default class History extends React.Component {
       })
   }
 
-  deleteEntry(event) {
+  deleteEntry(test) {
     console.log("deleteButtonTriggered");
     console.log("event is: ", event);
-    console.log("event.value is: ", event.value);
-    console.log("event.key is: ", event.key);
+    console.log("event.target is: ", event.target);
+    // console.log("event.key is: ", event.key);
+    // console.log("event.attribute is: ", event.attribute);
+    // console.log("event.entry['id'] is: ", event.entry['id']);
+
+    // let test = event;
+    console.log("test is: ", test);
     // const req = {
     //   method: 'DELETE',
     //   headers: { 'Content-Type': 'application/json' },
@@ -514,7 +519,7 @@ export default class History extends React.Component {
                     current={this.state.current}
                     entry={entry}
                     key={entry["id"]}
-                    deletEntry={this.deleteEntry}
+                    deleteEntry={this.deleteEntry}
                   />
                 )
               })

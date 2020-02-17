@@ -5,15 +5,16 @@ export const RenderData = props => {
   let entry = props.entry;
 
   let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
+  // console.log("entry is: ", entry);
   // console.log("testRenderData fired");
   if (entry) {
     // console.log("props.current is truthy");
     return (
-      <div key={entry["id"]} className={"currentData"} >
+      <div className={"currentData"} >
         <div className={"currentDataHeader renderDataHover " + entry["category"].toLowerCase()}>
 
           <div className="iconContainer ">
-            <i key={entry["id"]} onClick={props.deleteEntry} className="icon fas fa-times"></i>
+            <i key={entry["id"]} onClick={() => props.deleteEntry(entry["id"])} className="icon fas fa-times"></i>
           </div>
 
           <div className="iconContainer ">
