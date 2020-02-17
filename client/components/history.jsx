@@ -182,21 +182,15 @@ export default class History extends React.Component {
   }
 
   retrieveAllData() {
-    console.log("HISTORY retrieveAllData fired");
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
-        console.log("HISTORY this.state.current is: ", this.state.current);
         this.currentSummary();
-        // this.extractQueryAndOrder(current);
       })
   }
 
   deleteEntry(id) {
-    console.log("deleteButtonTriggered");
-    console.log("id is: ", id);
-
     let entryId = id;
 
     const req = {
@@ -206,8 +200,11 @@ export default class History extends React.Component {
     };
     fetch(`/api/deleteEntry.php`, req)
       .then(response => response.json())
+      .catch(error => {
 
+      });
     this.retrieveAllData();
+
   }
 
   querySummary() {
@@ -333,8 +330,6 @@ export default class History extends React.Component {
 
   componentDidMount() {
     this.retrieveAllData();
-    // console.log("this.state.order is: ", this.state.order);
-    // console.log("this.state.query is: ", this.state.query);
   }
 
   render() {
@@ -353,133 +348,126 @@ export default class History extends React.Component {
     return (
 
       <React.Fragment>
-      <div className="currentWrapperTop border">
+        <div className="currentWrapperTop border">
 
-        {/* left */}
-        <div className="currentSummaryContainer border border-primary">
-          <div className="currentSummaryHistory">
-            <div className="budget">Filter By</div>
-            <div className="">Start Date</div>
-            <div className="">End Date</div>
-            <div
-              onClick={() => this.retrieveAllData()}
-              className="mt-3"
-              >Reset
+          {/* left */}
+          <div className="currentSummaryContainer border border-primary">
+            <div className="currentSummaryHistory">
+              <div className="budget">Filter By</div>
+              <div className="">Start Date</div>
+              <div className="">End Date</div>
+              <div
+                onClick={() => this.retrieveAllData()}
+                className="mt-3"
+                >Reset
+              </div>
+            </div>
+
+            <div className="currentSummaryHistory">
+
+              <select
+                onChange={this.categoryHandleChange}
+                style={textCenter}
+                className="historyDropdown"
+                placeholder={this.state.filterBy} >
+                {dropdownOptions.map((e, key) => {
+                  return <option key={key} value={e.value}>{e.name}</option>;
+                })}
+              </select>
+
+
+              <div className="">
+                  <DatePicker
+                    // selected={this.state.search.startDate}
+                    selected={this.state.startDate}
+                    name="startDate"
+                    onChange={this.startDateHandleChange}
+                    className="amount1"
+                  />
+              </div>
+              <div className="">
+                  <DatePicker
+                    selected={this.state.endDate}
+                    name="endDate"
+                    onChange={this.endDateHandleChange}
+                    className="amount1"
+                  />
+              </div>
+              <div
+                onClick={() => this.retrieveSearchData()}
+                className="mt-3">Search</div>
             </div>
           </div>
 
-          <div className="currentSummaryHistory">
-
-            <select
-              onChange={this.categoryHandleChange}
-              style={textCenter}
-              className="historyDropdown"
-              placeholder={this.state.filterBy} >
-              {dropdownOptions.map((e, key) => {
-                return <option key={key} value={e.value}>{e.name}</option>;
-              })}
-            </select>
-
-
-            <div className="">
-                <DatePicker
-                  // selected={this.state.search.startDate}
-                  selected={this.state.startDate}
-                  name="startDate"
-                  onChange={this.startDateHandleChange}
-                  className="amount1"
-                />
+          {/* middle */}
+          <div className="currentSummaryContainer border border-primary">
+            <div className="currentSummaryHistory">
+                <div className="budget remaining tooltipParent">
+                Total Budget
+                <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
+              </div>
+              <div className="spendings">Total Spendings</div>
+              <div className="credits">Total Credits</div>
+              <div className="mt-3">Total Remaining</div>
             </div>
-            <div className="">
-                <DatePicker
-                  // selected={this.state.search.endDate}
-                  selected={this.state.endDate}
-                  name="endDate"
-                  onChange={this.endDateHandleChange}
-                  className="amount1"
-                />
+            <div className="currentSummaryHistory">
+                <div className="budget remaining tooltipParent">
+                {CurrencyFormatter.format(this.state.totalBudget)}
+              </div>
+              <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
+              <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
+              <div className="mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
             </div>
-            <div
-              onClick={() => this.retrieveSearchData()}
-              className="mt-3">Search</div>
           </div>
+
+          {/* right */}
+          <div className="currentSummaryContainer border border-primary">
+            <div className="currentSummaryHistory">
+              <div className="fixed">Groceries</div>
+              <div className="fixed">Gas</div>
+              <div className="fixed tooltipParent">
+                Etc
+                  <span className="tooltipText">Utilities & Entertainment</span>
+              </div>
+              <div className="mt-3">Total Fixed</div>
+            </div>
+            <div className="currentSummaryHistory">
+              <div className="fixed">{CurrencyFormatter.format(this.state.totalGroceries)}</div>
+              <div className="fixed">{CurrencyFormatter.format(this.state.totalGas)}</div>
+              <div className="fixed">{CurrencyFormatter.format(this.state.totalFixedEtc)}</div>
+              <div className="mt-3">{CurrencyFormatter.format(this.state.totalFixed)}</div>
+            </div>
+          </div>
+
         </div>
 
-        {/* middle */}
-        <div className="currentSummaryContainer border border-primary">
-          <div className="currentSummaryHistory">
-              <div className="budget remaining tooltipParent">
-              Total Budget
-              <span className="tooltipText">{"Current week is: " + this.state.currentWeekNumber}</span>
-            </div>
-            <div className="spendings">Total Spendings</div>
-            <div className="credits">Total Credits</div>
-            <div className="mt-3">Total Remaining</div>
-          </div>
-          <div className="currentSummaryHistory">
-              <div className="budget remaining tooltipParent">
-              {CurrencyFormatter.format(this.state.totalBudget)}
-            </div>
-            <div className="spendings">{CurrencyFormatter.format(this.state.totalSpendings)}</div>
-            <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
-            <div className="mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
-          </div>
-        </div>
-
-        {/* right */}
-        <div className="currentSummaryContainer border border-primary">
-          <div className="currentSummaryHistory">
-            <div className="fixed">Groceries</div>
-            <div className="fixed">Gas</div>
-            <div className="fixed tooltipParent">
-              Etc
-                <span className="tooltipText">Utilities & Entertainment</span>
-            </div>
-            <div className="mt-3">Total Fixed</div>
-          </div>
-          <div className="currentSummaryHistory">
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalGroceries)}</div>
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalGas)}</div>
-            <div className="fixed">{CurrencyFormatter.format(this.state.totalFixedEtc)}</div>
-            <div className="mt-3">{CurrencyFormatter.format(this.state.totalFixed)}</div>
-          </div>
-        </div>
-
-      </div>
-
-        {/* <i className="icon fas fa-search-location border"></i> */}
-        {/* <i className="icon fas fa-grin-hearts border"></i> */}
-        {/* <i className="icon fas fa-hand-holding-usd border"></i> */}
 
         <div className="currentWrapperBottom">
           <div className="currentData">
             <div className="currentDataHeader">
                 Date
 
-                {/* <i
-                onClick={() => this.sortByDate()}
-                className="fas fa-sort-up"></i> */}
-
               <i
                 onClick={() => this.props.deleteEntry()}
-                className="fas fa-sort-up"></i>
-
-                <i
-                  onClick={() => this.sortByDate()}
-                  className="fas fa-chevron-up border"
-                ></i>
+                className="fas fa-sort-up">
+              </i>
 
               <i
                 onClick={() => this.sortByDate()}
-                className="fas fa-angle-up border"
-              ></i>
+                className="fas fa-chevron-up border">
+              </i>
 
               <i
                 onClick={() => this.sortByDate()}
-                className="fas fa-caret-square-up"
-              ></i>
+                className="fas fa-angle-up border">
+              </i>
 
+              <i
+                onClick={() => this.sortByDate()}
+                className="fas fa-caret-square-up">
+              </i>
             </div>
+
             <div className="currentDataHeader">subCategory</div>
             <div className="currentDataHeader">cc</div>
             <div className="currentDataHeader">Amount</div>
@@ -487,27 +475,8 @@ export default class History extends React.Component {
             <div className="currentDataHeader">Notes</div>
           </div>
 
-          {/* <React.Fragment> */}
-
-            {/* {this.state.current ? this.testFunction() : null } */}
-            {/* {this.state.current.map(entry => {
-              console.log("RenderData fired");
-              return (
-
-                <RenderData
-                  key={entry.id}
-                  current={this.state.current}
-                  deleteEntry={this.deleteEntry}
-                />
-              )
-            })
-
-            } */}
-          {/* </React.Fragment> */}
-
           <React.Fragment>
-            {this.state.current
-              ? this.state.current.map (entry => {
+            {this.state.current.map(entry => {
                 return (
                   <RenderData
                     current={this.state.current}
@@ -517,15 +486,12 @@ export default class History extends React.Component {
                   />
                 )
               })
-              : null
             }
-
           </React.Fragment>
 
-          {/* <RenderData current={this.state.current} deleteEntry={this.deleteEntry}/> */}
         </div>
 
-        </React.Fragment>
+      </React.Fragment>
 
     )
   }

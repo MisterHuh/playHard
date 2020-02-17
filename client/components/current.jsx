@@ -1,5 +1,5 @@
 import React from "react";
-import { RenderData } from "./renderData";
+import { RenderData } from "./testRenderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
 export default class Current extends React.Component {
@@ -22,6 +22,7 @@ export default class Current extends React.Component {
       currentWeekNumber: 0
     }
 
+    this.deleteEntry = this.deleteEntry.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
@@ -99,6 +100,25 @@ export default class Current extends React.Component {
     })
 
   }
+
+  deleteEntry(id) {
+    console.log("current deleteEntry fired");
+    let entryId = id;
+
+    const req = {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ entryId })
+    };
+    fetch(`/api/deleteEntry.php`, req)
+      .then(response => response.json())
+      .catch(error => {
+
+      });
+    this.retrieveAllData();
+
+  }
+
 
   componentDidMount() {
     this.retrieveCurrentData();
@@ -181,7 +201,25 @@ export default class Current extends React.Component {
                 <div className="currentDataHeader">Store</div>
                 <div className="currentDataHeader">Notes</div>
               </div>
-              <RenderData current={this.state.current} />
+
+              <React.Fragment>
+                {this.state.current.map(entry => {
+                  return (
+                    <RenderData
+                      current={this.state.current}
+                      entry={entry}
+                      key={entry["id"]}
+                      deleteEntry={this.deleteEntry}
+                    />
+                  )
+                })
+                }
+              </React.Fragment>
+
+
+              {/* <RenderData current={this.state.current} /> */}
+
+
             </div>
           </div>
         </React.Fragment>
