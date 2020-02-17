@@ -507,12 +507,13 @@ export default class History extends React.Component {
           {/* </React.Fragment> */}
 
           <React.Fragment>
-            {!this.state.current
+            {this.state.current
               ? this.state.current.map (entry => {
                 return (
                   <RenderData
                     current={this.state.current}
                     entry={entry}
+                    key={entry["id"]}
                     deletEntry={this.deleteEntry}
                   />
                 )
