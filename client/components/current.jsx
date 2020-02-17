@@ -29,7 +29,12 @@ export default class Current extends React.Component {
   };
 
   retrieveCurrentData() {
-    fetch(`/api/getCurrent.php`)
+
+    let endPoint = "getCurrent";
+
+    fetch(`/api/` + endPoint + `.php`)
+
+    // fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });
@@ -115,7 +120,7 @@ export default class Current extends React.Component {
       .catch(error => {
 
       });
-    this.retrieveAllData();
+    this.retrieveCurrentData();
 
   }
 
