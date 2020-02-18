@@ -251,6 +251,17 @@ export default class Add extends React.Component {
       colorFormatter = "credits";
     };
 
+    let colorFormatter2;
+    if (this.state.current.length) {
+      if (this.state.current[this.state.currentIndex]["category"] === "Spendings") {
+        colorFormatter2 = "spendings"
+      } else if (this.state.current[this.state.currentIndex]["category"] === "Fixed") {
+        colorFormatter2 = "fixed";
+      } else if (this.state.current[this.state.currentIndex]["category"] === "Credits") {
+        colorFormatter2 = "credits";
+      };
+    }
+
       return (
 
         <div className="addWrapper">
@@ -376,7 +387,7 @@ export default class Add extends React.Component {
             </div>
 
             {/* bottom */}
-            <div className="prevRecBottom">{this.state.currentIndex + 1} of {this.state.current.length}</div>
+            <div className={"prevRecBottom " + colorFormatter2}>{this.state.currentIndex + 1} of {this.state.current.length}</div>
 
           </div>
 
