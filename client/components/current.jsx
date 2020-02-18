@@ -137,11 +137,15 @@ export default class Current extends React.Component {
     // this.setState({ current });
     // this.props.currentSummary();
 
-    this.test();
+    // this.test();
 
-    // this.retrieveCurrentData();
+
     // this.props.retrieveAllData();
     // console.log("componentDidMount finished");
+
+    /* 2 */
+    /* run retrieveCurrentData here, not on <App /> */
+    this.retrieveCurrentData();
   }
 
   test() {

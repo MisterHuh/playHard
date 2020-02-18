@@ -133,6 +133,10 @@ div {
   border-radius: 28px;
 }
 
+.renderSideBoxFont {
+  font-size: 80%;
+}
+
 /* .currentWrapper {
   display: flex;
   flex-direction: row;

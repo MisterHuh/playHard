@@ -127,7 +127,8 @@ export default class Add extends React.Component {
       cc: "Sapphire",
       amount: "",
       where: "",
-      notes: ""
+      notes: "",
+      currentIndex: 0
      })
 
      this.retrieveAllData();
@@ -139,7 +140,9 @@ export default class Add extends React.Component {
     // console.log("this.state.current is: ", this.state.current);
 
     let creditsFontColor = this.state.current[this.state.currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
+    let fontSizeController = this.state.current[this.state.currentIndex]["notes"].length >= 19 ? "renderSideBoxFont": null;
     let noteFiller = this.state.current[this.state.currentIndex]["notes"] ? this.state.current[this.state.currentIndex]["notes"]  : "-";
+    // let fontSizeController = this.state.current[this.state.currentIndex].length > 19 ? "renderSideBoxFont" : null;
 
     if (this.state.current) {
       // console.log("this.state.current[this.state.currentIndex]['id'] is: ", this.state.current[this.state.currentIndex]['id']);
@@ -151,7 +154,7 @@ export default class Add extends React.Component {
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["cc"]}</div>
           <div className={"prevRec mt-3 " + creditsFontColor}>{CurrencyFormatter.format(this.state.current[this.state.currentIndex]["amount"])}</div>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["store"]}</div>
-          <div className="prevRec mt-3">{noteFiller}</div>
+          <div className={"prevRec mt-3 " + fontSizeController}>{noteFiller}</div>
         </React.Fragment>
       )
     }
@@ -190,8 +193,10 @@ export default class Add extends React.Component {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        this.setState({ current })
-
+        this.setState({
+          current
+          // currentIndex: 0
+        })
       })
   }
 

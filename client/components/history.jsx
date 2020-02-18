@@ -267,11 +267,15 @@ export default class History extends React.Component {
     let currentWeekNumber = this.props.currentWeekNumber;
     this.setState({ currentWeekNumber })
 
+    console.log("currentWeekNumber is: ", currentWeekNumber);
+
     let current = this.state.current;
 
     let totalSpendings = 0;
     let totalCredits = 0;
-    let totalBudget = this.props.budget * this.state.currentWeekNumber;
+    let totalBudget = this.props.budget * currentWeekNumber;
+    console.log("this.props.budget is: ", this.props.budget);
+    console.log("totalBudget is: ", totalBudget);
     let totalRemaining = 0;
 
     let totalFixed = 0;
@@ -338,7 +342,8 @@ export default class History extends React.Component {
         { value: "All", name: "All"},
         { value: "Spendings", name: "Spendings" },
         { value: "Credits", name: "Credits" },
-        { value: "Fixed", name: "Fixed" }
+        { value: "Fixed", name: "Fixed" },
+        { value: "Wedding", name: "Wedding" }
     ];
 
     const textCenter = {

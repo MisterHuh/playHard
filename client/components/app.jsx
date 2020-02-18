@@ -8,14 +8,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "current",
+      view: "history",
       budget: 150,
 
       current: [],
 
       spendings: 0,
       credits: 0,
-      budget: 0,
+      // budget: 0,
       remaining: 0,
 
       fixed: 0,
@@ -38,6 +38,8 @@ export default class App extends React.Component {
   };
 
   getWeekNum() {
+
+    console.log("getWeekNum fired");
 
     // console.log(2);
     // console.log("APP getWeekNum fired");
@@ -145,7 +147,10 @@ export default class App extends React.Component {
 
   componentDidMount() {
     this.getWeekNum();
-    this.retrieveAllData();
+
+    /* 1 */
+    /* don't run this function, but rut it from <Current /> */
+    // this.retrieveAllData();
 
   }
 
@@ -169,7 +174,12 @@ export default class App extends React.Component {
 
           />
     } else if (currentView === "history") {
-      displayView = <History budget={this.state.budget} currentWeekNumber={this.state.currentWeekNumber} />
+      displayView =
+        <History
+          budget={this.state.budget}
+          currentWeekNumber={this.state.currentWeekNumber}
+
+        />
     }
 
     return (
