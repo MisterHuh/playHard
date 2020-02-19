@@ -251,6 +251,8 @@ div {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  margin-right: 3%;
+  margin-left: 3%;
   /* margin-right: 5%; */
   /* margin-left: 5%; */
 }
@@ -259,7 +261,7 @@ div {
   /* border: 1px solid white; */
   /* transform: scale(1.005); */
   /* background-color: white; */
-  opacity: 0.7;
+  /* opacity: 0.7; */
   font-weight: bold;
   background-color: rgba(195, 187, 187);
 }
@@ -292,9 +294,12 @@ div {
   cursor: pointer;
 }
 
+/* 4 */
 .currentDataHeader:nth-child(1), .currentTableRow:nth-child(1), .currentDataHeader:nth-child(2), .currentTableRow:nth-child(2), .currentDataHeader:nth-child(3), .currentTableRow:nth-child(3), .currentDataHeader:nth-child(4), .currentTableRow:nth-child(4) {
-  width: 12%;
+  width: 14%;
 }
+
+/* 2 */
 .currentDataHeader:nth-child(5), .currentTableRow:nth-child(5), .currentDataHeader:nth-child(6), .currentTableRow:nth-child(6) {
   width: 22%;
 }
