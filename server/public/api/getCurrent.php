@@ -6,7 +6,8 @@ set_exception_handler("error_handler");
 startUp();
 
 $query = "SELECT * FROM `2020`
-            WHERE YEARWEEK(date)=YEARWEEK(NOW())
+            -- WHERE YEARWEEK(date)=YEARWEEK(NOW())
+            WHERE date BETWEEN 2020-02-02 and 2020-02-08
             ORDER BY date ASC";
 
 $result = mysqli_query($conn, $query);

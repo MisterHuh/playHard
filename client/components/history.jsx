@@ -142,6 +142,9 @@ export default class History extends React.Component {
     let notFormattedEndDate = this.state.endDate;
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
 
+    console.log("formattedStartDate is: ", formattedStartDate);
+    console.log("formattedEndDate is: ", formattedEndDate);
+
     const req = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
