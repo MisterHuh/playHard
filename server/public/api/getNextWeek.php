@@ -5,9 +5,10 @@ require_once("db_connection.php");
 set_exception_handler("error_handler");
 startUp();
 
-// $query = "SELECT * FROM `2020`
-//             WHERE YEARWEEK(date)=YEARWEEK(NOW())
-//             ORDER BY date ASC";
+$query = "SELECT * FROM `2020`
+            WHERE date < DATE_ADD(CURDATE(), INTERVAL 7 DAY)
+            -- WHERE YEARWEEK(date)=YEARWEEK(NOW())
+            ORDER BY date ASC";
 
             // WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))
 
@@ -15,7 +16,7 @@ startUp();
 // "DATE_SUB(NOW(), '1 week')
 
 
-$query = "SELECT * FROM `2020` WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 week)) ORDER BY date ASC";
+// $query = "SELECT * FROM `2020` WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 week)) ORDER BY date ASC";
 
 $result = mysqli_query($conn, $query);
 
