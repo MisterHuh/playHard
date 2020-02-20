@@ -1,5 +1,5 @@
 import React from "react";
-import { RenderData } from "./testRenderData";
+import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
 export default class Current extends React.Component {
@@ -26,20 +26,24 @@ export default class Current extends React.Component {
     this.currentSummary = this.currentSummary.bind(this);
     this.test = this.test.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
+    this.testTwo = this.testTwo.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
   };
 
   retrieveCurrentData() {
 
+
     let endPoint = "getCurrent";
 
-    fetch(`/api/` + endPoint + `.php`)
+    // fetch(`/api/` + endPoint + `.php`)
 
-    // fetch(`/api/getCurrent.php`)
+    fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
+        console.log("CURRENT current is: ", current);
         this.setState({ current });
         this.currentSummary();
+        this.testTwo();
       })
   }
 
@@ -51,6 +55,31 @@ export default class Current extends React.Component {
         this.setState({ current });
         this.currentSummary();
       })
+  }
+
+  testTwo() {
+
+    let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+
+    let diff2 = new Date(date.setDate(diff));
+
+    let d = new Date();
+
+    // set to Monday of this week
+    d.setDate(d.getDate() - (d.getDay() + 6) % 7);
+
+    // set to previous Monday
+    d.setDate(d.getDate() - 7);
+
+    // create new date of day before
+    let sunday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
+
+
+
+    // let startOfWeek = moment().startOf('week').toDate();
+    // let endOfWeek = moment().endOf('week').toDate();
+    console.log("sunday is: ", sunday);
+    console.log("diff2 is: ", diff2);
   }
 
 /* is there too much happening here? */

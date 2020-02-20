@@ -1,6 +1,6 @@
 import React from "react";
 // import { RenderData } from "./renderData";
-import { RenderData } from "./testRenderData";
+import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
 import Dropdown from "react-dropdown";
