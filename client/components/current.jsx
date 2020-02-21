@@ -66,7 +66,7 @@ export default class Current extends React.Component {
     let date = new Date();
     let day = days[date.getDay()];
     // let time = date.getMilliseconds();
-    let startDay, endDay;
+    let startDay, endDay, formatted_date;
 
     console.log("date is: ", date);
     console.log("day is: ", day);
@@ -80,14 +80,20 @@ export default class Current extends React.Component {
 
     if (day === "Thursday") {
       console.log("day statement triggered");
-      unixTime2 = unixTime - (86400 * 4);
+      // unixTime2 = unixTime - (86400 * 4);
+      let jae = 1000 * 60 * 60 * 24 * 4;
       // var date = new Date(unix_timestamp * 1000);
-      startDay = new Date(unixTime2 * 1000);
+      startDay = new Date(date - jae);
       endDay = days[startDay.getDay()];
+      formatted_date = startDay.getFullYear() + "-" + (startDay.getMonth() + 1) + "-" + startDay.getDate();
     }
 
+
+
+    console.log("startDay is: ", startDay);
     console.log("endDay is: ", endDay);
     console.log("unixTime2 is: ", unixTime2);
+    console.log("formatted_date is: ", formatted_date);
     // console.log("day is: ", day);
 
     // let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
