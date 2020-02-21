@@ -59,20 +59,36 @@ export default class Current extends React.Component {
 
   testTwo() {
 
-    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    let unixTime = Date.now();
+    let unixTime2 = Date.now();
     let date = new Date();
     let day = days[date.getDay()];
+    // let time = date.getMilliseconds();
+    let startDay, endDay;
 
-    // console.log("date is: ", date);
+    console.log("date is: ", date);
     console.log("day is: ", day);
+    // console.log("time is: ", time);
 
-    if (day === "Monday" || day === "Tuesday" || day === "Wednesday" || day === "Thursday" || day === "Friday" || day === "Saturday") {
-      day = "Not Sunday";
-    } else {
-      day = "is Sunday";
+    // if (day === "Monday" || day === "Tuesday" || day === "Wednesday" || day === "Thursday" || day === "Friday" || day === "Saturday") {
+    //   day = "Not Sunday";
+    // } else {
+    //   day = "is Sunday";
+    // }
+
+    if (day === "Thursday") {
+      console.log("day statement triggered");
+      unixTime2 = unixTime - (86400 * 4);
+      // var date = new Date(unix_timestamp * 1000);
+      startDay = new Date(unixTime2 * 1000);
+      endDay = days[startDay.getDay()];
     }
 
-    console.log("day is: ", day);
+    console.log("endDay is: ", endDay);
+    console.log("unixTime2 is: ", unixTime2);
+    // console.log("day is: ", day);
 
     // let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
     // let diff2 = new Date(date.setDate(diff));
