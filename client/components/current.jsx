@@ -59,27 +59,40 @@ export default class Current extends React.Component {
 
   testTwo() {
 
-    let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+    var days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let date = new Date();
+    let day = days[date.getDay()];
 
-    let diff2 = new Date(date.setDate(diff));
+    // console.log("date is: ", date);
+    console.log("day is: ", day);
 
-    let d = new Date();
+    if (day === "Monday" || day === "Tuesday" || day === "Wednesday" || day === "Thursday" || day === "Friday" || day === "Saturday") {
+      day = "Not Sunday";
+    } else {
+      day = "is Sunday";
+    }
+
+    console.log("day is: ", day);
+
+    // let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
+    // let diff2 = new Date(date.setDate(diff));
+    // let d = new Date();
 
     // set to Monday of this week
-    d.setDate(d.getDate() - (d.getDay() + 6) % 7);
+    // d.setDate(d.getDate() - (d.getDay() + 6) % 7);
 
     // set to previous Monday
-    d.setDate(d.getDate() - 7);
+    // d.setDate(d.getDate() - 7);
 
     // create new date of day before
-    let sunday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
+    // let sunday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
 
 
 
     // let startOfWeek = moment().startOf('week').toDate();
     // let endOfWeek = moment().endOf('week').toDate();
-    console.log("sunday is: ", sunday);
-    console.log("diff2 is: ", diff2);
+    // console.log("sunday is: ", sunday);
+    // console.log("diff2 is: ", diff2);
   }
 
 /* is there too much happening here? */
@@ -198,6 +211,11 @@ export default class Current extends React.Component {
     //   <div>TEST</div>
     //   return null;
     // } else {
+
+    // let testStartDate = new Date();
+    let testStartDate = "TEST";
+
+
       return (
 
         <React.Fragment>
@@ -212,7 +230,7 @@ export default class Current extends React.Component {
               </div>
               <div className="currentSummary">
                 <div className="">{this.state.currentWeekNumber}</div>
-                <div className="">12/29/2019</div>
+                <div className="">{testStartDate}</div>
                 <div className="">01/04/2020</div>
                 <div className="mt-3">12/25/2019</div>
               </div>
