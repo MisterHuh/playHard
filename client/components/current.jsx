@@ -61,60 +61,47 @@ export default class Current extends React.Component {
 
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    let unixTime = Date.now();
-    let unixTime2 = Date.now();
     let date = new Date();
     let day = days[date.getDay()];
-    // let time = date.getMilliseconds();
-    let startDay, endDay, formatted_date;
-
-    console.log("date is: ", date);
-    console.log("day is: ", day);
-    // console.log("time is: ", time);
-
-    // if (day === "Monday" || day === "Tuesday" || day === "Wednesday" || day === "Thursday" || day === "Friday" || day === "Saturday") {
-    //   day = "Not Sunday";
-    // } else {
-    //   day = "is Sunday";
-    // }
+    let daysInMS = 1000 * 60 * 60 * 24; // 1 day
+    let index = 4;
+    let index1 = 2;
+    let calculator = daysInMS * index;
+    let calculator2 = daysInMS * index1;
+    let findStartDate, findEndDate, formattedStartDate, formattedEndDate, formattedDate;
 
     if (day === "Thursday") {
-      console.log("day statement triggered");
-      // unixTime2 = unixTime - (86400 * 4);
-      let jae = 1000 * 60 * 60 * 24 * 4;
-      // var date = new Date(unix_timestamp * 1000);
-      startDay = new Date(date - jae);
-      endDay = days[startDay.getDay()];
-      formatted_date = startDay.getFullYear() + "-" + (startDay.getMonth() + 1) + "-" + startDay.getDate();
+      findStartDate = new Date(date - calculator);
+      findEndDate = date.setDate(date.getDate() + 2);
+      formattedStartDate = findStartDate.getFullYear() + "/" + (findStartDate.getMonth() + 1) + "/" + findStartDate.getDate();
+      // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
+      // formattedDate = days[findEndDate.getDay()];
     }
 
+    var targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 10);
 
+    console.log("findEndDate is: ", findEndDate);
 
-    console.log("startDay is: ", startDay);
-    console.log("endDay is: ", endDay);
-    console.log("unixTime2 is: ", unixTime2);
-    console.log("formatted_date is: ", formatted_date);
-    // console.log("day is: ", day);
+    console.log("calculator is: ", calculator);
+    console.log("calculator2 is: ", calculator2);
+    console.log("date is: ", date);
+    console.log("day is: ", day);
 
-    // let diff = date.getDate() - date.getDay() + (date.getDay() === 0 ? -6 : 1);
-    // let diff2 = new Date(date.setDate(diff));
-    // let d = new Date();
-
-    // set to Monday of this week
-    // d.setDate(d.getDate() - (d.getDay() + 6) % 7);
-
-    // set to previous Monday
-    // d.setDate(d.getDate() - 7);
-
-    // create new date of day before
-    // let sunday = new Date(d.getFullYear(), d.getMonth(), d.getDate() - 1);
+    // if (day === "Thursday") {
+    //   console.log("day statement triggered");
+    //   let jae = 1000 * 60 * 60 * 24 * 4;
+    //   startDay = new Date(date - jae);
+    //   endDay = days[startDay.getDay()];
+    //   formatted_date = startDay.getFullYear() + "-" + (startDay.getMonth() + 1) + "-" + startDay.getDate();
+    // }
 
 
 
-    // let startOfWeek = moment().startOf('week').toDate();
-    // let endOfWeek = moment().endOf('week').toDate();
-    // console.log("sunday is: ", sunday);
-    // console.log("diff2 is: ", diff2);
+    console.log("formattedStartDate is: ", formattedStartDate);
+    console.log("formattedEndDate is: ", formattedEndDate);
+    console.log("formattedDate is: ", formattedDate);
+
   }
 
 /* is there too much happening here? */
