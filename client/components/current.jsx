@@ -19,6 +19,9 @@ export default class Current extends React.Component {
       gas: 0,
       fixedEtc: 0,
 
+      startDate: "",
+      endDate: "",
+
       currentWeekNumber: 0
     }
 
@@ -61,48 +64,46 @@ export default class Current extends React.Component {
 
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    let fullDate = new Date();
+    let start = new Date();
+    let end = new Date();
+    let day = daysList[start.getDay()]; // finds the current day from daysList
+    let startIndex = 0; // to find the start date
+    let endIndex = 0; // to find the end date
+    let rawStartDate, rawEndDate, formattedStartDate, formattedEndDate, unformattedStartDate, unformattedEndDate;
 
-    let day = daysList[fullDate.getDay()]; // finds the current day from daysList
-    let daysInMS = 1000 * 60 * 60 * 24; // 1 day
-
-    let index = 5; // to find the start date (if today is Friday)
-    let calculator = daysInMS * index; // # of days to subtract
-    let calculator2 = daysInMS * 1;
-    let findStartDate, findEndDate, formattedStartDate, formattedEndDate, formattedDate, test, test1;
-
-    console.log("fullDate is: ", fullDate);
+    console.log("start is: ", start);
     console.log("day is: ", day);
 
 
     if (day === "Friday") {
-      findStartDate = new Date(fullDate - calculator);
-      formattedStartDate = findStartDate.getFullYear() + "/" + (findStartDate.getMonth() + 1) + "/" + findStartDate.getDate();
+      rawStartDate = start.setTime(start.getTime() + (-5 * 24 * 60 * 60 * 1000));
+      rawEndDate = end.setTime(end.getTime() + (1 * 24 * 60 * 60 * 1000));
+      unformattedStartDate = new Date(rawStartDate);
+      unformattedEndDate = new Date(rawEndDate);
 
-      // findEndDate = new Date(fullDate + calculator2);
-      // findEndDate = fullDate.setDate(fullDate.getDate() + 1);
-      findEndDate = fullDate.setTime(fullDate.getTime() + (1 * 24 * 60 * 60 * 1000));
-      test = new Date(findEndDate);
-      // test1 = test.toUTCString();
-
-      // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
+      formattedStartDate = unformattedStartDate.getFullYear() + "/" + (unformattedStartDate.getMonth() + 1) + "/" + unformattedStartDate.getDate();
+      formattedEndDate = unformattedEndDate.getFullYear() + "/" + (unformattedEndDate.getMonth() + 1) + "/" + unformattedEndDate.getDate();
     }
 
+    this.setState({ startDate: formattedStartDate });
+
     let unixTime = Date.now();
-    let difference = unixTime - findEndDate
+    let difference = unixTime - rawEndDate
 
 
-    console.log("findStartDate is: ", findStartDate);
-    console.log("formattedStartDate is: ", formattedStartDate);
-    console.log("difference is: ", difference);
-    console.log("calculator2 is: ", calculator2);
+    console.log("rawStartDate is: ", rawStartDate);
+
 
     console.log("//////////////////////////////////////////");
 
     console.log("unixTime is: ", unixTime);
-    console.log("findEndDate is: ", findEndDate);
-    console.log("test is: ", test);
-    // console.log("formattedEndDate is: ", formattedEndDate);
+    console.log("rawEndDate is: ", rawEndDate);
+
+    console.log("unformattedStartDate is: ", unformattedStartDate);
+    console.log("unformattedEndDate is: ", unformattedEndDate);
+
+    console.log("formattedStartDate is: ", formattedStartDate);
+    console.log("formattedEndDate is: ", formattedEndDate);
 
     // if (day === "Thursday") {
     //   console.log("day statement triggered");
@@ -233,7 +234,9 @@ export default class Current extends React.Component {
     // } else {
 
     // let testStartDate = new Date();
-    let testStartDate = "TEST";
+    // let testStartDate = "TEST";
+
+    console.log("this.state.startDate is: ", this.state.startDate);
 
 
       return (
@@ -250,7 +253,7 @@ export default class Current extends React.Component {
               </div>
               <div className="currentSummary">
                 <div className="">{this.state.currentWeekNumber}</div>
-                <div className="">{testStartDate}</div>
+                <div className="">{this.state.startDate ? this.state.startDate : null}</div>
                 <div className="">01/04/2020</div>
                 <div className="mt-3">12/25/2019</div>
               </div>
