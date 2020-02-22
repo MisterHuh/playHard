@@ -40,7 +40,7 @@ export default class Current extends React.Component {
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("CURRENT current is: ", current);
+        // console.log("CURRENT current is: ", current);
         this.setState({ current });
         this.currentSummary();
         this.testTwo();
@@ -62,26 +62,43 @@ export default class Current extends React.Component {
     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     let date = new Date();
+
     let day = days[date.getDay()];
+
     let daysInMS = 1000 * 60 * 60 * 24; // 1 day
-    let index = 4;
-    let index1 = 2;
-    let calculator = daysInMS * index;
-    let calculator2 = daysInMS * index1;
+    let index = 5; // to find the start date
+    let index1 = 0; // to find the end date
+    let calculator = daysInMS * index; // # of days to subtract
+    let calculator2 = daysInMS * index1; // # of days to add
     let findStartDate, findEndDate, formattedStartDate, formattedEndDate, formattedDate;
 
-    if (day === "Thursday") {
+    if (day === "Friday") {
+
       findStartDate = new Date(date - calculator);
-      findEndDate = date.setDate(date.getDate() + 2);
+      // findEndDate = new Date(date + calculator2);
+      findEndDate = date.setDate((date.getDate() + 1));
+
+      // test = date.setDate(date.getDate()+5)
+      // findEndDate = date.setDate(date.getDate() + 1);
       formattedStartDate = findStartDate.getFullYear() + "/" + (findStartDate.getMonth() + 1) + "/" + findStartDate.getDate();
+      // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
+
+
+
+      // findStartDate = new Date();
+
+
       // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
       // formattedDate = days[findEndDate.getDay()];
     }
 
-    var targetDate = new Date();
-    targetDate.setDate(targetDate.getDate() + 10);
+    // var targetDate = new Date();
+    // targetDate.setDate(targetDate.getDate() + 10);
 
+    let test = calculator2 - calculator;
     console.log("findEndDate is: ", findEndDate);
+    console.log("findStartDate is: ", findStartDate);
+    console.log("test is: ", test);
 
     console.log("calculator is: ", calculator);
     console.log("calculator2 is: ", calculator2);
@@ -96,11 +113,9 @@ export default class Current extends React.Component {
     //   formatted_date = startDay.getFullYear() + "-" + (startDay.getMonth() + 1) + "-" + startDay.getDate();
     // }
 
-
-
     console.log("formattedStartDate is: ", formattedStartDate);
     console.log("formattedEndDate is: ", formattedEndDate);
-    console.log("formattedDate is: ", formattedDate);
+    // console.log("formattedDate is: ", formattedDate);
 
   }
 
@@ -179,7 +194,7 @@ export default class Current extends React.Component {
 
   componentDidMount() {
 
-    console.log("componentDidMount fired");
+    // console.log("componentDidMount fired");
 
 
     // let currentWeekNumber = this.props.currentWeekNumber;
