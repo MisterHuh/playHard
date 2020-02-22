@@ -59,33 +59,50 @@ export default class Current extends React.Component {
 
   testTwo() {
 
-    let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    let date = new Date();
+    let fullDate = new Date();
 
-    let day = days[date.getDay()];
-
+    let day = daysList[fullDate.getDay()]; // finds the current day from daysList
     let daysInMS = 1000 * 60 * 60 * 24; // 1 day
-    let index = 5; // to find the start date
-    let index2 = 0; // to find the end date
+
+    let index = 5; // to find the start date (if today is Friday)
     let calculator = daysInMS * index; // # of days to subtract
-    let calculator2 = daysInMS * index2; // # of days to add
-    let findStartDate, findEndDate, formattedStartDate, formattedEndDate, formattedDate;
+    let calculator2 = daysInMS * 1;
+    let findStartDate, findEndDate, formattedStartDate, formattedEndDate, formattedDate, test, test1;
 
-    if (day === "Friday") {
-
-      findStartDate = new Date(date - calculator);
-      formattedStartDate = findStartDate.getFullYear() + "/" + (findStartDate.getMonth() + 1) + "/" + findStartDate.getDate();
-    }
-
-    console.log("date is: ", date);
+    console.log("fullDate is: ", fullDate);
     console.log("day is: ", day);
 
-    console.log("findStartDate is: ", findStartDate);
 
-    console.log("calculator is: ", calculator);
+    if (day === "Friday") {
+      findStartDate = new Date(fullDate - calculator);
+      formattedStartDate = findStartDate.getFullYear() + "/" + (findStartDate.getMonth() + 1) + "/" + findStartDate.getDate();
+
+      // findEndDate = new Date(fullDate + calculator2);
+      // findEndDate = fullDate.setDate(fullDate.getDate() + 1);
+      findEndDate = fullDate.setTime(fullDate.getTime() + (1 * 24 * 60 * 60 * 1000));
+      test = new Date(findEndDate);
+      // test1 = test.toUTCString();
+
+      // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
+    }
+
+    let unixTime = Date.now();
+    let difference = unixTime - findEndDate
+
+
+    console.log("findStartDate is: ", findStartDate);
+    console.log("formattedStartDate is: ", formattedStartDate);
+    console.log("difference is: ", difference);
     console.log("calculator2 is: ", calculator2);
 
+    console.log("//////////////////////////////////////////");
+
+    console.log("unixTime is: ", unixTime);
+    console.log("findEndDate is: ", findEndDate);
+    console.log("test is: ", test);
+    // console.log("formattedEndDate is: ", formattedEndDate);
 
     // if (day === "Thursday") {
     //   console.log("day statement triggered");
@@ -94,8 +111,6 @@ export default class Current extends React.Component {
     //   endDay = days[startDay.getDay()];
     //   formatted_date = startDay.getFullYear() + "-" + (startDay.getMonth() + 1) + "-" + startDay.getDate();
     // }
-
-    console.log("formattedStartDate is: ", formattedStartDate);
 
 
   }
