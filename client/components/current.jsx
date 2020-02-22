@@ -67,43 +67,25 @@ export default class Current extends React.Component {
 
     let daysInMS = 1000 * 60 * 60 * 24; // 1 day
     let index = 5; // to find the start date
-    let index1 = 0; // to find the end date
+    let index2 = 0; // to find the end date
     let calculator = daysInMS * index; // # of days to subtract
-    let calculator2 = daysInMS * index1; // # of days to add
+    let calculator2 = daysInMS * index2; // # of days to add
     let findStartDate, findEndDate, formattedStartDate, formattedEndDate, formattedDate;
 
     if (day === "Friday") {
 
       findStartDate = new Date(date - calculator);
-      // findEndDate = new Date(date + calculator2);
-      findEndDate = date.setDate((date.getDate() + 1));
-
-      // test = date.setDate(date.getDate()+5)
-      // findEndDate = date.setDate(date.getDate() + 1);
       formattedStartDate = findStartDate.getFullYear() + "/" + (findStartDate.getMonth() + 1) + "/" + findStartDate.getDate();
-      // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
-
-
-
-      // findStartDate = new Date();
-
-
-      // formattedEndDate = findEndDate.getFullYear() + "/" + (findEndDate.getMonth() + 1) + "/" + findEndDate.getDate();
-      // formattedDate = days[findEndDate.getDay()];
     }
 
-    // var targetDate = new Date();
-    // targetDate.setDate(targetDate.getDate() + 10);
+    console.log("date is: ", date);
+    console.log("day is: ", day);
 
-    let test = calculator2 - calculator;
-    console.log("findEndDate is: ", findEndDate);
     console.log("findStartDate is: ", findStartDate);
-    console.log("test is: ", test);
 
     console.log("calculator is: ", calculator);
     console.log("calculator2 is: ", calculator2);
-    console.log("date is: ", date);
-    console.log("day is: ", day);
+
 
     // if (day === "Thursday") {
     //   console.log("day statement triggered");
@@ -114,8 +96,7 @@ export default class Current extends React.Component {
     // }
 
     console.log("formattedStartDate is: ", formattedStartDate);
-    console.log("formattedEndDate is: ", formattedEndDate);
-    // console.log("formattedDate is: ", formattedDate);
+
 
   }
 
