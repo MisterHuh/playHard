@@ -64,16 +64,15 @@ export default class Current extends React.Component {
 
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
+    let rawStartDate, rawEndDate, unformattedStartDate, unformattedEndDate, startDate, endDate;
+    let startDay, endDay, startMonth, endMonth;
     let start = new Date();
     let end = new Date();
-    let day = daysList[start.getDay()]; // finds the current day from daysList
+
     let startIndex = 0; // to find the start date
     let endIndex = 0; // to find the end date
-    let rawStartDate, rawEndDate, formattedStartDate, formattedEndDate, unformattedStartDate, unformattedEndDate;
 
-    console.log("start is: ", start);
-    console.log("day is: ", day);
-
+    let day = daysList[start.getDay()]; // finds the current day from daysList
 
     if (day === "Friday") {
       rawStartDate = start.setTime(start.getTime() + (-5 * 24 * 60 * 60 * 1000));
@@ -81,29 +80,22 @@ export default class Current extends React.Component {
       unformattedStartDate = new Date(rawStartDate);
       unformattedEndDate = new Date(rawEndDate);
 
-      formattedStartDate = unformattedStartDate.getFullYear() + "/" + (unformattedStartDate.getMonth() + 1) + "/" + unformattedStartDate.getDate();
-      formattedEndDate = unformattedEndDate.getFullYear() + "/" + (unformattedEndDate.getMonth() + 1) + "/" + unformattedEndDate.getDate();
+      startDay = daysList[unformattedStartDate.getDay()].substring(0,3);
+      endDay = daysList[unformattedEndDate.getDay()];
+
+      if ((unformattedStartDate.getMonth() + 1) <= 9 ) {
+        console.log("yo this is: ", unformattedStartDate.getMonth() + 1);
+        startMonth = "0" + (unformattedStartDate.getMonth() + 1);
+      };
+
+      startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
+      endDate = endDay + ", " + (unformattedEndDate.getMonth() + 1) + "/" + unformattedEndDate.getDate();
     }
 
-    this.setState({ startDate: formattedStartDate });
+    this.setState({ startDate, endDate })
 
-    let unixTime = Date.now();
-    let difference = unixTime - rawEndDate
-
-
-    console.log("rawStartDate is: ", rawStartDate);
-
-
-    console.log("//////////////////////////////////////////");
-
-    console.log("unixTime is: ", unixTime);
-    console.log("rawEndDate is: ", rawEndDate);
-
-    console.log("unformattedStartDate is: ", unformattedStartDate);
-    console.log("unformattedEndDate is: ", unformattedEndDate);
-
-    console.log("formattedStartDate is: ", formattedStartDate);
-    console.log("formattedEndDate is: ", formattedEndDate);
+    console.log("startDate is: ", startDate);
+    console.log("endDate is: ", endDate);
 
     // if (day === "Thursday") {
     //   console.log("day statement triggered");
@@ -237,6 +229,7 @@ export default class Current extends React.Component {
     // let testStartDate = "TEST";
 
     console.log("this.state.startDate is: ", this.state.startDate);
+    console.log("this.state.endDate is: ", this.state.endDate);
 
 
       return (
@@ -254,7 +247,7 @@ export default class Current extends React.Component {
               <div className="currentSummary">
                 <div className="">{this.state.currentWeekNumber}</div>
                 <div className="">{this.state.startDate ? this.state.startDate : null}</div>
-                <div className="">01/04/2020</div>
+                <div className="">{this.state.endDate ? this.state.endDate : null}</div>
                 <div className="mt-3">12/25/2019</div>
               </div>
             </div>
