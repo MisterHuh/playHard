@@ -257,18 +257,6 @@ export default class Current extends React.Component {
 
   render() {
 
-    // if (!this.state.budget) {
-    //   <div>TEST</div>
-    //   return null;
-    // } else {
-
-    // let testStartDate = new Date();
-    // let testStartDate = "TEST";
-
-    console.log("this.state.startDate is: ", this.state.startDate);
-    console.log("this.state.endDate is: ", this.state.endDate);
-
-
       return (
 
         <React.Fragment>
