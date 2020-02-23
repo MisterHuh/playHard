@@ -39,29 +39,16 @@ export default class App extends React.Component {
 
   getWeekNum() {
 
-    // console.log("getWeekNum fired");
-
-    // console.log(2);
-    // console.log("APP getWeekNum fired");
     let timestamp = new Date();
-    // console.log("timestamp is: ", timestamp);
-
     let sundayChecker = timestamp.getDay();
-    // console.log("sundayChecker is: ", sundayChecker);
-
     let currentWeek = require("current-week-number");
     let currentWeekNumber;
 
     if (sundayChecker === 0) {
       let followingDay = new Date(timestamp.getTime() + 86400000);
-      // console.log("followingDay is: ", followingDay);
       currentWeekNumber = currentWeek(followingDay);
-      // console.log("sundayChecker is 0");
-      // console.log("currentWeekNumber is: ", currentWeekNumber);
     } else {
       currentWeekNumber = currentWeek(timestamp);
-      // console.log("sundayChecker is NOT 0");
-      // console.log("currentWeekNumber is: ", currentWeekNumber);
     }
     this.setState({ currentWeekNumber })
 
@@ -124,8 +111,6 @@ export default class App extends React.Component {
   }
 
   retrieveAllData() {
-
-    console.log("retrieveData fired");
 
     let endpoint;
     if (this.state.view === "add") {

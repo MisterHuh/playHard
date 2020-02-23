@@ -28,7 +28,6 @@ export default class Current extends React.Component {
 
     this.deleteEntry = this.deleteEntry.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
-    this.test = this.test.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDate = this.formatDate.bind(this);
@@ -37,11 +36,11 @@ export default class Current extends React.Component {
 
   retrieveCurrentData() {
 
-
-    let endPoint = "getCurrent";
+    // let endPoint = "getCurrent";
     let curTimestamp = new Date();
     let unixTimestamp = curTimestamp.getTime();
     let todayDate = this.formatDate(unixTimestamp);
+    this.setState({ todayDate });
 
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
@@ -50,8 +49,6 @@ export default class Current extends React.Component {
         this.currentSummary();
         this.findStartEndDates();
       })
-
-    this.setState({ todayDate });
 
   }
 
@@ -200,45 +197,11 @@ export default class Current extends React.Component {
 
       });
     this.retrieveCurrentData();
-
   }
 
 
   componentDidMount() {
-
-    // console.log("componentDidMount fired");
-
-
-    // let currentWeekNumber = this.props.currentWeekNumber;
-    // this.setState({ currentWeekNumber })
-    // let current = this.props.current;
-    // this.setState({ current });
-    // this.props.currentSummary();
-
-    // this.test();
-
-
-    // this.props.retrieveAllData();
-    // console.log("componentDidMount finished");
-
-    /* 2 */
-    /* run retrieveCurrentData here, not on <App /> */
     this.retrieveCurrentData();
-  }
-
-  test() {
-    console.log("test() fired");
-    console.log("this.props.current is: ", this.props.current);
-    let currentWeekNumber = this.props.currentWeekNumber;
-    let current = this.props.current;
-
-    this.setState({
-      currentWeekNumber,
-      current
-     })
-
-    this.props.currentSummary();
-
   }
 
   render() {
