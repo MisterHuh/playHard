@@ -39,7 +39,7 @@ export default class App extends React.Component {
 
   getWeekNum() {
 
-    console.log("getWeekNum fired");
+    // console.log("getWeekNum fired");
 
     // console.log(2);
     // console.log("APP getWeekNum fired");

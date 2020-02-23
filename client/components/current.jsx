@@ -39,6 +39,11 @@ export default class Current extends React.Component {
 
 
     let endPoint = "getCurrent";
+    let curTimestamp = new Date();
+    let testVar = curTimestamp.getTime();
+    let todayDate = this.formatDate(testVar);
+    // let testVar2 = curTimestamp.getMonth();
+    // console.log("testVar2 is: ", testVar2);
 
     // fetch(`/api/` + endPoint + `.php`)
 
@@ -49,8 +54,12 @@ export default class Current extends React.Component {
         this.setState({ current });
         this.currentSummary();
         this.testTwo();
-        this.formatDate();
       })
+
+    this.setState({ todayDate });
+
+
+      // this.formatData(testVar);
   }
 
   retrieveNextWeek() {
@@ -105,17 +114,20 @@ export default class Current extends React.Component {
     unformattedStartDate = new Date(rawStartDate);
     unformattedEndDate = new Date(rawEndDate);
 
+    console.log("rawStartDate is: ", rawStartDate);
+    console.log("rawEndDate is: ", rawEndDate);
+
     startDay = daysList[unformattedStartDate.getDay()].substring(0, 3);
     endDay = daysList[unformattedEndDate.getDay()].substring(0, 3);
 
     if ((unformattedStartDate.getMonth() + 1) <= 9) {
-      console.log("yo the month is: ", unformattedStartDate.getMonth() + 1);
+      // console.log("yo the month is: ", unformattedStartDate.getMonth() + 1);
       startMonth = "0" + (unformattedStartDate.getMonth() + 1);
     };
 
 
     if ((unformattedEndDate.getMonth() + 1) <= 9) {
-      console.log("yo the month is: ", unformattedEndDate.getMonth() + 1);
+      // console.log("yo the month is: ", unformattedEndDate.getMonth() + 1);
       endMonth = "0" + (unformattedEndDate.getMonth() + 1);
     };
 
@@ -129,20 +141,28 @@ export default class Current extends React.Component {
 
   }
 
-  formatDate() {
-    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let unformattedTodayDate = new Date();
-    let month = "";
-    let todayDate = "";
+  formatDate(testVar) {
 
-    if ((unformattedTodayDate.getMonth() + 1) <= 9) {
-      console.log("yo the month is: ", unformattedTodayDate.getMonth() + 1);
-      month = "0" + (unformattedTodayDate.getMonth() + 1);
+    let jaeTest = new Date(testVar);
+    console.log("testVar is: ", testVar);
+    console.log("jaeTest is: ", jaeTest);
+    console.log("testVar month is: ", jaeTest.getMonth());
+    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    // let unformattedTodayDate = new Date();
+    // let testVar = testVar;
+    let month = "";
+    let formattedDate = "";
+
+    if (jaeTest.getMonth() <= 10) {
+      // console.log("yo the month is: ", jaeTest.getMonth() + 1);
+      month = "0" + (jaeTest.getMonth() + 1);
+      console.log("month is: ", month);
     };
 
-    todayDate = daysList[unformattedTodayDate.getDay()].substring(0, 3) + ", " + month + "/" + unformattedTodayDate.getDate();
-    console.log("todayDate is: ", todayDate);
-    this.setState({ todayDate });
+    console.log("formattedDate is: ", formattedDate);
+    // this.setState({ todayDate: formattedDate });
+    return formattedDate = daysList[jaeTest.getDay()].substring(0, 3) + ", " + month + "/" + jaeTest.getDate();
+
   }
 
 /* is there too much happening here? */

@@ -6,8 +6,6 @@ export const RenderData = props => {
   let id = entry["id"];
   let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
 
-  console.log("RenderData fired");
-
   if (entry) {
     return (
       <div className={"currentData"} >
