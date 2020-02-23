@@ -30,7 +30,7 @@ export default class Current extends React.Component {
     this.currentSummary = this.currentSummary.bind(this);
     this.test = this.test.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
-    this.testTwo = this.testTwo.bind(this);
+    this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDate = this.formatDate.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
   };
@@ -40,26 +40,19 @@ export default class Current extends React.Component {
 
     let endPoint = "getCurrent";
     let curTimestamp = new Date();
-    let testVar = curTimestamp.getTime();
-    let todayDate = this.formatDate(testVar);
-    // let testVar2 = curTimestamp.getMonth();
-    // console.log("testVar2 is: ", testVar2);
-
-    // fetch(`/api/` + endPoint + `.php`)
+    let unixTimestamp = curTimestamp.getTime();
+    let todayDate = this.formatDate(unixTimestamp);
 
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
-        // console.log("CURRENT current is: ", current);
         this.setState({ current });
         this.currentSummary();
-        this.testTwo();
+        this.findStartEndDates();
       })
 
     this.setState({ todayDate });
 
-
-      // this.formatData(testVar);
   }
 
   retrieveNextWeek() {
@@ -72,12 +65,11 @@ export default class Current extends React.Component {
       })
   }
 
-  testTwo() {
+  findStartEndDates() {
 
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    let rawStartDate, rawEndDate, unformattedStartDate, unformattedEndDate, startDate, endDate;
-    let startDay, endDay, startMonth, endMonth;
+    let rawStartDate, rawEndDate;
     let start = new Date();
     let end = new Date();
 
@@ -86,6 +78,7 @@ export default class Current extends React.Component {
 
     let day = daysList[start.getDay()]; // finds the current day from daysList
 
+    /* determines how many days to add / subtract */
     if (day === "Sunday") {
       startIndex = 0;
       endIndex = 6;
@@ -111,57 +104,30 @@ export default class Current extends React.Component {
 
     rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
     rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
-    unformattedStartDate = new Date(rawStartDate);
-    unformattedEndDate = new Date(rawEndDate);
 
-    console.log("rawStartDate is: ", rawStartDate);
-    console.log("rawEndDate is: ", rawEndDate);
-
-    startDay = daysList[unformattedStartDate.getDay()].substring(0, 3);
-    endDay = daysList[unformattedEndDate.getDay()].substring(0, 3);
-
-    if ((unformattedStartDate.getMonth() + 1) <= 9) {
-      // console.log("yo the month is: ", unformattedStartDate.getMonth() + 1);
-      startMonth = "0" + (unformattedStartDate.getMonth() + 1);
-    };
-
-
-    if ((unformattedEndDate.getMonth() + 1) <= 9) {
-      // console.log("yo the month is: ", unformattedEndDate.getMonth() + 1);
-      endMonth = "0" + (unformattedEndDate.getMonth() + 1);
-    };
-
-    startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
-    endDate = endDay + ", " + endMonth + "/" + unformattedEndDate.getDate();
+    let startDate = this.formatDate(rawStartDate);
+    let endDate = this.formatDate(rawEndDate);
 
     this.setState({ startDate, endDate })
 
-    console.log("startDate is: ", startDate);
-    console.log("endDate is: ", endDate);
-
   }
 
-  formatDate(testVar) {
+  formatDate(date) {
 
-    let jaeTest = new Date(testVar);
-    console.log("testVar is: ", testVar);
-    console.log("jaeTest is: ", jaeTest);
-    console.log("testVar month is: ", jaeTest.getMonth());
+    /* grabbing the unix time stamp differenciates the start / today / end date */
+    let timestamp = new Date(date);
+
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    // let unformattedTodayDate = new Date();
-    // let testVar = testVar;
     let month = "";
     let formattedDate = "";
 
-    if (jaeTest.getMonth() <= 10) {
-      // console.log("yo the month is: ", jaeTest.getMonth() + 1);
-      month = "0" + (jaeTest.getMonth() + 1);
-      console.log("month is: ", month);
+    /* this adds a 0 to the single-digit months */
+    if (timestamp.getMonth() <= 10) {
+      month = "0" + (timestamp.getMonth() + 1);
     };
 
-    console.log("formattedDate is: ", formattedDate);
-    // this.setState({ todayDate: formattedDate });
-    return formattedDate = daysList[jaeTest.getDay()].substring(0, 3) + ", " + month + "/" + jaeTest.getDate();
+    /* returning value simply set to a variable -> then setState with the variable */
+    return formattedDate = daysList[timestamp.getDay()].substring(0, 3) + ", " + month + "/" + timestamp.getDate();
 
   }
 
