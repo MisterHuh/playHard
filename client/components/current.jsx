@@ -283,9 +283,9 @@ export default class Current extends React.Component {
               </div>
               <div className="currentSummary">
                 <div className="">{this.state.currentWeekNumber}</div>
-                <div className="">{this.state.startDate ? this.state.startDate : null}</div>
-                <div className="">{this.state.endDate ? this.state.endDate : null}</div>
-                <div className="mt-3">{this.state.todayDate ? this.state.todayDate : null}</div>
+                <div className="">{this.state.startDate ? this.state.startDate : '\xa0'}</div>
+                <div className="">{this.state.endDate ? this.state.endDate : '\xa0'}</div>
+                <div className="mt-3">{this.state.todayDate ? this.state.todayDate : '\xa0'}</div>
               </div>
             </div>
 
