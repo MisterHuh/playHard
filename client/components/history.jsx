@@ -1,5 +1,4 @@
 import React from "react";
-// import { RenderData } from "./renderData";
 import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
@@ -9,6 +8,8 @@ import 'react-dropdown/historyDropdown.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+// import Pagination from "react-js-pagination";
+// require("bootstrap/less/bootstrap.less");
 
 export default class History extends React.Component {
   constructor(props) {
@@ -29,6 +30,13 @@ export default class History extends React.Component {
       order: "DESC",
 
       current: [],
+      // activePage: 20,
+
+      /* pagination */
+      users: null, // data you loop over => this.state.current
+      total: null, // helps with calculating page logic => this.state.current.length
+      per_page: null, // helps with calculating page logic => 20
+      current_page: null, // style the active pagination link => 1
 
       totalSpendings: 0,
       totalCredits: 0,
@@ -52,11 +60,17 @@ export default class History extends React.Component {
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
     this.retrieveSearchData = this.retrieveSearchData.bind(this);
-    this.testFunction = this.testFunction.bind(this);
 
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
     this.querySummary = this.querySummary.bind(this);
+
+    this.handlePageChange = this.handlePageChange.bind(this);
+  }
+
+  handlePageChange(pageNumber) {
+    console.log(`active page is ${pageNumber}`);
+    this.setState({ activePage: pageNumber });
   }
 
   sortByDate() {
@@ -188,7 +202,11 @@ export default class History extends React.Component {
     fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        this.setState({ current });
+        console.dir(current);
+        this.setState({
+          current,
+          total: current.length
+         });
         this.currentSummary();
       })
   }
@@ -320,21 +338,6 @@ export default class History extends React.Component {
     })
   }
 
-  testFunction() {
-    this.state.current.map(entry => {
-      console.log("RenderData fired");
-      return (
-
-        <RenderData
-          key={entry.id}
-          current={this.state.current}
-          deleteEntry={this.deleteEntry}
-        />
-      )
-
-    })
-  }
-
   componentDidMount() {
     this.retrieveAllData();
   }
@@ -447,6 +450,23 @@ export default class History extends React.Component {
             </div>
           </div>
 
+        </div>
+
+        {/* <Pagination
+          activePage={this.state.activePage}
+          itemsCountPerPage={10}
+          totalItemsCount={this.state.current.length}
+          pageRangeDisplayed={10}
+          onChange={this.handlePageChange.bind(this)}
+        /> */}
+
+        <div className="">
+          <span>&laquo;</span>
+          <span className="">1</span>
+          <span>2</span>
+          <span>3</span>
+          <span>4</span>
+          <span>&raquo;</span>
         </div>
 
 
