@@ -19,6 +19,7 @@ export default class Current extends React.Component {
       gas: 0,
       fixedEtc: 0,
 
+      todayDate: "",
       startDate: "",
       endDate: "",
 
@@ -30,6 +31,7 @@ export default class Current extends React.Component {
     this.test = this.test.bind(this);
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.testTwo = this.testTwo.bind(this);
+    this.formatDate = this.formatDate.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
   };
 
@@ -47,6 +49,7 @@ export default class Current extends React.Component {
         this.setState({ current });
         this.currentSummary();
         this.testTwo();
+        this.formatDate();
       })
   }
 
@@ -69,20 +72,8 @@ export default class Current extends React.Component {
     let start = new Date();
     let end = new Date();
 
-    let startIndex = -6; // to find the start date
+    let startIndex = 0; // to find the start date
     let endIndex = 0; // to find the end date
-
-    // Sunday
-    // startIndex = 0;
-    // endIndex = 6;
-
-    // Monday
-    // startIndex = -1;
-    // endIndex = 5;
-
-    // through
-    // startIndex = -6;
-    // endIndex = 0;
 
     let day = daysList[start.getDay()]; // finds the current day from daysList
 
@@ -131,30 +122,27 @@ export default class Current extends React.Component {
     startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
     endDate = endDay + ", " + endMonth + "/" + unformattedEndDate.getDate();
 
-
-    // if (day === "Saturday") {
-    //   rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
-    //   rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
-    //   unformattedStartDate = new Date(rawStartDate);
-    //   unformattedEndDate = new Date(rawEndDate);
-
-    //   startDay = daysList[unformattedStartDate.getDay()].substring(0,3);
-    //   endDay = daysList[unformattedEndDate.getDay()];
-
-    //   if ((unformattedStartDate.getMonth() + 1) <= 9 ) {
-    //     console.log("yo the month is: ", unformattedStartDate.getMonth() + 1);
-    //     startMonth = "0" + (unformattedStartDate.getMonth() + 1);
-    //   };
-
-    //   startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
-    //   endDate = endDay + ", " + (unformattedEndDate.getMonth() + 1) + "/" + unformattedEndDate.getDate();
-    // }
-
     this.setState({ startDate, endDate })
 
     console.log("startDate is: ", startDate);
     console.log("endDate is: ", endDate);
 
+  }
+
+  formatDate() {
+    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let unformattedTodayDate = new Date();
+    let month = "";
+    let todayDate = "";
+
+    if ((unformattedTodayDate.getMonth() + 1) <= 9) {
+      console.log("yo the month is: ", unformattedTodayDate.getMonth() + 1);
+      month = "0" + (unformattedTodayDate.getMonth() + 1);
+    };
+
+    todayDate = daysList[unformattedTodayDate.getDay()].substring(0, 3) + ", " + month + "/" + unformattedTodayDate.getDate();
+    console.log("todayDate is: ", todayDate);
+    this.setState({ todayDate });
   }
 
 /* is there too much happening here? */
@@ -297,7 +285,7 @@ export default class Current extends React.Component {
                 <div className="">{this.state.currentWeekNumber}</div>
                 <div className="">{this.state.startDate ? this.state.startDate : null}</div>
                 <div className="">{this.state.endDate ? this.state.endDate : null}</div>
-                <div className="mt-3">12/25/2019</div>
+                <div className="mt-3">{this.state.todayDate ? this.state.todayDate : null}</div>
               </div>
             </div>
 
