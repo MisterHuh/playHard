@@ -69,42 +69,91 @@ export default class Current extends React.Component {
     let start = new Date();
     let end = new Date();
 
-    let startIndex = 0; // to find the start date
+    let startIndex = -6; // to find the start date
     let endIndex = 0; // to find the end date
+
+    // Sunday
+    // startIndex = 0;
+    // endIndex = 6;
+
+    // Monday
+    // startIndex = -1;
+    // endIndex = 5;
+
+    // through
+    // startIndex = -6;
+    // endIndex = 0;
 
     let day = daysList[start.getDay()]; // finds the current day from daysList
 
-    if (day === "Friday") {
-      rawStartDate = start.setTime(start.getTime() + (-5 * 24 * 60 * 60 * 1000));
-      rawEndDate = end.setTime(end.getTime() + (1 * 24 * 60 * 60 * 1000));
-      unformattedStartDate = new Date(rawStartDate);
-      unformattedEndDate = new Date(rawEndDate);
-
-      startDay = daysList[unformattedStartDate.getDay()].substring(0,3);
-      endDay = daysList[unformattedEndDate.getDay()];
-
-      if ((unformattedStartDate.getMonth() + 1) <= 9 ) {
-        console.log("yo this is: ", unformattedStartDate.getMonth() + 1);
-        startMonth = "0" + (unformattedStartDate.getMonth() + 1);
-      };
-
-      startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
-      endDate = endDay + ", " + (unformattedEndDate.getMonth() + 1) + "/" + unformattedEndDate.getDate();
+    if (day === "Sunday") {
+      startIndex = 0;
+      endIndex = 6;
+    } else if (day === "Monday") {
+      startIndex = -1;
+      endIndex = 5;
+    } else if (day === "Tuesday") {
+      startIndex = -2;
+      endIndex = 4;
+    } else if (day === "Wednesday") {
+      startIndex = -3;
+      endIndex = 3;
+    } else if (day === "Thursday") {
+      startIndex = -4;
+      endIndex = 2;
+    } else if (day === "Friday") {
+      startIndex = -5;
+      endIndex = 1;
+    } else if (day === "Saturday") {
+      startIndex = -6;
+      endIndex = 0;
     }
+
+    rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
+    rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
+    unformattedStartDate = new Date(rawStartDate);
+    unformattedEndDate = new Date(rawEndDate);
+
+    startDay = daysList[unformattedStartDate.getDay()].substring(0, 3);
+    endDay = daysList[unformattedEndDate.getDay()].substring(0, 3);
+
+    if ((unformattedStartDate.getMonth() + 1) <= 9) {
+      console.log("yo the month is: ", unformattedStartDate.getMonth() + 1);
+      startMonth = "0" + (unformattedStartDate.getMonth() + 1);
+    };
+
+
+    if ((unformattedEndDate.getMonth() + 1) <= 9) {
+      console.log("yo the month is: ", unformattedEndDate.getMonth() + 1);
+      endMonth = "0" + (unformattedEndDate.getMonth() + 1);
+    };
+
+    startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
+    endDate = endDay + ", " + endMonth + "/" + unformattedEndDate.getDate();
+
+
+    // if (day === "Saturday") {
+    //   rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
+    //   rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
+    //   unformattedStartDate = new Date(rawStartDate);
+    //   unformattedEndDate = new Date(rawEndDate);
+
+    //   startDay = daysList[unformattedStartDate.getDay()].substring(0,3);
+    //   endDay = daysList[unformattedEndDate.getDay()];
+
+    //   if ((unformattedStartDate.getMonth() + 1) <= 9 ) {
+    //     console.log("yo the month is: ", unformattedStartDate.getMonth() + 1);
+    //     startMonth = "0" + (unformattedStartDate.getMonth() + 1);
+    //   };
+
+    //   startDate = startDay + ", " + startMonth + "/" + unformattedStartDate.getDate();
+    //   endDate = endDay + ", " + (unformattedEndDate.getMonth() + 1) + "/" + unformattedEndDate.getDate();
+    // }
 
     this.setState({ startDate, endDate })
 
     console.log("startDate is: ", startDate);
     console.log("endDate is: ", endDate);
-
-    // if (day === "Thursday") {
-    //   console.log("day statement triggered");
-    //   let jae = 1000 * 60 * 60 * 24 * 4;
-    //   startDay = new Date(date - jae);
-    //   endDay = days[startDay.getDay()];
-    //   formatted_date = startDay.getFullYear() + "-" + (startDay.getMonth() + 1) + "-" + startDay.getDate();
-    // }
-
 
   }
 
@@ -275,7 +324,7 @@ export default class Current extends React.Component {
                   Etc
                   <span className="tooltipText">Utilities & Entertainment</span>
                 </div>
-                <div className="mt-3">Total Remaining</div>
+                <div className="mt-3">Total Fixed</div>
               </div>
               <div className="currentSummaryHistory">
                 <div className="fixed">{CurrencyFormatter.format(this.state.groceries)}</div>
