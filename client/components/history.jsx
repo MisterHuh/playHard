@@ -359,10 +359,10 @@ export default class History extends React.Component {
     return (
 
       <React.Fragment>
-        <div className="currentWrapperTop border">
+        <div className="currentWrapperTop">
 
           {/* left */}
-          <div className="currentSummaryContainer border border-primary">
+          <div className="currentSummaryContainer">
             <div className="currentSummaryHistory">
               <div className="budget">Filter By</div>
               <div className="">Start Date</div>
@@ -411,7 +411,7 @@ export default class History extends React.Component {
           </div>
 
           {/* middle */}
-          <div className="currentSummaryContainer border border-primary">
+          <div className="currentSummaryContainer">
             <div className="currentSummaryHistory">
                 <div className="budget remaining tooltipParent">
                 Total Budget
@@ -432,7 +432,7 @@ export default class History extends React.Component {
           </div>
 
           {/* right */}
-          <div className="currentSummaryContainer border border-primary">
+          <div className="currentSummaryContainer">
             <div className="currentSummaryHistory">
               <div className="fixed">Groceries</div>
               <div className="fixed">Gas</div>

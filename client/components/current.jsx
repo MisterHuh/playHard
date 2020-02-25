@@ -209,39 +209,39 @@ export default class Current extends React.Component {
       return (
 
         <React.Fragment>
-          <div className="currentWrapperTop border border-primary">
+          <div className="currentWrapperTop">
 
-            <div className="currentSummaryContainer border">
+            <div className="currentSummaryContainer">
               <div className="currentSummary">
                 <div className="">Current Week</div>
                 <div className="">Start Date</div>
                 <div className="">End Date</div>
-                <div className="mt-3">Today's Date</div>
+                <div className="">Today's Date</div>
               </div>
               <div className="currentSummary">
                 <div className="">{this.state.currentWeekNumber}</div>
                 <div className="">{this.state.startDate ? this.state.startDate : '\xa0'}</div>
                 <div className="">{this.state.endDate ? this.state.endDate : '\xa0'}</div>
-                <div className="mt-3">{this.state.todayDate ? this.state.todayDate : '\xa0'}</div>
+                <div className="">{this.state.todayDate ? this.state.todayDate : '\xa0'}</div>
               </div>
             </div>
 
-            <div className="currentSummaryContainer border">
+            <div className="currentSummaryContainer">
               <div className="currentSummary">
                 <div className="budget remaining">Budget</div>
                 <div className="spendings">Spendings</div>
                 <div className="credits">Credits</div>
-                <div className="mt-3">Remaining</div>
+                <div className="">Remaining</div>
               </div>
               <div className="currentSummary">
                 <div className="remaining budget">{CurrencyFormatter.format(this.state.budget)}</div>
                 <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
                 <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
-                <div className="mt-3">{CurrencyFormatter.format(this.state.remaining)}</div>
+                <div className="">{CurrencyFormatter.format(this.state.remaining)}</div>
               </div>
             </div>
 
-            <div className="currentSummaryContainer border border-primary">
+            <div className="currentSummaryContainer">
               <div className="currentSummaryHistory">
                 <div className="fixed">Groceries</div>
                 <div className="fixed">Gas</div>
@@ -249,13 +249,13 @@ export default class Current extends React.Component {
                   Etc
                   <span className="tooltipText">Utilities & Entertainment</span>
                 </div>
-                <div className="mt-3">Total Fixed</div>
+                <div className="">Total Fixed</div>
               </div>
               <div className="currentSummaryHistory">
                 <div className="fixed">{CurrencyFormatter.format(this.state.groceries)}</div>
                 <div className="fixed">{CurrencyFormatter.format(this.state.gas)}</div>
                 <div className="fixed">{CurrencyFormatter.format(this.state.fixedEtc)}</div>
-                <div className="mt-3">{CurrencyFormatter.format(this.state.fixed)}</div>
+                <div className="">{CurrencyFormatter.format(this.state.fixed)}</div>
               </div>
             </div>
 
