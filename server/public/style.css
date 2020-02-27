@@ -5,7 +5,7 @@ div {
 }
 
 .navbarButtonContainer {
-  width: 33%;
+  width: 20%;
   font-size: 250%;
   text-align: center;
   border: 1px solid rgba(195, 187, 187);
@@ -37,6 +37,7 @@ div {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #e8e8e838;
   /* border: 1px solid blue; */
 }
 
@@ -51,6 +52,7 @@ div {
   display: flex;
   flex-direction: row;
   height: 100%;
+  background-color: #e8e8e838;
 }
 
 .prevRecBottom {

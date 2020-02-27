@@ -164,6 +164,11 @@ export default class Current extends React.Component {
       }
     }
 
+    console.log("totalGroceries is: ", totalGroceries);
+    console.log("totalGas is: ", totalGas);
+    console.log("totalFixedEtc is: ", totalFixedEtc);
+    console.log("totalFixed is: ", totalFixed);
+
     totalSpendings = totalSpendings.toFixed(2);
     totalCredits = totalCredits.toFixed(2);
     totalFixed = totalFixed.toFixed(2);
@@ -177,7 +182,7 @@ export default class Current extends React.Component {
       fixed: totalFixed,
       groceries: totalGroceries,
       gas: totalGas,
-      ficedEtc: totalFixedEtc
+      fixedEtc: totalFixedEtc
     })
 
   }
