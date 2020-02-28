@@ -139,17 +139,23 @@ div {
   padding: 8px 0px;
   font-weight: bolder;
   border-radius: 28px;
-  transition: background-color 250ms ease-out;
+   color: rgba(0, 0, 0, 0.65);
+  transition: color 450ms ease-out;
+  transition: background-color 750ms ease-out;
 }
 
 .addButton:hover {
   cursor: pointer;
-  transition: background-color 250ms ease-in;
+
+    color: rgba(0, 0, 0, 0.876);
+  transition: color 450ms ease-in;
+
+  transition: background-color 750ms ease-in;
   /* background-color: rgba(217, 57, 49, 0.26); */
   /* background-color: rgba(251, 22, 22, 0.26); */
 
   background-color: rgba(238, 28, 17, 0.883);
-  color: rgb(245, 236, 236);
+
 }
 
 .renderSideBoxFont {
@@ -236,7 +242,7 @@ div {
   /* use the below tone but for Credits / Fixed / Remaining */
   /* background-color: #D43931; */
   /* background-color: rgba(217, 57, 49, 0.2); */
-  background-color: rgba(251, 22, 22, 0.26);
+  background-color: rgb(255, 134, 134);
 }
 
 .credits {
