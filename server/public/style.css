@@ -81,6 +81,10 @@ div {
   border-radius: 15px;
 }
 
+.prevRec:hover {
+  background-color: rgba(195, 187, 187, 0.3);
+}
+
 .prevRecButton {
   border-radius: 10px;
   border: 1px solid black;

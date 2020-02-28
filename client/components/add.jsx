@@ -358,13 +358,13 @@ export default class Add extends React.Component {
 
             <div className="prevRecTop"> {/* top */}
               <div className="previousRecordsContainer">
-                <div className="prevRec mt-3">Date</div>
-                <div className="prevRec mt-3">Category</div>
-                <div className="prevRec mt-3">SubCategory</div>
-                <div className="prevRec mt-3">CC</div>
-                <div className="prevRec mt-3">Amount</div>
-                <div className="prevRec mt-3">Where?</div>
-                <div className="prevRec mt-3">Notes</div>
+                <div className="prevRec mt-3" style={test}>Date</div>
+                <div className="prevRec mt-3" style={test}>Category</div>
+                <div className="prevRec mt-3" style={test}>SubCategory</div>
+                <div className="prevRec mt-3" style={test}>CC</div>
+                <div className="prevRec mt-3" style={test}>Amount</div>
+                <div className="prevRec mt-3" style={test}>Where?</div>
+                <div className="prevRec mt-3" style={test}>Notes</div>
                 <div
                   onClick={() => this.nextButton()}
                   className="mt-4">
