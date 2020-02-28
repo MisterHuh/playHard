@@ -9,14 +9,17 @@ export const Navbar = props => {
   // if (currentView === "add") {
   //   add = {
   //     background: "rgba(195, 187, 187)",
+  //     transition: "background-color 750ms ease"
   //   };
   // } else if (currentView === "current") {
   //   current = {
   //     background: "rgba(195, 187, 187)",
+  //     transition: "background-color 750ms ease"
   //   };
   // } else if (currentView === "history") {
   //   history = {
   //     background: "rgba(195, 187, 187)",
+  //     transition: "background-color 750ms ease"
   //   }
   // }
 

@@ -8,8 +8,7 @@ div {
   width: 100%;
   font-size: 250%;
   text-align: center;
-  /* border: 1px solid rgba(195, 187, 187); */
-  border: 1px solid white;
+  border: 1px solid rgba(158, 158, 158, 0.28);
   transition: background-color 750ms ease;
 
   /* to make it sticky */
@@ -22,16 +21,17 @@ div {
 }
 
 .navbarButtonContainer:hover {
-  border: 1px solid rgba(195, 187, 187, 0.2);
-  /* background: rgba(195, 187, 187, 0.3); */
+  border: 1px solid rgba(195, 187, 187);
   background: rgba(195, 187, 187);
-  /* background-color: transparent; */
   cursor: pointer;
 }
 
+/* .fa-plus:hover, .fa-check:hover, .fa-history:hover {
+  color: black;
+} */
+
 .addWrapper {
   width: 100vw;
-  /* border: 1px solid yellow; */
   display: flex;
   flex-direction: row;
 }
