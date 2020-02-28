@@ -251,14 +251,14 @@ export default class Add extends React.Component {
       colorFormatter = "credits";
     };
 
-    let colorFormatter2;
+    let addSideBoxFooter;
     if (this.state.current.length) {
       if (this.state.current[this.state.currentIndex]["category"] === "Spendings") {
-        colorFormatter2 = "spendings"
+        addSideBoxFooter = "test"
       } else if (this.state.current[this.state.currentIndex]["category"] === "Fixed") {
-        colorFormatter2 = "fixed";
+        addSideBoxFooter = "test";
       } else if (this.state.current[this.state.currentIndex]["category"] === "Credits") {
-        colorFormatter2 = "credits";
+        addSideBoxFooter = "test";
       };
     }
 
@@ -387,7 +387,7 @@ export default class Add extends React.Component {
             </div>
 
             {/* bottom */}
-            <div className={"prevRecBottom " + colorFormatter2}>{this.state.currentIndex + 1} of {this.state.current.length}</div>
+            <div className={"prevRecBottom " + addSideBoxFooter}>{this.state.currentIndex + 1} of {this.state.current.length}</div>
 
           </div>
 

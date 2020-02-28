@@ -340,6 +340,10 @@ div {
   color: rgba(56, 170, 236, 0.637);
  }
 
+ .test {
+  background: linear-gradient(-90deg, #e8e8e838, rgba(73, 212, 49, 0.4));
+ }
+
 
 
 
