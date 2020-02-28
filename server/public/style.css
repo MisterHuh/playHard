@@ -9,6 +9,7 @@ div {
   font-size: 250%;
   text-align: center;
   border: 1px solid rgba(158, 158, 158, 0.28);
+  background-color: #e8e8e838;
   transition: background-color 750ms ease;
 
   /* to make it sticky */
@@ -25,10 +26,6 @@ div {
   background: rgba(195, 187, 187);
   cursor: pointer;
 }
-
-/* .fa-plus:hover, .fa-check:hover, .fa-history:hover {
-  color: black;
-} */
 
 .addWrapper {
   width: 100vw;
@@ -340,8 +337,16 @@ div {
   color: rgba(56, 170, 236, 0.637);
  }
 
- .test {
-  background: linear-gradient(-90deg, #e8e8e838, rgba(73, 212, 49, 0.4));
+ .addSideBoxFooterSpendings {
+  background: linear-gradient(-60deg, #e8e8e838, rgba(217, 57, 49, 0.3));
+ }
+
+ .addSideBoxFooterCredits {
+  background: linear-gradient(-60deg, #e8e8e838, rgba(73, 212, 49, 0.25));
+ }
+
+ .addSideBoxFooterFixed {
+  background: linear-gradient(-60deg, #e8e8e838, rgb(209, 212, 49, 0.4));
  }
 
 

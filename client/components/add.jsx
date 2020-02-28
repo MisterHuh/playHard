@@ -254,11 +254,11 @@ export default class Add extends React.Component {
     let addSideBoxFooter;
     if (this.state.current.length) {
       if (this.state.current[this.state.currentIndex]["category"] === "Spendings") {
-        addSideBoxFooter = "test"
+        addSideBoxFooter = "addSideBoxFooterSpendings"
       } else if (this.state.current[this.state.currentIndex]["category"] === "Fixed") {
-        addSideBoxFooter = "test";
+        addSideBoxFooter = "addSideBoxFooterFixed";
       } else if (this.state.current[this.state.currentIndex]["category"] === "Credits") {
-        addSideBoxFooter = "test";
+        addSideBoxFooter = "addSideBoxFooterCredits";
       };
     }
 
