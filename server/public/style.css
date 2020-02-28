@@ -9,8 +9,9 @@ div {
   font-size: 250%;
   text-align: center;
   border: 1px solid rgba(158, 158, 158, 0.28);
-  background-color: #e8e8e838;
-  transition: background-color 750ms ease;
+
+  transition: background-color 750ms ease-out;
+  background-color: #e8e8e8b9;
 
   /* to make it sticky */
   /* also add padding-top to the content */
@@ -22,8 +23,10 @@ div {
 }
 
 .navbarButtonContainer:hover {
-  border: 1px solid rgba(195, 187, 187);
+  transition: background-color 750ms ease-out;
   background: rgba(195, 187, 187);
+
+  border: 1px solid rgba(195, 187, 187);
   cursor: pointer;
 }
 
@@ -130,7 +133,6 @@ div {
 .addButton {
   width: 100%;
   position: relative;
-  /* background-color: #008CBA; */
   border: 1px solid #ccc;
   border-radius: 2px;
   box-sizing: border-box;
@@ -139,23 +141,17 @@ div {
   padding: 8px 0px;
   font-weight: bolder;
   border-radius: 28px;
-   color: rgba(0, 0, 0, 0.65);
+  color: rgba(0, 0, 0, 0.65);
   transition: color 450ms ease-out;
   transition: background-color 750ms ease-out;
 }
 
 .addButton:hover {
   cursor: pointer;
-
-    color: rgba(0, 0, 0, 0.876);
   transition: color 450ms ease-in;
-
+  color: rgba(0, 0, 0, 0.876);
   transition: background-color 750ms ease-in;
-  /* background-color: rgba(217, 57, 49, 0.26); */
-  /* background-color: rgba(251, 22, 22, 0.26); */
-
   background-color: rgba(238, 28, 17, 0.883);
-
 }
 
 .renderSideBoxFont {
