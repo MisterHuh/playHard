@@ -5,19 +5,20 @@ export const Navbar = props => {
 
   let currentView = props.currentView;
   let add, current, history;
-  if (currentView === "add") {
-    add = {
-      background: "rgba(195, 187, 187)",
-    };
-  } else if (currentView === "current") {
-    current = {
-      background: "rgba(195, 187, 187)",
-    };
-  } else if (currentView === "history") {
-    history = {
-      background: "rgba(195, 187, 187)",
-    }
-  }
+
+  // if (currentView === "add") {
+  //   add = {
+  //     background: "rgba(195, 187, 187)",
+  //   };
+  // } else if (currentView === "current") {
+  //   current = {
+  //     background: "rgba(195, 187, 187)",
+  //   };
+  // } else if (currentView === "history") {
+  //   history = {
+  //     background: "rgba(195, 187, 187)",
+  //   }
+  // }
 
   let setView = props.setView;
 
