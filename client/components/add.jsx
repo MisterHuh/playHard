@@ -246,9 +246,9 @@ export default class Add extends React.Component {
     if (this.state.category === "Spendings") {
       colorFormatter = "addButtonSpendings spendings"
     } else if (this.state.category === "Fixed") {
-      colorFormatter = "fixedButtonSpendings fixed";
+      colorFormatter = "addButtonFixed fixed";
     } else if (this.state.category === "Credits") {
-      colorFormatter = "creditsButtonSpendings credits";
+      colorFormatter = "addButtonCredits credits";
     };
 
     let addSideBoxFooter;

@@ -130,7 +130,7 @@ div {
   text-align: center;
 }
 
-.addButtonSpendings {
+.addButtonSpendings, .addButtonFixed, .addButtonCredits {
   width: 100%;
   position: relative;
   border: 1px solid #ccc;
@@ -143,51 +143,43 @@ div {
   border-radius: 28px;
   color: rgba(0, 0, 0, 0.65);
   transition: color 450ms ease-out;
-  transition: background-color 500ms ease-out;
+  transition: background-color 450ms ease-out;
 }
 
-.addButtonSpendings:hover {
+.addButtonSpendings:hover, .addButtonFixed:hover, .addButtonCredits:hover {
   cursor: pointer;
   transition: color 450ms ease-in;
   color: rgba(0, 0, 0, 0.945);
   transition: background-color 500ms ease-in;
+}
+
+.addButtonSpendings:hover {
   background-color: rgba(238, 28, 17, 0.883);
 }
 
-.fixedButtonSpendings {
-  width: 100%;
-  position: relative;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  box-sizing: border-box;
-  color: black;
-  outline: none;
-  padding: 8px 0px;
-  font-weight: bolder;
-  border-radius: 28px;
-  color: rgba(0, 0, 0, 0.65);
-  transition: color 450ms ease-out;
-  transition: background-color 500ms ease-out;
+.addButtonFixed:hover {
+  /* background-color: rgba(233, 236, 43); */
+  background-color: rgb(251, 255, 43)
 }
 
-.fixedButtonSpendings:hover {
-  cursor: pointer;
-  transition: color 450ms ease-in;
-  color: rgba(0, 0, 0, 0.876);
-  transition: background-color 500ms ease-in;
-  background-color: rgba(251, 255, 0, 0.965)
+.addButtonCredits:hover {
+  background-color: rgb(41, 255, 12);
 }
 
 .spendings {
-  background-color: rgb(255, 134, 134);
+  /* background-color: rgb(255, 134, 134); */
+  background-color: rgba(238, 28, 17, 0.5)
 }
 
 .credits {
-  background-color: rgba(73, 212, 49, 0.4);
+  /* background-color: rgba(73, 212, 49, 0.4); */
+  background-color: rgb(41, 255, 12, 0.5);
 }
 
 .fixed {
-  background-color: rgba(219, 222, 55, 0.5);
+  /* background-color: rgba(233, 236, 43, 0.5); */
+  /* background-color: rgba(251, 255, 0, 0.3) */
+  background-color: rgb(251, 255, 43, 0.3)
 }
 
 .renderSideBoxFont {
