@@ -99,13 +99,49 @@ div {
   width: 50%;
 }
 
-.required {
-  display: inline-block;
-  color: red;
+.formValidationContainer {
+  width: 100%;
+  display: flex;
   margin-top: 5%;
-  margin-right: 5%;
+  margin-bottom: 1%;
+}
+
+/* width is based on the error message */
+.required {
+  width: 80%;
+  text-align: right;
+  color: red;
   font-size: 60%;
   transition: opacity 500ms ease-in-out;
+}
+
+/* width is based on the error message */
+.textFadeOutContainer {
+  width: 20%;
+  display: flex;
+}
+
+.textFadeOut {
+  display: inline-block;
+  text-align: left;
+  color: red;
+  font-size: 60%;
+  animation: fade 2s ease-out forwards;
+}
+
+@keyframes fade {
+  0%    { opacity: 1 }
+  90%   { opacity: 1 }
+  91%   { opacity: 0.9 }
+  92%   { opacity: 0.8 }
+  93%   { opacity: 0.7 }
+  94%   { opacity: 0.6 }
+  95%   { opacity: 0.5 }
+  96%   { opacity: 0.4 }
+  97%   { opacity: 0.3 }
+  98%   { opacity: 0.2 }
+  99%   { opacity: 0.1 }
+  100%  { opacity: 0 }
 }
 
 .shakeIt {
@@ -145,7 +181,7 @@ div {
   cursor: default;
   outline: none;
   padding: 8px 52px 8px 10px;
-  margin: 1% auto auto auto;
+  margin: 0 auto auto auto;
 }
 
 .amount1 {
@@ -192,7 +228,6 @@ div {
 }
 
 .addButtonFixed:hover {
-  /* background-color: rgba(233, 236, 43); */
   background-color: rgb(251, 255, 43)
 }
 
@@ -201,18 +236,14 @@ div {
 }
 
 .spendings {
-  /* background-color: rgb(255, 134, 134); */
   background-color: rgba(238, 28, 17, 0.5)
 }
 
 .credits {
-  /* background-color: rgba(73, 212, 49, 0.4); */
   background-color: rgb(41, 255, 12, 0.5);
 }
 
 .fixed {
-  /* background-color: rgba(233, 236, 43, 0.5); */
-  /* background-color: rgba(251, 255, 0, 0.3) */
   background-color: rgb(251, 255, 43, 0.3)
 }
 

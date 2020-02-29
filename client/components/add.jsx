@@ -78,7 +78,7 @@ export default class Add extends React.Component {
     switch(name) {
       case "amount":
         formErrors.amount = value.length < 1 || firstLastWhiteSpace.test(value)
-        ? 'enter amount'
+        ? 'enter a valid amount'
         : "";
         break;
     }
@@ -275,6 +275,10 @@ export default class Add extends React.Component {
       ? shakeIt = "shakeIt"
       : shakeIt = "";
 
+    // let floatRight = {
+    //   textAlign: "right"
+    // }
+
       return (
 
         <div className="addWrapper">
@@ -325,11 +329,17 @@ export default class Add extends React.Component {
               </div>
 
               <div className="mx-4 addInput">
-                <div className="required">* Required</div>
-                {this.state.formErrors.amount.length > 0 && (
-                  // setTimeout(this.test(), 2000)
-                  <small className="required">{this.state.formErrors.amount}</small>
-                )}
+
+                <div className="formValidationContainer ">
+                  <div className="textFadeOutContainer">
+                    {this.state.formErrors.amount.length > 0 && (
+                      <div className="textFadeOut ">{this.state.formErrors.amount}</div>
+                    )}
+                  </div>
+
+                  <div className="required ">* Required</div>
+                </div>
+
                 <input
                   value={this.state.amount}
                   onChange={this.inputHandleChange}
