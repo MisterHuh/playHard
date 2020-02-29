@@ -99,6 +99,12 @@ div {
   width: 50%;
 }
 
+.required {
+  color: red;
+  margin-top: 4%;
+  font-size: 60%;
+}
+
 .amount {
   width: 100%;
   position: relative;
@@ -111,7 +117,7 @@ div {
   cursor: default;
   outline: none;
   padding: 8px 52px 8px 10px;
-  margin: auto;
+  margin: 1% auto auto auto;
 }
 
 .amount1 {

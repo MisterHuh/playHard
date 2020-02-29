@@ -18,7 +18,7 @@ export default class Add extends React.Component {
       currentIndex: 0,
 
       date: new Date(),
-      category: "Fixed",
+      category: "Spendings",
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
@@ -312,22 +312,24 @@ export default class Add extends React.Component {
               </div>
 
               <div className="mx-4 addInput">
+                <div className="required">* Required</div>
                 <input
                   value={this.state.amount}
                   onChange={this.inputHandleChange}
                   placeholder="$ 00.00"
                   name="amount"
-                  className="amount mt-4"
+                  className="amount"
                 />
               </div>
 
               <div className="mx-4 addInput">
+                <div className="required">* Required</div>
                 <input
                   value={this.state.where}
                   onChange={this.inputHandleChange}
                   placeholder="Where?"
                   name="where"
-                  className="amount mt-4"
+                  className="amount"
                 />
               </div>
 
