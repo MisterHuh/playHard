@@ -130,7 +130,7 @@ div {
   text-align: center;
 }
 
-.addButton {
+.addButtonSpendings {
   width: 100%;
   position: relative;
   border: 1px solid #ccc;
@@ -143,15 +143,51 @@ div {
   border-radius: 28px;
   color: rgba(0, 0, 0, 0.65);
   transition: color 450ms ease-out;
-  transition: background-color 750ms ease-out;
+  transition: background-color 500ms ease-out;
 }
 
-.addButton:hover {
+.addButtonSpendings:hover {
+  cursor: pointer;
+  transition: color 450ms ease-in;
+  color: rgba(0, 0, 0, 0.945);
+  transition: background-color 500ms ease-in;
+  background-color: rgba(238, 28, 17, 0.883);
+}
+
+.fixedButtonSpendings {
+  width: 100%;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: black;
+  outline: none;
+  padding: 8px 0px;
+  font-weight: bolder;
+  border-radius: 28px;
+  color: rgba(0, 0, 0, 0.65);
+  transition: color 450ms ease-out;
+  transition: background-color 500ms ease-out;
+}
+
+.fixedButtonSpendings:hover {
   cursor: pointer;
   transition: color 450ms ease-in;
   color: rgba(0, 0, 0, 0.876);
-  transition: background-color 750ms ease-in;
-  background-color: rgba(238, 28, 17, 0.883);
+  transition: background-color 500ms ease-in;
+  background-color: rgba(251, 255, 0, 0.965)
+}
+
+.spendings {
+  background-color: rgb(255, 134, 134);
+}
+
+.credits {
+  background-color: rgba(73, 212, 49, 0.4);
+}
+
+.fixed {
+  background-color: rgba(219, 222, 55, 0.5);
 }
 
 .renderSideBoxFont {
@@ -229,31 +265,6 @@ div {
   /* background-color: #D43931; */
   background-color: rgb(49, 111, 212, 0.4);
   /* background-color:  rgba(17, 86, 248, 0.2); */
-}
-
-.spendings {
-  /* background-color:  rgba(231, 66, 51, 0.3); */
-  /* background-color: rgb(255, 199, 206); */
-
-  /* use the below tone but for Credits / Fixed / Remaining */
-  /* background-color: #D43931; */
-  /* background-color: rgba(217, 57, 49, 0.2); */
-  background-color: rgb(255, 134, 134);
-}
-
-.credits {
-  /* background-color:  rgba(33, 248, 17, 0.2); */
-  background-color: rgba(73, 212, 49, 0.4);
-  /* background-color: rgb(198, 239, 206); */
-  /* color: rgb(156, 0, 6); */
-}
-
-.fixed {
-  /* background-color:  rgba(248, 213, 17, 0.2); */
-
-  background-color: rgb(209, 212, 49, 0.5);
-  /* background-color: rgb(255, 235, 156); */
-  /* background-color: rgb(201, 212, 49); */
 }
 
 .creditsFontColor {

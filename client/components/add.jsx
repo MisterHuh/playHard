@@ -18,7 +18,7 @@ export default class Add extends React.Component {
       currentIndex: 0,
 
       date: new Date(),
-      category: "Spendings",
+      category: "Fixed",
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
@@ -244,11 +244,11 @@ export default class Add extends React.Component {
 
     let colorFormatter;
     if (this.state.category === "Spendings") {
-      colorFormatter = "spendings"
+      colorFormatter = "addButtonSpendings spendings"
     } else if (this.state.category === "Fixed") {
-      colorFormatter = "fixed";
+      colorFormatter = "fixedButtonSpendings fixed";
     } else if (this.state.category === "Credits") {
-      colorFormatter = "credits";
+      colorFormatter = "creditsButtonSpendings credits";
     };
 
     let addSideBoxFooter;
