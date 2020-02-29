@@ -42,7 +42,7 @@ export default class Add extends React.Component {
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.previousButton = this.previousButton.bind(this);
     this.nextButton = this.nextButton.bind(this);
-    this.test = this.test.bind(globalThis);
+    // this.test = this.test.bind(globalThis);
   }
 
   dateHandleChange(date) {
@@ -85,10 +85,10 @@ export default class Add extends React.Component {
     this.setState({ formErrors, [name]: value });
   }
 
-  test() {
-    let testVar = <small className="required">{this.state.formErrors.amount}</small>;
-    return testVar;
-  }
+  // test() {
+  //   let testVar = <small className="required">{this.state.formErrors.amount}</small>;
+  //   return testVar;
+  // }
 
   handleSubmit() {
     this.addEntry()
@@ -270,6 +270,11 @@ export default class Add extends React.Component {
       };
     }
 
+    let shakeIt;
+    this.state.formErrors.amount.length > 0
+      ? shakeIt = "shakeIt"
+      : shakeIt = "";
+
       return (
 
         <div className="addWrapper">
@@ -322,15 +327,15 @@ export default class Add extends React.Component {
               <div className="mx-4 addInput">
                 <div className="required">* Required</div>
                 {this.state.formErrors.amount.length > 0 && (
-                  setTimeout(this.test(), 2000)
-                  // <small className="required">{this.state.formErrors.amount}</small>
+                  // setTimeout(this.test(), 2000)
+                  <small className="required">{this.state.formErrors.amount}</small>
                 )}
                 <input
                   value={this.state.amount}
                   onChange={this.inputHandleChange}
                   placeholder="$ 00.00"
                   name="amount"
-                  className="amount"
+                  className={"amount " + shakeIt}
                 />
               </div>
 
