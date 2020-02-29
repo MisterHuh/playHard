@@ -100,8 +100,9 @@ div {
 }
 
 .required {
+  display: inline-block;
   color: red;
-  margin-top: 4%;
+  margin-top: 5%;
   font-size: 60%;
 }
 
