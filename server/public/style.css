@@ -49,6 +49,10 @@ div {
   /* border: 1px solid blue; */
 }
 
+.addForm:hover, .previousRecordsWrapper:hover {
+  /* background-color: #e8e8e865; */
+}
+
 .previousRecordsWrapper {
   width: 30%;
   /* border: 1px solid black; */
