@@ -89,11 +89,6 @@ export default class Add extends React.Component {
     this.setState({ formErrors, [name]: value });
   }
 
-  // test() {
-  //   let testVar = <small className="required">{this.state.formErrors.amount}</small>;
-  //   return testVar;
-  // }
-
   handleSubmit() {
     this.addEntry()
   }
@@ -284,125 +279,121 @@ export default class Add extends React.Component {
       ? shakeIt_where = "shakeIt_where"
       : shakeIt_where = "";
 
-
-
-    // let floatRight = {
-    //   textAlign: "right"
-    // }
-
       return (
 
         <div className="addWrapper">
 
           {/* right */}
-          {/* <form className=""> */}
-          <React.Fragment>
-            <div className="addForm">
-              <div className="mx-4">
-                <DatePicker
-                  selected={this.state.date}
-                  onChange={this.dateHandleChange}
-                  className="amount mt-4"
-                />
-              </div>
+          <div className="addForm">
+            <div className="mx-4 addFormSpacing">
 
-              <div className="mx-4 addInput">
-                <Dropdown
-                  onChange={this.categoryHandleChange}
-                  options={dropdownOptions[0]}
-                  arrowClosed={<span className="arrow-closed" />}
-                  arrowOpen={<span className="arrow-open" />}
-                  placeholder={this.state.category}
-                  className="mt-4"
-                />
-              </div>
-
-              <div className="mx-4 addInput">
-                <Dropdown
-                  onChange={this.subCategoryHandleChange}
-                  options={dropdownOptions[1]}
-                  arrowClosed={<span className="arrow-closed" />}
-                  arrowOpen={<span className="arrow-open" />}
-                  placeholder={this.state.subCategory}
-                  className="mt-4"
-                />
-              </div>
-
-              <div className="mx-4 addInput">
-                <Dropdown
-                  onChange={this.ccHandleChange}
-                  options={dropdownOptions[2]}
-                  arrowClosed={<span className="arrow-closed" />}
-                  arrowOpen={<span className="arrow-open" />}
-                  placeholder={this.state.cc}
-                  className="mt-4"
-                />
-              </div>
-
-              <div className="mx-4 addInput">
-
-                <div className="formValidationContainer ">
-                  <div className="textFadeOutContainer">
-                    {this.state.formErrors.amount.length > 0 && (
-                      <div className="textFadeOut ">{this.state.formErrors.amount}</div>
-                    )}
-                  </div>
-
-                  <div className="required ">* Required</div>
-                </div>
-
-                <input
-                  value={this.state.amount}
-                  onChange={this.inputHandleChange}
-                  placeholder="$ 00.00"
-                  name="amount"
-                  className={"amount " + shakeIt_amount}
-                />
-              </div>
-
-              <div className="mx-4 addInput">
-
-                <div className="formValidationContainer ">
-                  <div className="textFadeOutContainer">
-                    {this.state.formErrors.where.length > 0 && (
-                      <div className="textFadeOut ">{this.state.formErrors.where}</div>
-                    )}
-                  </div>
-
-                  <div className="required ">* Required</div>
-                </div>
-
-                <input
-                  value={this.state.where}
-                  onChange={this.inputHandleChange}
-                  placeholder="Where?"
-                  name="where"
-                  className={"amount " + shakeIt_where}
-                />
-              </div>
-
-              <div className="mx-4 addInput">
-                <input
-                  value={this.state.notes}
-                  onChange={this.inputHandleChange}
-                  placeholder="Notes"
-                  name="notes"
-                  className="amount mt-4"
-                />
-              </div>
-
-              <div className="mx-4 addInput">
-                <div
-                  onClick={() => this.handleSubmit()}
-                  className={"addButton mt-4 text-center " + colorFormatter}> Add
-                {/* className="addButton mt-4 text-center"> Add */}
-                </div>
-              </div>
+              <div className="formValidationContainer"></div>
+              <DatePicker
+                selected={this.state.date}
+                onChange={this.dateHandleChange}
+                className="amount "
+              />
             </div>
 
-          </React.Fragment>
+            <div className="mx-4 addInput">
+              <div className="formValidationContainer"></div>
+              <Dropdown
+                onChange={this.categoryHandleChange}
+                options={dropdownOptions[0]}
+                arrowClosed={<span className="arrow-closed" />}
+                arrowOpen={<span className="arrow-open" />}
+                placeholder={this.state.category}
+                className=""
+              />
+            </div>
 
-          {/* </form> */}
+            <div className="mx-4 addInput">
+              <div className="formValidationContainer"></div>
+              <Dropdown
+                onChange={this.subCategoryHandleChange}
+                options={dropdownOptions[1]}
+                arrowClosed={<span className="arrow-closed" />}
+                arrowOpen={<span className="arrow-open" />}
+                placeholder={this.state.subCategory}
+                className=""
+              />
+            </div>
+
+            <div className="mx-4 addInput">
+              <div className="formValidationContainer"></div>
+              <Dropdown
+                onChange={this.ccHandleChange}
+                options={dropdownOptions[2]}
+                arrowClosed={<span className="arrow-closed" />}
+                arrowOpen={<span className="arrow-open" />}
+                placeholder={this.state.cc}
+                className=""
+              />
+            </div>
+
+            <div className="mx-4 addInput test">
+
+              <div className="formValidationContainer">
+                <div className="textFadeOutContainer">
+                  {this.state.formErrors.amount.length > 0 && (
+                    <div className="textFadeOut ">{this.state.formErrors.amount}</div>
+                  )}
+                </div>
+
+                {/* <div className="required">* Required</div> */}
+              </div>
+
+              <input
+                value={this.state.amount}
+                onChange={this.inputHandleChange}
+                placeholder="$ 00.00"
+                name="amount"
+                className={"amount " + shakeIt_amount}
+              />
+            </div>
+
+            <div className="mx-4 addInput test">
+
+              <div className="formValidationContainer">
+                <div className="textFadeOutContainer">
+                  {this.state.formErrors.where.length > 0 && (
+                    <div className="textFadeOut">{this.state.formErrors.where}</div>
+                  )}
+                </div>
+
+                {/* <div className="required">* Required</div> */}
+              </div>
+
+              <input
+                value={this.state.where}
+                onChange={this.inputHandleChange}
+                placeholder="Where?"
+                name="where"
+                className={"amount " + shakeIt_where}
+              />
+            </div>
+
+            <div className="mx-4 addInput">
+              <div className="formValidationContainer"></div>
+              <input
+                value={this.state.notes}
+                onChange={this.inputHandleChange}
+                placeholder="Notes"
+                name="notes"
+                className="amount "
+              />
+            </div>
+
+            <div className="mx-4 addInput">
+              <div className="formValidationContainer"></div>
+              <div
+                onClick={() => this.handleSubmit()}
+                className={"addButton  text-center " + colorFormatter}> Add
+              </div>
+            </div>
+          </div> {/* addForm */}
+
+
           {/* left */}
           <div className="previousRecordsWrapper">
 
@@ -437,14 +428,14 @@ export default class Add extends React.Component {
             </div>
 
             {/* bottom */}
-            <div className={"prevRecBottom " + addSideBoxFooter}>{this.state.currentIndex + 1} of {this.state.current.length}</div>
+            <div className={"prevRecBottom " + addSideBoxFooter}>
+              {this.state.currentIndex + 1} of {this.state.current.length}
+            </div>
 
-          </div>
+          </div> {/* previousRecordsWrapper */}
 
+        {/* addWrapper */}
         </div>
       );
-    // }
-
-
     }
   }

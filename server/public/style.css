@@ -4,6 +4,10 @@ div {
   font-family: 'El+Messiri', sans-serif;
 }
 
+.borderClass {
+  border: 1px solid black;
+}
+
 .navbarButtonContainer {
   width: 100%;
   font-size: 250%;
@@ -99,25 +103,27 @@ div {
   width: 50%;
 }
 
-.formValidationContainer {
-  width: 100%;
-  display: flex;
-  margin-top: 5%;
-  margin-bottom: 1%;
+.addFormSpacing, .addInput {
+  padding-top: 1%;
 }
 
-/* width is based on the error message */
+.formValidationContainer {
+  width: 100%;
+  height: 15px;
+  display: flex;
+  margin-bottom: .5%;
+}
+
 .required {
-  width: 80%;
+  width: 50%;
   text-align: right;
   color: red;
   font-size: 60%;
   transition: opacity 500ms ease-in-out;
 }
 
-/* width is based on the error message */
 .textFadeOutContainer {
-  width: 20%;
+  width: 50%;
   display: flex;
 }
 
