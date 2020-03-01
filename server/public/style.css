@@ -144,7 +144,7 @@ div {
   100%  { opacity: 0 }
 }
 
-.shakeIt {
+.shakeIt_amount, .shakeIt_where {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
@@ -425,6 +425,9 @@ div {
 
  .addSideBoxFooterSpendings {
   background: linear-gradient(-60deg, #e8e8e838, rgba(217, 57, 49, 0.3));
+
+  /* this one matches the addButton:hover color for spendings */
+  background: linear-gradient(-60deg, #e8e8e838, rgba(238, 28, 17, 0.883));
  }
 
  .addSideBoxFooterCredits {

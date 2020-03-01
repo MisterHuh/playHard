@@ -81,6 +81,10 @@ export default class Add extends React.Component {
         ? 'enter a valid amount'
         : "";
         break;
+      case "where":
+        formErrors.where = value.length < 1 || firstLastWhiteSpace.test(value)
+        ? 'enter a valid entry'
+        : "";
     }
     this.setState({ formErrors, [name]: value });
   }
@@ -270,10 +274,17 @@ export default class Add extends React.Component {
       };
     }
 
-    let shakeIt;
+    let shakeIt_amount;
     this.state.formErrors.amount.length > 0
-      ? shakeIt = "shakeIt"
-      : shakeIt = "";
+      ? shakeIt_amount = "shakeIt_amount"
+      : shakeIt_amount = "";
+
+    let shakeIt_where;
+    this.state.formErrors.where.length > 0
+      ? shakeIt_where = "shakeIt_where"
+      : shakeIt_where = "";
+
+
 
     // let floatRight = {
     //   textAlign: "right"
@@ -345,18 +356,28 @@ export default class Add extends React.Component {
                   onChange={this.inputHandleChange}
                   placeholder="$ 00.00"
                   name="amount"
-                  className={"amount " + shakeIt}
+                  className={"amount " + shakeIt_amount}
                 />
               </div>
 
               <div className="mx-4 addInput">
-                <div className="required">* Required</div>
+
+                <div className="formValidationContainer ">
+                  <div className="textFadeOutContainer">
+                    {this.state.formErrors.where.length > 0 && (
+                      <div className="textFadeOut ">{this.state.formErrors.where}</div>
+                    )}
+                  </div>
+
+                  <div className="required ">* Required</div>
+                </div>
+
                 <input
                   value={this.state.where}
                   onChange={this.inputHandleChange}
                   placeholder="Where?"
                   name="where"
-                  className="amount"
+                  className={"amount " + shakeIt_where}
                 />
               </div>
 
