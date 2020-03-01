@@ -74,10 +74,12 @@ export default class Add extends React.Component {
     const formErrors = this.state.formErrors;
     const { name, value } = e.target;
     const firstLastWhiteSpace = RegExp(/\s+$/, '');
+    const numberChecker = RegExp(/[^0-9.,]+/);
 
     switch(name) {
       case "amount":
-        formErrors.amount = value.length < 1 || firstLastWhiteSpace.test(value)
+        formErrors.amount = numberChecker.test(value) || firstLastWhiteSpace.test(value) || value.length < 1
+        // formErrors.amount = numberChecker.test(value)
         ? 'enter a valid amount'
         : "";
         break;
