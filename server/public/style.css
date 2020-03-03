@@ -53,6 +53,12 @@ div {
   /* background-color: #e8e8e865; */
 }
 
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .previousRecordsWrapper {
   width: 30%;
   /* border: 1px solid black; */

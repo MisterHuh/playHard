@@ -346,6 +346,7 @@ export default class Add extends React.Component {
               </div>
 
               <input
+                type="number"
                 value={this.state.amount}
                 onChange={this.inputHandleChange}
                 placeholder="$ 00.00"
