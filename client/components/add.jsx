@@ -260,6 +260,9 @@ export default class Add extends React.Component {
       colorFormatter = "addButtonCredits credits";
     };
 
+    let negativeFontColor = this.state.amount < 0 ? "creditsFontColor" : null;
+    // let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
+
     let addSideBoxFooter;
     if (this.state.current.length) {
       if (this.state.current[this.state.currentIndex]["category"] === "Spendings") {
@@ -351,7 +354,7 @@ export default class Add extends React.Component {
                 onChange={this.inputHandleChange}
                 placeholder="$ 00.00"
                 name="amount"
-                className={"amount " + shakeIt_amount}
+                className={"amount " + shakeIt_amount + " " + negativeFontColor}
               />
             </div>
 
