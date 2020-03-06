@@ -85,7 +85,7 @@ export default class Add extends React.Component {
         break;
       case "where":
         formErrors.where = value.length < 1 || firstLastWhiteSpace.test(value)
-        ? 'enter a valid entry'
+        ? 'entry required'
         : "";
     }
     this.setState({ formErrors, [name]: value });
@@ -284,12 +284,12 @@ export default class Add extends React.Component {
 
     let shakeIt_amount;
     this.state.formErrors.amount.length > 0
-      ? shakeIt_amount = "shakeIt_amount"
+      ? shakeIt_amount = "shakeIt"
       : shakeIt_amount = "";
 
     let shakeIt_where;
     this.state.formErrors.where.length > 0
-      ? shakeIt_where = "shakeIt_where"
+      ? shakeIt_where = "shakeIt"
       : shakeIt_where = "";
 
       return (
@@ -363,8 +363,7 @@ export default class Add extends React.Component {
                 onChange={this.inputHandleChange}
                 placeholder="$ 00.00"
                 name="amount"
-                // className={"amount " + shakeIt_amount + " " + negativeFontColor}
-                className={"amount " + negativeFontColor}
+                className="amount"
               />
             </div>
 
@@ -381,11 +380,13 @@ export default class Add extends React.Component {
               </div>
 
               <input
+                id={shakeIt_where}
                 value={this.state.where}
                 onChange={this.inputHandleChange}
                 placeholder="Where?"
                 name="where"
-                className={"amount " + shakeIt_where}
+                // className={"amount " + shakeIt_where}
+                className="amount"
               />
             </div>
 
