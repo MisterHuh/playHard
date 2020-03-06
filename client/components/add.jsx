@@ -260,8 +260,16 @@ export default class Add extends React.Component {
       colorFormatter = "addButtonCredits credits";
     };
 
-    let negativeFontColor = this.state.amount < 0 ? "creditsFontColor" : null;
+    let negativeFontColor = this.state.amount < 0 ? "creditsFontColor" : "negativeNotWorking";
     // let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
+
+    // let negativeDash = this.state.amount;
+    // let typeOfAmount = typeof(negativeDash);
+    // console.log("negativeDash is: ", negativeDash);
+    // console.log("typeofAmount is: ", typeOfAmount);
+
+    // let creditsFontColor = this.state.amount.charAt(0) === "-" ? "creditsFontColor" : "dashNotWorking";
+    // let creditsFontColor = negativeDash.charAt(0) === "-" ? "creditsFontColor" : "dashNotWorking";
 
     let addSideBoxFooter;
     if (this.state.current.length) {
@@ -349,12 +357,14 @@ export default class Add extends React.Component {
               </div>
 
               <input
+                id={shakeIt_amount}
                 type="number"
                 value={this.state.amount}
                 onChange={this.inputHandleChange}
                 placeholder="$ 00.00"
                 name="amount"
-                className={"amount " + shakeIt_amount + " " + negativeFontColor}
+                // className={"amount " + shakeIt_amount + " " + negativeFontColor}
+                className={"amount " + negativeFontColor}
               />
             </div>
 

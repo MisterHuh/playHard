@@ -171,13 +171,32 @@ input[type=number]::-webkit-outer-spin-button {
 border: 1px solid red;
 }
 
-.shakeIt_amount, .shakeIt_where {
+#shakeIt_amount, .shakeIt_amount, .shakeIt_where {
   border: 1px solid red;
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  animation: shakeFade 0.82s ease-out forwards;
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
 }
+
+@keyframes shakeFade {
+  0%    { opacity: 1 }
+  90%   { opacity: 1 }
+  91%   { opacity: 0.9 }
+  92%   { opacity: 0.8 }
+  93%   { opacity: 0.7 }
+  94%   { opacity: 0.6 }
+  95%   { opacity: 0.5 }
+  96%   { opacity: 0.4 }
+  97%   { opacity: 0.3 }
+  98%   { opacity: 0.2 }
+  99%   { opacity: 0.1 }
+  100%  { opacity: 0 }
+}
+
+
+
 
 @keyframes shake {
   10%, 90% {
