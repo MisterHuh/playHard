@@ -228,7 +228,7 @@ border: 1px solid red;
   text-align: center;
 }
 
-.addButtonSpendings, .addButtonFixed, .addButtonCredits, .addButtonPayday {
+.addButtonSpendings, .addButtonFixed, .addButtonCredits, .addButtonPayday, .addButtonWedding, .addButtonVacation {
   width: 100%;
   position: relative;
   border: 1px solid #ccc;
@@ -244,45 +244,60 @@ border: 1px solid red;
   transition: background-color 450ms ease-out;
 }
 
-.addButtonSpendings:hover, .addButtonFixed:hover, .addButtonCredits:hover, .addButtonPayday:hover {
+.addButtonSpendings:hover, .addButtonFixed:hover, .addButtonCredits:hover, .addButtonPayday:hover, .addButtonWedding:hover, .addButtonVacation:hover {
   cursor: pointer;
   transition: color 450ms ease-in;
-  /* color: rgba(0, 0, 0, 0.65); */
   transition: background-color 500ms ease-in;
-}
-
-.addButtonPayday:hover {
-  background-color: rgba(72, 121, 228, 0.8);
-}
-
-.payday {
-  background-color: rgba(72, 121, 228, 0.5);
-}
-
-
-.addButtonSpendings:hover {
-  background-color: rgba(228, 72, 72, 0.8);
-}
-
-.addButtonFixed:hover {
-   background-color: rgb(228, 225, 72);
-
-}
-
-.addButtonCredits:hover {
-  background-color: rgb(41, 255, 12);
 }
 
 .spendings {
   background-color: rgba(228, 72, 72, 0.5);
 }
 
-.credits {
-  background-color: rgb(41, 255, 12, 0.3);
+.addButtonSpendings:hover {
+  background-color: rgba(228, 72, 72, 0.8);
 }
 
 .fixed {
   background-color: rgba(228, 225, 72, 0.541);
+}
+
+.addButtonFixed:hover {
+   background-color: rgb(228, 225, 72);
+}
+
+.addButtonCredits:hover {
+  background-color: rgba(82, 228, 72);
+}
+
+.credits {
+  background-color: rgba(82, 228, 72, 0.5);
+}
+
+.payday {
+  background-color: rgba(153, 255, 204, 0.5);
+}
+
+.addButtonPayday:hover {
+  background-color: rgba(153, 255, 204);
+}
+
+.wedding {
+  background-color: rgb(245, 201, 218, 0.5);
+  background-color: rgba(224, 87, 140, 0.5);
+}
+
+.addButtonWedding:hover {
+  background-color: rgba(245, 201, 218);
+  background-color: rgba(224, 87, 140);
+}
+
+.vacation {
+  background-color: rgba(72, 121, 228, 0.5);
+}
+
+.addButtonVacation:hover {
+  background-color: rgba(72, 121, 228, 0.8);
 }
 
 .renderSideBoxFont {

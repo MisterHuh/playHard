@@ -260,6 +260,10 @@ export default class Add extends React.Component {
       colorFormatter = "addButtonCredits credits";
     } else if (this.state.category === "Payday") {
       colorFormatter = "addButtonPayday payday";
+    } else if (this.state.category === "Wedding") {
+      colorFormatter = "addButtonWedding wedding";
+    } else if (this.state.category === "Vacation") {
+      colorFormatter = "addButtonVacation vacation";
     };
 
     let negativeFontColor = this.state.amount < 0 ? "creditsFontColor" : "negativeNotWorking";
