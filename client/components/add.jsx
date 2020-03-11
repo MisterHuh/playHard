@@ -39,7 +39,7 @@ export default class Add extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addEntry = this.addEntry.bind(this);
 
-    this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.retrieveAddSideBox = this.retrieveAddSideBox.bind(this);
     this.previousButton = this.previousButton.bind(this);
     this.nextButton = this.nextButton.bind(this);
     // this.test = this.test.bind(globalThis);
@@ -139,7 +139,7 @@ export default class Add extends React.Component {
       currentIndex: 0
      })
 
-     this.retrieveAllData();
+     this.retrieveAddSideBox();
   }
 
   /* refactor this code into the actual html body? */
@@ -180,7 +180,7 @@ export default class Add extends React.Component {
     }
 
     this.setState({ currentIndex });
-    this.retrieveAllData();
+    this.retrieveAddSideBox();
 
   }
 
@@ -194,14 +194,15 @@ export default class Add extends React.Component {
     }
 
     this.setState({ currentIndex });
-    this.retrieveAllData();
+    this.retrieveAddSideBox();
 
   }
 
-  retrieveAllData() {
-    fetch(`/api/retrieveAllData.php`)
+  retrieveAddSideBox() {
+    fetch(`/api/retrieveAddSideBox.php`)
       .then(response => response.json())
       .then(current => {
+        console.log("current is: ", current)
         this.setState({
           current
           // currentIndex: 0
@@ -211,7 +212,7 @@ export default class Add extends React.Component {
 
 
   componentDidMount() {
-    this.retrieveAllData();
+    this.retrieveAddSideBox();
   }
 
   render() {
