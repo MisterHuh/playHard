@@ -257,6 +257,7 @@ export default class History extends React.Component {
         if (current[index]["subcategory"] === "Groceries") {
           totalGroceries += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Gas") {
+          console.log("Gas is: ", current[index]["amount"] );
           totalGas += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
           totalFixedEtc += parseFloat(current[index]["amount"]);
