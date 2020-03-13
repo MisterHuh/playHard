@@ -136,7 +136,7 @@ export default class History extends React.Component {
 
 
   categoryHandleChange(e) {
-    console.log("event.target.value is: ", e.target.value);
+    // console.log("event.target.value is: ", e.target.value);
     let filterBy = e.target.value;
     this.setState({ filterBy });
   };
@@ -156,8 +156,8 @@ export default class History extends React.Component {
     let notFormattedEndDate = this.state.endDate;
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
 
-    console.log("formattedStartDate is: ", formattedStartDate);
-    console.log("formattedEndDate is: ", formattedEndDate);
+    // console.log("formattedStartDate is: ", formattedStartDate);
+    // console.log("formattedEndDate is: ", formattedEndDate);
 
     const req = {
       method: 'PUT',
@@ -233,7 +233,7 @@ export default class History extends React.Component {
     let queryWeekNumber = this.state.queryWeekNumber;
 
     let current = this.state.current;
-    let length = current.length - 1;
+    let length = current.length;
 
     let totalSpendings = 0;
     let totalCredits = 0;
@@ -248,7 +248,17 @@ export default class History extends React.Component {
     let totalGas = 0;
     let totalFixedEtc = 0;
 
+    // console.log("current.length is: ", current.length);
+
     for (let index = 0; index < length; index++) {
+      // console.log("id is: ", current[index]["id"] )
+      console.log("index is: ", index)
+      console.log("length is: ", length);
+
+      // if (current[index]["id"] === 31) {
+      //   console.log("31 is: ", current[index]);
+      // }
+
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Credits") {
@@ -257,7 +267,7 @@ export default class History extends React.Component {
         if (current[index]["subcategory"] === "Groceries") {
           totalGroceries += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Gas") {
-          console.log("Gas is: ", current[index]["amount"] );
+          // console.log("Gas is: ", current[index]["amount"] );
           totalGas += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
           totalFixedEtc += parseFloat(current[index]["amount"]);

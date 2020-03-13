@@ -147,7 +147,7 @@ export default class Current extends React.Component {
     let totalGas = 0;
     let totalFixedEtc = 0;
 
-    for (let index = 0; index < current.length ; index++) {
+    for (let index = 0; index < current.length; index++) {
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Credits") {
