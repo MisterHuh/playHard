@@ -372,6 +372,28 @@ export default class History extends React.Component {
       <React.Fragment>
         <div className="currentWrapperTop">
 
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="remaining">
+                <th>Total Budget</th><td>Budget Value</td>
+              </tr>
+
+              <tr className="spendings">
+                <th>Total Spendings</th><td>Spendings Value</td>
+                </tr>
+
+              <tr className="credits">
+                <th>Total Credits</th><td>Credits Value</td>
+                </tr>
+
+              <tr className="">
+                <th>Total Remaining</th><td>Remaining Value</td>
+                </tr>
+
+            </tbody>
+          </table>
+
           {/* left */}
           <div className="currentSummaryContainer">
             <div className="currentSummaryHistory">
@@ -444,6 +466,7 @@ export default class History extends React.Component {
 
           {/* right */}
           <div className="currentSummaryContainer">
+
             <div className="currentSummaryHistory">
               <div className="fixed">Groceries</div>
               <div className="fixed">Gas</div>
