@@ -332,6 +332,24 @@ border: 1px solid red;
   /* padding: 5%; */
 }
 
+.borderTest {
+  border: 1px solid black;
+}
+
+th, td {
+  width: 200px;
+  /* text-align: center; */
+}
+
+th {
+  border-right: 1px solid black;
+  text-align: left;
+}
+
+td {
+  text-align: center;
+}
+
 .currentSummary > div {
   border: 1px solid black;
   text-align: center;

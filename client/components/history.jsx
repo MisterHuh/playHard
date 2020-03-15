@@ -375,19 +375,19 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="remaining">
+              <tr className="borderTest remaining">
                 <th>Total Budget</th><td>Budget Value</td>
               </tr>
 
-              <tr className="spendings">
+              <tr className="borderTest spendings">
                 <th>Total Spendings</th><td>Spendings Value</td>
                 </tr>
 
-              <tr className="credits">
+              <tr className="borderTest credits">
                 <th>Total Credits</th><td>Credits Value</td>
                 </tr>
 
-              <tr className="">
+              <tr className="borderTest ">
                 <th>Total Remaining</th><td>Remaining Value</td>
                 </tr>
 
