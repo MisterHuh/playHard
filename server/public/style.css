@@ -495,22 +495,29 @@ td {
  }
 
  .addSideBoxFooterSpendings {
-  background: linear-gradient(-60deg, #e8e8e838, rgba(217, 57, 49, 0.3));
-
-  /* this one matches the addButton:hover color for spendings */
-  background: linear-gradient(-60deg, #e8e8e838, rgba(238, 28, 17, 0.883));
+  /* background: linear-gradient(-60deg, #e8e8e838, rgba(217, 57, 49, 0.3)); */
+  background: linear-gradient(-60deg, #e8e8e838, rgba(228, 72, 72, 0.8));
  }
 
  .addSideBoxFooterCredits {
-  background: linear-gradient(-60deg, #e8e8e838, rgba(73, 212, 49, 0.25));
+  /* background: linear-gradient(-60deg, #e8e8e838, rgba(73, 212, 49, 0.25)); */
+  background: linear-gradient(-60deg, #e8e8e838, rgba(82, 228, 72));
  }
 
  .addSideBoxFooterFixed {
-  background: linear-gradient(-60deg, #e8e8e838, rgb(209, 212, 49, 0.4));
+  /* background: linear-gradient(-60deg, #e8e8e838, rgb(209, 212, 49, 0.4)); */
+  background: linear-gradient(-60deg, #e8e8e838, rgb(228, 225, 72));
  }
 
+  .addSideBoxFooterWedding {
+  /* background: linear-gradient(-60deg, #e8e8e838, rgb(209, 212, 49, 0.4)); */
+  background: linear-gradient(-60deg, #e8e8e838, rgba(224, 87, 140));
+ }
 
-
+  .addSideBoxFooterVacation {
+  /* background: linear-gradient(-60deg, #e8e8e838, rgb(209, 212, 49, 0.4)); */
+  background: linear-gradient(-60deg, #e8e8e838, rgba(72, 121, 228, 0.8));
+ }
 
 
 /* .currentDataHeader:nth-child(even), .currentTableRow:nth-child(even) {
