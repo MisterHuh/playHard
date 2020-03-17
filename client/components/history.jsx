@@ -444,7 +444,34 @@ export default class History extends React.Component {
           </div>
 
           {/* middle */}
-          <div className="currentSummaryContainer">
+
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="borderTest remaining">
+                <th>Total Budget</th>
+                <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
+              </tr>
+
+              <tr className="borderTest spendings">
+                <th>Total Spendings</th>
+                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+              </tr>
+
+              <tr className="borderTest credits">
+                <th>Total Credits</th>
+                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
+              </tr>
+
+              <tr className="borderTest ">
+                <th>Total Remaining</th>
+                <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          {/* <div className="currentSummaryContainer">
             <div className="currentSummaryHistory">
                 <div className="budget remaining tooltipParent">
                 Total Budget
@@ -462,7 +489,7 @@ export default class History extends React.Component {
               <div className="credits creditsFontColor">{CurrencyFormatter.format(this.state.totalCredits)}</div>
               <div className="mt-3">{CurrencyFormatter.format(this.state.totalRemaining)}</div>
             </div>
-          </div>
+          </div> */}
 
           {/* right */}
           <div className="currentSummaryContainer">
@@ -494,14 +521,14 @@ export default class History extends React.Component {
           onChange={this.handlePageChange.bind(this)}
         /> */}
 
-        <div className="">
+        {/* <div className="">
           <span>&laquo;</span>
           <span className="">1</span>
           <span>2</span>
           <span>3</span>
           <span>4</span>
           <span>&raquo;</span>
-        </div>
+        </div> */}
 
 
         <div className="currentWrapperBottom">
