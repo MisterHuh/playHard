@@ -372,7 +372,7 @@ export default class History extends React.Component {
       <React.Fragment>
         <div className="currentWrapperTop">
 
-          <table id="tabla" className="currentSummaryContainer">
+          {/* <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
               <tr className="borderTest remaining">
@@ -390,6 +390,33 @@ export default class History extends React.Component {
               <tr className="borderTest ">
                 <th>Total Remaining</th><td>Remaining Value</td>
                 </tr>
+
+            </tbody>
+          </table> */}
+
+
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="borderTest remaining">
+                <th>Filter By</th>
+                <td>Budget Value</td>
+              </tr>
+
+              <tr className="borderTest spendings">
+                <th>Start Date</th>
+                <td>Spendings Value</td>
+              </tr>
+
+              <tr className="borderTest credits">
+                <th>End Date</th>
+                <td>Credits Value</td>
+              </tr>
+
+              <tr className="borderTest ">
+                <th onClick={() => this.retrieveAllData()}>Reset</th>
+                <td>Search</td>
+              </tr>
 
             </tbody>
           </table>
