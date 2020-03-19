@@ -398,24 +398,53 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest remaining">
+              <tr className="borderTest">
                 <th>Filter By</th>
-                <td>Budget Value</td>
+                <td>
+                  <select
+                    onChange={this.categoryHandleChange}
+                    style={textCenter}
+                    className="historyDropdown"
+                    placeholder={this.state.filterBy} >
+                    {dropdownOptions.map((e, key) => {
+                      return <option key={key} value={e.value}>{e.name}</option>;
+                    })}
+                  </select>
+                </td>
               </tr>
 
-              <tr className="borderTest spendings">
+              <tr className="borderTest ">
                 <th>Start Date</th>
-                <td>Spendings Value</td>
+                <td>
+                  <div className="">
+                    <DatePicker
+                      // selected={this.state.search.startDate}
+                      selected={this.state.startDate}
+                      name="startDate"
+                      onChange={this.startDateHandleChange}
+                      className="amount1"
+                    />
+                  </div>
+                </td>
               </tr>
 
-              <tr className="borderTest credits">
+              <tr className="borderTest ">
                 <th>End Date</th>
-                <td>Credits Value</td>
+                <td>
+                  <div className="">
+                    <DatePicker
+                      selected={this.state.endDate}
+                      name="endDate"
+                      onChange={this.endDateHandleChange}
+                      className="amount1"
+                    />
+                  </div>
+                </td>
               </tr>
 
               <tr className="borderTest ">
                 <th onClick={() => this.retrieveAllData()}>Reset</th>
-                <td>Search</td>
+                <td onClick={() => this.retrieveSearchData()}>Search</td>
               </tr>
 
             </tbody>
