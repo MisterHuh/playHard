@@ -548,7 +548,34 @@ export default class History extends React.Component {
           </div> */}
 
           {/* right */}
-          <div className="currentSummaryContainer">
+
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="borderTest fixed">
+                <th>Groceries</th>
+                <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
+              </tr>
+
+              <tr className="borderTest fixed">
+                <th>Gas</th>
+                <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
+              </tr>
+
+              <tr className="borderTest fixed">
+                <th>ETC</th>
+                <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
+              </tr>
+
+              <tr className="borderTest fixed">
+                <th>Total Fixed</th>
+                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          {/* <div className="currentSummaryContainer">
 
             <div className="currentSummaryHistory">
               <div className="fixed">Groceries</div>
@@ -565,7 +592,7 @@ export default class History extends React.Component {
               <div className="fixed">{CurrencyFormatter.format(this.state.totalFixedEtc)}</div>
               <div className="mt-3">{CurrencyFormatter.format(this.state.totalFixed)}</div>
             </div>
-          </div>
+          </div> */}
 
         </div>
 
