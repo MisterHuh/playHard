@@ -530,22 +530,22 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest ">
+              <tr className="borderTest spendings">
                 <th>Total Budget</th>
                 <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className="borderTest spendings">
                 <th>Total Spendings</th>
                 <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className="borderTest spendings">
                 <th>Total Credits</th>
                 <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
               </tr>
 
-              <tr className="borderTest spendings">
+              <tr className="borderTest ">
                 <th>Total Remaining</th>
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
@@ -578,22 +578,22 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest ">
+              <tr className="borderTest fixed">
                 <th>Groceries</th>
                 <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className="borderTest fixed">
                 <th>Gas</th>
                 <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className="borderTest fixed">
                 <th>ETC</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
               </tr>
 
-              <tr className="borderTest fixed">
+              <tr className="borderTest">
                 <th>Total Fixed</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
               </tr>
