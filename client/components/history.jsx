@@ -451,7 +451,7 @@ export default class History extends React.Component {
           </table>
 
           {/* left */}
-          <div className="currentSummaryContainer">
+          {/* <div className="currentSummaryContainer">
             <div className="currentSummaryHistory">
               <div className="budget">Filter By</div>
               <div className="">Start Date</div>
@@ -497,9 +497,7 @@ export default class History extends React.Component {
                 onClick={() => this.retrieveSearchData()}
                 className="mt-3">Search</div>
             </div>
-          </div>
-
-          {/* middle */}
+          </div> */}
 
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
@@ -520,6 +518,34 @@ export default class History extends React.Component {
               </tr>
 
               <tr className="borderTest ">
+                <th>Total Remaining</th>
+                <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          {/* middle */}
+
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="borderTest ">
+                <th>Total Budget</th>
+                <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
+              </tr>
+
+              <tr className="borderTest ">
+                <th>Total Spendings</th>
+                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+              </tr>
+
+              <tr className="borderTest ">
+                <th>Total Credits</th>
+                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
+              </tr>
+
+              <tr className="borderTest spendings">
                 <th>Total Remaining</th>
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
@@ -552,17 +578,17 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest fixed">
+              <tr className="borderTest ">
                 <th>Groceries</th>
                 <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
               </tr>
 
-              <tr className="borderTest fixed">
+              <tr className="borderTest ">
                 <th>Gas</th>
                 <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
               </tr>
 
-              <tr className="borderTest fixed">
+              <tr className="borderTest ">
                 <th>ETC</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
               </tr>
