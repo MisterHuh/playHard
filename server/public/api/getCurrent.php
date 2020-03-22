@@ -8,7 +8,7 @@ startUp();
 $query = "SELECT * FROM `2020`
             WHERE YEARWEEK(date)=YEARWEEK(NOW())
             -- WHERE date BETWEEN 2020-02-02 and 2020-02-08
-            ORDER BY date ASC";
+            ORDER BY date DESC";
 
 $result = mysqli_query($conn, $query);
 
