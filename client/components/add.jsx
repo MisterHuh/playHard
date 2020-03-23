@@ -218,7 +218,7 @@ export default class Add extends React.Component {
   render() {
 
     const dropdownOptions = [
-      [
+      [ // category
         { value: 'Spendings', label: 'Spendings' },
         { value: 'Fixed', label: 'Fixed' },
         { value: 'Credits', label: 'Credits' },
@@ -226,7 +226,7 @@ export default class Add extends React.Component {
         { value: 'Vacation', label: 'Vacation' },
         { value: 'Wedding', label: 'Wedding' }
       ],
-      [
+      [ // subCategory
         { value: 'Food', label: 'Food' },
         { value: 'Drinks', label: 'Drinks' },
         { value: 'Groceries', label: 'Groceries' },
@@ -242,7 +242,7 @@ export default class Add extends React.Component {
         { value: 'Health', label: 'Health' },
         { value: 'Automobile', label: 'Automobile' }
       ],
-      [
+      [ // CC
         { value: 'AmEx', label: 'AmEx' },
         { value: 'Freedom', label: 'Freedom' },
         { value: 'Sapphire', label: 'Sapphire' },
@@ -250,7 +250,14 @@ export default class Add extends React.Component {
         { value: 'BankAmericard', label: 'BankAmericard' },
         { value: 'BetterBalance', label: 'BetterBalance' }
       ],
+      [ // CC for when category-Credit has been selected
+        { value: 'Venmo', label: 'Venmo' },
+        { value: 'Sapphire', label: 'Sapphire' },
+        { value: 'AmEx', label: 'AmEx' },
+        { value: 'Freedom', label: 'Freedom' },
+      ]
     ];
+
 
     let colorFormatter;
     if (this.state.category === "Spendings") {
@@ -292,6 +299,11 @@ export default class Add extends React.Component {
         addSideBoxFooter = "addSideBoxFooterVacation";
       };
     }
+
+    let ccDropdown;
+    this.state.category === "Credits"
+      ? ccDropdown = dropdownOptions[3]
+      : ccDropdown = dropdownOptions[2];
 
     let shakeIt_amount;
     this.state.formErrors.amount.length > 0
@@ -347,7 +359,7 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
               <Dropdown
                 onChange={this.ccHandleChange}
-                options={dropdownOptions[2]}
+                options={ccDropdown}
                 arrowClosed={<span className="arrow-closed" />}
                 arrowOpen={<span className="arrow-open" />}
                 placeholder={this.state.cc}
