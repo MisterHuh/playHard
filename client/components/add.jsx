@@ -305,6 +305,11 @@ export default class Add extends React.Component {
       ? ccDropdown = dropdownOptions[3]
       : ccDropdown = dropdownOptions[2];
 
+    let placeholder;
+    this.state.category === "Credits"
+      ? placeholder = "Venmo"
+      : placeholder = this.state.cc;
+
     let shakeIt_amount;
     this.state.formErrors.amount.length > 0
       ? shakeIt_amount = "shakeIt"
@@ -362,7 +367,7 @@ export default class Add extends React.Component {
                 options={ccDropdown}
                 arrowClosed={<span className="arrow-closed" />}
                 arrowOpen={<span className="arrow-open" />}
-                placeholder={this.state.cc}
+                placeholder={placeholder}
                 className=""
               />
             </div>
