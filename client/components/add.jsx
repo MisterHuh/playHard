@@ -338,6 +338,28 @@ export default class Add extends React.Component {
 
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
+
+              <table>
+                <tr>
+
+                  <td>
+                    <span>input radio</span>
+                    <input type="radio"/>
+                  </td>
+
+                  <td>
+                    <span>div radio</span>
+                    <div type="radio"></div>
+                  </td>
+
+                  <td>
+                    <span>span radio</span>
+                    <span type="radio"></span>
+                  </td>
+
+                </tr>
+              </table>
+
               <Dropdown
                 onChange={this.categoryHandleChange}
                 options={dropdownOptions[0]}
