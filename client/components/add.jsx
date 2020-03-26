@@ -339,35 +339,27 @@ export default class Add extends React.Component {
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
 
-              <table>
-                <tr>
+                <div className="flex flex-column border border-primary">
+                  <div className="d-inline border border-secondary">Spendings</div>
+                  <div className="d-inline border border-dark">Fixed</div>
+                  <div className="d-inline border border-">Credits</div>
+                </div>
 
-                  <td>
-                    <span>input radio</span>
-                    <input type="radio"/>
-                  </td>
+              <div className="flex flex-column border border-primary">
+                <div className="d-inline border border-secondary">Payday</div>
+                <div className="d-inline border border-dark">Vacation</div>
+                <div className="d-inline border border-">Wedding</div>
+              </div>
 
-                  <td>
-                    <span>div radio</span>
-                    <div type="radio"></div>
-                  </td>
 
-                  <td>
-                    <span>span radio</span>
-                    <span type="radio"></span>
-                  </td>
-
-                </tr>
-              </table>
-
-              <Dropdown
+              {/* <Dropdown
                 onChange={this.categoryHandleChange}
                 options={dropdownOptions[0]}
                 arrowClosed={<span className="arrow-closed" />}
                 arrowOpen={<span className="arrow-open" />}
                 placeholder={this.state.category}
                 className=""
-              />
+              /> */}
             </div>
 
             <div className="mx-4 addInput">
