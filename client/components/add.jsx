@@ -339,8 +339,8 @@ export default class Add extends React.Component {
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
 
-                <div className="catButtonContainer">
-                  <div className="catButton">Spendings</div>
+              <div className="catButtonContainer">
+                <div className="catButton" value='Spendings'>Spendings</div>
                   <div className="catButton">Fixed</div>
                   <div className="catButton">Credits</div>
                 </div>
