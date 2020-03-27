@@ -131,6 +131,28 @@ input[type=number]::-webkit-outer-spin-button {
   margin-bottom: .5%;
 }
 
+.catButtonContainer {
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid blue; */
+}
+
+.catButton {
+  width: 33%;
+  display: inline-block;
+  /* margin: 1%; */
+  padding: 1%;
+  border: 1px solid black;
+}
+
+.catButton:hover {
+  transition: background-color 750ms ease-out;
+  background: rgba(195, 187, 187);
+
+  border: 1px solid rgba(195, 187, 187);
+  cursor: pointer;
+}
+
 .required {
   width: 50%;
   text-align: right;
