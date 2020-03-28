@@ -342,7 +342,7 @@ export default class Add extends React.Component {
               <div className="catButtonContainer">
                 <div className="catButton" value='Spendings'>Spendings</div>
                   <div className="catButton">Fixed</div>
-                  <div className="catButton">Credits</div>
+                  <div className="catButton" value="Credits">Credits</div>
                 </div>
 
               <div className="catButtonContainer">
