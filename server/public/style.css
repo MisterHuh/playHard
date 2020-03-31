@@ -192,6 +192,15 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 }
 
+[value="Wedding"]:hover {
+  cursor: pointer;
+  background-color: rgba(224, 87, 140);
+  transition: background-color 750ms ease-out;
+
+  border: 1px solid rgba(195, 187, 187);
+  cursor: pointer;
+}
+
 .required {
   width: 50%;
   text-align: right;
