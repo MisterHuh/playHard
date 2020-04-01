@@ -143,7 +143,7 @@ input[type=number]::-webkit-outer-spin-button {
   display: inline-block;
   /* margin: 1%; */
   padding: 1%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   transition: background-color 750ms ease-out;
 }
 
@@ -160,7 +160,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgba(228, 72, 72, 0.8);
   transition: background-color 750ms ease-out;
 
-  border: 1px solid rgba(195, 187, 187);
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -169,7 +169,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgba(82, 228, 72);
   transition: background-color 750ms ease-out;
 
-  border: 1px solid rgba(195, 187, 187);
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -179,7 +179,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgb(228, 225, 72);
   transition: background-color 750ms ease-out;
 
-  border: 1px solid rgba(195, 187, 187);
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -188,7 +188,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgba(72, 121, 228, 0.8);
   transition: background-color 750ms ease-out;
 
-  border: 1px solid rgba(195, 187, 187);
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -197,7 +197,7 @@ input[type=number]::-webkit-outer-spin-button {
   background-color: rgba(224, 87, 140);
   transition: background-color 750ms ease-out;
 
-  border: 1px solid rgba(195, 187, 187);
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 

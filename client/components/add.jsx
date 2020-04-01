@@ -346,7 +346,6 @@ export default class Add extends React.Component {
                 </div>
 
               <div className="catButtonContainer">
-                <div className="catButton">Payday</div>
                 <div className="catButton" value="Vacation">Vacation</div>
                 <div className="catButton" value="Wedding">Wedding</div>
               </div>
