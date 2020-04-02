@@ -50,15 +50,20 @@ export default class Add extends React.Component {
   };
 
   categoryHandleChange(e) {
-    // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
-    // console.log("setting sate for Category Dropdown");
-    this.setState({ category: e.value })
+    console.log("event is: ", e);
+    console.log("event.value is: ", e.value);
+    console.log("event.target is: ", e.target);
+    console.log("event.currentTarget is: ", e.currentTarget);
+    console.log("event.target.value is: ", e.target.value);
+    console.log("setting sate for Category Dropdown");
+    let value = e.target.value;
+    alert(value);
+    this.setState({ category: e.target.value })
   }
 
   subCategoryHandleChange(e) {
-    // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
+    console.log("SUB event is: ", e);
+    console.log("SUB event.value is: ", e.value);
     this.setState({ subCategory: e.value})
   }
 
@@ -340,7 +345,7 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div className="catButton" value='Spendings'>Spendings</div>
+                <div onClick={this.categoryHandleChange} className="catButton" value='Spendings'>Spendings</div>
                   <div className="catButton" value="Fixed">Fixed</div>
                   <div className="catButton" value="Credits">Credits</div>
                 </div>
