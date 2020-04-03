@@ -325,6 +325,28 @@ export default class Add extends React.Component {
       ? shakeIt_where = "shakeIt"
       : shakeIt_where = "";
 
+    let catButtonBackground;
+    switch (this.state.category) {
+      case "Spendings":
+        catButtonBackground = "catButtonSpendings";
+        break;
+      case "Credits":
+        catButtonBackground = "catButtonCredits";
+        break;
+      case "Fixed":
+        catButtonBackground = "catButtonFixed";
+        break;
+      case "Wedding":
+        catButtonBackground = "catButtonWedding";
+        break;
+      case "Vacation":
+        catButtonBackground = "catButtonVacation";
+        break;
+      default:
+        catButtonBackground = null;
+        break;
+    }
+
       return (
 
         <div className="addWrapper">
@@ -345,14 +367,14 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange} className="catButton" value='Spendings'>Spendings</div>
-                  <div className="catButton" value="Fixed">Fixed</div>
-                  <div className="catButton" value="Credits">Credits</div>
+                <div onClick={this.categoryHandleChange} className={"catButton " + catButtonBackground} value='Spendings'>Spendings</div>
+                  <div className={"catButton " + catButtonBackground} value="Fixed">Fixed</div>
+                  <div className={"catButton " + catButtonBackground} value="Credits">Credits</div>
                 </div>
 
               <div className="catButtonContainer">
-                <div className="catButton" value="Vacation">Vacation</div>
-                <div className="catButton" value="Wedding">Wedding</div>
+                <div className={"catButton " + catButtonBackground} value="Vacation">Vacation</div>
+                <div className={"catButton " + catButtonBackground} value="Wedding">Wedding</div>
               </div>
 
 

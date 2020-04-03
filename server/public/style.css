@@ -147,6 +147,26 @@ input[type=number]::-webkit-outer-spin-button {
   transition: background-color 750ms ease-out;
 }
 
+.catButtonSpendings {
+  background-color: rgba(228, 72, 72, 0.8);
+}
+
+.catButtonCredits {
+  background-color:green;
+}
+
+.catButtonFixed {
+  background-color: yellow;
+}
+
+.catButtonWedding {
+  background-color: pink;
+}
+
+.catButtonVacation {
+  background-color: grey;
+}
+
 .spendings {
   background-color: rgba(228, 72, 72, 0.5);
 }
