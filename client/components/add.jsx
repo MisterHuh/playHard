@@ -18,7 +18,7 @@ export default class Add extends React.Component {
       currentIndex: 0,
 
       date: new Date(),
-      category: "Spendings",
+      category: "",
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
@@ -53,11 +53,11 @@ export default class Add extends React.Component {
     console.log("event is: ", e);
     console.log("event.value is: ", e.value);
     console.log("event.target is: ", e.target);
-    console.log("event.currentTarget is: ", e.currentTarget);
+    console.log("event.currentTarget is: ", e.currentTarget.value);
     console.log("event.target.value is: ", e.target.value);
     console.log("setting sate for Category Dropdown");
     let value = e.target.value;
-    alert(value);
+    // alert(value);
     this.setState({ category: e.target.value })
   }
 
@@ -135,7 +135,7 @@ export default class Add extends React.Component {
 
     this.setState({
       date: new Date(),
-      category: "Spendings",
+      category: "",
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
@@ -263,6 +263,9 @@ export default class Add extends React.Component {
       ]
     ];
 
+    console.log("dropdownOptions is: ", dropdownOptions);
+    console.log("dropdownOptions[0][0][`value`] is: ", dropdownOptions[0][0]['value']);
+
 
     let colorFormatter;
     if (this.state.category === "Spendings") {
@@ -328,18 +331,28 @@ export default class Add extends React.Component {
     let catButtonBackground;
     switch (this.state.category) {
       case "Spendings":
+        // console.log("this.state.category is:", this.state.category);
+        // console.log("catButtonBackground is:", catButtonBackground);
         catButtonBackground = "catButtonSpendings";
         break;
       case "Credits":
+        // console.log("this.state.category is:", this.state.category);
+        // console.log("catButtonBackground is:", catButtonBackground);
         catButtonBackground = "catButtonCredits";
         break;
       case "Fixed":
+        // console.log("this.state.category is:", this.state.category);
+        // console.log("catButtonBackground is:", catButtonBackground);
         catButtonBackground = "catButtonFixed";
         break;
       case "Wedding":
+        // console.log("this.state.category is:", this.state.category);
+        // console.log("catButtonBackground is:", catButtonBackground);
         catButtonBackground = "catButtonWedding";
         break;
       case "Vacation":
+        // console.log("this.state.category is:", this.state.category);
+        // console.log("catButtonBackground is:", catButtonBackground);
         catButtonBackground = "catButtonVacation";
         break;
       default:
@@ -367,7 +380,7 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange} className={"catButton " + catButtonBackground} value='Spendings'>Spendings</div>
+                <div onClick={this.categoryHandleChange.bind(this)} className={"catButton " + catButtonBackground} value={dropdownOptions[0][0]["value"]}>Spendings</div>
                   <div className={"catButton " + catButtonBackground} value="Fixed">Fixed</div>
                   <div className={"catButton " + catButtonBackground} value="Credits">Credits</div>
                 </div>
