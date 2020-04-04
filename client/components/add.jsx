@@ -50,15 +50,15 @@ export default class Add extends React.Component {
   };
 
   categoryHandleChange(e) {
-    console.log("event is: ", e);
-    console.log("event.value is: ", e.value);
-    console.log("event.target is: ", e.target);
-    console.log("event.currentTarget is: ", e.currentTarget.value);
-    console.log("event.target.value is: ", e.target.value);
-    console.log("setting sate for Category Dropdown");
-    let value = e.target.value;
+    // console.log("event is: ", e);
+    // console.log("event.value is: ", e.value);
+    console.log("event.target.id is: ", e.target.id);
+    // console.log("event.currentTarget is: ", e.currentTarget.value);
+    // console.log("event.target.value is: ", e.target.value);
+    // console.log("setting sate for Category Dropdown");
+    // let value = e.target.value;
     // alert(value);
-    this.setState({ category: e.target.value })
+    this.setState({ category: e.target.id })
   }
 
   subCategoryHandleChange(e) {
@@ -328,35 +328,36 @@ export default class Add extends React.Component {
       ? shakeIt_where = "shakeIt"
       : shakeIt_where = "";
 
-    let catButtonBackground;
+
+    let catButtonSpendings, catButtonCredits, catButtonFixed, catButtonWedding, catButtonVacation;
+
     switch (this.state.category) {
       case "Spendings":
-        // console.log("this.state.category is:", this.state.category);
-        // console.log("catButtonBackground is:", catButtonBackground);
-        catButtonBackground = "catButtonSpendings";
+        console.log("this.state.category is:", this.state.category);
+        // // console.log("catButtonBackground is:", catButtonBackground);
+        catButtonSpendings = "catButtonSpendings";
         break;
       case "Credits":
-        // console.log("this.state.category is:", this.state.category);
-        // console.log("catButtonBackground is:", catButtonBackground);
-        catButtonBackground = "catButtonCredits";
+        console.log("this.state.category is:", this.state.category);
+        // // console.log("catButtonBackground is:", catButtonBackground);
+        catButtonCredits = "catButtonCredits";
         break;
       case "Fixed":
-        // console.log("this.state.category is:", this.state.category);
-        // console.log("catButtonBackground is:", catButtonBackground);
-        catButtonBackground = "catButtonFixed";
+        console.log("this.state.category is:", this.state.category);
+        // // console.log("catButtonBackground is:", catButtonBackground);
+        catButtonFixed = "catButtonFixed";
         break;
       case "Wedding":
-        // console.log("this.state.category is:", this.state.category);
-        // console.log("catButtonBackground is:", catButtonBackground);
-        catButtonBackground = "catButtonWedding";
+        console.log("this.state.category is:", this.state.category);
+        // // console.log("catButtonBackground is:", catButtonBackground);
+        catButtonWedding = "catButtonWedding";
         break;
       case "Vacation":
-        // console.log("this.state.category is:", this.state.category);
-        // console.log("catButtonBackground is:", catButtonBackground);
-        catButtonBackground = "catButtonVacation";
+        console.log("this.state.category is:", this.state.category);
+        // // console.log("catButtonBackground is:", catButtonBackground);
+        catButtonVacation = "catButtonVacation";
         break;
       default:
-        catButtonBackground = null;
         break;
     }
 
@@ -380,14 +381,14 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange.bind(this)} className={"catButton " + catButtonBackground} value={dropdownOptions[0][0]["value"]}>Spendings</div>
-                  <div className={"catButton " + catButtonBackground} value="Fixed">Fixed</div>
-                  <div className={"catButton " + catButtonBackground} value="Credits">Credits</div>
+                <div onClick={this.categoryHandleChange.bind(this)} id="Spendings" className={"catButton " + catButtonSpendings} value={dropdownOptions[0][0]["value"]}>Spendings</div>
+                  <div className={"catButton " + catButtonFixed} value="Fixed">Fixed</div>
+                  <div className={"catButton " + catButtonCredits} value="Credits">Credits</div>
                 </div>
 
               <div className="catButtonContainer">
-                <div className={"catButton " + catButtonBackground} value="Vacation">Vacation</div>
-                <div className={"catButton " + catButtonBackground} value="Wedding">Wedding</div>
+                <div className={"catButton " + catButtonVacation} value="Vacation">Vacation</div>
+                <div className={"catButton " + catButtonWedding} value="Wedding">Wedding</div>
               </div>
 
 
