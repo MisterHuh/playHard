@@ -416,14 +416,14 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange} id="Spendings" className={"catButton " + catButtonSpendings}>Spendings</div>
-                <div onClick={this.categoryHandleChange} id="Fixed" className={"catButton " + catButtonFixed}  >Fixed</div>
-                <div onClick={this.categoryHandleChange} id="Credits" className={"catButton " + catButtonCredits}  >Credits</div>
+                <div onClick={this.categoryHandleChange.bind(this)} id="Spendings" className={"catButton " + catButtonSpendings} value={dropdownOptions[0][0]["value"]}>Spendings</div>
+                  <div className={"catButton " + catButtonFixed} value="Fixed">Fixed</div>
+                  <div className={"catButton " + catButtonCredits} value="Credits">Credits</div>
                 </div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange} id="Vacation" className={"catButton " + catButtonVacation}  >Vacation</div>
-                <div onClick={this.categoryHandleChange} id="Wedding" className={"catButton " + catButtonWedding}  >Wedding</div>
+                <div className={"catButton " + catButtonVacation} value="Vacation">Vacation</div>
+                <div className={"catButton " + catButtonWedding} value="Wedding">Wedding</div>
               </div>
 
 
