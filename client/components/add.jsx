@@ -7,6 +7,7 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/style.css'
+import TestUtils from "react-addons-test-utils";
 
 
 export default class Add extends React.Component {
@@ -42,6 +43,7 @@ export default class Add extends React.Component {
     this.retrieveAddSideBox = this.retrieveAddSideBox.bind(this);
     this.previousButton = this.previousButton.bind(this);
     this.nextButton = this.nextButton.bind(this);
+    this.reorderSubcategoryDropdown = this.reorderSubcategoryDropdown.bind(this);
     // this.test = this.test.bind(globalThis);
   }
 
@@ -52,13 +54,14 @@ export default class Add extends React.Component {
   categoryHandleChange(e) {
     // console.log("event is: ", e);
     // console.log("event.value is: ", e.value);
-    console.log("event.target.id is: ", e.target.id);
+    // console.log("event.target.id is: ", e.target.id);
     // console.log("event.currentTarget is: ", e.currentTarget.value);
     // console.log("event.target.value is: ", e.target.value);
     // console.log("setting sate for Category Dropdown");
     // let value = e.target.value;
     // alert(value);
     this.setState({ category: e.target.id })
+    this.reorderSubcategoryDropdown();
   }
 
   subCategoryHandleChange(e) {
@@ -208,16 +211,51 @@ export default class Add extends React.Component {
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current)
-        this.setState({
-          current
-          // currentIndex: 0
-        })
+        this.setState({ current })
       })
   }
 
 
   componentDidMount() {
     this.retrieveAddSideBox();
+  }
+
+  reorderSubcategoryDropdown() {
+    let test =
+      [ // subCategory - default / spendings
+        { value: 'Food', label: 'Food' },
+        { value: 'Groceries', label: 'Groceries' },
+        { value: 'Gas', label: 'Gas' },
+        { value: 'Entertainment', label: 'Entertainment' },
+        { value: 'Gifts', label: 'Gifts' },
+        { value: 'Home', label: 'Home' },
+        { value: 'Dogs', label: 'Dogs' },
+        { value: 'Travel', label: 'Travel' },
+        { value: 'Emergency', label: 'Emergency' },
+        { value: 'Utility', label: 'Utility' },
+        { value: 'Health', label: 'Health' },
+        { value: 'Automobile', label: 'Automobile' }
+      ];
+
+    // if (this.state.category === "Spendings" || this.state.caterogy === "Credits" !(this.state.category) ) {
+    //     return test;
+    //   } else if (this.state.category === "Fixed") {
+    //     let result = test.splice(0, 1);
+    //     result = result[0];
+    //     let newArray = test.splice(1, 0, result);
+    //   }
+
+    // if (this.state.category === "Fixed") {
+    //   let result = test.splice(0, 1);
+    //   result = result[0];
+    //   let newArray = test.splice(1, 0, result);
+    // }
+
+    // // let result = test.splice(to, 0, this.splice(from, 1)[0]);
+    // console.log("result is: ", result);
+    // console.log("test is: ", test);
+    // console.log("newArray is: ", newArray);
+    return test;
   }
 
   render() {
@@ -231,7 +269,7 @@ export default class Add extends React.Component {
         { value: 'Vacation', label: 'Vacation' },
         { value: 'Wedding', label: 'Wedding' }
       ],
-      [ // subCategory
+      [ // subCategory - default / spendings
         { value: 'Food', label: 'Food' },
         { value: 'Drinks', label: 'Drinks' },
         { value: 'Groceries', label: 'Groceries' },
@@ -262,9 +300,6 @@ export default class Add extends React.Component {
         { value: 'Freedom', label: 'Freedom' },
       ]
     ];
-
-    console.log("dropdownOptions is: ", dropdownOptions);
-    console.log("dropdownOptions[0][0][`value`] is: ", dropdownOptions[0][0]['value']);
 
 
     let colorFormatter;
@@ -487,7 +522,7 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
               <div
                 onClick={() => this.handleSubmit()}
-                className={"addButton  text-center " + colorFormatter}> Add
+                className={"addButton text-center " + colorFormatter}> Add
               </div>
             </div>
           </div> {/* addForm */}
