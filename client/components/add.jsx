@@ -43,8 +43,6 @@ export default class Add extends React.Component {
     this.retrieveAddSideBox = this.retrieveAddSideBox.bind(this);
     this.previousButton = this.previousButton.bind(this);
     this.nextButton = this.nextButton.bind(this);
-    this.reorderSubcategoryDropdown = this.reorderSubcategoryDropdown.bind(this);
-    // this.test = this.test.bind(globalThis);
   }
 
   dateHandleChange(date) {
@@ -52,27 +50,29 @@ export default class Add extends React.Component {
   };
 
   categoryHandleChange(e) {
-    // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
-    // console.log("event.target.id is: ", e.target.id);
-    // console.log("event.currentTarget is: ", e.currentTarget.value);
-    // console.log("event.target.value is: ", e.target.value);
-    // console.log("setting sate for Category Dropdown");
-    // let value = e.target.value;
-    // alert(value);
-    this.setState({ category: e.target.id })
-    this.reorderSubcategoryDropdown();
+    if (e.target.id === "Fixed") {
+      this.setState({
+        category: e.target.id,
+        subCategory: "Groceries",
+        cc: "AmEx"
+       })
+    } else {
+      this.setState({
+        category: e.target.id,
+        subCategory: "Food",
+        cc: "Sapphire"
+       })
+    };
   }
 
   subCategoryHandleChange(e) {
-    console.log("SUB event is: ", e);
-    console.log("SUB event.value is: ", e.value);
+    // console.log("SUB event is: ", e);
+    // console.log("SUB event.value is: ", e.value);
     this.setState({ subCategory: e.value})
   }
 
   ccHandleChange(e) {
-    // console.log("event is: ", e);
-    // console.log("event.value is: ", e.value);
+
     this.setState({ cc: e.value })
   }
 
@@ -87,7 +87,6 @@ export default class Add extends React.Component {
     switch(name) {
       case "amount":
         formErrors.amount = numberChecker.test(value) || firstLastWhiteSpace.test(value) || value.length < 1
-        // formErrors.amount = numberChecker.test(value)
         ? 'enter a valid amount'
         : "";
         break;
@@ -131,9 +130,6 @@ export default class Add extends React.Component {
     fetch(`/api/add.php`, req)
       .then(response => response.json())
       .catch(error => {
-        // console.error('delete error: ', error);
-        // console.log("entry is: ", entry);
-        // alert("entry is: ", entry);
       });
 
     this.setState({
@@ -150,18 +146,12 @@ export default class Add extends React.Component {
      this.retrieveAddSideBox();
   }
 
-  /* refactor this code into the actual html body? */
   renderSideBox() {
-    // console.log("this.state.currentIndex is: ", this.state.currentIndex);
-    // console.log("this.state.current is: ", this.state.current);
-
     let creditsFontColor = this.state.current[this.state.currentIndex]["amount"] < 0 ? "creditsFontColor" : null;
     let fontSizeController = this.state.current[this.state.currentIndex]["notes"].length >= 19 ? "renderSideBoxFont": null;
     let noteFiller = this.state.current[this.state.currentIndex]["notes"] ? this.state.current[this.state.currentIndex]["notes"]  : "-";
-    // let fontSizeController = this.state.current[this.state.currentIndex].length > 19 ? "renderSideBoxFont" : null;
 
     if (this.state.current) {
-      // console.log("this.state.current[this.state.currentIndex]['id'] is: ", this.state.current[this.state.currentIndex]['id']);
       return (
         <React.Fragment>
           <div className="prevRec mt-3">{this.state.current[this.state.currentIndex]["date"]}</div>
@@ -220,44 +210,6 @@ export default class Add extends React.Component {
     this.retrieveAddSideBox();
   }
 
-  reorderSubcategoryDropdown() {
-    let test =
-      [ // subCategory - default / spendings
-        { value: 'Food', label: 'Food' },
-        { value: 'Groceries', label: 'Groceries' },
-        { value: 'Gas', label: 'Gas' },
-        { value: 'Entertainment', label: 'Entertainment' },
-        { value: 'Gifts', label: 'Gifts' },
-        { value: 'Home', label: 'Home' },
-        { value: 'Dogs', label: 'Dogs' },
-        { value: 'Travel', label: 'Travel' },
-        { value: 'Emergency', label: 'Emergency' },
-        { value: 'Utility', label: 'Utility' },
-        { value: 'Health', label: 'Health' },
-        { value: 'Automobile', label: 'Automobile' }
-      ];
-
-    // if (this.state.category === "Spendings" || this.state.caterogy === "Credits" !(this.state.category) ) {
-    //     return test;
-    //   } else if (this.state.category === "Fixed") {
-    //     let result = test.splice(0, 1);
-    //     result = result[0];
-    //     let newArray = test.splice(1, 0, result);
-    //   }
-
-    // if (this.state.category === "Fixed") {
-    //   let result = test.splice(0, 1);
-    //   result = result[0];
-    //   let newArray = test.splice(1, 0, result);
-    // }
-
-    // // let result = test.splice(to, 0, this.splice(from, 1)[0]);
-    // console.log("result is: ", result);
-    // console.log("test is: ", test);
-    // console.log("newArray is: ", newArray);
-    return test;
-  }
-
   render() {
 
     const dropdownOptions = [
@@ -271,14 +223,26 @@ export default class Add extends React.Component {
       ],
       [ // subCategory - default / spendings
         { value: 'Food', label: 'Food' },
-        { value: 'Drinks', label: 'Drinks' },
         { value: 'Groceries', label: 'Groceries' },
         { value: 'Gas', label: 'Gas' },
         { value: 'Entertainment', label: 'Entertainment' },
         { value: 'Gifts', label: 'Gifts' },
         { value: 'Home', label: 'Home' },
         { value: 'Dogs', label: 'Dogs' },
-        { value: 'Party', label: 'Party' },
+        { value: 'Travel', label: 'Travel' },
+        { value: 'Emergency', label: 'Emergency' },
+        { value: 'Utility', label: 'Utility' },
+        { value: 'Health', label: 'Health' },
+        { value: 'Automobile', label: 'Automobile' }
+      ],
+      [ // subCategory - fixed
+        { value: 'Groceries', label: 'Groceries' },
+        { value: 'Food', label: 'Food' },
+        { value: 'Gas', label: 'Gas' },
+        { value: 'Entertainment', label: 'Entertainment' },
+        { value: 'Gifts', label: 'Gifts' },
+        { value: 'Home', label: 'Home' },
+        { value: 'Dogs', label: 'Dogs' },
         { value: 'Travel', label: 'Travel' },
         { value: 'Emergency', label: 'Emergency' },
         { value: 'Utility', label: 'Utility' },
@@ -318,15 +282,6 @@ export default class Add extends React.Component {
     };
 
     let negativeFontColor = this.state.amount < 0 ? "creditsFontColor" : "negativeNotWorking";
-    // let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
-
-    // let negativeDash = this.state.amount;
-    // let typeOfAmount = typeof(negativeDash);
-    // console.log("negativeDash is: ", negativeDash);
-    // console.log("typeofAmount is: ", typeOfAmount);
-
-    // let creditsFontColor = this.state.amount.charAt(0) === "-" ? "creditsFontColor" : "dashNotWorking";
-    // let creditsFontColor = negativeDash.charAt(0) === "-" ? "creditsFontColor" : "dashNotWorking";
 
     let addSideBoxFooter;
     if (this.state.current.length) {
@@ -343,10 +298,15 @@ export default class Add extends React.Component {
       };
     }
 
+    let subcatDropdown;
+    this.state.category === "Fixed"
+      ? subcatDropdown = dropdownOptions[2]
+      : subcatDropdown = dropdownOptions[1];
+
     let ccDropdown;
     this.state.category === "Credits"
-      ? ccDropdown = dropdownOptions[3]
-      : ccDropdown = dropdownOptions[2];
+      ? ccDropdown = dropdownOptions[4]
+      : ccDropdown = dropdownOptions[3];
 
     let placeholder;
     this.state.category === "Credits"
@@ -368,28 +328,18 @@ export default class Add extends React.Component {
 
     switch (this.state.category) {
       case "Spendings":
-        console.log("this.state.category is:", this.state.category);
-        // // console.log("catButtonBackground is:", catButtonBackground);
         catButtonSpendings = "catButtonSpendings";
         break;
       case "Credits":
-        console.log("this.state.category is:", this.state.category);
-        // // console.log("catButtonBackground is:", catButtonBackground);
         catButtonCredits = "catButtonCredits";
         break;
       case "Fixed":
-        console.log("this.state.category is:", this.state.category);
-        // // console.log("catButtonBackground is:", catButtonBackground);
         catButtonFixed = "catButtonFixed";
         break;
       case "Wedding":
-        console.log("this.state.category is:", this.state.category);
-        // // console.log("catButtonBackground is:", catButtonBackground);
         catButtonWedding = "catButtonWedding";
         break;
       case "Vacation":
-        console.log("this.state.category is:", this.state.category);
-        // // console.log("catButtonBackground is:", catButtonBackground);
         catButtonVacation = "catButtonVacation";
         break;
       default:
@@ -416,14 +366,14 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange.bind(this)} id="Spendings" className={"catButton " + catButtonSpendings} value={dropdownOptions[0][0]["value"]}>Spendings</div>
-                  <div className={"catButton " + catButtonFixed} value="Fixed">Fixed</div>
-                  <div className={"catButton " + catButtonCredits} value="Credits">Credits</div>
+                <div onClick={this.categoryHandleChange} id="Spendings" className={"catButton " + catButtonSpendings} value={dropdownOptions[0][0]["value"]}>Spendings</div>
+                  <div onClick={this.categoryHandleChange} id="Fixed" className={"catButton " + catButtonFixed} value="Fixed">Fixed</div>
+                  <div onClick={this.categoryHandleChange} id="Credits" className={"catButton " + catButtonCredits} value="Credits">Credits</div>
                 </div>
 
               <div className="catButtonContainer">
-                <div className={"catButton " + catButtonVacation} value="Vacation">Vacation</div>
-                <div className={"catButton " + catButtonWedding} value="Wedding">Wedding</div>
+                <div onClick={this.categoryHandleChange} id="Vacation" className={"catButton " + catButtonVacation} value="Vacation">Vacation</div>
+                <div onClick={this.categoryHandleChange} id="Wedding" className={"catButton " + catButtonWedding} value="Wedding">Wedding</div>
               </div>
 
 
@@ -441,7 +391,8 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
               <Dropdown
                 onChange={this.subCategoryHandleChange}
-                options={dropdownOptions[1]}
+                // options={dropdownOptions[1]}
+                options={subcatDropdown}
                 arrowClosed={<span className="arrow-closed" />}
                 arrowOpen={<span className="arrow-open" />}
                 placeholder={this.state.subCategory}

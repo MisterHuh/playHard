@@ -318,6 +318,21 @@ border: 1px solid red;
   text-align: center;
 }
 
+.addButton {
+  width: 100%;
+  position: relative;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-sizing: border-box;
+  color: black;
+  outline: none;
+  padding: 8px 0px;
+  font-weight: bolder;
+  border-radius: 28px;
+  color: rgba(0, 0, 0, 0.945);
+  transition: background-color 450ms ease-out;
+}
+
 .addButtonSpendings, .addButtonFixed, .addButtonCredits, .addButtonPayday, .addButtonWedding, .addButtonVacation {
   width: 100%;
   position: relative;
