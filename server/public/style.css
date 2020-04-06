@@ -152,11 +152,11 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .catButtonCredits {
-  background-color: rgba(82, 228, 72);background-color:green;
+  background-color:green;
 }
 
 .catButtonFixed {
-  background-color: rgb(228, 225, 72);
+  background-color: yellow;
 }
 
 .catButtonWedding {
@@ -164,7 +164,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .catButtonVacation {
-  background-color: rgba(72, 121, 228, 0.8);
+  background-color: grey;
 }
 
 .spendings {
@@ -179,6 +179,8 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
   background-color: rgba(228, 72, 72, 0.8);
   transition: background-color 750ms ease-out;
+
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -186,6 +188,8 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
   background-color: rgba(82, 228, 72);
   transition: background-color 750ms ease-out;
+
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -194,6 +198,8 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
   background-color: rgb(228, 225, 72);
   transition: background-color 750ms ease-out;
+
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -201,6 +207,8 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
   background-color: rgba(72, 121, 228, 0.8);
   transition: background-color 750ms ease-out;
+
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -208,6 +216,8 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
   background-color: rgba(224, 87, 140);
   transition: background-color 750ms ease-out;
+
+  /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
 }
 
@@ -306,23 +316,6 @@ border: 1px solid red;
   outline: none;
   margin: auto;
   text-align: center;
-}
-
-.addButton {
-  width: 100%;
-  position: relative;
-  border: 1px solid #ccc;
-  border-radius: 2px;
-  box-sizing: border-box;
-  color: black;
-  outline: none;
-  padding: 8px 0px;
-  font-weight: bolder;
-  border-radius: 28px;
-  color: rgba(0, 0, 0, 0.945);
-  background-color:#e8e8e8b9;
-  /* transition: color 450ms ease-out; */
-  transition: background-color 450ms ease-out;
 }
 
 .addButtonSpendings, .addButtonFixed, .addButtonCredits, .addButtonPayday, .addButtonWedding, .addButtonVacation {
