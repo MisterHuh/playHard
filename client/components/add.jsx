@@ -369,9 +369,9 @@ export default class Add extends React.Component {
                 <div onClick={this.categoryHandleChange} id="Spendings" className={"catButton " + catButtonSpendings} value={dropdownOptions[0][0]["value"]}>Spendings</div>
                   <div onClick={this.categoryHandleChange} id="Fixed" className={"catButton " + catButtonFixed} value="Fixed">Fixed</div>
                   <div onClick={this.categoryHandleChange} id="Credits" className={"catButton " + catButtonCredits} value="Credits">Credits</div>
-                </div>
+                {/* </div>
 
-              <div className="catButtonContainer">
+              <div className="catButtonContainer"> */}
                 <div onClick={this.categoryHandleChange} id="Vacation" className={"catButton " + catButtonVacation} value="Vacation">Vacation</div>
                 <div onClick={this.categoryHandleChange} id="Wedding" className={"catButton " + catButtonWedding} value="Wedding">Wedding</div>
               </div>
