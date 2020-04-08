@@ -72,8 +72,7 @@ export default class Add extends React.Component {
   }
 
   ccHandleChange(e) {
-
-    this.setState({ cc: e.value })
+    this.setState({ cc: e.target.id })
   }
 
   inputHandleChange(e) {
@@ -401,22 +400,22 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.ccHandleChange} id="Sapphire" className={"catButton " + catButtonSpendings} value="Sapphire">Sapphire</div>
-                <div onClick={this.ccHandleChange} id="AmEx" className={"catButton " + catButtonFixed} value="AmEx">AmEx</div>
-                <div onClick={this.ccHandleChange} id="Venmo" className={"catButton " + catButtonCredits} value="Venmo">Venmo</div>
-                <div onClick={this.ccHandleChange} id="Freedom" className={"catButton " + catButtonVacation} value="Freedom">Freedom</div>
-                <div onClick={this.ccHandleChange} id="BB" className={"catButton " + catButtonWedding} value="BB">BB</div>
+                <div onClick={this.ccHandleChange} id="Sapphire" className={"catButton " + catButtonSpendings} >Sapphire</div>
+                <div onClick={this.ccHandleChange} id="AmEx" className={"catButton " + catButtonFixed} >AmEx</div>
+                <div onClick={this.ccHandleChange} id="Venmo" className={"catButton " + catButtonCredits} >Venmo</div>
+                <div onClick={this.ccHandleChange} id="Freedom" className={"catButton " + catButtonVacation} >Freedom</div>
+                <div onClick={this.ccHandleChange} id="BB" className={"catButton " + catButtonWedding} >BB</div>
               </div>
 
 
-              <Dropdown
+              {/* <Dropdown
                 onChange={this.ccHandleChange}
                 options={ccDropdown}
                 arrowClosed={<span className="arrow-closed" />}
                 arrowOpen={<span className="arrow-open" />}
                 placeholder={placeholder}
                 className=""
-              />
+              /> */}
 
 
             </div>
