@@ -302,15 +302,15 @@ export default class Add extends React.Component {
       ? subcatDropdown = dropdownOptions[2]
       : subcatDropdown = dropdownOptions[1];
 
-    let ccDropdown;
-    this.state.category === "Credits"
-      ? ccDropdown = dropdownOptions[4]
-      : ccDropdown = dropdownOptions[3];
+    // let ccDropdown;
+    // this.state.category === "Credits"
+    //   ? ccDropdown = dropdownOptions[4]
+    //   : ccDropdown = dropdownOptions[3];
 
-    let placeholder;
-    this.state.category === "Credits"
-      ? placeholder = "Venmo"
-      : placeholder = this.state.cc;
+    // let placeholder;
+    // this.state.category === "Credits"
+    //   ? placeholder = "Venmo"
+    //   : placeholder = this.state.cc;
 
     let shakeIt_amount;
     this.state.formErrors.amount.length > 0
@@ -324,6 +324,8 @@ export default class Add extends React.Component {
 
 
     let catButtonSpendings, catButtonCredits, catButtonFixed, catButtonWedding, catButtonVacation;
+    let ccButonSpendings, ccButtonCredits, ccButtonFixed, ccButtonWedding, ccButtonVacation;
+    // how to get CC to be selected based on state?
 
     switch (this.state.category) {
       case "Spendings":
@@ -365,7 +367,7 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.categoryHandleChange} id="Spendings" className={"catButton " + catButtonSpendings}>Spendings</div>
+                <div onClick={this.categoryHandleChange} id="Spendings" className={"catButton " + catButtonSpendings} value="Spendings">Spendings</div>
                 <div onClick={this.categoryHandleChange} id="Fixed" className={"catButton " + catButtonFixed} value="Fixed">Fixed</div>
                 <div onClick={this.categoryHandleChange} id="Credits" className={"catButton " + catButtonCredits} value="Credits">Credits</div>
                 <div onClick={this.categoryHandleChange} id="Vacation" className={"catButton " + catButtonVacation} value="Vacation">Vacation</div>
@@ -400,11 +402,11 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.ccHandleChange} id="Sapphire" className={"catButton " + catButtonSpendings} >Sapphire</div>
-                <div onClick={this.ccHandleChange} id="AmEx" className={"catButton " + catButtonFixed} >AmEx</div>
-                <div onClick={this.ccHandleChange} id="Venmo" className={"catButton " + catButtonCredits} >Venmo</div>
-                <div onClick={this.ccHandleChange} id="Freedom" className={"catButton " + catButtonVacation} >Freedom</div>
-                <div onClick={this.ccHandleChange} id="BB" className={"catButton " + catButtonWedding} >BB</div>
+                <div onClick={this.ccHandleChange} id="Sapphire" className="catButton" >Sapphire</div>
+                <div onClick={this.ccHandleChange} id="AmEx" className="catButton" >AmEx</div>
+                <div onClick={this.ccHandleChange} id="Venmo" className="catButton" >Venmo</div>
+                <div onClick={this.ccHandleChange} id="Freedom" className="catButton" >Freedom</div>
+                <div onClick={this.ccHandleChange} id="BB" className="catButton" >BB</div>
               </div>
 
 
