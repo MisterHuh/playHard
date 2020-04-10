@@ -324,8 +324,17 @@ export default class Add extends React.Component {
 
 
     let catButtonSpendings, catButtonCredits, catButtonFixed, catButtonWedding, catButtonVacation;
-    let ccButonSpendings, ccButtonCredits, ccButtonFixed, ccButtonWedding, ccButtonVacation;
-    // how to get CC to be selected based on state?
+    let ccButtonBorder1;
+    // how to get CC to be selected based on state.cc?
+
+    // if (this.state.cc === "AmEx") {
+    //   ccButtonBorder1 = " border";
+    // };
+
+    this.state.cc === "AmEx"
+      ? ccButtonBorder1 = " border"
+      : "";
+
 
     switch (this.state.category) {
       case "Spendings":
@@ -402,8 +411,8 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.ccHandleChange} id="Sapphire" className="catButton" >Sapphire</div>
-                <div onClick={this.ccHandleChange} id="AmEx" className="catButton" >AmEx</div>
+                <div onClick={this.ccHandleChange} id="Sapphire" className="catButton">Sapphire</div>
+                <div onClick={this.ccHandleChange} id="AmEx" className={"catButton" + ccButtonBorder1} >AmEx</div>
                 <div onClick={this.ccHandleChange} id="Venmo" className="catButton" >Venmo</div>
                 <div onClick={this.ccHandleChange} id="Freedom" className="catButton" >Freedom</div>
                 <div onClick={this.ccHandleChange} id="BB" className="catButton" >BB</div>
