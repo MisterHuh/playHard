@@ -418,6 +418,16 @@ export default class Add extends React.Component {
                 <div onClick={this.ccHandleChange} id="BB" className="catButton" >BB</div>
               </div>
 
+              <input
+                id={shakeIt_amount}
+                type="number"
+                value={this.state.amount}
+                onChange={this.inputHandleChange}
+                placeholder="$ 00.00"
+                name="amount"
+                className="amount"
+              />
+
 
               {/* <Dropdown
                 onChange={this.ccHandleChange}
