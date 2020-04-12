@@ -324,16 +324,28 @@ export default class Add extends React.Component {
 
 
     let catButtonSpendings, catButtonCredits, catButtonFixed, catButtonWedding, catButtonVacation;
-    let ccButtonBorder1;
-    // how to get CC to be selected based on state.cc?
-
-    // if (this.state.cc === "AmEx") {
-    //   ccButtonBorder1 = " border";
-    // };
+    let ccButtonSapphire, ccButtonAmEx, ccButtonVenmo, ccButtonFreedom, ccButtonBB;
 
     this.state.cc === "AmEx"
-      ? ccButtonBorder1 = " border"
+      ? ccButtonAmEx = " border"
       : "";
+
+    this.state.cc === "Sapphire"
+      ? ccButtonSapphire = " border"
+      : "";
+
+    this.state.cc === "Venmo"
+      ? ccButtonVenmo = " border"
+      : "";
+
+    this.state.cc === "Freedom"
+      ? ccButtonFreedom = " border"
+      : "";
+
+    this.state.cc === "BB"
+      ? ccButtonBB = " border"
+      : "";
+
 
 
     switch (this.state.category) {
@@ -411,22 +423,12 @@ export default class Add extends React.Component {
               <div className="formValidationContainer"></div>
 
               <div className="catButtonContainer">
-                <div onClick={this.ccHandleChange} id="Sapphire" className="catButton">Sapphire</div>
-                <div onClick={this.ccHandleChange} id="AmEx" className={"catButton" + ccButtonBorder1} >AmEx</div>
-                <div onClick={this.ccHandleChange} id="Venmo" className="catButton" >Venmo</div>
-                <div onClick={this.ccHandleChange} id="Freedom" className="catButton" >Freedom</div>
-                <div onClick={this.ccHandleChange} id="BB" className="catButton" >BB</div>
+                <div onClick={this.ccHandleChange} id="Sapphire" className={"catButton " + ccButtonSapphire}>Sapphire</div>
+                <div onClick={this.ccHandleChange} id="AmEx" className={"catButton " + ccButtonAmEx} >AmEx</div>
+                <div onClick={this.ccHandleChange} id="Venmo" className={"catButton " + ccButtonVenmo} >Venmo</div>
+                <div onClick={this.ccHandleChange} id="Freedom" className={"catButton " + ccButtonFreedom} >Freedom</div>
+                <div onClick={this.ccHandleChange} id="BB" className={"catButton " + ccButtonBB} >BB</div>
               </div>
-
-              <input
-                id={shakeIt_amount}
-                type="number"
-                value={this.state.amount}
-                onChange={this.inputHandleChange}
-                placeholder="$ 00.00"
-                name="amount"
-                className="amount"
-              />
 
 
               {/* <Dropdown
