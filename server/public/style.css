@@ -146,13 +146,13 @@ input[type=number]::-webkit-outer-spin-button {
   transition: background-color 750ms ease-out;
 }
 
-.catButton:hover {
+.catButton:hover, .ccSelector:hover {
   cursor: pointer;
 }
 
-.border {
+.ccSelector {
   border: 1px solid black;
-  background-color: yellow;
+  background-color: #e8e8e8b9;
 }
 
 .catButtonSpendings {

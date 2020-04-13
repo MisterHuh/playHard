@@ -327,23 +327,23 @@ export default class Add extends React.Component {
     let ccButtonSapphire, ccButtonAmEx, ccButtonVenmo, ccButtonFreedom, ccButtonBB;
 
     this.state.cc === "AmEx"
-      ? ccButtonAmEx = " border"
+      ? ccButtonAmEx = " ccSelector"
       : "";
 
     this.state.cc === "Sapphire"
-      ? ccButtonSapphire = " border"
+      ? ccButtonSapphire = " ccSelector"
       : "";
 
     this.state.cc === "Venmo"
-      ? ccButtonVenmo = " border"
+      ? ccButtonVenmo = " ccSelector"
       : "";
 
     this.state.cc === "Freedom"
-      ? ccButtonFreedom = " border"
+      ? ccButtonFreedom = " ccSelector"
       : "";
 
     this.state.cc === "BB"
-      ? ccButtonBB = " border"
+      ? ccButtonBB = " ccSelector"
       : "";
 
 
