@@ -204,7 +204,6 @@ export default class Add extends React.Component {
       })
   }
 
-
   componentDidMount() {
     this.retrieveAddSideBox();
   }
