@@ -19,7 +19,7 @@ export default class Add extends React.Component {
       currentIndex: 0,
 
       date: new Date(),
-      category: "",
+      category: "Spendings",
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
@@ -133,7 +133,7 @@ export default class Add extends React.Component {
 
     this.setState({
       date: new Date(),
-      category: "",
+      category: "Spendings",
       subCategory: "Food",
       cc: "Sapphire",
       amount: "",
