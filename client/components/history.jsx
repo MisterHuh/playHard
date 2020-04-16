@@ -252,8 +252,8 @@ export default class History extends React.Component {
 
     for (let index = 0; index < length; index++) {
       // console.log("id is: ", current[index]["id"] )
-      console.log("index is: ", index)
-      console.log("length is: ", length);
+      // console.log("index is: ", index)
+      // console.log("length is: ", length);
 
       // if (current[index]["id"] === 31) {
       //   console.log("31 is: ", current[index]);
@@ -503,7 +503,7 @@ export default class History extends React.Component {
             <tbody>
 
               <tr className="borderTest remaining">
-                <th>Total Budget</th>
+                <th>test Budget</th>
                 <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
               </tr>
 
@@ -531,23 +531,29 @@ export default class History extends React.Component {
             <tbody>
 
               <tr className="borderTest spendings">
-                <th>Total Budget</th>
-                <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
+                <th>Food</th>
+                <td>$20.00</td>
+                <th>Home</th>
+                <td>$20.00</td>
               </tr>
 
               <tr className="borderTest spendings">
-                <th>Total Spendings</th>
-                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+                <th>Gifts</th>
+                <td>$20.00</td>
+                <th>Travel</th>
+                <td>$20.00</td>
               </tr>
 
               <tr className="borderTest spendings">
-                <th>Total Credits</th>
-                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
+                <th>Enter</th>
+                <td>$20.00</td>
+                <th>Dog</th>
+                <td>$20.00</td>
               </tr>
 
               <tr className="borderTest ">
-                <th>Total Remaining</th>
-                <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
+                <th colSpan="2">Total Remaining</th>
+                <td colSpan="2">{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
 
             </tbody>
