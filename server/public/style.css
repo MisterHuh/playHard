@@ -442,23 +442,18 @@ border: 1px solid red;
 }
 
 .currentSummaryContainer > div {
-  /* height: 50%; */
   width: 100%;
-  /* padding: 5%; */
-}
-
-.borderTest {
-  border: 1px solid black;
 }
 
 th, td {
   width: 200px;
-  /* text-align: center; */
+  border: 1px solid black;
 }
 
 th {
-  border-right: 1px solid black;
-  text-align: left;
+  border: 1px solid black;
+  text-align: center;
+
 }
 
 td {

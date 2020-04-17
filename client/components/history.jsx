@@ -375,19 +375,19 @@ export default class History extends React.Component {
           {/* <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest remaining">
+              <tr className=" remaining">
                 <th>Total Budget</th><td>Budget Value</td>
               </tr>
 
-              <tr className="borderTest spendings">
+              <tr className=" spendings">
                 <th>Total Spendings</th><td>Spendings Value</td>
                 </tr>
 
-              <tr className="borderTest credits">
+              <tr className=" credits">
                 <th>Total Credits</th><td>Credits Value</td>
                 </tr>
 
-              <tr className="borderTest ">
+              <tr className=" ">
                 <th>Total Remaining</th><td>Remaining Value</td>
                 </tr>
 
@@ -398,7 +398,7 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest">
+              <tr className="">
                 <th>Filter By</th>
                 <td>
                   <select
@@ -413,12 +413,11 @@ export default class History extends React.Component {
                 </td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className=" ">
                 <th>Start Date</th>
                 <td>
                   <div className="">
                     <DatePicker
-                      // selected={this.state.search.startDate}
                       selected={this.state.startDate}
                       name="startDate"
                       onChange={this.startDateHandleChange}
@@ -428,7 +427,7 @@ export default class History extends React.Component {
                 </td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className=" ">
                 <th>End Date</th>
                 <td>
                   <div className="">
@@ -442,7 +441,7 @@ export default class History extends React.Component {
                 </td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className=" ">
                 <th onClick={() => this.retrieveAllData()}>Reset</th>
                 <td onClick={() => this.retrieveSearchData()}>Search</td>
               </tr>
@@ -502,22 +501,22 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest remaining">
+              <tr className=" remaining">
                 <th>test Budget</th>
                 <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
               </tr>
 
-              <tr className="borderTest spendings">
+              <tr className=" spendings">
                 <th>Total Spendings</th>
                 <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
               </tr>
 
-              <tr className="borderTest credits">
+              <tr className=" credits">
                 <th>Total Credits</th>
                 <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className=" ">
                 <th>Total Remaining</th>
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
@@ -530,28 +529,28 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest spendings">
+              <tr className=" spendings">
                 <th>Food</th>
                 <td>$20.00</td>
                 <th>Home</th>
                 <td>$20.00</td>
               </tr>
 
-              <tr className="borderTest spendings">
+              <tr className=" spendings">
                 <th>Gifts</th>
                 <td>$20.00</td>
                 <th>Travel</th>
                 <td>$20.00</td>
               </tr>
 
-              <tr className="borderTest spendings">
+              <tr className=" spendings">
                 <th>Enter</th>
                 <td>$20.00</td>
                 <th>Dog</th>
                 <td>$20.00</td>
               </tr>
 
-              <tr className="borderTest ">
+              <tr className=" ">
                 <th colSpan="2">Total Remaining</th>
                 <td colSpan="2">{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
@@ -584,22 +583,22 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="borderTest fixed">
+              <tr className=" fixed">
                 <th>Groceries</th>
                 <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
               </tr>
 
-              <tr className="borderTest fixed">
+              <tr className=" fixed">
                 <th>Gas</th>
                 <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
               </tr>
 
-              <tr className="borderTest fixed">
+              <tr className=" fixed">
                 <th>ETC</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
               </tr>
 
-              <tr className="borderTest">
+              <tr className="">
                 <th>Total Fixed</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
               </tr>
