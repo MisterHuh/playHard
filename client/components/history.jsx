@@ -544,7 +544,7 @@ export default class History extends React.Component {
               </tr>
 
               <tr className=" spendings">
-                <th>Enter</th>
+                <th>Ent</th>
                 <td>$20.00</td>
                 <th>Dog</th>
                 <td>$20.00</td>
@@ -589,17 +589,18 @@ export default class History extends React.Component {
               </tr>
 
               <tr className=" fixed">
-                <th>Gas</th>
+                <th>Health</th>
                 <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
               </tr>
 
               <tr className=" fixed">
-                <th>ETC</th>
+                <th>Utility</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
               </tr>
 
               <tr className="">
-                <th>Total Fixed</th>
+                <th>Total Fixed tp</th>
+                {/* will say something like Gas included in total */}
                 <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
               </tr>
 
