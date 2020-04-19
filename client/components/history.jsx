@@ -39,6 +39,8 @@ export default class History extends React.Component {
       current_page: null, // style the active pagination link => 1
 
       totalSpendings: 0,
+
+      totalFood: 420,
       totalCredits: 0,
       totalBudget: 0,
       totalRemaining: 0,
@@ -304,6 +306,7 @@ export default class History extends React.Component {
     let current = this.state.current;
 
     let totalSpendings = 0;
+    let totalFood = 0;
     let totalCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
     console.log("this.props.budget is: ", this.props.budget);
@@ -318,6 +321,9 @@ export default class History extends React.Component {
     for (let index = 0; index < current.length; index++) {
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
+        if (current[index]["subcategory"] === "Food") {
+          totalFood += parseFloat(current[index]["amount"]);
+        };
       } else if (current[index]["category"] === "Credits") {
         totalCredits += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Fixed") {
@@ -339,6 +345,7 @@ export default class History extends React.Component {
 
     this.setState({
       totalSpendings,
+      totalFood,
       totalCredits,
       totalBudget,
       totalRemaining,
@@ -531,7 +538,7 @@ export default class History extends React.Component {
 
               <tr className=" spendings">
                 <th>Food</th>
-                <td>$20.00</td>
+                <td>{CurrencyFormatter.format(this.state.totalFood)}</td>
                 <th>Home</th>
                 <td>$20.00</td>
               </tr>
@@ -551,8 +558,8 @@ export default class History extends React.Component {
               </tr>
 
               <tr className=" ">
-                <th colSpan="2">Total Remaining</th>
-                <td colSpan="2">{CurrencyFormatter.format(this.state.totalRemaining)}</td>
+                <th colSpan="2">Total Spendings</th>
+                <td colSpan="2">{CurrencyFormatter.format(this.state.totalSpendings)}</td>
               </tr>
 
             </tbody>
