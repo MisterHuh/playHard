@@ -39,8 +39,10 @@ export default class History extends React.Component {
       current_page: null, // style the active pagination link => 1
 
       totalSpendings: 0,
+      totalFood: 0,
+      totalHome: 0,
 
-      totalFood: 420,
+
       totalCredits: 0,
       totalBudget: 0,
       totalRemaining: 0,
@@ -307,6 +309,8 @@ export default class History extends React.Component {
 
     let totalSpendings = 0;
     let totalFood = 0;
+    let totalHome = 0;
+
     let totalCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
     console.log("this.props.budget is: ", this.props.budget);
@@ -321,9 +325,15 @@ export default class History extends React.Component {
     for (let index = 0; index < current.length; index++) {
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
+
         if (current[index]["subcategory"] === "Food") {
           totalFood += parseFloat(current[index]["amount"]);
         };
+
+        if (current[index]["subcategory"] === "Home") {
+          totalHome += parseFloat(current[index]["amount"]);
+        };
+
       } else if (current[index]["category"] === "Credits") {
         totalCredits += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Fixed") {
@@ -346,6 +356,7 @@ export default class History extends React.Component {
     this.setState({
       totalSpendings,
       totalFood,
+      totalHome,
       totalCredits,
       totalBudget,
       totalRemaining,
@@ -540,7 +551,7 @@ export default class History extends React.Component {
                 <th>Food</th>
                 <td>{CurrencyFormatter.format(this.state.totalFood)}</td>
                 <th>Home</th>
-                <td>$20.00</td>
+                <td>{CurrencyFormatter.format(this.state.totalHome)}</td>
               </tr>
 
               <tr className=" spendings">
