@@ -41,6 +41,7 @@ export default class History extends React.Component {
       totalSpendings: 0,
       totalFood: 0,
       totalHome: 0,
+      totalGifts: 0,
 
 
       totalCredits: 0,
@@ -310,6 +311,7 @@ export default class History extends React.Component {
     let totalSpendings = 0;
     let totalFood = 0;
     let totalHome = 0;
+    let totalGifts = 0;
 
     let totalCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
@@ -332,6 +334,10 @@ export default class History extends React.Component {
 
         if (current[index]["subcategory"] === "Home") {
           totalHome += parseFloat(current[index]["amount"]);
+        };
+
+        if (current[index]["subcategory"] === "Gifts") {
+          totalGifts += parseFloat(current[index]["amount"]);
         };
 
       } else if (current[index]["category"] === "Credits") {
@@ -357,6 +363,7 @@ export default class History extends React.Component {
       totalSpendings,
       totalFood,
       totalHome,
+      totalGifts,
       totalCredits,
       totalBudget,
       totalRemaining,
@@ -556,7 +563,7 @@ export default class History extends React.Component {
 
               <tr className=" spendings">
                 <th>Gifts</th>
-                <td>$20.00</td>
+                <td>{CurrencyFormatter.format(this.state.totalGifts)}</td>
                 <th>Travel</th>
                 <td>$20.00</td>
               </tr>
