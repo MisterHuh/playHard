@@ -518,7 +518,7 @@ td {
   margin-bottom: 2%;
 }
 
-.currentData {
+.currentData, .currentData1 {
   display: flex;
   flex-direction: row;
   justify-content: center;

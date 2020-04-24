@@ -693,11 +693,11 @@ export default class History extends React.Component {
 
 
         <div className="currentWrapperBottom">
-          <div className="currentData">
+          <div className="currentData1">
             <div className="currentDataHeader">
                 Date
 
-              <i
+              {/* <i
                 onClick={() => this.props.deleteEntry()}
                 className="fas fa-sort-up">
               </i>
@@ -715,7 +715,8 @@ export default class History extends React.Component {
               <i
                 onClick={() => this.sortByDate()}
                 className="fas fa-caret-square-up">
-              </i>
+              </i> */}
+
             </div>
 
             <div className="currentDataHeader">subCategory</div>
