@@ -596,6 +596,13 @@ export default class History extends React.Component {
                 <td>{CurrencyFormatter.format(this.state.totalDog)}</td>
               </tr>
 
+              <tr className=" spendings">
+                <th>Test</th>
+                <td>{CurrencyFormatter.format(this.state.totalEntertainment)}</td>
+                <th>Amount</th>
+                <td>{CurrencyFormatter.format(this.state.totalDog)}</td>
+              </tr>
+
               <tr className=" ">
                 <th colSpan="2">Total Spendings</th>
                 <td colSpan="2">{CurrencyFormatter.format(this.state.totalSpendings)}</td>
