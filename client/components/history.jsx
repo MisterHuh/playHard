@@ -40,12 +40,14 @@ export default class History extends React.Component {
 
       totalSpendings: 0,
       totalFood: 0,
-      totalFoodPercent: 0,
       totalHome: 0,
       totalGifts: 0,
       totalTravel: 0,
       totalEntertainment: 0,
       totalDog: 0,
+
+      totalFoodPercent: 0,
+      totalHomePercent: 0,
 
 
       totalCredits: 0,
@@ -314,12 +316,14 @@ export default class History extends React.Component {
 
     let totalSpendings = 0;
     let totalFood = 0;
-    let totalFoodPercent = 0;
     let totalHome = 0;
     let totalGifts = 0;
     let totalTravel = 0;
     let totalEntertainment = 0;
     let totalDog = 0;
+
+    let totalFoodPercent = 0;
+    let totalHomePercent = 0;
 
     let totalCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
@@ -376,6 +380,7 @@ export default class History extends React.Component {
 
     totalSpendings = totalSpendings.toFixed(2);
     totalFoodPercent = ((totalFood / totalSpendings) * 100).toFixed();
+    totalHomePercent = ((totalHome / totalSpendings) * 100).toFixed();
     totalCredits = totalCredits.toFixed(2);
     totalFixed = totalFixed.toFixed(2);
     totalRemaining = totalBudget - totalCredits - totalSpendings;
@@ -399,6 +404,7 @@ export default class History extends React.Component {
     })
 
     console.log("totalFoodPercent is: ", totalFoodPercent + "%");
+    console.log("totalHomePercent is: ", totalHomePercent + "%");
   }
 
   componentDidMount() {
@@ -506,7 +512,7 @@ export default class History extends React.Component {
 
         </div>
 
-          {/* second */}
+          {/* second row */}
 
         <div className="currentWrapperTop">
 
@@ -545,33 +551,6 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className=" fixed">
-                <th>Groceries</th>
-                <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
-              </tr>
-
-              <tr className=" fixed">
-                <th>Health</th>
-                <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
-              </tr>
-
-              <tr className=" fixed">
-                <th>Utility</th>
-                <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
-              </tr>
-
-              <tr className="">
-                <th>Total Fixed tp</th>
-                {/* will say something like Gas included in total */}
-                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
-              </tr>
-
-            </tbody>
-          </table>
-
-          <table id="tabla" className="currentSummaryContainer">
-            <tbody>
-
               <tr className="credits">
                 <th>Food</th>
                 <td>{CurrencyFormatter.format(this.state.totalFood)}</td>
@@ -601,6 +580,32 @@ export default class History extends React.Component {
             </tbody>
           </table>
 
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className=" fixed">
+                <th>Groceries</th>
+                <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
+              </tr>
+
+              <tr className=" fixed">
+                <th>Health</th>
+                <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
+              </tr>
+
+              <tr className=" fixed">
+                <th>Utility</th>
+                <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
+              </tr>
+
+              <tr className="">
+                <th>Total Fixed tp</th>
+                {/* will say something like Gas included in total */}
+                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
+              </tr>
+
+            </tbody>
+          </table>
 
         </div>
 
