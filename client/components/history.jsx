@@ -48,6 +48,7 @@ export default class History extends React.Component {
 
       totalFoodPercent: 0,
       totalHomePercent: 0,
+      totalGiftPercent: 0,
 
 
       totalCredits: 0,
@@ -324,6 +325,7 @@ export default class History extends React.Component {
 
     let totalFoodPercent = 0;
     let totalHomePercent = 0;
+    let totalGiftPercent = 0;
 
     let totalCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
@@ -381,19 +383,25 @@ export default class History extends React.Component {
     totalSpendings = totalSpendings.toFixed(2);
     totalFoodPercent = ((totalFood / totalSpendings) * 100).toFixed();
     totalHomePercent = ((totalHome / totalSpendings) * 100).toFixed();
+    totalGiftPercent = ((totalGifts / totalSpendings) * 100).toFixed();
     totalCredits = totalCredits.toFixed(2);
     totalFixed = totalFixed.toFixed(2);
     totalRemaining = totalBudget - totalCredits - totalSpendings;
 
     this.setState({
+
       totalSpendings,
       totalFood,
-      totalFoodPercent,
       totalHome,
       totalGifts,
       totalTravel,
       totalEntertainment,
       totalDog,
+
+      totalFoodPercent,
+      totalHomePercent,
+      totalGiftPercent,
+
       totalCredits,
       totalBudget,
       totalRemaining,
@@ -405,6 +413,7 @@ export default class History extends React.Component {
 
     console.log("totalFoodPercent is: ", totalFoodPercent + "%");
     console.log("totalHomePercent is: ", totalHomePercent + "%");
+    console.log("totalGiftPercent is: ", totalGiftPercent + "%");
   }
 
   componentDidMount() {
