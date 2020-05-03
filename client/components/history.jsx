@@ -39,12 +39,12 @@ export default class History extends React.Component {
       current_page: null, // style the active pagination link => 1
 
       totalSpendings: 0,
-      totalFood: 0,
-      totalHome: 0,
-      totalGifts: 0,
-      totalTravel: 0,
-      totalEntertainment: 0,
-      totalDog: 0,
+      totalFoodSpendings: 0,
+      totalHomeSpendings: 0,
+      totalGiftsSpendings: 0,
+      totalTravelSpendings: 0,
+      totalEntertainmentSpendings: 0,
+      totalDogSpendings: 0,
 
       totalFoodPercent: 0,
       totalHomePercent: 0,
@@ -54,6 +54,7 @@ export default class History extends React.Component {
       totalDogPercent: 0,
 
       totalCredits: 0,
+
       totalBudget: 0,
       totalRemaining: 0,
 
@@ -318,12 +319,12 @@ export default class History extends React.Component {
     let current = this.state.current;
 
     let totalSpendings = 0;
-    let totalFood = 0;
-    let totalHome = 0;
-    let totalGifts = 0;
-    let totalTravel = 0;
-    let totalEntertainment = 0;
-    let totalDog = 0;
+    let totalFoodSpendings = 0;
+    let totalHomeSpendings = 0;
+    let totalGiftsSpendings = 0;
+    let totalTravelSpendings = 0;
+    let totalEntertainmentSpendings = 0;
+    let totalDogSpendings = 0;
 
     let totalFoodPercent = 0;
     let totalHomePercent = 0;
@@ -348,27 +349,27 @@ export default class History extends React.Component {
         totalSpendings += parseFloat(current[index]["amount"]);
 
         if (current[index]["subcategory"] === "Food") {
-          totalFood += parseFloat(current[index]["amount"]);
+          totalFoodSpendings += parseFloat(current[index]["amount"]);
         };
 
         if (current[index]["subcategory"] === "Home") {
-          totalHome += parseFloat(current[index]["amount"]);
+          totalHomeSpendings += parseFloat(current[index]["amount"]);
         };
 
         if (current[index]["subcategory"] === "Gifts") {
-          totalGifts += parseFloat(current[index]["amount"]);
+          totalGiftsSpendings += parseFloat(current[index]["amount"]);
         };
 
         if (current[index]["subcategory"] === "Travel") {
-          totalTravel += parseFloat(current[index]["amount"]);
+          totalTravelSpendings += parseFloat(current[index]["amount"]);
         };
 
         if (current[index]["subcategory"] === "Entertainment") {
-          totalEntertainment += parseFloat(current[index]["amount"]);
+          totalEntertainmentSpendings += parseFloat(current[index]["amount"]);
         };
 
         if (current[index]["subcategory"] === "Dogs") {
-          totalDog += parseFloat(current[index]["amount"]);
+          totalDogSpendings += parseFloat(current[index]["amount"]);
         };
 
       } else if (current[index]["category"] === "Credits") {
@@ -386,12 +387,12 @@ export default class History extends React.Component {
     }
 
     totalSpendings = totalSpendings.toFixed(2);
-    totalFoodPercent = ((totalFood / totalSpendings) * 100).toFixed();
-    totalHomePercent = ((totalHome / totalSpendings) * 100).toFixed();
-    totalGiftPercent = ((totalGifts / totalSpendings) * 100).toFixed();
-    totalTravelPercent = ((totalTravel / totalSpendings) * 100).toFixed();
-    totalEntertainmentPercent = ((totalEntertainment / totalSpendings) * 100).toFixed();
-    totalDogPercent = ((totalDog / totalSpendings) * 100).toFixed();
+    totalFoodPercent = ((totalFoodSpendings / totalSpendings) * 100).toFixed();
+    totalHomePercent = ((totalHomeSpendings / totalSpendings) * 100).toFixed();
+    totalGiftPercent = ((totalGiftsSpendings / totalSpendings) * 100).toFixed();
+    totalTravelPercent = ((totalTravelSpendings / totalSpendings) * 100).toFixed();
+    totalEntertainmentPercent = ((totalEntertainmentSpendings / totalSpendings) * 100).toFixed();
+    totalDogPercent = ((totalDogSpendings / totalSpendings) * 100).toFixed();
 
     totalCredits = totalCredits.toFixed(2);
     totalFixed = totalFixed.toFixed(2);
@@ -400,12 +401,12 @@ export default class History extends React.Component {
     this.setState({
 
       totalSpendings,
-      totalFood,
-      totalHome,
-      totalGifts,
-      totalTravel,
-      totalEntertainment,
-      totalDog,
+      totalFoodSpendings,
+      totalHomeSpendings,
+      totalGiftsSpendings,
+      totalTravelSpendings,
+      totalEntertainmentSpendings,
+      totalDogSpendings,
 
       totalFoodPercent,
       totalHomePercent,
@@ -544,23 +545,23 @@ export default class History extends React.Component {
 
               <tr className=" spendings">
                 <th>Food</th>
-                <td>{CurrencyFormatter.format(this.state.totalFood)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalFoodSpendings)}</td>
                 <th>Home</th>
-                <td>{CurrencyFormatter.format(this.state.totalHome)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalHomeSpendings)}</td>
               </tr>
 
               <tr className=" spendings">
                 <th>Gifts</th>
-                <td>{CurrencyFormatter.format(this.state.totalGifts)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalGiftsSpendings)}</td>
                 <th>Travel</th>
-                <td>{CurrencyFormatter.format(this.state.totalTravel)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalTravelSpendings)}</td>
               </tr>
 
               <tr className=" spendings">
                 <th>Ent</th>
-                <td>{CurrencyFormatter.format(this.state.totalEntertainment)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalEntertainmentSpendings)}</td>
                 <th>Dog</th>
-                <td>{CurrencyFormatter.format(this.state.totalDog)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalDogSpendings)}</td>
               </tr>
 
               <tr className=" ">
