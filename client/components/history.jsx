@@ -54,6 +54,7 @@ export default class History extends React.Component {
       totalDogPercent: 0,
 
       totalCredits: 0,
+      totalFoodCredits: 0,
 
       totalBudget: 0,
       totalRemaining: 0,
@@ -334,6 +335,7 @@ export default class History extends React.Component {
     let totalDogPercent = 0;
 
     let totalCredits = 0;
+    let totalFoodCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
     // console.log("this.props.budget is: ", this.props.budget);
     // console.log("totalBudget is: ", totalBudget);
@@ -374,6 +376,12 @@ export default class History extends React.Component {
 
       } else if (current[index]["category"] === "Credits") {
         totalCredits += parseFloat(current[index]["amount"]);
+
+        if (current[index]["subcategory"] === "Food") {
+          totalFoodCredits += parseFloat(current[index]["amount"]);
+          console.log("totalFoodCredits is: ", totalFoodCredits + "%");
+        };
+
       } else if (current[index]["category"] === "Fixed") {
         if (current[index]["subcategory"] === "Groceries") {
           totalGroceries += parseFloat(current[index]["amount"]);
@@ -386,6 +394,8 @@ export default class History extends React.Component {
       }
     }
 
+    // console.log("totalCredits is: ", totalCredits);
+
     totalSpendings = totalSpendings.toFixed(2);
     totalFoodPercent = ((totalFoodSpendings / totalSpendings) * 100).toFixed();
     totalHomePercent = ((totalHomeSpendings / totalSpendings) * 100).toFixed();
@@ -395,6 +405,7 @@ export default class History extends React.Component {
     totalDogPercent = ((totalDogSpendings / totalSpendings) * 100).toFixed();
 
     totalCredits = totalCredits.toFixed(2);
+    // totalFoodCredits = ((totalFoodCredits / totalCredits) * 100).toFixed();
     totalFixed = totalFixed.toFixed(2);
     totalRemaining = totalBudget - totalCredits - totalSpendings;
 
@@ -415,6 +426,8 @@ export default class History extends React.Component {
       totalDogPercent,
 
       totalCredits,
+      totalFoodCredits,
+
       totalBudget,
       totalRemaining,
       totalFixed,
@@ -423,12 +436,12 @@ export default class History extends React.Component {
       totalFixedEtc
     })
 
-    console.log("totalFoodPercent is: ", totalFoodPercent + "%");
-    console.log("totalHomePercent is: ", totalHomePercent + "%");
-    console.log("totalGiftPercent is: ", totalGiftPercent + "%");
-    console.log("totalTravelPercent is: ", totalTravelPercent + "%");
-    console.log("totalEntertainmentPercent is: ", totalEntertainmentPercent + "%");
-    console.log("totalDogPercent is: ", totalDogPercent + "%");
+    // console.log("totalFoodCredits is: ", totalFoodCredits + "%");
+    // console.log("totalHomeCredits is: ", totalHomeCredits + "%");
+    // console.log("totalGiftCredits is: ", totalGiftCredits + "%");
+    // console.log("totalTravelCredits is: ", totalTravelCredits + "%");
+    // console.log("totalEntertainmentCredits is: ", totalEntertainmentCredits + "%");
+    // console.log("totalDogCredits is: ", totalDogCredits + "%");
   }
 
   componentDidMount() {
@@ -577,7 +590,7 @@ export default class History extends React.Component {
 
               <tr className="credits">
                 <th>Food</th>
-                <td>{CurrencyFormatter.format(this.state.totalFood)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalFoodCredits)}</td>
                 <th>Home</th>
                 <td>{CurrencyFormatter.format(this.state.totalHome)}</td>
               </tr>
