@@ -55,6 +55,7 @@ export default class History extends React.Component {
 
       totalCredits: 0,
       totalFoodCredits: 0,
+      totalHomeCredits: 0,
 
       totalBudget: 0,
       totalRemaining: 0,
@@ -336,6 +337,7 @@ export default class History extends React.Component {
 
     let totalCredits = 0;
     let totalFoodCredits = 0;
+    let totalHomeCredits = 0;
     let totalBudget = this.props.budget * currentWeekNumber;
     // console.log("this.props.budget is: ", this.props.budget);
     // console.log("totalBudget is: ", totalBudget);
@@ -379,7 +381,10 @@ export default class History extends React.Component {
 
         if (current[index]["subcategory"] === "Food") {
           totalFoodCredits += parseFloat(current[index]["amount"]);
-          console.log("totalFoodCredits is: ", totalFoodCredits + "%");
+        };
+
+        if (current[index]["subcategory"] === "Home") {
+          totalHomeCredits += parseFloat(current[index]["amount"]);
         };
 
       } else if (current[index]["category"] === "Fixed") {
@@ -405,7 +410,6 @@ export default class History extends React.Component {
     totalDogPercent = ((totalDogSpendings / totalSpendings) * 100).toFixed();
 
     totalCredits = totalCredits.toFixed(2);
-    // totalFoodCredits = ((totalFoodCredits / totalCredits) * 100).toFixed();
     totalFixed = totalFixed.toFixed(2);
     totalRemaining = totalBudget - totalCredits - totalSpendings;
 
@@ -427,6 +431,7 @@ export default class History extends React.Component {
 
       totalCredits,
       totalFoodCredits,
+      totalHomeCredits,
 
       totalBudget,
       totalRemaining,
@@ -435,6 +440,8 @@ export default class History extends React.Component {
       totalGas,
       totalFixedEtc
     })
+
+    console.log("totalHomeCredits is: ", totalHomeCredits)
 
     // console.log("totalFoodCredits is: ", totalFoodCredits + "%");
     // console.log("totalHomeCredits is: ", totalHomeCredits + "%");
@@ -592,7 +599,7 @@ export default class History extends React.Component {
                 <th>Food</th>
                 <td>{CurrencyFormatter.format(this.state.totalFoodCredits)}</td>
                 <th>Home</th>
-                <td>{CurrencyFormatter.format(this.state.totalHome)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalHomeCredits)}</td>
               </tr>
 
               <tr className="credits">
