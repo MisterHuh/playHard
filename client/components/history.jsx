@@ -59,6 +59,7 @@ export default class History extends React.Component {
       totalGiftCredits: 0,
       totalTravelCredits: 0,
       totalEntertainmentCredits: 0,
+      totalDogCredits: 0,
 
       totalBudget: 0,
       totalRemaining: 0,
@@ -344,6 +345,7 @@ export default class History extends React.Component {
     let totalGiftCredits = 0;
     let totalTravelCredits = 0;
     let totalEntertainmentCredits = 0;
+    let totalDogCredits = 0;
 
     let totalBudget = this.props.budget * currentWeekNumber;
     // console.log("this.props.budget is: ", this.props.budget);
@@ -406,6 +408,10 @@ export default class History extends React.Component {
           totalEntertainmentCredits += parseFloat(current[index]["amount"]);
         };
 
+        if (current[index]["subcategory"] === "Dogs") {
+          totalDogCredits += parseFloat(current[index]["amount"]);
+        };
+
       } else if (current[index]["category"] === "Fixed") {
         if (current[index]["subcategory"] === "Groceries") {
           totalGroceries += parseFloat(current[index]["amount"]);
@@ -454,6 +460,7 @@ export default class History extends React.Component {
       totalGiftCredits,
       totalTravelCredits,
       totalEntertainmentCredits,
+      totalDogCredits,
 
       totalBudget,
       totalRemaining,
@@ -470,7 +477,7 @@ export default class History extends React.Component {
     // console.log("totalGiftCredits is: ", totalGiftCredits + "%");
     // console.log("totalTravelCredits is: ", totalTravelCredits + "%");
     // console.log("totalEntertainmentCredits is: ", totalEntertainmentCredits + "%");
-    // console.log("totalDogCredits is: ", totalDogCredits + "%");
+    // console.log("   is: ",   + "%");
   }
 
   componentDidMount() {
@@ -635,7 +642,7 @@ export default class History extends React.Component {
                 <th>Ent</th>
                 <td>{CurrencyFormatter.format(this.state.totalEntertainmentCredits)}</td>
                 <th>Dog</th>
-                <td>{CurrencyFormatter.format(this.state.totalDog)}</td>
+                <td>{CurrencyFormatter.format(this.state.totalDogCredits)}</td>
               </tr>
 
               <tr className=" ">
