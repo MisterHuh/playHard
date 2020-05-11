@@ -46,12 +46,12 @@ export default class History extends React.Component {
       totalEntertainmentSpendings: 0,
       totalDogSpendings: 0,
 
-      totalFoodPercent: 0,
-      totalHomePercent: 0,
-      totalGiftPercent: 0,
-      totalTravelPercent: 0,
+      spendingsFoodPercent: 0,
+      spendingsHomePercent: 0,
+      spendingsGiftPercent: 0,
+      spendingsTravelPercent: 0,
       totalEntertainmentPercent: 0,
-      totalDogPercent: 0,
+      spendingsDogPercent: 0,
 
       totalCredits: 0,
       totalFoodCredits: 0,
@@ -332,12 +332,12 @@ export default class History extends React.Component {
     let totalEntertainmentSpendings = 0;
     let totalDogSpendings = 0;
 
-    let totalFoodPercent = 0;
-    let totalHomePercent = 0;
-    let totalGiftPercent = 0;
-    let totalTravelPercent = 0;
+    let spendingsFoodPercent = 0;
+    let spendingsHomePercent = 0;
+    let spendingsGiftPercent = 0;
+    let spendingsTravelPercent = 0;
     let totalEntertainmentPercent = 0;
-    let totalDogPercent = 0;
+    let spendingsDogPercent = 0;
 
     let totalCredits = 0;
     let totalFoodCredits = 0;
@@ -427,12 +427,12 @@ export default class History extends React.Component {
     // console.log("totalCredits is: ", totalCredits);
 
     totalSpendings = totalSpendings.toFixed(2);
-    totalFoodPercent = ((totalFoodSpendings / totalSpendings) * 100).toFixed();
-    totalHomePercent = ((totalHomeSpendings / totalSpendings) * 100).toFixed();
-    totalGiftPercent = ((totalGiftsSpendings / totalSpendings) * 100).toFixed();
-    totalTravelPercent = ((totalTravelSpendings / totalSpendings) * 100).toFixed();
+    spendingsFoodPercent = ((totalFoodSpendings / totalSpendings) * 100).toFixed();
+    spendingsHomePercent = ((totalHomeSpendings / totalSpendings) * 100).toFixed();
+    spendingsGiftPercent = ((totalGiftsSpendings / totalSpendings) * 100).toFixed();
+    spendingsTravelPercent = ((totalTravelSpendings / totalSpendings) * 100).toFixed();
     totalEntertainmentPercent = ((totalEntertainmentSpendings / totalSpendings) * 100).toFixed();
-    totalDogPercent = ((totalDogSpendings / totalSpendings) * 100).toFixed();
+    spendingsDogPercent = ((totalDogSpendings / totalSpendings) * 100).toFixed();
 
     totalCredits = totalCredits.toFixed(2);
     totalFixed = totalFixed.toFixed(2);
@@ -448,11 +448,11 @@ export default class History extends React.Component {
       totalEntertainmentSpendings,
       totalDogSpendings,
 
-      totalFoodPercent,
-      totalHomePercent,
-      totalGiftPercent,
-      totalTravelPercent,
-      totalDogPercent,
+      spendingsFoodPercent,
+      spendingsHomePercent,
+      spendingsGiftPercent,
+      spendingsTravelPercent,
+      spendingsDogPercent,
 
       totalCredits,
       totalFoodCredits,
@@ -470,14 +470,10 @@ export default class History extends React.Component {
       totalFixedEtc
     })
 
-    console.log("totalHomeCredits is: ", totalHomeCredits)
+    console.log("spendingsDogPercent is: ", spendingsDogPercent)
 
     // console.log("totalFoodCredits is: ", totalFoodCredits + "%");
-    // console.log("totalHomeCredits is: ", totalHomeCredits + "%");
-    // console.log("totalGiftCredits is: ", totalGiftCredits + "%");
-    // console.log("totalTravelCredits is: ", totalTravelCredits + "%");
-    // console.log("totalEntertainmentCredits is: ", totalEntertainmentCredits + "%");
-    // console.log("   is: ",   + "%");
+
   }
 
   componentDidMount() {
