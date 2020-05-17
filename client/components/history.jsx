@@ -66,6 +66,7 @@ export default class History extends React.Component {
       creditsGiftPercent: 0,
       creditsTravelPercent: 0,
       creditsEntertainmentPercent: 0,
+      creditsDogPercent: 0,
 
       totalBudget: 0,
       totalRemaining: 0,
@@ -358,6 +359,7 @@ export default class History extends React.Component {
     let creditsGiftPercent = 0;
     let creditsTravelPercent = 0;
     let creditsEntertainmentPercent = 0;
+    let creditsDogPercent = 0;
 
     let totalBudget = this.props.budget * currentWeekNumber;
     // console.log("this.props.budget is: ", this.props.budget);
@@ -452,6 +454,7 @@ export default class History extends React.Component {
     creditsGiftPercent = ((totalGiftCredits / totalCredits) * 100).toFixed();
     creditsTravelPercent = ((totalTravelCredits / totalCredits) * 100).toFixed();
     creditsEntertainmentPercent = ((totalEntertainmentCredits / totalCredits) * 100).toFixed();
+    creditsDogPercent = ((totalDogCredits / totalCredits) * 100).toFixed();
 
     totalFixed = totalFixed.toFixed(2);
     totalRemaining = totalBudget - totalCredits - totalSpendings;
@@ -492,7 +495,7 @@ export default class History extends React.Component {
     // console.log("spendingsFoodPercent is: ", spendingsFoodPercent + "%");
     console.log("totalCredits is: ", totalCredits);
     // console.log("totalFoodCredits is: ", totalFoodCredits);
-    console.log("creditsEntertainmentPercent is: ", creditsEntertainmentPercent);
+    console.log("totalDogCredits is: ", totalDogCredits);
 
 
 
