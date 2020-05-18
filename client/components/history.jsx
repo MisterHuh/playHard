@@ -24,7 +24,6 @@ export default class History extends React.Component {
 
       filterBy: "All",
       startDate: new Date(2019, 11, 29),
-      // startDate: new Date(2020, 0, 31),
       endDate: new Date(),
       query: "SELECT * FROM `2020` ORDER BY date DESC",
       order: "DESC",
@@ -97,7 +96,7 @@ export default class History extends React.Component {
   }
 
   handlePageChange(pageNumber) {
-    console.log(`active page is ${pageNumber}`);
+    // console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
   }
 
@@ -164,7 +163,6 @@ export default class History extends React.Component {
 
 
   categoryHandleChange(e) {
-    // console.log("event.target.value is: ", e.target.value);
     let filterBy = e.target.value;
     this.setState({ filterBy });
   };
@@ -183,9 +181,6 @@ export default class History extends React.Component {
 
     let notFormattedEndDate = this.state.endDate;
     let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
-
-    // console.log("formattedStartDate is: ", formattedStartDate);
-    // console.log("formattedEndDate is: ", formattedEndDate);
 
     const req = {
       method: 'PUT',
@@ -268,25 +263,12 @@ export default class History extends React.Component {
     let totalBudget = this.props.budget * this.state.queryWeekNumber;
     let totalRemaining = 0;
 
-    // console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
-    // console.log("totalBudget is: ", totalBudget);
-
     let totalFixed = 0;
     let totalGroceries = 0;
     let totalGas = 0;
     let totalFixedEtc = 0;
 
-    // console.log("current.length is: ", current.length);
-
     for (let index = 0; index < length; index++) {
-      // console.log("id is: ", current[index]["id"] )
-      // console.log("index is: ", index)
-      // console.log("length is: ", length);
-
-      // if (current[index]["id"] === 31) {
-      //   console.log("31 is: ", current[index]);
-      // }
-
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
       } else if (current[index]["category"] === "Credits") {
@@ -295,7 +277,6 @@ export default class History extends React.Component {
         if (current[index]["subcategory"] === "Groceries") {
           totalGroceries += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Gas") {
-          // console.log("Gas is: ", current[index]["amount"] );
           totalGas += parseFloat(current[index]["amount"]);
         } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
           totalFixedEtc += parseFloat(current[index]["amount"]);
@@ -325,10 +306,6 @@ export default class History extends React.Component {
   currentSummary() {
 
     let currentWeekNumber = this.props.currentWeekNumber;
-    this.setState({ currentWeekNumber })
-
-    console.log("currentWeekNumber is: ", currentWeekNumber);
-
     let current = this.state.current;
 
     let totalSpendings = 0;
@@ -362,8 +339,6 @@ export default class History extends React.Component {
     let creditsDogPercent = 0;
 
     let totalBudget = this.props.budget * currentWeekNumber;
-    // console.log("this.props.budget is: ", this.props.budget);
-    // console.log("totalBudget is: ", totalBudget);
     let totalRemaining = 0;
 
     let totalFixed = 0;
@@ -427,18 +402,22 @@ export default class History extends React.Component {
         };
 
       } else if (current[index]["category"] === "Fixed") {
+
         if (current[index]["subcategory"] === "Groceries") {
           totalGroceries += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Gas") {
+
+        };
+
+        if (current[index]["subcategory"] === "Gas") {
           totalGas += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
+        };
+
+        if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
           totalFixedEtc += parseFloat(current[index]["amount"]);
         };
         totalFixed += parseFloat(current[index]["amount"]);
       }
     }
-
-    // console.log("totalCredits is: ", totalCredits);
 
     totalSpendings = totalSpendings.toFixed(2);
     spendingsFoodPercent = ((totalFoodSpendings / totalSpendings) * 100).toFixed();
@@ -488,16 +467,10 @@ export default class History extends React.Component {
       totalFixed,
       totalGroceries,
       totalGas,
-      totalFixedEtc
+      totalFixedEtc,
+
+      currentWeekNumber
     })
-
-
-    // console.log("spendingsFoodPercent is: ", spendingsFoodPercent + "%");
-    console.log("totalCredits is: ", totalCredits);
-    // console.log("totalFoodCredits is: ", totalFoodCredits);
-    console.log("totalDogCredits is: ", totalDogCredits);
-
-
 
   }
 
