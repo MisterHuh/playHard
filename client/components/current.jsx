@@ -266,12 +266,16 @@ export default class Current extends React.Component {
             <div className="currentDataContainer">
               <div className="currentData">
                 <div className="currentDataHeader">
-                  <i className="arrow fas fa-caret-left"></i>
+                  <i
+                    onClick={() => this.retrieveCurrentData()}
+                    className="arrow fas fa-caret-left">
+
+                    </i>
                   Date
                   <i
                     onClick={() => this.retrieveNextWeek()}
-                    className="arrow fas fa-caret-right"
-                  ></i>
+                    className="arrow fas fa-caret-right">
+                  </i>
                 </div>
                 <div className="currentDataHeader">subCategory</div>
                 <div className="currentDataHeader">cc</div>
