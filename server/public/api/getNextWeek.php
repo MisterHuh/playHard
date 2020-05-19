@@ -6,9 +6,15 @@ set_exception_handler("error_handler");
 startUp();
 
 $query = "SELECT * FROM `2020`
-            WHERE date < CURDATE() + INTERVAL 7 DAY
+
+            -- WHERE YEARWEEK(`date`, 1) = YEARWEEK( CURDATE() - INTERVAL 1 WEEK, 1)
+            -- WHERE date < CURDATE() + INTERVAL 7 DAY
             -- WHERE date < DATE_ADD(CURDATE(), INTERVAL 7 DAY)
             -- WHERE YEARWEEK(date)=YEARWEEK(NOW())
+
+            WHERE date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+            AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
+
             ORDER BY date ASC";
 
             // WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))

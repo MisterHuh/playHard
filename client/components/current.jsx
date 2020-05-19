@@ -57,6 +57,7 @@ export default class Current extends React.Component {
     fetch(`/api/getNextWeek.php`)
       .then(response => response.json())
       .then(current => {
+        console.log("TEST current is: ", current);
         this.setState({ current });
         this.currentSummary();
       })
@@ -163,11 +164,6 @@ export default class Current extends React.Component {
         totalFixed += parseFloat(current[index]["amount"]);
       }
     }
-
-    console.log("totalGroceries is: ", totalGroceries);
-    console.log("totalGas is: ", totalGas);
-    console.log("totalFixedEtc is: ", totalFixedEtc);
-    console.log("totalFixed is: ", totalFixed);
 
     totalSpendings = totalSpendings.toFixed(2);
     totalCredits = totalCredits.toFixed(2);
@@ -297,10 +293,6 @@ export default class Current extends React.Component {
                 })
                 }
               </React.Fragment>
-
-
-              {/* <RenderData current={this.state.current} /> */}
-
 
             </div>
           </div>
