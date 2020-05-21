@@ -192,10 +192,21 @@ input[type=number]::-webkit-outer-spin-button {
 .toggleDisplaySpendings:hover  {
   cursor: pointer;
   background-color: rgba(228, 72, 72, 0.8);
-  transition: background-color 750ms ease-in-out;
+  animation: fadeinout 4s linear forwards;
 
+  /* transition: background-color 750ms ease-in-out; */
   /* border: 1px solid rgba(195, 187, 187); */
   cursor: pointer;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 [value="Credits"]:hover {
