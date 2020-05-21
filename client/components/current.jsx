@@ -264,7 +264,7 @@ export default class Current extends React.Component {
 
           <div className="currentWrapperBottom">
             <div className="currentDataContainer">
-              <div className="currentData">
+              <div className="currentData1">
                 <div className="currentDataHeader">
                   <i
                     onClick={() => this.retrieveCurrentData()}

@@ -523,42 +523,6 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
-              <tr className="toggleDisplaySpendings spendings">
-                <th>Total Spendings</th>
-                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
-              </tr>
-
-              <tr className="toggleDisplayCredits credits">
-                <th>Total Credits</th>
-                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
-              </tr>
-
-              <tr className="toggleDisplayFixed fixed">
-                <th>Total Fixed</th>
-                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
-              </tr>
-
-            </tbody>
-          </table>
-
-          <table id="tabla" className="currentSummaryContainer">
-            <tbody>
-
-              <tr className="">
-                <th>Category</th>
-                <td>
-                  <select
-                    onChange={this.categoryHandleChange}
-                    style={textCenter}
-                    className="historyDropdown"
-                    placeholder={this.state.categoryFilter} >
-                    {dropdownOptions[0].map((e, key) => {
-                      return <option key={key} value={e.value}>{e.name}</option>;
-                    })}
-                  </select>
-                </td>
-              </tr>
-
               <tr className="">
                 <th>Category</th>
                 <td>
@@ -646,6 +610,27 @@ export default class History extends React.Component {
               <tr className=" ">
                 <th>Total Remaining</th>
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="toggleDisplaySpendings spendings">
+                <th>Total Spendings</th>
+                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+              </tr>
+
+              <tr className="toggleDisplayCredits credits">
+                <th>Total Credits</th>
+                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
+              </tr>
+
+              <tr className="toggleDisplayFixed fixed">
+                <th>Total Fixed</th>
+                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
               </tr>
 
             </tbody>
