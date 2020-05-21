@@ -528,12 +528,12 @@ export default class History extends React.Component {
                 <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
               </tr>
 
-              <tr className="toggleDisplay credits">
+              <tr className="toggleDisplayCredits credits">
                 <th>Total Credits</th>
                 <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
               </tr>
 
-              <tr className="toggleDisplay fixed">
+              <tr className="toggleDisplayFixed fixed">
                 <th>Total Fixed</th>
                 <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
               </tr>
