@@ -14,6 +14,12 @@ if ($jsonBody["category"]) {
   throw new Exception("category required");
 };
 
+if ($jsonBody["cc"]) {
+  $cc = $jsonBody["cc"];
+} else {
+  throw new Exception("cc required");
+};
+
 if ($jsonBody["startDate"]) {
   $startDate = $jsonBody["startDate"];
 } else {
@@ -26,15 +32,20 @@ if ($jsonBody["endDate"]) {
   throw new Exception("endDate required");
 };
 
-if ($category == "All") {
+if ($category == "All" && $cc == "All") {
   $query = "SELECT * FROM `2020`
 	        WHERE Date between '$startDate' and '$endDate'
           ORDER BY date DESC";
-} else {
+} else if ($cc == "All") { // for ALL category and something CC
   $query = "SELECT * FROM `2020`
 	        WHERE `category` = '$category'
 	        and Date between '$startDate' and '$endDate'
-	        ORDER BY date DESC";
+          ORDER BY date DESC";
+} else if ($category == "All") {
+  $query = "SELECT * FROM `2020`
+	        WHERE `cc` = '$cc'
+	        and Date between '$startDate' and '$endDate'
+          ORDER BY date DESC";
 }
 
 $result = mysqli_query($conn, $query);

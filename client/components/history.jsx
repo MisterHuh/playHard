@@ -17,12 +17,13 @@ export default class History extends React.Component {
     this.state = {
 
       // search: {
-      //   filterBy: "all",
+      //   categoryFilter: "all",
       //   startDate: new Date(2019,11,29),
       //   endDate: new Date()
       // },
 
-      filterBy: "All",
+      categoryFilter: "All",
+      ccFilter: "All",
       startDate: new Date(2019, 11, 29),
       endDate: new Date(),
       query: "SELECT * FROM `2020` ORDER BY date DESC",
@@ -84,6 +85,7 @@ export default class History extends React.Component {
     this.searchQuery = this.searchQuery.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
+    this.ccHandleChange = this.ccHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
     this.retrieveSearchData = this.retrieveSearchData.bind(this);
@@ -163,9 +165,14 @@ export default class History extends React.Component {
 
 
   categoryHandleChange(e) {
-    let filterBy = e.target.value;
-    this.setState({ filterBy });
+    let categoryFilter = e.target.value;
+    this.setState({ categoryFilter });
   };
+
+  ccHandleChange(e) {
+    let ccFilter = e.target.value;
+    this.setState({ ccFilter });
+  }
 
   startDateHandleChange(startDate) {
     this.setState({ startDate });
@@ -186,7 +193,8 @@ export default class History extends React.Component {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        category: this.state.filterBy,
+        category: this.state.categoryFilter,
+        cc: this.state.ccFilter,
         startDate: formattedStartDate,
         endDate: formattedEndDate
       })
@@ -481,12 +489,23 @@ export default class History extends React.Component {
   render() {
 
     const dropdownOptions = [
-        { value: "All", name: "All"},
+      [
+        { value: "All", name: "All" },
         { value: "Spendings", name: "Spendings" },
         { value: "Credits", name: "Credits" },
         { value: "Fixed", name: "Fixed" },
         { value: "Wedding", name: "Wedding" }
-    ];
+      ],
+      [
+        { value: "All", name: "All" },
+        { value: "AmEx", name: "AmEx" },
+        { value: "BB", name: "BB" },
+        { value: "Freedom", name: "Freedom" },
+        { value: "Sapphire", name: "Sapphire" },
+        { value: "Venmo", name: "Venmo" }
+      ]
+
+    ]
 
     const textCenter = {
       textAlignLast: "center"
@@ -501,14 +520,29 @@ export default class History extends React.Component {
             <tbody>
 
               <tr className="">
-                <th>Filter By</th>
+                <th>Category</th>
                 <td>
                   <select
                     onChange={this.categoryHandleChange}
                     style={textCenter}
                     className="historyDropdown"
-                    placeholder={this.state.filterBy} >
-                    {dropdownOptions.map((e, key) => {
+                    placeholder={this.state.categoryFilter} >
+                    {dropdownOptions[0].map((e, key) => {
+                      return <option key={key} value={e.value}>{e.name}</option>;
+                    })}
+                  </select>
+                </td>
+              </tr>
+
+              <tr className=" ">
+                <th>Credit Card</th>
+                <td>
+                  <select
+                    onChange={this.ccHandleChange}
+                    style={textCenter}
+                    className="historyDropdown"
+                    placeholder={this.state.ccFilter} >
+                    {dropdownOptions[1].map((e, key) => {
                       return <option key={key} value={e.value}>{e.name}</option>;
                     })}
                   </select>
