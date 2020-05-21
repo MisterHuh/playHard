@@ -46,6 +46,12 @@ if ($category == "All" && $cc == "All") {
 	        WHERE `cc` = '$cc'
 	        and Date between '$startDate' and '$endDate'
           ORDER BY date DESC";
+} else {
+  $query = "SELECT * FROM `2020`
+	        WHERE `category` = '$category'
+          and `cc` = '$cc'
+	        and Date between '$startDate' and '$endDate'
+          ORDER BY date DESC";
 }
 
 $result = mysqli_query($conn, $query);

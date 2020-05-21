@@ -68,6 +68,10 @@ export default class History extends React.Component {
       creditsEntertainmentPercent: 0,
       creditsDogPercent: 0,
 
+      toggleTotalSpendingsDisplay: false,
+      toggleTotalCreditsDisplay: false,
+      toggleTotalFixedDisplay: false,
+
       totalBudget: 0,
       totalRemaining: 0,
 
@@ -519,6 +523,42 @@ export default class History extends React.Component {
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
+              <tr className="toggleDisplaySpendings spendings">
+                <th>Total Spendings</th>
+                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+              </tr>
+
+              <tr className="toggleDisplay credits">
+                <th>Total Credits</th>
+                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
+              </tr>
+
+              <tr className="toggleDisplay fixed">
+                <th>Total Fixed</th>
+                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
+              </tr>
+
+            </tbody>
+          </table>
+
+          <table id="tabla" className="currentSummaryContainer">
+            <tbody>
+
+              <tr className="">
+                <th>Category</th>
+                <td>
+                  <select
+                    onChange={this.categoryHandleChange}
+                    style={textCenter}
+                    className="historyDropdown"
+                    placeholder={this.state.categoryFilter} >
+                    {dropdownOptions[0].map((e, key) => {
+                      return <option key={key} value={e.value}>{e.name}</option>;
+                    })}
+                  </select>
+                </td>
+              </tr>
+
               <tr className="">
                 <th>Category</th>
                 <td>
@@ -615,7 +655,7 @@ export default class History extends React.Component {
 
           {/* second row */}
 
-        <div className="currentWrapperTop">
+        {/* <div className="currentWrapperTop">
 
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
@@ -701,14 +741,13 @@ export default class History extends React.Component {
 
               <tr className="">
                 <th>Total Fixed tp</th>
-                {/* will say something like Gas included in total */}
                 <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
               </tr>
 
             </tbody>
           </table>
 
-        </div>
+        </div> */}
 
         {/* <Pagination
           activePage={this.state.activePage}
