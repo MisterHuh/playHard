@@ -640,7 +640,7 @@ export default class History extends React.Component {
 
           {/* second row */}
 
-        {/* <div className="currentWrapperTop">
+        <div className="currentWrapperTop">
 
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
@@ -732,7 +732,7 @@ export default class History extends React.Component {
             </tbody>
           </table>
 
-        </div> */}
+        </div>
 
         {/* <Pagination
           activePage={this.state.activePage}

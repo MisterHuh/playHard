@@ -163,7 +163,6 @@ export default class App extends React.Component {
         <History
           budget={this.state.budget}
           currentWeekNumber={this.state.currentWeekNumber}
-
         />
     }
 
