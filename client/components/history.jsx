@@ -1,7 +1,8 @@
 import React from "react";
 import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
-import { CurrencyFormatter } from "./currencyFormatter";
+// import { CurrencyFormatter } from "./currencyFormatter";
+import { CurrencyFormatter } from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/historyDropdown.css'
@@ -94,6 +95,11 @@ export default class History extends React.Component {
       totalGroceries: 0,
       totalGas: 0,
       totalFixedEtc: 0,
+
+      week: {
+        currentWeekNumber: 0,
+        queryWeekNumber: 0
+      },
 
       currentWeekNumber: 0,
       queryWeekNumber: 0
@@ -232,7 +238,9 @@ export default class History extends React.Component {
       queryWeekNumber = Math.ceil(divisionTest);
     };
 
-    this.setState({ queryWeekNumber });
+    console.log("retrieveSearchData queryWeekNumber: ", queryWeekNumber);
+
+    this.setState({ week: { queryWeekNumber } });
     this.searchQuery(req);
 
   };
@@ -253,9 +261,11 @@ export default class History extends React.Component {
       .then(response => response.json())
       .then(current => {
         console.dir(current);
+        console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
         this.setState({
           current,
-          total: current.length
+          total: current.length,
+          week: { queryWeekNumber: 0 }
          });
         this.currentSummary();
       })
@@ -496,12 +506,17 @@ export default class History extends React.Component {
       totalGas,
       totalFixedEtc,
 
-      currentWeekNumber
+      currentWeekNumber,
+
+      week: {
+        currentWeekNumber
+      }
     })
 
   }
 
   componentDidMount() {
+    console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
     this.retrieveAllData();
   }
 
@@ -530,8 +545,10 @@ export default class History extends React.Component {
       textAlignLast: "center"
     };
 
+    // const { this.state.}
+
     const totalSpendings = this.state.totalSpendingsTest;
-    console.log(totalSpendings);
+    // console.log(totalSpendings);
 
     // const {
     //   totalSpendings,
@@ -544,6 +561,10 @@ export default class History extends React.Component {
     // } = totalSpendings;
 
     // alert(totalSpendings);
+
+    // console.log("history views[currentWeekNumber] is: ", this.state.week.currentWeekNumber);
+    console.log("history views[queryWeekNumber] is: ", this.state.week.queryWeekNumber)
+
 
     let spendingsDisplay;
     (this.state.spendingsDisplay)

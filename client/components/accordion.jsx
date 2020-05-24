@@ -55,7 +55,8 @@
 // ReactDOM.render(<App />, document.getElementById('root'));
 
 import React from "react";
-import { CurrencyFormatter } from "./currencyFormatter";
+// import { CurrencyFormatter } from "./currencyFormatter";
+import { TotalSummary, CurrencyFormatter } from "./helperFunctions"
 
 export const Accordion = props => {
   let header = props.header;
