@@ -1,4 +1,5 @@
 import React from "react";
+import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
 import { CurrencyFormatter } from "./currencyFormatter";
 
@@ -32,11 +33,25 @@ export default class History extends React.Component {
       current: [],
       // activePage: 20,
 
+      spendingsDisplay: true,
+      creditsDisplay: true,
+      fixedDisplay: true,
+
       /* pagination */
       users: null, // data you loop over => this.state.current
       total: null, // helps with calculating page logic => this.state.current.length
       per_page: null, // helps with calculating page logic => 20
       current_page: null, // style the active pagination link => 1
+
+      totalSpendingsTest: {
+        total: "Helsinki",
+        food: 0,
+        home: 0,
+        gifts: 0,
+        travel: 0,
+        entertainment: 0,
+        dogs: 0
+      },
 
       totalSpendings: 0,
       totalFoodSpendings: 0,
@@ -226,7 +241,7 @@ export default class History extends React.Component {
     fetch(`/api/historySearchQuery.php`, req)
       .then(response => response.json())
       .then(current => {
-        console.log("current is: ", current)
+        console.log("searchQuery current is: ", current)
 
         this.setState({ current });
         this.querySummary();
@@ -513,7 +528,27 @@ export default class History extends React.Component {
 
     const textCenter = {
       textAlignLast: "center"
-    }
+    };
+
+    const totalSpendings = this.state.totalSpendingsTest;
+    console.log(totalSpendings);
+
+    // const {
+    //   totalSpendings,
+    //   totalFoodSpendings,
+    //   totalHomeSpendings,
+    //   totalGiftsSpendings,
+    //   totalTravelSpendings,
+    //   totalEntertainmentSpendings,
+    //   totalDogSpendings
+    // } = totalSpendings;
+
+    // alert(totalSpendings);
+
+    let spendingsDisplay;
+    (this.state.spendingsDisplay)
+      ? spendingsDisplay = "sDisplayOn"
+      : spendingsDispaly = "sDisplayOff";
 
     return (
 
@@ -644,6 +679,12 @@ export default class History extends React.Component {
 
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
+
+              <div className="currentWrapperBottom">
+                <Accordion
+                  header={"Spendings"}
+                  content={totalSpendings} />
+              </div>
 
               <tr className=" spendings">
                 <th>Food</th>

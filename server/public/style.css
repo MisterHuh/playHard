@@ -669,3 +669,21 @@ td {
   text-align: center;
   width: 16.67%;
 } */
+
+.sDisplayOn {
+  display: inline-block;
+}
+
+.sDisplayOff {
+  display: none;
+}
+
+/* .accordionBody:before {
+  content: "before ";
+  color: green;
+}
+
+.accordionBody:after {
+  content: "after";
+  color: red;
+} */

@@ -64,7 +64,14 @@ export const Accordion = props => {
   return (
     <div className="accordionContainer">
       <h2>{props.header}</h2>
-      <div className="accordionBody">{props.content}</div>
+      <div className="accordionBody">Total Spendings</div>
+      <div className="accordionBody">{content.total}</div>
+      {/* <div className="accordionBody">{totalFoodSpendings}</div>
+      <div className="accordionBody">{totalHomeSpendings}</div>
+      <div className="accordionBody">{totalGiftSpendings}</div>
+      <div className="accordionBody">{totaltravelSpendings}</div>
+      <div className="accordionBody">{totalEntertainmentSpendings}</div>
+      <div className="accordionBody">{totalDogSpendings}</div> */}
     </div>
   )
 }
