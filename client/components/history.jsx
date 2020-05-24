@@ -566,7 +566,7 @@ export default class History extends React.Component {
 
   render() {
 
-    alert(this.state.totalBudget);
+    // alert(this.state.totalBudget);
 
     const dropdownOptions = [
       [
@@ -753,7 +753,7 @@ export default class History extends React.Component {
 
               <div className="currentWrapperBottom">
                 <Accordion
-                  header={"Spendings"}
+                  header={"Total Spendings"}
                   content={totalSpendings}
                   week={week}
                   current={this.state.current}

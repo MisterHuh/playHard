@@ -58,15 +58,20 @@ import React from "react";
 import { TotalSummary, CurrencyFormatter } from "./helperFunctions"
 
 export const Accordion = props => {
+
   let header = props.header;
+  const remainingHeaders = [
+    "Food", "Home", "Gifts", "Travel", "Ent", "Dog"
+  ];
+
   let content = props.content;
   let week = props.week;
 
   let current = props.current;
   let budget;
 
-  console.log("Accordion week.currentWeekNumber; is: ", week.currentWeekNumber);
-  console.log("Accordion week.queryWeekNumber; is: ", week.queryWeekNumber);
+  // console.log("Accordion week.currentWeekNumber; is: ", week.currentWeekNumber);
+  // console.log("Accordion week.queryWeekNumber; is: ", week.queryWeekNumber);
 
   if (week.currentWeekNumber) {
     budget = 150 * week.currentWeekNumber;
@@ -78,14 +83,21 @@ export const Accordion = props => {
 
   let totalSummary = TotalSummary(week, current, budget);
   console.log("totalSummary is: ", totalSummary);
-  console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
+  // console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
 
   return (
-    <div className="accordionContainer">
-      <h2>{props.header}</h2>
-      <div className="accordionBody">Total Spendings</div>
-      {/* <div className="accordionBody">$123.45</div> */}
-      <div className="accordionBody">{"number is " + totalSummary.others.budget}</div>
+    <div className="accordionContainer toggleDisplaySpendings spendings">
+      <div>{props.header}</div>
+      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</div>
+
+      <div>{remainingHeaders[0]}</div>
+      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalFoodSpendings)}</div>
+
+      <div>{remainingHeaders[1]}</div>
+      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</div>
+
+      <div>{remainingHeaders[3]}</div>
+      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</div>
 
     </div>
   )
