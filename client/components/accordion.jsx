@@ -87,17 +87,48 @@ export const Accordion = props => {
 
   return (
     <div className="accordionContainer toggleDisplaySpendings spendings">
-      <div>{props.header}</div>
-      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</div>
+      {/* <div>{props.header}</div> */}
+      {/* <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</div> */}
 
-      <div>{remainingHeaders[0]}</div>
+      <tr className="toggleDisplaySpendings spendings">
+        <th>{props.header}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</td>
+      </tr>
+
+      <tr className=" spendings">
+        <th>{remainingHeaders[0]}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalFoodSpendings)}</td>
+        <th>{remainingHeaders[1]}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalHomeSpendings)}</td>
+      </tr>
+
+      <tr className=" spendings">
+        <th>{remainingHeaders[2]}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</td>
+        <th>{remainingHeaders[3]}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalTravelSpendings)}</td>
+      </tr>
+
+      <tr className=" spendings">
+        <th>{remainingHeaders[4]}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</td>
+        <th>{remainingHeaders[5]}</th>
+        <td>{CurrencyFormatter.format(totalSummary.spendings.totalDogSpendings)}</td>
+      </tr>
+
+      {/* <tr className=" ">
+        <th colSpan="2">Total Spendings</th>
+        <td colSpan="2">{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+      </tr> */}
+
+      {/* <div>{remainingHeaders[0]}</div>
       <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalFoodSpendings)}</div>
 
       <div>{remainingHeaders[1]}</div>
       <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</div>
 
       <div>{remainingHeaders[3]}</div>
-      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</div>
+      <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</div> */}
 
     </div>
   )

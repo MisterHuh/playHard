@@ -191,7 +191,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 .toggleDisplaySpendings:hover, .toggleDisplaySpendings:hover, .toggleDisplayFixed:hover   {
   cursor: pointer;
-  animation: fadeinout 4s linear forwards;
+  /* animation: fadeinout 4s linear forwards; */
 }
 
 .toggleDisplaySpendings:hover  {
@@ -680,12 +680,12 @@ td {
 
 .accordionContainer {
   display: flex;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   flex-wrap: wrap;
 }
 
 .accordionContainer > div {
-  border: 1px solid yellow;
+  border: 1px solid black;
   width: 50%;
 }
 
