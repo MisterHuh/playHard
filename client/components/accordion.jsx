@@ -61,6 +61,10 @@ import { TotalSummary, CurrencyFormatter } from "./helperFunctions"
 export const Accordion = props => {
   let header = props.header;
   let content = props.content;
+  let week = props.week;
+
+  let totalSummary = TotalSummary(week);
+
 
   return (
     <div className="accordionContainer">

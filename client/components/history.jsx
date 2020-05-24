@@ -516,7 +516,7 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
+    // console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
     this.retrieveAllData();
   }
 
@@ -561,9 +561,12 @@ export default class History extends React.Component {
     // } = totalSpendings;
 
     // alert(totalSpendings);
+    const week = this.state.week;
+    const { currentWeekNumber, queryWeekNumber } = week;
 
     // console.log("history views[currentWeekNumber] is: ", this.state.week.currentWeekNumber);
-    console.log("history views[queryWeekNumber] is: ", this.state.week.queryWeekNumber)
+    // console.log("history views[queryWeekNumber] is: ", this.state.week.queryWeekNumber);
+    console.log("this.state.week is: ", week);
 
 
     let spendingsDisplay;
@@ -704,7 +707,8 @@ export default class History extends React.Component {
               <div className="currentWrapperBottom">
                 <Accordion
                   header={"Spendings"}
-                  content={totalSpendings} />
+                  content={totalSpendings}
+                  week={week} />
               </div>
 
               <tr className=" spendings">
