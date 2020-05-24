@@ -39,10 +39,10 @@ export default class History extends React.Component {
       fixedDisplay: true,
 
       /* pagination */
-      users: null, // data you loop over => this.state.current
-      total: null, // helps with calculating page logic => this.state.current.length
-      per_page: null, // helps with calculating page logic => 20
-      current_page: null, // style the active pagination link => 1
+      // users: null, // data you loop over => this.state.current
+      // total: null, // helps with calculating page logic => this.state.current.length
+      // per_page: null, // helps with calculating page logic => 20
+      // current_page: null, // style the active pagination link => 1
 
       totalSpendingsTest: {
         total: "Helsinki",
@@ -101,8 +101,8 @@ export default class History extends React.Component {
         queryWeekNumber: 0
       },
 
-      currentWeekNumber: 0,
-      queryWeekNumber: 0
+      // currentWeekNumber: 0,
+      // queryWeekNumber: 0
 
     }
     this.retrieveAllData = this.retrieveAllData.bind(this);
@@ -238,7 +238,7 @@ export default class History extends React.Component {
       queryWeekNumber = Math.ceil(divisionTest);
     };
 
-    console.log("retrieveSearchData queryWeekNumber: ", queryWeekNumber);
+    // console.log("retrieveSearchData queryWeekNumber: ", queryWeekNumber);
 
     this.setState({ week: { queryWeekNumber } });
     this.searchQuery(req);
@@ -246,29 +246,71 @@ export default class History extends React.Component {
   };
 
   searchQuery(req) {
-    fetch(`/api/historySearchQuery.php`, req)
-      .then(response => response.json())
-      .then(current => {
-        console.log("searchQuery current is: ", current)
 
-        this.setState({ current });
-        this.querySummary();
-      })
+    fetch(`/api/historySearchQuery.php`, req)
+          .then(response => response.json())
+          .then(current => {
+            console.dir(current);
+            this.setState({
+              current
+              // week: { currentWeekNumber: 0 }
+            });
+            // this.currentSummary();
+            this.querySummary();
+          })
+
+        let budget = this.state.totalBudget;
+
+        console.log("historySearchQuery budget is: ", budget);
+
+
+    // fetch(`/api/historySearchQuery.php`, req)
+    //   .then(response => response.json())
+    //   .then(current => {
+    //     console.log("searchQuery current is: ", current)
+
+    //     this.setState({ current });
+    //     this.querySummary();
+    //   })
   }
 
   retrieveAllData() {
-    fetch(`/api/retrieveAllData.php`)
-      .then(response => response.json())
-      .then(current => {
-        console.dir(current);
-        console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
-        this.setState({
-          current,
-          total: current.length,
-          week: { queryWeekNumber: 0 }
-         });
-        this.currentSummary();
-      })
+
+    if (this.state.week.currentWeekNumber) {
+      fetch(`/api/retrieveAllData.php`)
+        .then(response => response.json())
+        .then(current => {
+          console.dir(current);
+          // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
+          this.setState({
+            current,
+            // total: current.length,
+            week: { queryWeekNumber: 0 }
+          });
+          this.currentSummary();
+        })
+
+      let budget = this.state.totalBudget;
+
+      console.log("retrieveAlLData budget is: ", budget);
+    } else {
+      fetch(`/api/retrieveAllData.php`)
+        .then(response => response.json())
+        .then(current => {
+          console.dir(current);
+          // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
+          this.setState({
+            current,
+            // total: current.length,
+            week: { currentWeekNumber: 0 }
+          });
+          this.currentSummary();
+        })
+
+      let budget = this.state.totalBudget;
+
+      console.log("retrieveAlLData budget is: ", budget);
+    }
   }
 
   deleteEntry(id) {
@@ -517,10 +559,14 @@ export default class History extends React.Component {
 
   componentDidMount() {
     // console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
+    console.log("current is: ", this.state.current)
     this.retrieveAllData();
+    // problem is, this is always re-setting the week { currentWeekNumber };
   }
 
   render() {
+
+    alert(this.state.totalBudget);
 
     const dropdownOptions = [
       [
@@ -563,10 +609,11 @@ export default class History extends React.Component {
     // alert(totalSpendings);
     const week = this.state.week;
     const { currentWeekNumber, queryWeekNumber } = week;
+    console.log("history WEEK is: ", week);
 
     // console.log("history views[currentWeekNumber] is: ", this.state.week.currentWeekNumber);
     // console.log("history views[queryWeekNumber] is: ", this.state.week.queryWeekNumber);
-    console.log("this.state.week is: ", week);
+    // console.log("this.state.week is: ", week);
 
 
     let spendingsDisplay;
@@ -708,7 +755,9 @@ export default class History extends React.Component {
                 <Accordion
                   header={"Spendings"}
                   content={totalSpendings}
-                  week={week} />
+                  week={week}
+                  current={this.state.current}
+                  budget={this.state.totalBudget} />
               </div>
 
               <tr className=" spendings">

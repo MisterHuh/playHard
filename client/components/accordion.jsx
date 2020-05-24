@@ -55,7 +55,6 @@
 // ReactDOM.render(<App />, document.getElementById('root'));
 
 import React from "react";
-// import { CurrencyFormatter } from "./currencyFormatter";
 import { TotalSummary, CurrencyFormatter } from "./helperFunctions"
 
 export const Accordion = props => {
@@ -63,20 +62,31 @@ export const Accordion = props => {
   let content = props.content;
   let week = props.week;
 
-  let totalSummary = TotalSummary(week);
+  let current = props.current;
+  let budget;
 
+  console.log("Accordion week.currentWeekNumber; is: ", week.currentWeekNumber);
+  console.log("Accordion week.queryWeekNumber; is: ", week.queryWeekNumber);
+
+  if (week.currentWeekNumber) {
+    budget = 150 * week.currentWeekNumber;
+  } else if (week.queryWeekNumber) {
+    budget = 150 * week.queryWeekNumber;
+  }
+
+  console.log("Accordion budget is: ", budget);
+
+  let totalSummary = TotalSummary(week, current, budget);
+  console.log("totalSummary is: ", totalSummary);
+  console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
 
   return (
     <div className="accordionContainer">
       <h2>{props.header}</h2>
       <div className="accordionBody">Total Spendings</div>
-      <div className="accordionBody">{content.total}</div>
-      {/* <div className="accordionBody">{totalFoodSpendings}</div>
-      <div className="accordionBody">{totalHomeSpendings}</div>
-      <div className="accordionBody">{totalGiftSpendings}</div>
-      <div className="accordionBody">{totaltravelSpendings}</div>
-      <div className="accordionBody">{totalEntertainmentSpendings}</div>
-      <div className="accordionBody">{totalDogSpendings}</div> */}
+      {/* <div className="accordionBody">$123.45</div> */}
+      <div className="accordionBody">{"number is " + totalSummary.others.budget}</div>
+
     </div>
   )
 }
