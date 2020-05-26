@@ -45,8 +45,8 @@ export default class History extends React.Component {
       // current_page: null, // style the active pagination link => 1
 
       totalSpendingsTest: {
-        total: "Helsinki",
-        food: 0,
+        total: 0,
+        food: "Food",
         home: 0,
         gifts: 0,
         travel: 0,
@@ -280,7 +280,7 @@ export default class History extends React.Component {
     //   })
   }
 
-  retrieveAllData() {
+  retrieveAllData(currentWeekNumber) {
 
     // need a conditional to figure out which value to use for week
     // then run 1 singl fetch call
@@ -291,34 +291,79 @@ export default class History extends React.Component {
 
     // if (this.state.week.currentWeekNumber) {
 
+    console.log("RetireveAllData fired");
+    console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
+    console.log("currentWeekNumber is ", currentWeekNumber);
+
+    let budget = this.props.budget;
+    let week = currentWeekNumber;
+    let totalBudget = budget * week;
+
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
-          console.dir(current);
+          // console.dir(current);
+          console.log("retrieveAll Fetch current is: ", current);
           // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
           this.setState({
             current
             // total: current.length,
             // week: { queryWeekNumber: 0 }
           });
-          this.currentSummary();
+          let totalSummary = TotalSummary(week, current, budget);
+          console.log("totalSummary is: ", totalSummary);
+          // this.currentSummary();
+
         })
 
 
-      let current = this.state.current;
-      let budget = this.props.budget;
-      let week = this.props.currentWeekNumber;
-      let totalBudget = budget * week;
 
-      const totalSummary = TotalSummary(week, current, budget);
-      console.log("retrieveAllData totalSummary is: ", totalSummary);
-      console.log("retrieveAllData week is: ", week);
-      console.log("retrieveAllData budget is: ", totalBudget);
-      console.log("totalSummary.others.budget is: ",totalSummary.others.budget);
+        // if (this.state.current) {
+        //   let current = this.state.current;
+        //   let budget = this.props.budget;
+        //   let week = currentWeekNumber;
+        //   let totalBudget = budget * week;
+
+        //   console.log("retrieveAllData current is: ", current);
+
+        //   let totalSummaryTest = TotalSummary(week, current, budget);
+        //   console.log("retrieveAllData totalSummary is: ", totalSummaryTest);
+        //   console.log("retrieveAllData week is: ", week);
+        //   console.log("retrieveAlLData budget is: ", budget);
+        //   console.log("retrieveAllData budget is: ", totalBudget);
+        //   console.log("totalSummaryTest.others.budget is: ", totalSummaryTest.others.budget);
+
+        //   this.setState({
+        //     totalSpendingsTest: {
+        //       // total: totalSummaryTest["spendings"]["totalSpendings"]
+        //       total: totalSummaryTest.spendings.totalSpendings
+        //     }
+        //   });
+
+        //   console.log("totalSpendingsTest.test is: ", this.state.totalSpendingsTest.total);
+        //   console.log("totalSpendingsTest.food is: ", this.state.totalSpendingsTest.food);
+
+        // };
 
 
 
-      console.log("retrieveAlLData budget is: ", budget);
+      // let current = this.state.current;
+      // let budget = this.props.budget;
+      // let week = currentWeekNumber;
+      // let totalBudget = budget * week;
+
+      // console.log("retrieveAllData current is: ", current);
+
+      // const totalSummary = TotalSummary(week, current, budget);
+      // console.log("retrieveAllData totalSummary is: ", totalSummary);
+      // console.log("retrieveAllData week is: ", week);
+      // console.log("retrieveAlLData budget is: ", budget);
+      // console.log("retrieveAllData budget is: ", totalBudget);
+      // console.log("totalSummary.others.budget is: ",totalSummary.others.budget);
+
+
+
+
     // }
 
     // else {
@@ -596,11 +641,11 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    console.log("componentDidMount this.props.currentWeekNumber is: ", this.props.currentWeekNumber);
+    // console.log("componentDidMount this.props.currentWeekNumber is: ", this.props.currentWeekNumber);
     // console.log("current is: ", this.state.current)
     // console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
     let currentWeekNumber = GetCurrentWeekNum();
-    alert(currentWeekNumber);
+    // alert(currentWeekNumber);
 
     this.setState({
       week: {
@@ -609,7 +654,9 @@ export default class History extends React.Component {
       }
     });
 
-    this.retrieveAllData();
+    // console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
+
+    this.retrieveAllData(currentWeekNumber);
     // console.log("this.state.week is ", this.state.week);
     // problem is, this is always re-setting the week { currentWeekNumber };
   }
@@ -773,8 +820,8 @@ export default class History extends React.Component {
                 <td>{this.state.week.currentWeekNumber}</td>
                 <th>Week: query week</th>
                 <td>{"is " + this.state.week.queryWeekNumber}</td>
-                <th>this.props.week</th>
-                <td>{this.props.currentWeekNumber}</td>
+                <th>this.state.totalSpendingsTest.total</th>
+                <td>{this.state.totalSpendingsTest.total}</td>
               </tr>
 
             </tbody>
@@ -807,17 +854,17 @@ export default class History extends React.Component {
 
         <div className="currentWrapperTop">
 
+          <div className="currentWrapperBottom">
+            <Accordion
+              header={"Total Spendings"}
+              // content={totalSpendings}
+              week={week}
+              current={this.state.current}
+              budget={this.state.totalBudget} />
+          </div>
+
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
-
-              <div className="currentWrapperBottom">
-                <Accordion
-                  header={"Total Spendings"}
-                  // content={totalSpendings}
-                  week={week}
-                  current={this.state.current}
-                  budget={this.state.totalBudget} />
-              </div>
 
               <tr className=" spendings">
                 <th>Food</th>

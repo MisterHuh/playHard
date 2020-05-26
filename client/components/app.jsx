@@ -39,7 +39,7 @@ export default class App extends React.Component {
 
   getWeekNum() {
 
-    console.log("APP getWeekNum fired");
+    // console.log("APP getWeekNum fired");
 
     let timestamp = new Date();
     let sundayChecker = timestamp.getDay();

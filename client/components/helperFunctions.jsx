@@ -45,6 +45,10 @@ export const TotalSummary = (week, current, budget) => {
     let totalGas = 0;
     let totalFixedEtc = 0;
 
+    // console.log("TotalSummary current is: ", current);
+    // console.log("TotalSummary current.length is: ", current.length);
+    // console.log("TotalSummary current[0] is: ", current[0]);
+
     for (let index = 0; index < current.length; index++) {
       if (current[index]["category"] === "Spendings") {
         totalSpendings += parseFloat(current[index]["amount"]);
@@ -164,9 +168,11 @@ export const TotalSummary = (week, current, budget) => {
       },
       others: {
         totalRemaining,
-        budget: "Helsinki"
+        budget
       }
     };
+
+    console.log("helperFunctions totalSpendings is: ", totalSummary.spendings.totalSpendings);
 
     return totalSummary;
 
@@ -185,6 +191,9 @@ export const GetCurrentWeekNum = () => {
   } else {
     currentWeekNum = currentWeek(timestamp);
   }
+
+  // console.log("GetCurrentWeekNum fired");
+  // console.log("GetCurrentWeekNum currentWeekNum is: ", currentWeekNum);
 
   return currentWeekNum;
 };
