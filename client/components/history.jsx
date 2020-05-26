@@ -282,15 +282,6 @@ export default class History extends React.Component {
 
   retrieveAllData(currentWeekNumber) {
 
-    // need a conditional to figure out which value to use for week
-    // then run 1 singl fetch call
-
-    // let week;
-
-    // (this.)
-
-    // if (this.state.week.currentWeekNumber) {
-
     console.log("RetireveAllData fired");
     console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
     console.log("currentWeekNumber is ", currentWeekNumber);
@@ -302,104 +293,24 @@ export default class History extends React.Component {
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
-          // console.dir(current);
           console.log("retrieveAll Fetch current is: ", current);
-          // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
-          this.setState({
-            current
-            // total: current.length,
-            // week: { queryWeekNumber: 0 }
-          });
-          let totalSummary = TotalSummary(week, current, budget);
+          this.setState({ current });
 
+          let totalSummary = TotalSummary(week, current, budget);
           this.setState({
             totalSpendingsTest: {
-              // total: totalSummaryTest["spendings"]["totalSpendings"]
-              total: totalSummary.spendings.totalSpendings
+              total: totalSummary.spendings.totalSpendings,
+              food: totalSummary.spendings.totalFoodSpendings,
+              home: totalSummary.spendings.totalHomeSpendings,
+              gifts: totalSummary.spendings.totalGiftsSpendings,
+              travel: totalSummary.spendings.totalTravelSpendings,
+              entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+              dogs: totalSummary.spendings.totalDogSpendings
             }
           });
           console.log("totalSummary is: ", totalSummary);
-          // this.currentSummary();
-
+          console.log("totalSummary.spendings is: ", totalSummary.spendings);
         })
-
-
-
-        // if (this.state.current) {
-        //   let current = this.state.current;
-        //   let budget = this.props.budget;
-        //   let week = currentWeekNumber;
-        //   let totalBudget = budget * week;
-
-        //   console.log("retrieveAllData current is: ", current);
-
-        //   let totalSummaryTest = TotalSummary(week, current, budget);
-        //   console.log("retrieveAllData totalSummary is: ", totalSummaryTest);
-        //   console.log("retrieveAllData week is: ", week);
-        //   console.log("retrieveAlLData budget is: ", budget);
-        //   console.log("retrieveAllData budget is: ", totalBudget);
-        //   console.log("totalSummaryTest.others.budget is: ", totalSummaryTest.others.budget);
-
-        //   this.setState({
-        //     totalSpendingsTest: {
-        //       // total: totalSummaryTest["spendings"]["totalSpendings"]
-        //       total: totalSummaryTest.spendings.totalSpendings
-        //     }
-        //   });
-
-        //   console.log("totalSpendingsTest.test is: ", this.state.totalSpendingsTest.total);
-        //   console.log("totalSpendingsTest.food is: ", this.state.totalSpendingsTest.food);
-
-        // };
-
-
-
-      // let current = this.state.current;
-      // let budget = this.props.budget;
-      // let week = currentWeekNumber;
-      // let totalBudget = budget * week;
-
-      // console.log("retrieveAllData current is: ", current);
-
-      // const totalSummary = TotalSummary(week, current, budget);
-      // console.log("retrieveAllData totalSummary is: ", totalSummary);
-      // console.log("retrieveAllData week is: ", week);
-      // console.log("retrieveAlLData budget is: ", budget);
-      // console.log("retrieveAllData budget is: ", totalBudget);
-      // console.log("totalSummary.others.budget is: ",totalSummary.others.budget);
-
-
-
-
-    // }
-
-    // else {
-    //   fetch(`/api/retrieveAllData.php`)
-    //     .then(response => response.json())
-    //     .then(current => {
-    //       console.dir(current);
-    //       // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
-    //       this.setState({
-    //         current
-    //         // total: current.length,
-    //         // week: { currentWeekNumber: 0 }
-    //       });
-    //       this.currentSummary();
-    //     })
-
-    //   // let budget = this.state.totalBudget;
-
-    //   let current = this.state.current;
-    //   let budget = this.state.totalBudget;
-    //   let week = this.props.currentWeekNumber;
-    //   budget = budget * week;
-
-    //   const totalSummary = TotalSummary(week, current, budget);
-    //   console.log("retrieveAllData totalSummary is: ", totalSummary);
-    //   console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
-
-    //   console.log("retrieveAlLData budget is: ", budget);
-    // }
   }
 
   deleteEntry(id) {

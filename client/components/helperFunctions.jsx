@@ -172,7 +172,7 @@ export const TotalSummary = (week, current, budget) => {
       }
     };
 
-    console.log("helperFunctions totalSpendings is: ", totalSummary.spendings.totalSpendings);
+    console.log("helperFunctions totalSpendings is: ", totalSummary.spendings);
 
     return totalSummary;
 
