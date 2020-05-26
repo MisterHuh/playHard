@@ -2,7 +2,7 @@ import React from "react";
 import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
 // import { CurrencyFormatter } from "./currencyFormatter";
-import { CurrencyFormatter } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary} from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/historyDropdown.css'
@@ -240,7 +240,13 @@ export default class History extends React.Component {
 
     // console.log("retrieveSearchData queryWeekNumber: ", queryWeekNumber);
 
-    this.setState({ week: { queryWeekNumber } });
+    this.setState({
+      week:
+      {
+        currentWeekNumber: 0,
+        queryWeekNumber
+      }
+    });
     this.searchQuery(req);
 
   };
@@ -276,7 +282,11 @@ export default class History extends React.Component {
 
   retrieveAllData() {
 
+    // need a conditional to figure out which value to use for week
+    // then run 1 singl fetch call
+
     if (this.state.week.currentWeekNumber) {
+
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
@@ -287,10 +297,20 @@ export default class History extends React.Component {
             // total: current.length,
             week: { queryWeekNumber: 0 }
           });
-          this.currentSummary();
+          // this.currentSummary();
         })
 
+
+      let current = this.state.current;
       let budget = this.state.totalBudget;
+      let week = this.props.currentWeekNumber;
+      budget = budget * week;
+
+      const totalSummary = TotalSummary(week, current, budget);
+      console.log("retrieveAllData totalSummary is: ", totalSummary);
+      console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
+
+
 
       console.log("retrieveAlLData budget is: ", budget);
     } else {
@@ -307,7 +327,16 @@ export default class History extends React.Component {
           this.currentSummary();
         })
 
+      // let budget = this.state.totalBudget;
+
+      let current = this.state.current;
       let budget = this.state.totalBudget;
+      let week = this.props.currentWeekNumber;
+      budget = budget * week;
+
+      const totalSummary = TotalSummary(week, current, budget);
+      console.log("retrieveAllData totalSummary is: ", totalSummary);
+      console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
 
       console.log("retrieveAlLData budget is: ", budget);
     }
@@ -560,7 +589,9 @@ export default class History extends React.Component {
   componentDidMount() {
     // console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
     console.log("current is: ", this.state.current)
+    // console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
     this.retrieveAllData();
+    console.log("this.state.week is ", this.state.week);
     // problem is, this is always re-setting the week { currentWeekNumber };
   }
 
@@ -718,10 +749,19 @@ export default class History extends React.Component {
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
 
+              <tr className=" ">
+                <th>Week: current week</th>
+                <td>{this.state.week.currentWeekNumber}</td>
+                <th>Week: query week</th>
+                <td>{this.state.week.queryWeekNumber}</td>
+                <th>this.props.week</th>
+                <td>{this.props.currentWeekNumber}</td>
+              </tr>
+
             </tbody>
           </table>
 
-          <table id="tabla" className="currentSummaryContainer">
+          {/* <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
               <tr className="toggleDisplaySpendings spendings">
@@ -740,7 +780,7 @@ export default class History extends React.Component {
               </tr>
 
             </tbody>
-          </table>
+          </table> */}
 
         </div>
 
@@ -754,7 +794,7 @@ export default class History extends React.Component {
               <div className="currentWrapperBottom">
                 <Accordion
                   header={"Total Spendings"}
-                  content={totalSpendings}
+                  // content={totalSpendings}
                   week={week}
                   current={this.state.current}
                   budget={this.state.totalBudget} />

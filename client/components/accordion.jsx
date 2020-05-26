@@ -64,7 +64,6 @@ export const Accordion = props => {
     "Food", "Home", "Gifts", "Travel", "Ent", "Dog"
   ];
 
-  let content = props.content;
   let week = props.week;
 
   let current = props.current;
@@ -90,31 +89,45 @@ export const Accordion = props => {
       {/* <div>{props.header}</div> */}
       {/* <div className="accordionBody">{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</div> */}
 
-      <tr className="toggleDisplaySpendings spendings">
-        <th>{props.header}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</td>
-      </tr>
+      <table>
+        <tbody>
 
-      <tr className=" spendings">
-        <th>{remainingHeaders[0]}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalFoodSpendings)}</td>
-        <th>{remainingHeaders[1]}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalHomeSpendings)}</td>
-      </tr>
+          <tr className="toggleDisplaySpendings spendings">
+            <th colSpan="2" >{props.header}</th>
+            <td colSpan="2" >{CurrencyFormatter.format(totalSummary.spendings.totalSpendings)}</td>
+          </tr>
 
-      <tr className=" spendings">
-        <th>{remainingHeaders[2]}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</td>
-        <th>{remainingHeaders[3]}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalTravelSpendings)}</td>
-      </tr>
+          <tr className=" spendings">
+            <th>{remainingHeaders[0]}</th>
+            <td>{CurrencyFormatter.format(totalSummary.spendings.totalFoodSpendings)}</td>
+            <th>{remainingHeaders[1]}</th>
+            <td>{CurrencyFormatter.format(totalSummary.spendings.totalHomeSpendings)}</td>
+          </tr>
 
-      <tr className=" spendings">
-        <th>{remainingHeaders[4]}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</td>
-        <th>{remainingHeaders[5]}</th>
-        <td>{CurrencyFormatter.format(totalSummary.spendings.totalDogSpendings)}</td>
-      </tr>
+          <tr className=" spendings">
+            <th>{remainingHeaders[2]}</th>
+            <td>{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</td>
+            <th>{remainingHeaders[3]}</th>
+            <td>{CurrencyFormatter.format(totalSummary.spendings.totalTravelSpendings)}</td>
+          </tr>
+
+          <tr className=" spendings">
+            <th>{remainingHeaders[4]}</th>
+            <td>{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</td>
+            <th>{remainingHeaders[5]}</th>
+            <td>{CurrencyFormatter.format(totalSummary.spendings.totalDogSpendings)}</td>
+          </tr>
+
+          <tr className=" spendings">
+            <th>Total Remaining</th>
+            <td>{CurrencyFormatter.format(totalSummary.others.totalRemaining)}</td>
+            <th>Budget</th>
+            <td>{CurrencyFormatter.format(totalSummary.others.budget)}</td>
+          </tr>
+
+        </tbody>
+      </table>
+
 
       {/* <tr className=" ">
         <th colSpan="2">Total Spendings</th>
