@@ -293,9 +293,9 @@ export default class History extends React.Component {
           console.dir(current);
           // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
           this.setState({
-            current,
+            current
             // total: current.length,
-            week: { queryWeekNumber: 0 }
+            // week: { queryWeekNumber: 0 }
           });
           // this.currentSummary();
         })
@@ -308,7 +308,7 @@ export default class History extends React.Component {
 
       const totalSummary = TotalSummary(week, current, budget);
       console.log("retrieveAllData totalSummary is: ", totalSummary);
-      console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
+      console.log("totalSummary.others.budget is: ",totalSummary.others.budget);
 
 
 
@@ -320,9 +320,9 @@ export default class History extends React.Component {
           console.dir(current);
           // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
           this.setState({
-            current,
+            current
             // total: current.length,
-            week: { currentWeekNumber: 0 }
+            // week: { currentWeekNumber: 0 }
           });
           this.currentSummary();
         })
@@ -577,10 +577,11 @@ export default class History extends React.Component {
       totalGas,
       totalFixedEtc,
 
-      currentWeekNumber,
+      // currentWeekNumber,
 
       week: {
-        currentWeekNumber
+        currentWeekNumber,
+        queryWeekNumber: 0
       }
     })
 
@@ -753,7 +754,7 @@ export default class History extends React.Component {
                 <th>Week: current week</th>
                 <td>{this.state.week.currentWeekNumber}</td>
                 <th>Week: query week</th>
-                <td>{this.state.week.queryWeekNumber}</td>
+                <td>{"is " + this.state.week.queryWeekNumber}</td>
                 <th>this.props.week</th>
                 <td>{this.props.currentWeekNumber}</td>
               </tr>
