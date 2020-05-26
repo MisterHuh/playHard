@@ -311,6 +311,13 @@ export default class History extends React.Component {
             // week: { queryWeekNumber: 0 }
           });
           let totalSummary = TotalSummary(week, current, budget);
+
+          this.setState({
+            totalSpendingsTest: {
+              // total: totalSummaryTest["spendings"]["totalSpendings"]
+              total: totalSummary.spendings.totalSpendings
+            }
+          });
           console.log("totalSummary is: ", totalSummary);
           // this.currentSummary();
 
