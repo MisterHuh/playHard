@@ -172,6 +172,23 @@ export const TotalSummary = (week, current, budget) => {
 
 }
 
+export const GetCurrentWeekNum = () => {
+
+  let timestamp = new Date();
+  let sundayChecker = timestamp.getDay();
+  let currentWeek = require("current-week-number");
+  let currentWeekNum;
+
+  if (sundayChecker === 0) {
+    let followingDay = new Date(timestamp.getTime() + 86400000);
+    currentWeekNum = currentWeek(followingDay);
+  } else {
+    currentWeekNum = currentWeek(timestamp);
+  }
+
+  return currentWeekNum;
+};
+
 // export const TotalSummary = (week, current, budget) => {
 //   let totalSpendings = 0;
 //   let totalFoodSpendings = 0;

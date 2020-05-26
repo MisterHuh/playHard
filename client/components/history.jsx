@@ -2,7 +2,7 @@ import React from "react";
 import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
 // import { CurrencyFormatter } from "./currencyFormatter";
-import { CurrencyFormatter, TotalSummary} from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/historyDropdown.css'
@@ -285,7 +285,11 @@ export default class History extends React.Component {
     // need a conditional to figure out which value to use for week
     // then run 1 singl fetch call
 
-    if (this.state.week.currentWeekNumber) {
+    // let week;
+
+    // (this.)
+
+    // if (this.state.week.currentWeekNumber) {
 
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
@@ -297,49 +301,53 @@ export default class History extends React.Component {
             // total: current.length,
             // week: { queryWeekNumber: 0 }
           });
-          // this.currentSummary();
+          this.currentSummary();
         })
 
 
       let current = this.state.current;
-      let budget = this.state.totalBudget;
+      let budget = this.props.budget;
       let week = this.props.currentWeekNumber;
-      budget = budget * week;
+      let totalBudget = budget * week;
 
       const totalSummary = TotalSummary(week, current, budget);
       console.log("retrieveAllData totalSummary is: ", totalSummary);
+      console.log("retrieveAllData week is: ", week);
+      console.log("retrieveAllData budget is: ", totalBudget);
       console.log("totalSummary.others.budget is: ",totalSummary.others.budget);
 
 
 
       console.log("retrieveAlLData budget is: ", budget);
-    } else {
-      fetch(`/api/retrieveAllData.php`)
-        .then(response => response.json())
-        .then(current => {
-          console.dir(current);
-          // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
-          this.setState({
-            current
-            // total: current.length,
-            // week: { currentWeekNumber: 0 }
-          });
-          this.currentSummary();
-        })
+    // }
 
-      // let budget = this.state.totalBudget;
+    // else {
+    //   fetch(`/api/retrieveAllData.php`)
+    //     .then(response => response.json())
+    //     .then(current => {
+    //       console.dir(current);
+    //       // console.dir("retrieveAllData queryWeekNumber: ", this.state.week.queryWeekNumber);
+    //       this.setState({
+    //         current
+    //         // total: current.length,
+    //         // week: { currentWeekNumber: 0 }
+    //       });
+    //       this.currentSummary();
+    //     })
 
-      let current = this.state.current;
-      let budget = this.state.totalBudget;
-      let week = this.props.currentWeekNumber;
-      budget = budget * week;
+    //   // let budget = this.state.totalBudget;
 
-      const totalSummary = TotalSummary(week, current, budget);
-      console.log("retrieveAllData totalSummary is: ", totalSummary);
-      console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
+    //   let current = this.state.current;
+    //   let budget = this.state.totalBudget;
+    //   let week = this.props.currentWeekNumber;
+    //   budget = budget * week;
 
-      console.log("retrieveAlLData budget is: ", budget);
-    }
+    //   const totalSummary = TotalSummary(week, current, budget);
+    //   console.log("retrieveAllData totalSummary is: ", totalSummary);
+    //   console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
+
+    //   console.log("retrieveAlLData budget is: ", budget);
+    // }
   }
 
   deleteEntry(id) {
@@ -588,11 +596,21 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("queryWeekNumber is: ", this.state.queryWeekNumber);
-    console.log("current is: ", this.state.current)
+    console.log("componentDidMount this.props.currentWeekNumber is: ", this.props.currentWeekNumber);
+    // console.log("current is: ", this.state.current)
     // console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
+    let currentWeekNumber = GetCurrentWeekNum();
+    alert(currentWeekNumber);
+
+    this.setState({
+      week: {
+        currentWeekNumber,
+        queryWeekNumber: 0
+      }
+    });
+
     this.retrieveAllData();
-    console.log("this.state.week is ", this.state.week);
+    // console.log("this.state.week is ", this.state.week);
     // problem is, this is always re-setting the week { currentWeekNumber };
   }
 
@@ -641,7 +659,7 @@ export default class History extends React.Component {
     // alert(totalSpendings);
     const week = this.state.week;
     const { currentWeekNumber, queryWeekNumber } = week;
-    console.log("history WEEK is: ", week);
+    // console.log("history WEEK is: ", week);
 
     // console.log("history views[currentWeekNumber] is: ", this.state.week.currentWeekNumber);
     // console.log("history views[queryWeekNumber] is: ", this.state.week.queryWeekNumber);

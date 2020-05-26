@@ -78,10 +78,10 @@ export const Accordion = props => {
     budget = 150 * week.queryWeekNumber;
   }
 
-  console.log("Accordion budget is: ", budget);
+  // console.log("Accordion budget is: ", budget);
 
   let totalSummary = TotalSummary(week, current, budget);
-  console.log("totalSummary is: ", totalSummary);
+  // console.log("totalSummary is: ", totalSummary);
   // console.log("totalSummary.others.budget is: ", totalSummary.others.budget);
 
   return (
