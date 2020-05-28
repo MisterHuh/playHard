@@ -54,6 +54,16 @@ export default class History extends React.Component {
         dogs: 0
       },
 
+      totalCreditsTest: {
+        total: 0,
+        food: "Food",
+        home: 0,
+        gifts: 0,
+        travel: 0,
+        entertainment: 0,
+        dogs: 0
+      },
+
       totalSpendings: 0,
       totalFoodSpendings: 0,
       totalHomeSpendings: 0,
@@ -306,7 +316,8 @@ export default class History extends React.Component {
               travel: totalSummary.spendings.totalTravelSpendings,
               entertainment: totalSummary.spendings.totalEntertainmentSpendings,
               dogs: totalSummary.spendings.totalDogSpendings
-            }
+            },
+
           });
           console.log("totalSummary is: ", totalSummary);
           console.log("totalSummary.spendings is: ", totalSummary.spendings);
@@ -720,7 +731,7 @@ export default class History extends React.Component {
 
               <tr className=" spendings">
                 <th>Total Spendings</th>
-                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
+                <td>{CurrencyFormatter.format(totalSpendings.total)}</td>
               </tr>
 
               <tr className=" credits">
@@ -733,14 +744,14 @@ export default class History extends React.Component {
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
 
-              <tr className=" ">
+              {/* <tr className=" ">
                 <th>Week: current week</th>
                 <td>{this.state.week.currentWeekNumber}</td>
                 <th>Week: query week</th>
                 <td>{"is " + this.state.week.queryWeekNumber}</td>
                 <th>this.state.totalSpendingsTest.total</th>
                 <td>{this.state.totalSpendingsTest.total}</td>
-              </tr>
+              </tr> */}
 
             </tbody>
           </table>
