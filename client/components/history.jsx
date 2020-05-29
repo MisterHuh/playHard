@@ -307,13 +307,15 @@ export default class History extends React.Component {
     let week = currentWeekNumber;
     let totalBudget = budget * week;
 
+    alert(totalBudget);
+
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
           console.log("retrieveAll Fetch current is: ", current);
           this.setState({ current });
 
-          let totalSummary = TotalSummary(week, current, budget);
+          let totalSummary = TotalSummary(week, current, totalBudget);
           this.setState({
             totalTestSpendings: {
               total: totalSummary.spendings.totalSpendings,
