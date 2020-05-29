@@ -6,6 +6,8 @@ export const CurrencyFormatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2
 });
 
+/* for TotalSummary, budget is Total Budget */
+/* for some reason, week is needed as an argument for this to work */
 export const TotalSummary = (week, current, budget) => {
 
     let totalSpendings = 0;

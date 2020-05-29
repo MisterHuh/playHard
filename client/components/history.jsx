@@ -307,8 +307,6 @@ export default class History extends React.Component {
     let week = currentWeekNumber;
     let totalBudget = budget * week;
 
-    alert(totalBudget);
-
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
