@@ -44,7 +44,7 @@ export default class History extends React.Component {
       // per_page: null, // helps with calculating page logic => 20
       // current_page: null, // style the active pagination link => 1
 
-      totalSpendingsTest: {
+      totalTestSpendings: {
         total: 0,
         food: "Food",
         home: 0,
@@ -54,14 +54,21 @@ export default class History extends React.Component {
         dogs: 0
       },
 
-      totalCreditsTest: {
+      totalTestCredits: {
         total: 0,
-        food: "Food",
+        food: 0,
         home: 0,
         gifts: 0,
         travel: 0,
         entertainment: 0,
         dogs: 0
+      },
+
+      totalTestFixed: {
+        total: 0,
+        groceries: 0,
+        gas: 0,
+        fixedEtc: 0,
       },
 
       totalSpendings: 0,
@@ -308,7 +315,7 @@ export default class History extends React.Component {
 
           let totalSummary = TotalSummary(week, current, budget);
           this.setState({
-            totalSpendingsTest: {
+            totalTestSpendings: {
               total: totalSummary.spendings.totalSpendings,
               food: totalSummary.spendings.totalFoodSpendings,
               home: totalSummary.spendings.totalHomeSpendings,
@@ -318,9 +325,34 @@ export default class History extends React.Component {
               dogs: totalSummary.spendings.totalDogSpendings
             },
 
+            totalTestCredits: {
+              total: totalSummary.credits.totalCredits,
+              food: totalSummary.credits.totalFoodCredits,
+              home: totalSummary.credits.totalHomeCredits,
+              gifts: totalSummary.credits.totalGiftsCredits,
+              travel: totalSummary.credits.totalTravelCredits,
+              entertainment: totalSummary.credits.totalEntertainmentCredits,
+              dogs: totalSummary.credits.totalDogCredits
+            },
+
+            totalTestFixed: {
+              total: totalSummary.credits.totalFixed,
+              groceries: totalSummary.credits.totalGroceries,
+              gas: totalSummary.credits.totalGas,
+              fixedEtc: totalSummary.credits.totalFixedEtc,
+            },
+
+            others: {
+              totalRemaining: totalSummary.others.totalRemaining,
+              budget: totalSummary.others.budget
+            }
+
           });
           console.log("totalSummary is: ", totalSummary);
           console.log("totalSummary.spendings is: ", totalSummary.spendings);
+          console.log("totalSummary.credits is: ", totalSummary.credits);
+          console.log("totalSummary.fixed is: ", totalSummary.fixed);
+          console.log("totalSummary.others is: ", totalSummary.others);
         })
   }
 
@@ -619,7 +651,7 @@ export default class History extends React.Component {
 
     // const { this.state.}
 
-    const totalSpendings = this.state.totalSpendingsTest;
+    const totalSpendings = this.state.totalTestSpendings;
     // console.log(totalSpendings);
 
     // const {
@@ -744,14 +776,6 @@ export default class History extends React.Component {
                 <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
               </tr>
 
-              {/* <tr className=" ">
-                <th>Week: current week</th>
-                <td>{this.state.week.currentWeekNumber}</td>
-                <th>Week: query week</th>
-                <td>{"is " + this.state.week.queryWeekNumber}</td>
-                <th>this.state.totalSpendingsTest.total</th>
-                <td>{this.state.totalSpendingsTest.total}</td>
-              </tr> */}
 
             </tbody>
           </table>
