@@ -69,9 +69,6 @@ export const Accordion = props => {
   let current = props.current;
   let budget;
 
-  // console.log("Accordion week.currentWeekNumber; is: ", week.currentWeekNumber);
-  // console.log("Accordion week.queryWeekNumber; is: ", week.queryWeekNumber);
-
   if (week.currentWeekNumber) {
     budget = 150 * week.currentWeekNumber;
   } else if (week.queryWeekNumber) {

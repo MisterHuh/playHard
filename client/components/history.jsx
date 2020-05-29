@@ -1,7 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
-// import { CurrencyFormatter } from "./currencyFormatter";
 import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
@@ -32,13 +31,14 @@ export default class History extends React.Component {
       order: "DESC",
 
       current: [],
-      // activePage: 20,
 
+      // for accordion
       spendingsDisplay: true,
       creditsDisplay: true,
       fixedDisplay: true,
 
       /* pagination */
+      // activePage: 20,
       // users: null, // data you loop over => this.state.current
       // total: null, // helps with calculating page logic => this.state.current.length
       // per_page: null, // helps with calculating page logic => 20
@@ -116,13 +116,12 @@ export default class History extends React.Component {
       week: {
         currentWeekNumber: 0,
         queryWeekNumber: 0
-      },
-
-      // currentWeekNumber: 0,
-      // queryWeekNumber: 0
+      }
 
     }
+
     this.retrieveAllData = this.retrieveAllData.bind(this);
+    this.setWeek = this.setWeek.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
@@ -140,7 +139,6 @@ export default class History extends React.Component {
   }
 
   handlePageChange(pageNumber) {
-    // console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
   }
 
@@ -204,7 +202,6 @@ export default class History extends React.Component {
     // this.setState({ query }); // updates this.state.query for toggling. last query used
     // this.setState({ current }); // updates this.state.current so currentSummary() could run
   };
-
 
   categoryHandleChange(e) {
     let categoryFilter = e.target.value;
@@ -299,21 +296,19 @@ export default class History extends React.Component {
 
   retrieveAllData(currentWeekNumber) {
 
-    console.log("RetireveAllData fired");
-    console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
-    console.log("currentWeekNumber is ", currentWeekNumber);
-
     let budget = this.props.budget;
     let week = currentWeekNumber;
     let totalBudget = budget * week;
 
+    alert();
+
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
-          console.log("retrieveAll Fetch current is: ", current);
           this.setState({ current });
 
           let totalSummary = TotalSummary(week, current, totalBudget);
+
           this.setState({
             totalTestSpendings: {
               total: totalSummary.spendings.totalSpendings,
@@ -364,13 +359,11 @@ export default class History extends React.Component {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({entryId})
     };
+
     fetch(`/api/deleteEntry.php`, req)
       .then(response => response.json())
-      .catch(error => {
 
-      });
     this.retrieveAllData();
-
   }
 
   querySummary() {
@@ -601,30 +594,23 @@ export default class History extends React.Component {
 
   }
 
-  componentDidMount() {
-    // console.log("componentDidMount this.props.currentWeekNumber is: ", this.props.currentWeekNumber);
-    // console.log("current is: ", this.state.current)
-    // console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
-    let currentWeekNumber = GetCurrentWeekNum();
-    // alert(currentWeekNumber);
-
+  setWeek(currentWeekNumber) {
     this.setState({
       week: {
         currentWeekNumber,
         queryWeekNumber: 0
       }
     });
+  }
 
-    // console.log("this.state.week.currentWeekNumber is ", this.state.week.currentWeekNumber);
-
+  componentDidMount() {
+    let currentWeekNumber = GetCurrentWeekNum();
+    this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
-    // console.log("this.state.week is ", this.state.week);
-    // problem is, this is always re-setting the week { currentWeekNumber };
+    alert(this.state.totalBudget);
   }
 
   render() {
-
-    // alert(this.state.totalBudget);
 
     const dropdownOptions = [
       [
@@ -649,10 +635,7 @@ export default class History extends React.Component {
       textAlignLast: "center"
     };
 
-    // const { this.state.}
-
     const totalSpendings = this.state.totalTestSpendings;
-    // console.log(totalSpendings);
 
     // const {
     //   totalSpendings,
@@ -664,16 +647,10 @@ export default class History extends React.Component {
     //   totalDogSpendings
     // } = totalSpendings;
 
-    // alert(totalSpendings);
     const week = this.state.week;
     const { currentWeekNumber, queryWeekNumber } = week;
-    // console.log("history WEEK is: ", week);
 
-    // console.log("history views[currentWeekNumber] is: ", this.state.week.currentWeekNumber);
-    // console.log("history views[queryWeekNumber] is: ", this.state.week.queryWeekNumber);
-    // console.log("this.state.week is: ", week);
-
-
+    // this is for the accordion
     let spendingsDisplay;
     (this.state.spendingsDisplay)
       ? spendingsDisplay = "sDisplayOn"
@@ -811,7 +788,7 @@ export default class History extends React.Component {
             <Accordion
               header={"Total Spendings"}
               // content={totalSpendings}
-              week={week}
+              week={week} // passing week for TotalSummary()
               current={this.state.current}
               budget={this.state.totalBudget} />
           </div>

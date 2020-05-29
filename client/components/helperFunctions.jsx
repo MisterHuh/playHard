@@ -174,7 +174,7 @@ export const TotalSummary = (week, current, budget) => {
       }
     };
 
-    console.log("helperFunctions totalSpendings is: ", totalSummary.spendings);
+    console.log("helperFunctions others.budget is: ", totalSummary.others.budget);
 
     return totalSummary;
 
