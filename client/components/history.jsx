@@ -335,10 +335,10 @@ export default class History extends React.Component {
             },
 
             totalTestFixed: {
-              total: totalSummary.credits.totalFixed,
-              groceries: totalSummary.credits.totalGroceries,
-              gas: totalSummary.credits.totalGas,
-              fixedEtc: totalSummary.credits.totalFixedEtc,
+              total: totalSummary.fixed.totalFixed,
+              groceries: totalSummary.fixed.totalGroceries,
+              gas: totalSummary.fixed.totalGas,
+              fixedEtc: totalSummary.fixed.totalFixedEtc,
             },
 
             others: {

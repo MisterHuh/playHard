@@ -22,11 +22,13 @@ export const Accordion = props => {
   let totalSummary = TotalSummary(week, current, budget);
 
   let category = props.category;
-  console.log("accordion category is: ", category);
+  // console.log("accordion category is: ", category);
 
-  // if (header === "Total Fixed") {
-  //   console.log("accordion totalFixed is: ", category);
-  // };
+  if (header === "Total Fixed") {
+    // console.log("accordion totalFixed is: ", category);
+    console.log("accordion category is: ", category);
+    console.log("accordion category.groceries is: ", category.groceries);
+  };
 
   if (category) {
     return (
