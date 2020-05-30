@@ -211,3 +211,7 @@ export const AccordionColor = (header) => {
     return accordionColor = "totalDisplayFixed fixed";
   }
 }
+
+// export const AccordionValue = (header, totalSummary) => {
+
+// }

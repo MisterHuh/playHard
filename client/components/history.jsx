@@ -46,7 +46,7 @@ export default class History extends React.Component {
 
       totalTestSpendings: {
         total: 0,
-        food: "Food",
+        food: 0,
         home: 0,
         gifts: 0,
         travel: 0,
@@ -347,11 +347,11 @@ export default class History extends React.Component {
             }
 
           });
-          console.log("totalSummary is: ", totalSummary);
-          console.log("totalSummary.spendings is: ", totalSummary.spendings);
-          console.log("totalSummary.credits is: ", totalSummary.credits);
-          console.log("totalSummary.fixed is: ", totalSummary.fixed);
-          console.log("totalSummary.others is: ", totalSummary.others);
+          // console.log("totalSummary is: ", totalSummary);
+          // console.log("totalSummary.spendings is: ", totalSummary.spendings);
+          // console.log("totalSummary.credits is: ", totalSummary.credits);
+          // console.log("totalSummary.fixed is: ", totalSummary.fixed);
+          // console.log("totalSummary.others is: ", totalSummary.others);
         })
   }
 
@@ -786,6 +786,7 @@ export default class History extends React.Component {
               // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
+              category={this.state.totalTestSpendings}
               budget={this.state.totalBudget} />
           </div>
 
@@ -795,17 +796,19 @@ export default class History extends React.Component {
               // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
+              category={this.state.totalTestCredits}
               budget={this.state.totalBudget} />
           </div>
 
-          <div className="currentWrapperBottom">
+          {/* <div className="currentWrapperBottom">
             <Accordion
               header={"Total Fixed"}
               // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
+              category={this.state.totalTestFixed}
               budget={this.state.totalBudget} />
-          </div>
+          </div> */}
 
           {/* <table id="tabla" className="currentSummaryContainer">
             <tbody>
