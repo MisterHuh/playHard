@@ -800,7 +800,7 @@ export default class History extends React.Component {
               budget={this.state.totalBudget} />
           </div>
 
-          {/* <div className="currentWrapperBottom">
+          <div className="currentWrapperBottom">
             <Accordion
               header={"Total Fixed"}
               // content={totalSpendings}
@@ -808,7 +808,7 @@ export default class History extends React.Component {
               current={this.state.current}
               category={this.state.totalTestFixed}
               budget={this.state.totalBudget} />
-          </div> */}
+          </div>
 
           {/* <table id="tabla" className="currentSummaryContainer">
             <tbody>

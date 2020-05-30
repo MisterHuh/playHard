@@ -263,11 +263,11 @@ export default class Current extends React.Component {
 
           </div>
 
-          <div className="currentWrapperBottom">
+          {/* <div className="currentWrapperBottom">
             <Accordion
               header={"Spendings"}
               content={"some body content message goes here"} />
-          </div>
+          </div> */}
 
           <div className="currentWrapperBottom">
             <div className="currentDataContainer">
