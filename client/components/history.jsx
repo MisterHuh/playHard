@@ -71,6 +71,12 @@ export default class History extends React.Component {
         fixedEtc: 0,
       },
 
+      // need to include
+      // others: {
+      //   totalRemaining,
+      //   budget
+      // }
+
       totalSpendings: 0,
       totalFoodSpendings: 0,
       totalHomeSpendings: 0,
@@ -300,8 +306,6 @@ export default class History extends React.Component {
     let week = currentWeekNumber;
     let totalBudget = budget * week;
 
-    alert();
-
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
@@ -349,6 +353,15 @@ export default class History extends React.Component {
           console.log("totalSummary.fixed is: ", totalSummary.fixed);
           console.log("totalSummary.others is: ", totalSummary.others);
         })
+  }
+
+  setWeek(currentWeekNumber) {
+    this.setState({
+      week: {
+        currentWeekNumber,
+        queryWeekNumber: 0
+      }
+    });
   }
 
   deleteEntry(id) {
@@ -594,20 +607,10 @@ export default class History extends React.Component {
 
   }
 
-  setWeek(currentWeekNumber) {
-    this.setState({
-      week: {
-        currentWeekNumber,
-        queryWeekNumber: 0
-      }
-    });
-  }
-
   componentDidMount() {
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
-    alert(this.state.totalBudget);
   }
 
   render() {
@@ -636,16 +639,9 @@ export default class History extends React.Component {
     };
 
     const totalSpendings = this.state.totalTestSpendings;
-
-    // const {
-    //   totalSpendings,
-    //   totalFoodSpendings,
-    //   totalHomeSpendings,
-    //   totalGiftsSpendings,
-    //   totalTravelSpendings,
-    //   totalEntertainmentSpendings,
-    //   totalDogSpendings
-    // } = totalSpendings;
+    const totalCredits = this.state.totalTestCredits;
+    const totalFixed = this.state.totalTestFixed;
+    const others = this.state.others;
 
     const week = this.state.week;
     const { currentWeekNumber, queryWeekNumber } = week;
@@ -793,7 +789,25 @@ export default class History extends React.Component {
               budget={this.state.totalBudget} />
           </div>
 
-          <table id="tabla" className="currentSummaryContainer">
+          <div className="currentWrapperBottom">
+            <Accordion
+              header={"Total Credits"}
+              // content={totalSpendings}
+              week={week} // passing week for TotalSummary()
+              current={this.state.current}
+              budget={this.state.totalBudget} />
+          </div>
+
+          <div className="currentWrapperBottom">
+            <Accordion
+              header={"Total Fixed"}
+              // content={totalSpendings}
+              week={week} // passing week for TotalSummary()
+              current={this.state.current}
+              budget={this.state.totalBudget} />
+          </div>
+
+          {/* <table id="tabla" className="currentSummaryContainer">
             <tbody>
 
               <tr className=" spendings">
@@ -881,7 +895,7 @@ export default class History extends React.Component {
               </tr>
 
             </tbody>
-          </table>
+          </table> */}
 
         </div>
 
