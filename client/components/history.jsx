@@ -786,7 +786,7 @@ export default class History extends React.Component {
               // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
-              category={this.state.totalTestSpendings}
+              category={totalSpendings}
               budget={this.state.totalBudget} />
           </div>
 
@@ -796,7 +796,7 @@ export default class History extends React.Component {
               // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
-              category={this.state.totalTestCredits}
+              category={totalCredits}
               budget={this.state.totalBudget} />
           </div>
 
@@ -806,7 +806,7 @@ export default class History extends React.Component {
               // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
-              category={this.state.totalTestFixed}
+              category={totalFixed}
               budget={this.state.totalBudget} />
           </div>
 

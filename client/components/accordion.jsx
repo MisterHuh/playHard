@@ -24,6 +24,10 @@ export const Accordion = props => {
   let category = props.category;
   console.log("accordion category is: ", category);
 
+  // if (header === "Total Fixed") {
+  //   console.log("accordion totalFixed is: ", category);
+  // };
+
   if (category) {
     return (
       <div className={"accordionContainer " + accordionColor}>
