@@ -22,6 +22,7 @@ export const Accordion = props => {
   let totalSummary = TotalSummary(week, current, budget);
 
   let category = props.category;
+  console.log("accordion category is: ", category);
 
   if (category) {
     return (

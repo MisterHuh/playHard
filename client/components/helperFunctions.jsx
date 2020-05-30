@@ -48,7 +48,7 @@ export const TotalSummary = (week, current, budget) => {
     let totalCredits = 0;
     let totalFoodCredits = 0;
     let totalHomeCredits = 0;
-    let totalGiftCredits = 0;
+    let totalGiftsCredits = 0;
     let totalTravelCredits = 0;
     let totalEntertainmentCredits = 0;
     let totalDogCredits = 0;
@@ -111,7 +111,7 @@ export const TotalSummary = (week, current, budget) => {
         };
 
         if (current[index]["subcategory"] === "Gifts") {
-          totalGiftCredits += parseFloat(current[index]["amount"]);
+          totalGiftsCredits += parseFloat(current[index]["amount"]);
         };
 
         if (current[index]["subcategory"] === "Travel") {
@@ -155,7 +155,7 @@ export const TotalSummary = (week, current, budget) => {
     totalCredits = totalCredits.toFixed(2);
     creditsFoodPercent = ((totalFoodCredits / totalCredits) * 100).toFixed();
     creditsHomePercent = ((totalHomeCredits / totalCredits) * 100).toFixed();
-    creditsGiftPercent = ((totalGiftCredits / totalCredits) * 100).toFixed();
+    creditsGiftPercent = ((totalGiftsCredits / totalCredits) * 100).toFixed();
     creditsTravelPercent = ((totalTravelCredits / totalCredits) * 100).toFixed();
     creditsEntertainmentPercent = ((totalEntertainmentCredits / totalCredits) * 100).toFixed();
     creditsDogPercent = ((totalDogCredits / totalCredits) * 100).toFixed();
@@ -177,7 +177,7 @@ export const TotalSummary = (week, current, budget) => {
         totalCredits,
         totalFoodCredits,
         totalHomeCredits,
-        totalGiftCredits,
+        totalGiftsCredits,
         totalTravelCredits,
         totalEntertainmentCredits,
         totalDogCredits
@@ -193,8 +193,6 @@ export const TotalSummary = (week, current, budget) => {
         budget
       }
     };
-
-    console.log("helperFunctions others.budget is: ", totalSummary.others.budget);
 
     return totalSummary;
 
