@@ -20,7 +20,6 @@ export const Accordion = props => {
     : budget = 150 * week.queryWeekNumber;
 
   let totalSummary = TotalSummary(week, current, budget);
-  console.log("accordion totalSummary is: ", totalSummary);
 
   let category = props.category;
 
@@ -48,24 +47,28 @@ export const Accordion = props => {
 
             <tr className={accordionColor}>
               <th>{remainingHeaders[2]}</th>
-              <td>{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</td>
+              {/* <td>{CurrencyFormatter.format(totalSummary.spendings.totalGiftsSpendings)}</td> */}
+              <td>{CurrencyFormatter.format(category.gifts)}</td>
               <th>{remainingHeaders[3]}</th>
-              <td>{CurrencyFormatter.format(totalSummary.spendings.totalTravelSpendings)}</td>
+              {/* <td>{CurrencyFormatter.format(totalSummary.spendings.totalTravelSpendings)}</td> */}
+              <td>{CurrencyFormatter.format(category.travel)}</td>
             </tr>
 
             <tr className={accordionColor}>
               <th>{remainingHeaders[4]}</th>
-              <td>{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</td>
+              {/* <td>{CurrencyFormatter.format(totalSummary.spendings.totalEntertainmentSpendings)}</td> */}
+              <td>{CurrencyFormatter.format(category.entertainment)}</td>
               <th>{remainingHeaders[5]}</th>
-              <td>{CurrencyFormatter.format(totalSummary.spendings.totalDogSpendings)}</td>
+              {/* <td>{CurrencyFormatter.format(totalSummary.spendings.totalDogSpendings)}</td> */}
+              <td>{CurrencyFormatter.format(category.dogs)}</td>
             </tr>
 
-            <tr className={accordionColor}>
+            {/* <tr className={accordionColor}>
               <th>Total Remaining</th>
               <td>{CurrencyFormatter.format(totalSummary.others.totalRemaining)}</td>
               <th>Budget</th>
               <td>{CurrencyFormatter.format(totalSummary.others.budget)}</td>
-            </tr>
+            </tr> */}
 
           </tbody>
         </table>
