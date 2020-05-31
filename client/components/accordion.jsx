@@ -10,6 +10,10 @@ export const Accordion = props => {
     "Food", "Home", "Gifts", "Travel", "Ent", "Dog"
   ];
 
+  const fixedHeaders = [
+    "Groceries", "Gas", "FixedEtc"
+  ]
+
   let week = props.week;
 
   let current = props.current;
@@ -30,7 +34,7 @@ export const Accordion = props => {
     console.log("accordion category.groceries is: ", category.groceries);
   };
 
-  if (category) {
+  if ( category ||  (header === "Total Spendings" && header === "Total Credits") ) {
     return (
       <div className={"accordionContainer " + accordionColor}>
 
@@ -69,7 +73,9 @@ export const Accordion = props => {
       </div>
     )
   } else if (category && header === "Total Fixed") {
+
     return (
+
       <div className={"accordionContainer " + accordionColor}>
 
         <table>
@@ -81,23 +87,18 @@ export const Accordion = props => {
             </tr>
 
             <tr className={accordionColor}>
-              <th>{remainingHeaders[0]}</th>
-              <td>{CurrencyFormatter.format(category.groceries)}</td>
-              <th>{remainingHeaders[1]}</th>
+              {/* <th>{fixedHeaders[0]}</th> */}
+              <th>Test</th>
+              {/* <td>{CurrencyFormatter.format(category.groceries)}</td> */}
+              <td>This is {category.groceries}</td>
+              <th>{fixedHeaders[1]}</th>
               <td>{CurrencyFormatter.format(category.gas)}</td>
             </tr>
 
             <tr className={accordionColor}>
-              <th>{remainingHeaders[2]}</th>
+              <th>{fixedHeaders[2]}</th>
               <td>{CurrencyFormatter.format(category.fixedEtc)}</td>
-              <th>{remainingHeaders[3]}</th>
-              <td>{CurrencyFormatter.format(category.fixedEtc)}</td>
-            </tr>
-
-            <tr className={accordionColor}>
-              <th>{remainingHeaders[4]}</th>
-              <td>{CurrencyFormatter.format(category.fixedEtc)}</td>
-              <th>{remainingHeaders[5]}</th>
+              <th>{fixedHeaders[2]}</th>
               <td>{CurrencyFormatter.format(category.fixedEtc)}</td>
             </tr>
 

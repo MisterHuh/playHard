@@ -652,6 +652,8 @@ export default class History extends React.Component {
       ? spendingsDisplay = "sDisplayOn"
       : spendingsDispaly = "sDisplayOff";
 
+    console.log("history totalFixed is: ", totalFixed);
+
     return (
 
       <React.Fragment>
@@ -783,7 +785,6 @@ export default class History extends React.Component {
           <div className="currentWrapperBottom">
             <Accordion
               header={"Total Spendings"}
-              // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
               category={totalSpendings}
@@ -793,7 +794,6 @@ export default class History extends React.Component {
           <div className="currentWrapperBottom">
             <Accordion
               header={"Total Credits"}
-              // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
               category={totalCredits}
@@ -803,7 +803,6 @@ export default class History extends React.Component {
           <div className="currentWrapperBottom">
             <Accordion
               header={"Total Fixed"}
-              // content={totalSpendings}
               week={week} // passing week for TotalSummary()
               current={this.state.current}
               category={totalFixed}
