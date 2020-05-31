@@ -11,7 +11,7 @@ export const Accordion = props => {
   ];
 
   const fixedHeaders = [
-    "Groceries", "Gas", "FixedEtc"
+    "Groceries", "Gas", "Health", "Utility"
   ]
 
   let week = props.week;
@@ -26,17 +26,10 @@ export const Accordion = props => {
   let totalSummary = TotalSummary(week, current, budget);
 
   let category = props.category;
-  // console.log("accordion category is: ", category);
 
-  if (header === "Total Fixed") {
-    // console.log("accordion totalFixed is: ", category);
-    console.log("accordion category is: ", category);
-    console.log("accordion category.groceries is: ", category.groceries);
-  };
-
-  if ( category ||  (header === "Total Spendings" && header === "Total Credits") ) {
+  if ( category &&  (header === "Total Spendings" || header === "Total Credits") ) {
     return (
-      <div className={"accordionContainer " + accordionColor}>
+      <div className="accordionContainer">
 
         <table>
           <tbody>
@@ -76,7 +69,7 @@ export const Accordion = props => {
 
     return (
 
-      <div className={"accordionContainer " + accordionColor}>
+      <div className={"accordionContainer"}>
 
         <table>
           <tbody>
@@ -87,10 +80,8 @@ export const Accordion = props => {
             </tr>
 
             <tr className={accordionColor}>
-              {/* <th>{fixedHeaders[0]}</th> */}
-              <th>Test</th>
-              {/* <td>{CurrencyFormatter.format(category.groceries)}</td> */}
-              <td>This is {category.groceries}</td>
+              <th>{fixedHeaders[0]}</th>
+              <td>{CurrencyFormatter.format(category.groceries)}</td>
               <th>{fixedHeaders[1]}</th>
               <td>{CurrencyFormatter.format(category.gas)}</td>
             </tr>
@@ -98,7 +89,7 @@ export const Accordion = props => {
             <tr className={accordionColor}>
               <th>{fixedHeaders[2]}</th>
               <td>{CurrencyFormatter.format(category.fixedEtc)}</td>
-              <th>{fixedHeaders[2]}</th>
+              <th>{fixedHeaders[3]}</th>
               <td>{CurrencyFormatter.format(category.fixedEtc)}</td>
             </tr>
 

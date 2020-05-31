@@ -72,10 +72,10 @@ export default class History extends React.Component {
       },
 
       // need to include
-      // others: {
-      //   totalRemaining,
-      //   budget
-      // }
+      others: {
+        totalRemaining: 0,
+        budget: 0
+      },
 
       totalSpendings: 0,
       totalFoodSpendings: 0,
@@ -733,7 +733,7 @@ export default class History extends React.Component {
 
               <tr className=" remaining">
                 <th>Total Budget</th>
-                <td>{CurrencyFormatter.format(this.state.totalBudget)}</td>
+                <td>{CurrencyFormatter.format(others.budget)}</td>
               </tr>
 
               <tr className=" spendings">
@@ -743,12 +743,17 @@ export default class History extends React.Component {
 
               <tr className=" credits">
                 <th>Total Credits</th>
-                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
+                <td>{CurrencyFormatter.format(totalCredits.total)}</td>
+              </tr>
+
+              <tr className=" fixed">
+                <th>Total Fixed</th>
+                <td>{CurrencyFormatter.format(totalFixed.total)}</td>
               </tr>
 
               <tr className=" ">
                 <th>Total Remaining</th>
-                <td>{CurrencyFormatter.format(this.state.totalRemaining)}</td>
+                <td>{CurrencyFormatter.format(others.totalRemaining)}</td>
               </tr>
 
 
@@ -778,126 +783,29 @@ export default class History extends React.Component {
 
         </div>
 
-          {/* second row */}
-
         <div className="currentWrapperTop">
 
-          <div className="currentWrapperBottom">
-            <Accordion
-              header={"Total Spendings"}
-              week={week} // passing week for TotalSummary()
-              current={this.state.current}
-              category={totalSpendings}
-              budget={this.state.totalBudget} />
-          </div>
+          <Accordion
+            header={"Total Spendings"}
+            week={week} // passing week for TotalSummary()
+            current={this.state.current}
+            category={totalSpendings}
+            budget={this.state.totalBudget} />
 
-          <div className="currentWrapperBottom">
-            <Accordion
-              header={"Total Credits"}
-              week={week} // passing week for TotalSummary()
-              current={this.state.current}
-              category={totalCredits}
-              budget={this.state.totalBudget} />
-          </div>
+          <Accordion
+            header={"Total Credits"}
+            week={week} // passing week for TotalSummary()
+            current={this.state.current}
+            category={totalCredits}
+            budget={this.state.totalBudget} />
 
-          <div className="currentWrapperBottom">
-            <Accordion
-              header={"Total Fixed"}
-              week={week} // passing week for TotalSummary()
-              current={this.state.current}
-              category={totalFixed}
-              budget={this.state.totalBudget} />
-          </div>
+          <Accordion
+            header={"Total Fixed"}
+            week={week} // passing week for TotalSummary()
+            current={this.state.current}
+            category={totalFixed}
+            budget={this.state.totalBudget} />
 
-          {/* <table id="tabla" className="currentSummaryContainer">
-            <tbody>
-
-              <tr className=" spendings">
-                <th>Food</th>
-                <td>{CurrencyFormatter.format(this.state.totalFoodSpendings)}</td>
-                <th>Home</th>
-                <td>{CurrencyFormatter.format(this.state.totalHomeSpendings)}</td>
-              </tr>
-
-              <tr className=" spendings">
-                <th>Gifts</th>
-                <td>{CurrencyFormatter.format(this.state.totalGiftsSpendings)}</td>
-                <th>Travel</th>
-                <td>{CurrencyFormatter.format(this.state.totalTravelSpendings)}</td>
-              </tr>
-
-              <tr className=" spendings">
-                <th>Ent</th>
-                <td>{CurrencyFormatter.format(this.state.totalEntertainmentSpendings)}</td>
-                <th>Dog</th>
-                <td>{CurrencyFormatter.format(this.state.totalDogSpendings)}</td>
-              </tr>
-
-              <tr className=" ">
-                <th colSpan="2">Total Spendings</th>
-                <td colSpan="2">{CurrencyFormatter.format(this.state.totalSpendings)}</td>
-              </tr>
-
-            </tbody>
-          </table>
-
-          <table id="tabla" className="currentSummaryContainer">
-            <tbody>
-
-              <tr className="credits">
-                <th>Food</th>
-                <td>{CurrencyFormatter.format(this.state.totalFoodCredits)}</td>
-                <th>Home</th>
-                <td>{CurrencyFormatter.format(this.state.totalHomeCredits)}</td>
-              </tr>
-
-              <tr className="credits">
-                <th>Gifts</th>
-                <td>{CurrencyFormatter.format(this.state.totalGiftCredits)}</td>
-                <th>Travel</th>
-                <td>{CurrencyFormatter.format(this.state.totalTravelCredits)}</td>
-              </tr>
-
-              <tr className="credits">
-                <th>Ent</th>
-                <td>{CurrencyFormatter.format(this.state.totalEntertainmentCredits)}</td>
-                <th>Dog</th>
-                <td>{CurrencyFormatter.format(this.state.totalDogCredits)}</td>
-              </tr>
-
-              <tr className=" ">
-                <th colSpan="2">Total Credits</th>
-                <td colSpan="2">{CurrencyFormatter.format(this.state.totalCredits)}</td>
-              </tr>
-
-            </tbody>
-          </table>
-
-          <table id="tabla" className="currentSummaryContainer">
-            <tbody>
-
-              <tr className=" fixed">
-                <th>Groceries</th>
-                <td>{CurrencyFormatter.format(this.state.totalGroceries)}</td>
-              </tr>
-
-              <tr className=" fixed">
-                <th>Health</th>
-                <td>{CurrencyFormatter.format(this.state.totalGas)}</td>
-              </tr>
-
-              <tr className=" fixed">
-                <th>Utility</th>
-                <td>{CurrencyFormatter.format(this.state.totalFixedEtc)}</td>
-              </tr>
-
-              <tr className="">
-                <th>Total Fixed tp</th>
-                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
-              </tr>
-
-            </tbody>
-          </table> */}
 
         </div>
 
@@ -908,16 +816,6 @@ export default class History extends React.Component {
           pageRangeDisplayed={10}
           onChange={this.handlePageChange.bind(this)}
         /> */}
-
-        {/* <div className="">
-          <span>&laquo;</span>
-          <span className="">1</span>
-          <span>2</span>
-          <span>3</span>
-          <span>4</span>
-          <span>&raquo;</span>
-        </div> */}
-
 
         <div className="currentWrapperBottom">
           <div className="currentData1">

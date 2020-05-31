@@ -452,6 +452,7 @@ border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 2% 2% 0% 2%;
 }
 
 .currentSummaryContainer {
@@ -459,7 +460,7 @@ border: 1px solid red;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 2%;
+  /* margin-top: 2%; */
   padding-right: 2%;
   padding-left: 2%;
   text-align: center;
@@ -580,7 +581,7 @@ td {
 .currentWrapperBottom {
   display: flex;
   flex-direction: column;
-  margin-top: 4%;
+  margin-top: 2%;
   margin-bottom: 2%;
 }
 
@@ -680,13 +681,8 @@ td {
 
 .accordionContainer {
   display: flex;
-  /* border: 1px solid black; */
   flex-wrap: wrap;
-}
-
-.accordionContainer > div {
-  border: 1px solid black;
-  width: 50%;
+  padding: 0% 1%;
 }
 
 /* .accordionBody:before {
