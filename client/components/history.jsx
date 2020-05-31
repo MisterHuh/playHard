@@ -423,9 +423,36 @@ export default class History extends React.Component {
   }
 
   componentDidMount() {
+
+    console.log("1. CDM history.jsx");
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
+    console.log("this.props.current is: ", this.props.current);
+
+    // if (this.props.currentWeekNumber === 1) {
+
+    //   console.log("1.5 CDM history.jsx returning NULL");
+    //   return null;
+    //   // this.retrieveCurrentData();
+
+    // } else {
+
+    //   console.log("1.5 CDM history.jsx: this.props.currentWeekNumber === 1");
+
+    //   console.log("here");
+    //   let currentWeekNumber = GetCurrentWeekNum();
+    //   console.log("there");
+    //   this.setWeek(currentWeekNumber);
+    //   this.retrieveAllData(currentWeekNumber);
+
+
+
+
+
+    // };
+
+
   }
 
   render() {

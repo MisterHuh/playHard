@@ -199,12 +199,14 @@ export default class Add extends React.Component {
     fetch(`/api/retrieveAddSideBox.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("current is: ", current)
+        console.log("current is: ", current);
+        console.log("1.5 CDM add.jsx");
         this.setState({ current })
       })
   }
 
   componentDidMount() {
+    console.log("1. CDM add.jsx");
     this.retrieveAddSideBox();
   }
 

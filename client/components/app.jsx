@@ -9,6 +9,9 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
+      currentWeekNumber: 1,
+
       view: "current",
       budget: 150,
 
@@ -56,8 +59,6 @@ export default class App extends React.Component {
         totalRemaining: 0,
         budget: 0
       },
-
-      currentWeekNumber: 1,
 
       week: {
         currentWeekNumber: 0,
@@ -180,7 +181,7 @@ export default class App extends React.Component {
           }
 
         });
-        // console.log("totalSummary is: ", totalSummary);
+        console.log("APP totalSummary is: ", totalSummary);
         // console.log("totalSummary.spendings is: ", totalSummary.spendings);
         // console.log("totalSummary.credits is: ", totalSummary.credits);
         // console.log("totalSummary.fixed is: ", totalSummary.fixed);
@@ -216,9 +217,9 @@ export default class App extends React.Component {
 
     console.log("2. CDM app.jsx");
 
-    const currentWeekNumber = GetCurrentWeekNum();
-    this.setState({ currentWeekNumber });
-    this.retrieveAllData(currentWeekNumber);
+    // const currentWeekNumber = GetCurrentWeekNum();
+    // this.setState({ currentWeekNumber });
+    // this.retrieveAllData(currentWeekNumber);
 
   }
 
@@ -232,10 +233,8 @@ export default class App extends React.Component {
     } else if (currentView === "current") {
       displayView =
         <Current
-          view={this.state.view}
           budget={this.state.budget}
           currentWeekNumber={this.state.currentWeekNumber}
-          retrieveAllData={this.retrieveAllData}
           deleteEntry={this.deleteEntry}
           current={this.state.current}
           // currentSummary={this.currentSummary}
@@ -246,6 +245,7 @@ export default class App extends React.Component {
         <History
           budget={this.state.budget}
           currentWeekNumber={this.state.currentWeekNumber}
+          current={this.state.current}
         />
     }
 

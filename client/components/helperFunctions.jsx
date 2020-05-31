@@ -4,9 +4,11 @@ export const CurrencyFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
   currency: 'USD',
   minimumFractionDigits: 2
-});
+})
 
 export const GetCurrentWeekNum = () => {
+
+  console.log("helperFunctions GetCurrentWeekNum fired");
 
   let timestamp = new Date();
   let sundayChecker = timestamp.getDay();
@@ -21,7 +23,7 @@ export const GetCurrentWeekNum = () => {
   }
 
   return currentWeekNum;
-};
+}
 
 /* for TotalSummary, budget is Total Budget */
 /* for some reason, week is needed as an argument for this to work */

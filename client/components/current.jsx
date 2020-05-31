@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./currencyFormatter";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -27,7 +27,7 @@ export default class Current extends React.Component {
       startDate: "",
       endDate: "",
 
-      currentWeekNumber: 0,
+      currentWeekNumber: 1,
 
       totalTestSpendings: {
         total: 0,
@@ -79,13 +79,18 @@ export default class Current extends React.Component {
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
   };
 
-  retrieveCurrentData() {
+  retrieveCurrentData(currentWeekNumber) {
 
     // let endPoint = "getCurrent";
     let curTimestamp = new Date();
     let unixTimestamp = curTimestamp.getTime();
     let todayDate = this.formatDate(unixTimestamp);
     this.setState({ todayDate });
+
+    // let week = currentWeekNumber;
+    let budget = this.props.budget;
+    let week = currentWeekNumber;
+    let totalBudget = budget * week;
 
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
@@ -293,31 +298,19 @@ export default class Current extends React.Component {
     });
   }
 
-
   componentDidMount() {
 
     console.log("1. CDM current.jsx");
 
-    if (this.props.currentWeekNumber === 1) {
+    // console.log("here");
+    // let currentWeekNumber = this.state.currentWeekNumber;
+    let defaultWeekNumber = 1;
+    let currentWeekNumber = GetCurrentWeekNum();
+    // console.log("there");
+    this.setWeek(currentWeekNumber);
+    // this.retrieveAllData(currentWkNumber);
 
-      console.log("1.5 CDM current.jsx");
-
-      return null;
-    } else {
-
-      // this.retrieveCurrentData();
-
-      console.log("1.5 CDM current.jsx");
-
-      const currentWeekNumber = GetCurrentWeekNum();
-      this.setWeek(currentWeekNumber);
-      // this.retrieveAllData(currentWeekNumber);
-
-      this.retrieveCurrentData();
-
-    };
-
-
+    this.retrieveCurrentData(defaultWeekNumber);
   }
 
   render() {
@@ -356,54 +349,55 @@ export default class Current extends React.Component {
       return (
 
         <React.Fragment>
+
         <div className="currentWrapperTop">
 
-          <table id="tabla" className="currentSummaryContainer">
-            <tbody>
+            {/* <div className="currentSummaryContainer">
+               <div className="currentSummary">
+                 <div className="">Current Week</div>
+                 <div className="">Start Date</div>
+                 <div className="">End Date</div>
+                 <div className="">Today's Date</div>
+               </div>
+               <div className="currentSummary">
+                 <div className="">{this.state.week.currentWeekNumber}</div>
+                 <div className="">{this.state.startDate ? this.state.startDate : '\xa0'}</div>
+                 <div className="">{this.state.endDate ? this.state.endDate : '\xa0'}</div>
+                 <div className="">{this.state.todayDate ? this.state.todayDate : '\xa0'}</div>
+               </div>
+             </div> */}
 
-              <tr className="">
-                <th>Category</th>
-                <td>
-                  <select>
-                  </select>
-                </td>
-              </tr>
+            <table id="tabla" className="currentSummaryContainer">
+              <tbody>
 
-              <tr className=" ">
-                <th>Credit Card</th>
-                <td>
-                  <select>
-                  </select>
-                </td>
-              </tr>
+                <tr className="">
+                  <th>Current Week</th>
+                  <td>{this.state.week.currentWeekNumber}</td>
+                </tr>
 
-              <tr className=" ">
-                <th>Start Date</th>
-                <td>
-                  <div className="">
-                    <DatePicker
-                    />
-                  </div>
-                </td>
-              </tr>
+                <tr className="">
+                  <th>Start Date</th>
+                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}</td>
+                </tr>
 
-              <tr className=" ">
-                <th>End Date</th>
-                <td>
-                  <div className="">
-                    <DatePicker
-                    />
-                  </div>
-                </td>
-              </tr>
+                <tr className="">
+                  <th>End Date</th>
+                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}</td>
+                </tr>
 
-              <tr className=" ">
-                <th>Reset</th>
-                <td>Search</td>
-              </tr>
+                <tr className="">
+                  <th>Today's Date</th>
+                  <td>{this.state.todayDate ? this.state.todayDate : '\xa0'}</td>
+                </tr>
 
-            </tbody>
-          </table>
+                <tr className="">
+                  <td>something</td>
+                  <td>something</td>
+                </tr>
+
+
+              </tbody>
+            </table>
 
           <table id="tabla" className="currentSummaryContainer">
             <tbody>
@@ -460,8 +454,33 @@ export default class Current extends React.Component {
             category={totalFixed}
             budget={this.state.totalBudget} />
 
-
         </div>
+
+          <div className="currentWrapperBottom">
+            <div className="currentData1">
+              <div className="currentDataHeader">Date</div>
+              <div className="currentDataHeader">subCategory</div>
+              <div className="currentDataHeader">cc</div>
+              <div className="currentDataHeader">Amount</div>
+              <div className="currentDataHeader">Store</div>
+              <div className="currentDataHeader">Notes</div>
+            </div>
+
+            <React.Fragment>
+              {this.state.current.map(entry => {
+                return (
+                  <RenderData
+                    current={this.state.current}
+                    entry={entry}
+                    key={entry["id"]}
+                    deleteEntry={this.deleteEntry}
+                  />
+                )
+              })
+              }
+            </React.Fragment>
+
+          </div>
 
       </React.Fragment>
 

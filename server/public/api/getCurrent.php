@@ -12,7 +12,7 @@ startUp();
 
 
 $query = "SELECT * FROM `2020`
-WHERE date BETWEEN '2020-03-01' AND '2020-03-28'
+WHERE date BETWEEN '2020-05-10' AND '2020-05-16'
  ORDER BY date DESC";
 
 $result = mysqli_query($conn, $query);
