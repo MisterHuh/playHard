@@ -1,5 +1,5 @@
 import React from "react";
-import { TotalSummary, CurrencyFormatter, AccordionColor } from "./helperFunctions"
+import { CurrencyFormatter, AccordionColor } from "./helperFunctions"
 
 export const Accordion = props => {
 
@@ -22,8 +22,6 @@ export const Accordion = props => {
   (week.currentWeekNumber)
     ? budget = 150 * week.currentWeekNumber
     : budget = 150 * week.queryWeekNumber;
-
-  let totalSummary = TotalSummary(week, current, budget);
 
   let category = props.category;
 

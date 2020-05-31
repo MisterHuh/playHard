@@ -20,9 +20,6 @@ export const GetCurrentWeekNum = () => {
     currentWeekNum = currentWeek(timestamp);
   }
 
-  // console.log("GetCurrentWeekNum fired");
-  // console.log("GetCurrentWeekNum currentWeekNum is: ", currentWeekNum);
-
   return currentWeekNum;
 };
 

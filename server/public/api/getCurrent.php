@@ -5,10 +5,15 @@ require_once("db_connection.php");
 set_exception_handler("error_handler");
 startUp();
 
+// $query = "SELECT * FROM `2020`
+//             -- WHERE YEARWEEK(date)=YEARWEEK(NOW())
+//             WHERE
+//             ORDER BY date DESC";
+
+
 $query = "SELECT * FROM `2020`
-            WHERE YEARWEEK(date)=YEARWEEK(NOW())
-            -- WHERE date BETWEEN 2020-02-02 and 2020-02-08
-            ORDER BY date DESC";
+WHERE date BETWEEN '2020-03-01' AND '2020-03-28'
+ ORDER BY date DESC";
 
 $result = mysqli_query($conn, $query);
 

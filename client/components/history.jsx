@@ -71,7 +71,6 @@ export default class History extends React.Component {
         fixedEtc: 0,
       },
 
-      // need to include
       others: {
         totalRemaining: 0,
         budget: 0
@@ -130,7 +129,6 @@ export default class History extends React.Component {
     this.setWeek = this.setWeek.bind(this);
     this.deleteEntry = this.deleteEntry.bind(this);
     this.searchQuery = this.searchQuery.bind(this);
-    this.currentSummary = this.currentSummary.bind(this);
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.ccHandleChange = this.ccHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
@@ -180,13 +178,12 @@ export default class History extends React.Component {
         console.log("current is: ", current)
 
         this.setState({ current });
-        this.currentSummary();
+        this.querySummary();
+        // this.currentSummary();
       })
 
   }
 
-  // need to update both state.query and state.order here;
-  // then write a click handler to sort everything out;
   extractQueryAndOrder(current) {
 
     let query = current[0]["query"]; // extracts the first row
@@ -204,7 +201,7 @@ export default class History extends React.Component {
       query, current, order
     });
 
-    this.currentSummary(); // calculates middleTable;
+    // this.currentSummary();
     // this.setState({ query }); // updates this.state.query for toggling. last query used
     // this.setState({ current }); // updates this.state.current so currentSummary() could run
   };
@@ -258,8 +255,6 @@ export default class History extends React.Component {
       queryWeekNumber = Math.ceil(divisionTest);
     };
 
-    // console.log("retrieveSearchData queryWeekNumber: ", queryWeekNumber);
-
     this.setState({
       week:
       {
@@ -286,9 +281,6 @@ export default class History extends React.Component {
           })
 
         let budget = this.state.totalBudget;
-
-        console.log("historySearchQuery budget is: ", budget);
-
 
     // fetch(`/api/historySearchQuery.php`, req)
     //   .then(response => response.json())
@@ -428,183 +420,6 @@ export default class History extends React.Component {
       totalGas,
       totalFixedEtc
     })
-  }
-
-/* is there too much happening here? */
-  currentSummary() {
-
-    let currentWeekNumber = this.props.currentWeekNumber;
-    let current = this.state.current;
-
-    let totalSpendings = 0;
-    let totalFoodSpendings = 0;
-    let totalHomeSpendings = 0;
-    let totalGiftsSpendings = 0;
-    let totalTravelSpendings = 0;
-    let totalEntertainmentSpendings = 0;
-    let totalDogSpendings = 0;
-
-    let spendingsFoodPercent = 0;
-    let spendingsHomePercent = 0;
-    let spendingsGiftPercent = 0;
-    let spendingsTravelPercent = 0;
-    let totalEntertainmentPercent = 0;
-    let spendingsDogPercent = 0;
-
-    let totalCredits = 0;
-    let totalFoodCredits = 0;
-    let totalHomeCredits = 0;
-    let totalGiftCredits = 0;
-    let totalTravelCredits = 0;
-    let totalEntertainmentCredits = 0;
-    let totalDogCredits = 0;
-
-    let creditsFoodPercent = 0;
-    let creditsHomePercent = 0;
-    let creditsGiftPercent = 0;
-    let creditsTravelPercent = 0;
-    let creditsEntertainmentPercent = 0;
-    let creditsDogPercent = 0;
-
-    let totalBudget = this.props.budget * currentWeekNumber;
-    let totalRemaining = 0;
-
-    let totalFixed = 0;
-    let totalGroceries = 0;
-    let totalGas = 0;
-    let totalFixedEtc = 0;
-
-    for (let index = 0; index < current.length; index++) {
-      if (current[index]["category"] === "Spendings") {
-        totalSpendings += parseFloat(current[index]["amount"]);
-
-        if (current[index]["subcategory"] === "Food") {
-          totalFoodSpendings += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Home") {
-          totalHomeSpendings += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Gifts") {
-          totalGiftsSpendings += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Travel") {
-          totalTravelSpendings += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Entertainment") {
-          totalEntertainmentSpendings += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Dogs") {
-          totalDogSpendings += parseFloat(current[index]["amount"]);
-        };
-
-      } else if (current[index]["category"] === "Credits") {
-        totalCredits += parseFloat(current[index]["amount"]);
-
-        if (current[index]["subcategory"] === "Food") {
-          totalFoodCredits += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Home") {
-          totalHomeCredits += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Gifts") {
-          totalGiftCredits += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Travel") {
-          totalTravelCredits += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Entertainment") {
-          totalEntertainmentCredits += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Dogs") {
-          totalDogCredits += parseFloat(current[index]["amount"]);
-        };
-
-      } else if (current[index]["category"] === "Fixed") {
-
-        if (current[index]["subcategory"] === "Groceries") {
-          totalGroceries += parseFloat(current[index]["amount"]);
-
-        };
-
-        if (current[index]["subcategory"] === "Gas") {
-          totalGas += parseFloat(current[index]["amount"]);
-        };
-
-        if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
-          totalFixedEtc += parseFloat(current[index]["amount"]);
-        };
-        totalFixed += parseFloat(current[index]["amount"]);
-      }
-    }
-
-    totalSpendings = totalSpendings.toFixed(2);
-    spendingsFoodPercent = ((totalFoodSpendings / totalSpendings) * 100).toFixed();
-    spendingsHomePercent = ((totalHomeSpendings / totalSpendings) * 100).toFixed();
-    spendingsGiftPercent = ((totalGiftsSpendings / totalSpendings) * 100).toFixed();
-    spendingsTravelPercent = ((totalTravelSpendings / totalSpendings) * 100).toFixed();
-    totalEntertainmentPercent = ((totalEntertainmentSpendings / totalSpendings) * 100).toFixed();
-    spendingsDogPercent = ((totalDogSpendings / totalSpendings) * 100).toFixed();
-
-    totalCredits = totalCredits.toFixed(2);
-    creditsFoodPercent = ((totalFoodCredits / totalCredits) * 100).toFixed();
-    creditsHomePercent = ((totalHomeCredits / totalCredits) * 100).toFixed();
-    creditsGiftPercent = ((totalGiftCredits / totalCredits) * 100).toFixed();
-    creditsTravelPercent = ((totalTravelCredits / totalCredits) * 100).toFixed();
-    creditsEntertainmentPercent = ((totalEntertainmentCredits / totalCredits) * 100).toFixed();
-    creditsDogPercent = ((totalDogCredits / totalCredits) * 100).toFixed();
-
-    totalFixed = totalFixed.toFixed(2);
-    totalRemaining = totalBudget - totalCredits - totalSpendings;
-
-    this.setState({
-
-      totalSpendings,
-      totalFoodSpendings,
-      totalHomeSpendings,
-      totalGiftsSpendings,
-      totalTravelSpendings,
-      totalEntertainmentSpendings,
-      totalDogSpendings,
-
-      spendingsFoodPercent,
-      spendingsHomePercent,
-      spendingsGiftPercent,
-      spendingsTravelPercent,
-      spendingsDogPercent,
-
-      totalCredits,
-      totalFoodCredits,
-      totalHomeCredits,
-      totalGiftCredits,
-      totalTravelCredits,
-      totalEntertainmentCredits,
-      totalDogCredits,
-
-      totalBudget,
-      totalRemaining,
-      totalFixed,
-      totalGroceries,
-      totalGas,
-      totalFixedEtc,
-
-      // currentWeekNumber,
-
-      week: {
-        currentWeekNumber,
-        queryWeekNumber: 0
-      }
-    })
-
   }
 
   componentDidMount() {
@@ -788,21 +603,18 @@ export default class History extends React.Component {
           <Accordion
             header={"Total Spendings"}
             week={week} // passing week for TotalSummary()
-            current={this.state.current}
             category={totalSpendings}
             budget={this.state.totalBudget} />
 
           <Accordion
             header={"Total Credits"}
             week={week} // passing week for TotalSummary()
-            current={this.state.current}
             category={totalCredits}
             budget={this.state.totalBudget} />
 
           <Accordion
             header={"Total Fixed"}
             week={week} // passing week for TotalSummary()
-            current={this.state.current}
             category={totalFixed}
             budget={this.state.totalBudget} />
 

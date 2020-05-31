@@ -1,4 +1,5 @@
 import React from "react";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
 import Add from "./add";
 import Current from "./current";
 import { Navbar } from "./navbar";
@@ -8,14 +9,13 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: "history",
+      view: "current",
       budget: 150,
 
       current: [],
 
       spendings: 0,
       credits: 0,
-      // budget: 0,
       remaining: 0,
 
       fixed: 0,
@@ -23,38 +23,58 @@ export default class App extends React.Component {
       gas: 0,
       fixedEtc: 0,
 
+
+
+      totalTestSpendings: {
+        total: 0,
+        food: 0,
+        home: 0,
+        gifts: 0,
+        travel: 0,
+        entertainment: 0,
+        dogs: 0
+      },
+
+      totalTestCredits: {
+        total: 0,
+        food: 0,
+        home: 0,
+        gifts: 0,
+        travel: 0,
+        entertainment: 0,
+        dogs: 0
+      },
+
+      totalTestFixed: {
+        total: 0,
+        groceries: 0,
+        gas: 0,
+        fixedEtc: 0,
+      },
+
+      others: {
+        totalRemaining: 0,
+        budget: 0
+      },
+
       currentWeekNumber: 1,
-      // current: [],
-      // query: ""
+
+      week: {
+        currentWeekNumber: 0,
+        queryWeekNumber: 0
+      }
+
     }
+
     this.setView = this.setView.bind(this);
-    this.getWeekNum = this.getWeekNum.bind(this);
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.currentSummary = this.currentSummary.bind(this);
+
   }
 
   setView(view) {
     this.setState({  view  })
   };
-
-  getWeekNum() {
-
-    // console.log("APP getWeekNum fired");
-
-    let timestamp = new Date();
-    let sundayChecker = timestamp.getDay();
-    let currentWeek = require("current-week-number");
-    let currentWeekNumber;
-
-    if (sundayChecker === 0) {
-      let followingDay = new Date(timestamp.getTime() + 86400000);
-      currentWeekNumber = currentWeek(followingDay);
-    } else {
-      currentWeekNumber = currentWeek(timestamp);
-    }
-    this.setState({ currentWeekNumber })
-
-  }
 
   /* is there too much happening here? */
   currentSummary() {
@@ -112,32 +132,93 @@ export default class App extends React.Component {
 
   }
 
-  retrieveAllData() {
+  retrieveAllData(currentWeekNumber) {
 
-    let endpoint;
-    if (this.state.view === "add") {
-      endpoint = "getCurrent"
-    } else {
-      endpoint = "retrieveAllData";
-    }
 
-    console.log("endpoint is: ", endpoint);
+    let budget = this.props.budget;
+    let week = currentWeekNumber;
+    let totalBudget = budget * week;
 
-    fetch(`/api/` + endpoint + `.php`)
+    fetch(`/api/retrieveAllData.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("retrieveData current is: ", current);
         this.setState({ current });
-        this.currentSummary();
+
+        let totalSummary = TotalSummary(week, current, totalBudget);
+
+        this.setState({
+          totalTestSpendings: {
+            total: totalSummary.spendings.totalSpendings,
+            food: totalSummary.spendings.totalFoodSpendings,
+            home: totalSummary.spendings.totalHomeSpendings,
+            gifts: totalSummary.spendings.totalGiftsSpendings,
+            travel: totalSummary.spendings.totalTravelSpendings,
+            entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+            dogs: totalSummary.spendings.totalDogSpendings
+          },
+
+          totalTestCredits: {
+            total: totalSummary.credits.totalCredits,
+            food: totalSummary.credits.totalFoodCredits,
+            home: totalSummary.credits.totalHomeCredits,
+            gifts: totalSummary.credits.totalGiftsCredits,
+            travel: totalSummary.credits.totalTravelCredits,
+            entertainment: totalSummary.credits.totalEntertainmentCredits,
+            dogs: totalSummary.credits.totalDogCredits
+          },
+
+          totalTestFixed: {
+            total: totalSummary.fixed.totalFixed,
+            groceries: totalSummary.fixed.totalGroceries,
+            gas: totalSummary.fixed.totalGas,
+            fixedEtc: totalSummary.fixed.totalFixedEtc,
+          },
+
+          others: {
+            totalRemaining: totalSummary.others.totalRemaining,
+            budget: totalSummary.others.budget
+          }
+
+        });
+        // console.log("totalSummary is: ", totalSummary);
+        // console.log("totalSummary.spendings is: ", totalSummary.spendings);
+        // console.log("totalSummary.credits is: ", totalSummary.credits);
+        // console.log("totalSummary.fixed is: ", totalSummary.fixed);
+        // console.log("totalSummary.others is: ", totalSummary.others);
       })
+
+
+
+
+    // let endpoint;
+    // if (this.state.view === "add") {
+    //   endpoint = "getCurrent"
+    // } else {
+    //   endpoint = "retrieveAllData";
+    // }
+
+    // console.log("endpoint is: ", endpoint);
+
+    // fetch(`/api/` + endpoint + `.php`)
+    //   .then(response => response.json())
+    //   .then(current => {
+    //     console.log("retrieveData current is: ", current);
+    //     this.setState({ current });
+    //     this.currentSummary();
+    //   })
+
+
+
+
   };
 
   componentDidMount() {
-    this.getWeekNum();
 
-    /* 1 */
-    /* don't run this function, but rut it from <Current /> */
-    // this.retrieveAllData();
+    console.log("2. CDM app.jsx");
+
+    const currentWeekNumber = GetCurrentWeekNum();
+    this.setState({ currentWeekNumber });
+    this.retrieveAllData(currentWeekNumber);
 
   }
 
@@ -157,7 +238,7 @@ export default class App extends React.Component {
           retrieveAllData={this.retrieveAllData}
           deleteEntry={this.deleteEntry}
           current={this.state.current}
-          currentSummary={this.currentSummary}
+          // currentSummary={this.currentSummary}
 
           />
     } else if (currentView === "history") {
