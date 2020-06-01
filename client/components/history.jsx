@@ -137,7 +137,6 @@ export default class History extends React.Component {
 
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
-    this.querySummary = this.querySummary.bind(this);
 
     this.handlePageChange = this.handlePageChange.bind(this);
   }
@@ -176,10 +175,7 @@ export default class History extends React.Component {
       .then(response => response.json())
       .then(current => {
         console.log("current is: ", current)
-
         this.setState({ current });
-        this.querySummary();
-        // this.currentSummary();
       })
 
   }
@@ -393,64 +389,11 @@ export default class History extends React.Component {
     this.retrieveAllData();
   }
 
-  querySummary() {
-
-    let queryWeekNumber = this.state.queryWeekNumber;
-
-    let current = this.state.current;
-    let length = current.length;
-
-    let totalSpendings = 0;
-    let totalCredits = 0;
-    let totalBudget = this.props.budget * this.state.queryWeekNumber;
-    let totalRemaining = 0;
-
-    let totalFixed = 0;
-    let totalGroceries = 0;
-    let totalGas = 0;
-    let totalFixedEtc = 0;
-
-    for (let index = 0; index < length; index++) {
-      if (current[index]["category"] === "Spendings") {
-        totalSpendings += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] === "Credits") {
-        totalCredits += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] === "Fixed") {
-        if (current[index]["subcategory"] === "Groceries") {
-          totalGroceries += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Gas") {
-          totalGas += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
-          totalFixedEtc += parseFloat(current[index]["amount"]);
-        };
-        totalFixed += parseFloat(current[index]["amount"]);
-      }
-    }
-
-    totalSpendings = totalSpendings.toFixed(2);
-    totalCredits = totalCredits.toFixed(2);
-    totalFixed = totalFixed.toFixed(2);
-    totalRemaining = totalBudget - totalCredits - totalSpendings;
-
-    this.setState({
-      totalSpendings,
-      totalCredits,
-      totalBudget,
-      totalRemaining,
-      totalFixed,
-      totalGroceries,
-      totalGas,
-      totalFixedEtc
-    })
-  }
-
   componentDidMount() {
 
-    console.log("1. CDM history.jsx");
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
-    console.log("this.props.current is: ", this.props.current);
 
   }
 
@@ -492,8 +435,6 @@ export default class History extends React.Component {
     (this.state.spendingsDisplay)
       ? spendingsDisplay = "sDisplayOn"
       : spendingsDispaly = "sDisplayOff";
-
-    console.log("history totalFixed is: ", totalFixed);
 
     return (
 
@@ -562,7 +503,7 @@ export default class History extends React.Component {
               </tr>
 
               <tr className=" ">
-                <th onClick={() => this.retrieveAllData()}>Reset</th>
+                <th onClick={() => this.componentDidMount()}>Reset</th>
                 <td onClick={() => this.retrieveSearchData()}>Search</td>
               </tr>
 

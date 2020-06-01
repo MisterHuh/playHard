@@ -7,7 +7,6 @@ startUp();
 
 $query = "SELECT * FROM `2020`
             WHERE YEARWEEK(date)=YEARWEEK(NOW())
-            WHERE
             ORDER BY date DESC";
 
 
