@@ -268,19 +268,61 @@ export default class History extends React.Component {
 
   searchQuery(req) {
 
+    let currentWeekNumber = this.state.week.queryWeekNumber;
+    alert(currentWeekNumber);
+    let totalBudget = 150;
+
     fetch(`/api/historySearchQuery.php`, req)
           .then(response => response.json())
           .then(current => {
             console.dir(current);
-            this.setState({
-              current
-              // week: { currentWeekNumber: 0 }
-            });
+            this.setState({ current });
             // this.currentSummary();
-            this.querySummary();
+
+            let totalSummary = TotalSummary(currentWeekNumber, current, totalBudget);
+
+            this.setState({
+              totalTestSpendings: {
+                total: totalSummary.spendings.totalSpendings,
+                food: totalSummary.spendings.totalFoodSpendings,
+                home: totalSummary.spendings.totalHomeSpendings,
+                gifts: totalSummary.spendings.totalGiftsSpendings,
+                travel: totalSummary.spendings.totalTravelSpendings,
+                entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+                dogs: totalSummary.spendings.totalDogSpendings
+              },
+
+              totalTestCredits: {
+                total: totalSummary.credits.totalCredits,
+                food: totalSummary.credits.totalFoodCredits,
+                home: totalSummary.credits.totalHomeCredits,
+                gifts: totalSummary.credits.totalGiftsCredits,
+                travel: totalSummary.credits.totalTravelCredits,
+                entertainment: totalSummary.credits.totalEntertainmentCredits,
+                dogs: totalSummary.credits.totalDogCredits
+              },
+
+              totalTestFixed: {
+                total: totalSummary.fixed.totalFixed,
+                groceries: totalSummary.fixed.totalGroceries,
+                gas: totalSummary.fixed.totalGas,
+                fixedEtc: totalSummary.fixed.totalFixedEtc,
+              },
+
+              others: {
+                totalRemaining: totalSummary.others.totalRemaining,
+                budget: totalSummary.others.budget
+              }
+
+            });
+          console.log("searchQuery totalSummary is: ", totalSummary);
+          // console.log("totalSummary.spendings is: ", totalSummary.spendings);
+          // console.log("totalSummary.credits is: ", totalSummary.credits);
+          // console.log("totalSummary.fixed is: ", totalSummary.fixed);
+          // console.log("totalSummary.others is: ", totalSummary.others);
+            // this.querySummary();
           })
 
-        let budget = this.state.totalBudget;
 
     // fetch(`/api/historySearchQuery.php`, req)
     //   .then(response => response.json())
@@ -429,29 +471,6 @@ export default class History extends React.Component {
     this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
     console.log("this.props.current is: ", this.props.current);
-
-    // if (this.props.currentWeekNumber === 1) {
-
-    //   console.log("1.5 CDM history.jsx returning NULL");
-    //   return null;
-    //   // this.retrieveCurrentData();
-
-    // } else {
-
-    //   console.log("1.5 CDM history.jsx: this.props.currentWeekNumber === 1");
-
-    //   console.log("here");
-    //   let currentWeekNumber = GetCurrentWeekNum();
-    //   console.log("there");
-    //   this.setWeek(currentWeekNumber);
-    //   this.retrieveAllData(currentWeekNumber);
-
-
-
-
-
-    // };
-
 
   }
 

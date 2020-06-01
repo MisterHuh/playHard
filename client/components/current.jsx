@@ -305,8 +305,6 @@ export default class Current extends React.Component {
 
   componentDidMount() {
 
-    console.log("1. CDM current.jsx");
-
     // currentWeek's budget always set to budget
     let defaultWeekNumber = 1;
 
@@ -380,7 +378,7 @@ export default class Current extends React.Component {
                 </tr>
 
                 <tr className="meter">
-                  <td colspan="4">meter</td>
+                  <td colSpan="4">meter</td>
                 </tr>
 
 
