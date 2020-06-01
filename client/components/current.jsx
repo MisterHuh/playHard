@@ -148,7 +148,12 @@ export default class Current extends React.Component {
       .then(current => {
         console.log("TEST current is: ", current);
         this.setState({ current });
-        this.currentSummary();
+
+        // currentWeek's budget always set to budget
+        let defaultWeekNumber = 1;
+        this.retrieveCurrentData(defaultWeekNumber);
+
+        // this.currentSummary();
       })
   }
 
@@ -302,13 +307,12 @@ export default class Current extends React.Component {
 
     console.log("1. CDM current.jsx");
 
-    // console.log("here");
-    // let currentWeekNumber = this.state.currentWeekNumber;
+    // currentWeek's budget always set to budget
     let defaultWeekNumber = 1;
+
+    // for rendering this.state.currentWeekNumber for table
     let currentWeekNumber = GetCurrentWeekNum();
-    // console.log("there");
     this.setWeek(currentWeekNumber);
-    // this.retrieveAllData(currentWkNumber);
 
     this.retrieveCurrentData(defaultWeekNumber);
   }
@@ -352,21 +356,6 @@ export default class Current extends React.Component {
 
         <div className="currentWrapperTop">
 
-            {/* <div className="currentSummaryContainer">
-               <div className="currentSummary">
-                 <div className="">Current Week</div>
-                 <div className="">Start Date</div>
-                 <div className="">End Date</div>
-                 <div className="">Today's Date</div>
-               </div>
-               <div className="currentSummary">
-                 <div className="">{this.state.week.currentWeekNumber}</div>
-                 <div className="">{this.state.startDate ? this.state.startDate : '\xa0'}</div>
-                 <div className="">{this.state.endDate ? this.state.endDate : '\xa0'}</div>
-                 <div className="">{this.state.todayDate ? this.state.todayDate : '\xa0'}</div>
-               </div>
-             </div> */}
-
             <table id="tabla" className="currentSummaryContainer">
               <tbody>
 
@@ -377,22 +366,21 @@ export default class Current extends React.Component {
 
                 <tr className="">
                   <th>Start Date</th>
-                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}</td>
+                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}/20</td>
                 </tr>
 
                 <tr className="">
                   <th>End Date</th>
-                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}</td>
+                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}/20</td>
                 </tr>
 
                 <tr className="">
                   <th>Today's Date</th>
-                  <td>{this.state.todayDate ? this.state.todayDate : '\xa0'}</td>
+                  <td>{this.state.todayDate ? this.state.todayDate : '\xa0'}/20</td>
                 </tr>
 
-                <tr className="">
-                  <td>something</td>
-                  <td>something</td>
+                <tr className="meter">
+                  <td colspan="4">meter</td>
                 </tr>
 
 
@@ -431,7 +419,6 @@ export default class Current extends React.Component {
             </tbody>
           </table>
 
-
         </div>
 
         <div className="currentWrapperTop">
@@ -456,137 +443,43 @@ export default class Current extends React.Component {
 
         </div>
 
-          <div className="currentWrapperBottom">
-            <div className="currentData1">
-              <div className="currentDataHeader">Date</div>
-              <div className="currentDataHeader">subCategory</div>
-              <div className="currentDataHeader">cc</div>
-              <div className="currentDataHeader">Amount</div>
-              <div className="currentDataHeader">Store</div>
-              <div className="currentDataHeader">Notes</div>
-            </div>
+        <div className="currentWrapperBottom">
+          <div className="currentData1">
+            <div className="currentDataHeader">
+                <i
+                    onClick={() => this.retrieveCurrentData()}
+                    className="arrow fas fa-caret-left">
 
-            <React.Fragment>
-              {this.state.current.map(entry => {
-                return (
-                  <RenderData
+                    </i>
+                  Date
+                  <i
+                    onClick={() => this.retrieveNextWeek()}
+                    className="arrow fas fa-caret-right">
+                  </i>
+              </div>
+            <div className="currentDataHeader">subCategory</div>
+            <div className="currentDataHeader">cc</div>
+            <div className="currentDataHeader">Amount</div>
+            <div className="currentDataHeader">Store</div>
+            <div className="currentDataHeader">Notes</div>
+          </div>
+
+          <React.Fragment>
+            {this.state.current.map(entry => {
+                 return (
+                    <RenderData
                     current={this.state.current}
                     entry={entry}
                     key={entry["id"]}
-                    deleteEntry={this.deleteEntry}
-                  />
-                )
-              })
-              }
-            </React.Fragment>
+                    deleteEntry={this.deleteEntry}/>
+                  )
+              })}
+          </React.Fragment>
 
-          </div>
+        </div>
 
       </React.Fragment>
 
-
-
-
-        // <React.Fragment>
-        //   <div className="currentWrapperTop">
-
-        //     <div className="currentSummaryContainer">
-        //       <div className="currentSummary">
-        //         <div className="">Current Week</div>
-        //         <div className="">Start Date</div>
-        //         <div className="">End Date</div>
-        //         <div className="">Today's Date</div>
-        //       </div>
-        //       <div className="currentSummary">
-        //         <div className="">{this.state.currentWeekNumber}</div>
-        //         <div className="">{this.state.startDate ? this.state.startDate : '\xa0'}</div>
-        //         <div className="">{this.state.endDate ? this.state.endDate : '\xa0'}</div>
-        //         <div className="">{this.state.todayDate ? this.state.todayDate : '\xa0'}</div>
-        //       </div>
-        //     </div>
-
-        //     <div className="currentSummaryContainer">
-        //       <div className="currentSummary">
-        //         <div className="budget remaining">Budget</div>
-        //         <div className="spendings">Spendings</div>
-        //         <div className="credits">Credits</div>
-        //         <div className="">Remaining</div>
-        //       </div>
-        //       <div className="currentSummary">
-        //         <div className="remaining budget">{CurrencyFormatter.format(this.state.budget)}</div>
-        //         <div className="spendings">{CurrencyFormatter.format(this.state.spendings)}</div>
-        //         <div className="credits">{CurrencyFormatter.format(this.state.credits)}</div>
-        //         <div className="">{CurrencyFormatter.format(this.state.remaining)}</div>
-        //       </div>
-        //     </div>
-
-        //     <div className="currentSummaryContainer">
-        //       <div className="currentSummaryHistory">
-        //         <div className="fixed">Groceries</div>
-        //         <div className="fixed">Gas</div>
-        //         <div className="fixed tooltipParent">
-        //           Etc
-        //           <span className="tooltipText">Utilities & Entertainment</span>
-        //         </div>
-        //         <div className="">Total Fixed</div>
-        //       </div>
-        //       <div className="currentSummaryHistory">
-        //         <div className="fixed">{CurrencyFormatter.format(this.state.groceries)}</div>
-        //         <div className="fixed">{CurrencyFormatter.format(this.state.gas)}</div>
-        //         <div className="fixed">{CurrencyFormatter.format(this.state.fixedEtc)}</div>
-        //         <div className="">{CurrencyFormatter.format(this.state.fixed)}</div>
-        //       </div>
-        //     </div>
-
-        //   </div>
-
-        //   {/* <div className="currentWrapperBottom">
-        //     <Accordion
-        //       header={"Spendings"}
-        //       content={"some body content message goes here"} />
-        //   </div> */}
-
-        //   <div className="currentWrapperBottom">
-        //     <div className="currentDataContainer">
-        //       <div className="currentData1">
-        //         <div className="currentDataHeader">
-        //           <i
-        //             onClick={() => this.retrieveCurrentData()}
-        //             className="arrow fas fa-caret-left">
-
-        //             </i>
-        //           Date
-        //           <i
-        //             onClick={() => this.retrieveNextWeek()}
-        //             className="arrow fas fa-caret-right">
-        //           </i>
-        //         </div>
-        //         <div className="currentDataHeader">subCategory</div>
-        //         <div className="currentDataHeader">cc</div>
-        //         <div className="currentDataHeader">Amount</div>
-        //         <div className="currentDataHeader">Store</div>
-        //         <div className="currentDataHeader">Notes</div>
-        //       </div>
-
-        //       <React.Fragment>
-        //         {this.state.current.map(entry => {
-        //           return (
-        //             <RenderData
-        //               current={this.state.current}
-        //               entry={entry}
-        //               key={entry["id"]}
-        //               deleteEntry={this.deleteEntry}
-        //             />
-        //           )
-        //         })
-        //         }
-        //       </React.Fragment>
-
-        //     </div>
-        //   </div>
-        // </React.Fragment>
-
       )
-    // }
   }
 }
