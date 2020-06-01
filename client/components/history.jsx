@@ -262,24 +262,22 @@ export default class History extends React.Component {
         queryWeekNumber
       }
     });
-    this.searchQuery(req);
+
+    this.searchQuery(req, queryWeekNumber);
 
   };
 
-  searchQuery(req) {
+  searchQuery(req, queryWeekNumber) {
 
-    let currentWeekNumber = this.state.week.queryWeekNumber;
-    alert(currentWeekNumber);
-    let totalBudget = 150;
+    let totalBudget = 150 * queryWeekNumber;
 
     fetch(`/api/historySearchQuery.php`, req)
           .then(response => response.json())
           .then(current => {
             console.dir(current);
             this.setState({ current });
-            // this.currentSummary();
 
-            let totalSummary = TotalSummary(currentWeekNumber, current, totalBudget);
+            let totalSummary = TotalSummary(queryWeekNumber, current, totalBudget);
 
             this.setState({
               totalTestSpendings: {
@@ -315,23 +313,8 @@ export default class History extends React.Component {
               }
 
             });
-          console.log("searchQuery totalSummary is: ", totalSummary);
-          // console.log("totalSummary.spendings is: ", totalSummary.spendings);
-          // console.log("totalSummary.credits is: ", totalSummary.credits);
-          // console.log("totalSummary.fixed is: ", totalSummary.fixed);
-          // console.log("totalSummary.others is: ", totalSummary.others);
-            // this.querySummary();
+
           })
-
-
-    // fetch(`/api/historySearchQuery.php`, req)
-    //   .then(response => response.json())
-    //   .then(current => {
-    //     console.log("searchQuery current is: ", current)
-
-    //     this.setState({ current });
-    //     this.querySummary();
-    //   })
   }
 
   retrieveAllData(currentWeekNumber) {
@@ -381,11 +364,8 @@ export default class History extends React.Component {
             }
 
           });
-          // console.log("totalSummary is: ", totalSummary);
-          // console.log("totalSummary.spendings is: ", totalSummary.spendings);
-          // console.log("totalSummary.credits is: ", totalSummary.credits);
-          // console.log("totalSummary.fixed is: ", totalSummary.fixed);
-          // console.log("totalSummary.others is: ", totalSummary.others);
+          console.log("totalSummary is: ", totalSummary);
+
         })
   }
 
