@@ -9,7 +9,6 @@ $query = "SELECT * FROM `2020`
             WHERE YEARWEEK(date)=YEARWEEK(NOW())
             ORDER BY date DESC";
 
-
 // $query = "SELECT * FROM `2020`
 // WHERE date BETWEEN '2020-05-10' AND '2020-05-16'
 //  ORDER BY date DESC";

@@ -209,6 +209,12 @@ export const AccordionColor = (header) => {
   }
 }
 
-// export const AccordionValue = (header, totalSummary) => {
-
-// }
+export const SetWeek = (currentWeekNumber) => {
+  console.log("helperFunction setWeek fired");
+  this.setState({
+    week: {
+      currentWeekNumber,
+      queryWeekNumber: 0
+    }
+  });
+}

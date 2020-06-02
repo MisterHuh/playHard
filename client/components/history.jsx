@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion } from "./accordion";
 import { RenderData } from "./renderData";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, SetWeek } from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/historyDropdown.css'
@@ -392,7 +392,8 @@ export default class History extends React.Component {
   componentDidMount() {
 
     let currentWeekNumber = GetCurrentWeekNum();
-    this.setWeek(currentWeekNumber);
+    SetWeek(currentWeekNumber);
+    // this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
 
   }
