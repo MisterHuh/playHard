@@ -6,6 +6,44 @@ export const CurrencyFormatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2
 })
 
+export const RenderData = props => {
+  let entry = props.entry;
+  let id = entry["id"];
+  let creditsFontColor = entry["amount"] < 0 ? "creditsFontColor" : null;
+
+  if (entry) {
+    return (
+      <div className={"currentData"} >
+        <div className={"currentDataHeader renderDataHover " + entry["category"].toLowerCase()}>
+
+          <div className="iconContainer ">
+            <i onClick={() => props.deleteEntry(id)} className="icon fas fa-times"></i>
+          </div>
+
+          <div className="iconContainer ">
+            <i className="icon fas fa-edit"></i>
+          </div>
+
+          <div>
+            <div className="">{entry["date"]}</div>
+          </div>
+
+        </div>
+        <div
+          onClick={props.deleteEntry}
+          className={"currentDataHeader " + entry["category"].toLowerCase()}>{entry["subcategory"]}</div>
+
+        <div className={"currentDataHeader " + entry["category"].toLowerCase()}>{entry["cc"]}</div>
+        <div className={"currentDataHeader " + entry["category"].toLowerCase() + " " + creditsFontColor}>{CurrencyFormatter.format(entry["amount"])}</div>
+        <div className={"currentDataHeader " + entry["category"].toLowerCase()}>{entry["store"]}</div>
+        <div className={"currentDataHeader " + entry["category"].toLowerCase()}>{entry["notes"]}</div>
+
+      </div>
+    )
+  }
+
+}
+
 export const GetCurrentWeekNum = () => {
 
   console.log("helperFunctions GetCurrentWeekNum fired");
@@ -197,24 +235,14 @@ export const TotalSummary = (week, current, budget) => {
 
 }
 
-export const AccordionColor = (header) => {
-  let accordionColor;
+// export const AccordionColor = (header) => {
+//   let accordionColor;
 
-  if (header === "Total Spendings") {
-    return accordionColor = "toggleDisplaySpendings spendings";
-  } else if (header === "Total Credits") {
-    return accordionColor = "totalDisplayCredits credits";
-  } else if (header === "Total Fixed") {
-    return accordionColor = "totalDisplayFixed fixed";
-  }
-}
-
-export const SetWeek = (currentWeekNumber) => {
-  console.log("helperFunction setWeek fired");
-  this.setState({
-    week: {
-      currentWeekNumber,
-      queryWeekNumber: 0
-    }
-  });
-}
+//   if (header === "Total Spendings") {
+//     return accordionColor = "toggleDisplaySpendings spendings";
+//   } else if (header === "Total Credits") {
+//     return accordionColor = "totalDisplayCredits credits";
+//   } else if (header === "Total Fixed") {
+//     return accordionColor = "totalDisplayFixed fixed";
+//   }
+// }

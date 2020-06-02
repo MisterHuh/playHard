@@ -1,7 +1,7 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { RenderData } from "./renderData";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
+// import { RenderData } from "./renderData";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

@@ -1,5 +1,5 @@
 import React from "react";
-import { CurrencyFormatter, AccordionColor } from "./helperFunctions"
+import { CurrencyFormatter } from "./helperFunctions"
 
 export const Accordion = props => {
 
@@ -99,4 +99,17 @@ export const Accordion = props => {
   }
 
 
+}
+
+
+export const AccordionColor = (header) => {
+  let accordionColor;
+
+  if (header === "Total Spendings") {
+    return accordionColor = "toggleDisplaySpendings spendings";
+  } else if (header === "Total Credits") {
+    return accordionColor = "totalDisplayCredits credits";
+  } else if (header === "Total Fixed") {
+    return accordionColor = "totalDisplayFixed fixed";
+  }
 }

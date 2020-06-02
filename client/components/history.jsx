@@ -1,7 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { RenderData } from "./renderData";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, SetWeek } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData } from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/historyDropdown.css'
@@ -17,32 +16,12 @@ export default class History extends React.Component {
     super(props);
     this.state = {
 
-      // search: {
-      //   categoryFilter: "all",
-      //   startDate: new Date(2019,11,29),
-      //   endDate: new Date()
-      // },
-
-      categoryFilter: "All",
-      ccFilter: "All",
-      startDate: new Date(2019, 11, 29),
-      endDate: new Date(),
-      query: "SELECT * FROM `2020` ORDER BY date DESC",
-      order: "DESC",
-
       current: [],
 
-      // for accordion
-      spendingsDisplay: true,
-      creditsDisplay: true,
-      fixedDisplay: true,
-
-      /* pagination */
-      // activePage: 20,
-      // users: null, // data you loop over => this.state.current
-      // total: null, // helps with calculating page logic => this.state.current.length
-      // per_page: null, // helps with calculating page logic => 20
-      // current_page: null, // style the active pagination link => 1
+      week: {
+        currentWeekNumber: 0,
+        queryWeekNumber: 0
+      },
 
       totalTestSpendings: {
         total: 0,
@@ -52,6 +31,14 @@ export default class History extends React.Component {
         travel: 0,
         entertainment: 0,
         dogs: 0
+
+        // spendingsFoodPercent: 0,
+        // spendingsHomePercent: 0,
+        // spendingsGiftPercent: 0,
+        // spendingsTravelPercent: 0,
+        // totalEntertainmentPercent: 0,
+        // spendingsDogPercent: 0,
+
       },
 
       totalTestCredits: {
@@ -62,6 +49,14 @@ export default class History extends React.Component {
         travel: 0,
         entertainment: 0,
         dogs: 0
+
+        // creditsFoodPercent: 0,
+        // creditsHomePercent: 0,
+        // creditsGiftPercent: 0,
+        // creditsTravelPercent: 0,
+        // creditsEntertainmentPercent: 0,
+        // creditsDogPercent: 0,
+
       },
 
       totalTestFixed: {
@@ -76,64 +71,47 @@ export default class History extends React.Component {
         budget: 0
       },
 
-      totalSpendings: 0,
-      totalFoodSpendings: 0,
-      totalHomeSpendings: 0,
-      totalGiftsSpendings: 0,
-      totalTravelSpendings: 0,
-      totalEntertainmentSpendings: 0,
-      totalDogSpendings: 0,
-
-      spendingsFoodPercent: 0,
-      spendingsHomePercent: 0,
-      spendingsGiftPercent: 0,
-      spendingsTravelPercent: 0,
-      totalEntertainmentPercent: 0,
-      spendingsDogPercent: 0,
-
-      totalCredits: 0,
-      totalFoodCredits: 0,
-      totalHomeCredits: 0,
-      totalGiftCredits: 0,
-      totalTravelCredits: 0,
-      totalEntertainmentCredits: 0,
-      totalDogCredits: 0,
-
-      creditsFoodPercent: 0,
-      creditsHomePercent: 0,
-      creditsGiftPercent: 0,
-      creditsTravelPercent: 0,
-      creditsEntertainmentPercent: 0,
-      creditsDogPercent: 0,
-
+      // for accordion. do i need both of these?
+      spendingsDisplay: true,
+      creditsDisplay: true,
+      fixedDisplay: true,
       toggleTotalSpendingsDisplay: false,
       toggleTotalCreditsDisplay: false,
       toggleTotalFixedDisplay: false,
 
-      totalBudget: 0,
-      totalRemaining: 0,
+      categoryFilter: "All",
+      ccFilter: "All",
+      startDate: new Date(2019, 11, 29),
+      endDate: new Date(),
+      query: "SELECT * FROM `2020` ORDER BY date DESC",
+      order: "DESC",
 
-      totalFixed: 0,
-      totalGroceries: 0,
-      totalGas: 0,
-      totalFixedEtc: 0,
+      // search: {
+      //   categoryFilter: "all",
+      //   startDate: new Date(2019,11,29),
+      //   endDate: new Date()
+      // },
 
-      week: {
-        currentWeekNumber: 0,
-        queryWeekNumber: 0
-      }
+      /* pagination */
+      // activePage: 20,
+      // users: null, // data you loop over => this.state.current
+      // total: null, // helps with calculating page logic => this.state.current.length
+      // per_page: null, // helps with calculating page logic => 20
+      // current_page: null, // style the active pagination link => 1
 
     }
 
     this.retrieveAllData = this.retrieveAllData.bind(this);
     this.setWeek = this.setWeek.bind(this);
+
     this.deleteEntry = this.deleteEntry.bind(this);
-    this.searchQuery = this.searchQuery.bind(this);
+
     this.categoryHandleChange = this.categoryHandleChange.bind(this);
     this.ccHandleChange = this.ccHandleChange.bind(this);
     this.startDateHandleChange = this.startDateHandleChange.bind(this);
     this.endDateHandleChange = this.endDateHandleChange.bind(this);
     this.retrieveSearchData = this.retrieveSearchData.bind(this);
+    this.searchQuery = this.searchQuery.bind(this);
 
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
@@ -358,9 +336,7 @@ export default class History extends React.Component {
               totalRemaining: totalSummary.others.totalRemaining,
               budget: totalSummary.others.budget
             }
-
           });
-          console.log("totalSummary is: ", totalSummary);
 
         })
   }
@@ -392,8 +368,7 @@ export default class History extends React.Component {
   componentDidMount() {
 
     let currentWeekNumber = GetCurrentWeekNum();
-    SetWeek(currentWeekNumber);
-    // this.setWeek(currentWeekNumber);
+    this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
 
   }
@@ -429,7 +404,6 @@ export default class History extends React.Component {
     const others = this.state.others;
 
     const week = this.state.week;
-    const { currentWeekNumber, queryWeekNumber } = week;
 
     // this is for the accordion
     let spendingsDisplay;
@@ -542,27 +516,6 @@ export default class History extends React.Component {
 
             </tbody>
           </table>
-
-          {/* <table id="tabla" className="currentSummaryContainer">
-            <tbody>
-
-              <tr className="toggleDisplaySpendings spendings">
-                <th>Total Spendings</th>
-                <td>{CurrencyFormatter.format(this.state.totalSpendings)}</td>
-              </tr>
-
-              <tr className="toggleDisplayCredits credits">
-                <th>Total Credits</th>
-                <td>{CurrencyFormatter.format(this.state.totalCredits)}</td>
-              </tr>
-
-              <tr className="toggleDisplayFixed fixed">
-                <th>Total Fixed</th>
-                <td>{CurrencyFormatter.format(this.state.totalFixed)}</td>
-              </tr>
-
-            </tbody>
-          </table> */}
 
         </div>
 
