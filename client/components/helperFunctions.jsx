@@ -46,8 +46,6 @@ export const RenderData = props => {
 
 export const GetCurrentWeekNum = () => {
 
-  console.log("helperFunctions GetCurrentWeekNum fired");
-
   let timestamp = new Date();
   let sundayChecker = timestamp.getDay();
   let currentWeek = require("current-week-number");
@@ -234,15 +232,3 @@ export const TotalSummary = (week, current, budget) => {
     return totalSummary;
 
 }
-
-// export const AccordionColor = (header) => {
-//   let accordionColor;
-
-//   if (header === "Total Spendings") {
-//     return accordionColor = "toggleDisplaySpendings spendings";
-//   } else if (header === "Total Credits") {
-//     return accordionColor = "totalDisplayCredits credits";
-//   } else if (header === "Total Fixed") {
-//     return accordionColor = "totalDisplayFixed fixed";
-//   }
-// }

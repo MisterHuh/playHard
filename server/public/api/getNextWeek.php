@@ -15,7 +15,7 @@ $query = "SELECT * FROM `2020`
             WHERE date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
             AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
 
-            ORDER BY date ASC";
+            ORDER BY date DESC";
 
             // WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))
 

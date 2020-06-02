@@ -1,8 +1,8 @@
 import React from "react";
 import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunctions";
+import { Navbar } from "./navbar";
 import Add from "./add";
 import Current from "./current";
-import { Navbar } from "./navbar";
 import History from "./history"
 
 export default class App extends React.Component {

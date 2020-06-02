@@ -1,6 +1,6 @@
 import React from "react";
 
-import { CurrencyFormatter } from "./currencyFormatter";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";

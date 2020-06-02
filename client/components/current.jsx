@@ -1,6 +1,5 @@
 import React from "react";
 import { Accordion } from "./accordion";
-// import { RenderData } from "./renderData";
 import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
@@ -142,18 +141,53 @@ export default class Current extends React.Component {
   }
 
   retrieveNextWeek() {
-    console.log("retrieveNextWeek fired");
+
+    let budget = this.props.budget;
+    let week = 1;
+    let totalBudget = budget * week;
+
     fetch(`/api/getNextWeek.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("TEST current is: ", current);
         this.setState({ current });
 
-        // currentWeek's budget always set to budget
-        let defaultWeekNumber = 1;
-        this.retrieveCurrentData(defaultWeekNumber);
+        let totalSummary = TotalSummary(week, current, totalBudget);
 
-        // this.currentSummary();
+        this.setState({
+          totalTestSpendings: {
+            total: totalSummary.spendings.totalSpendings,
+            food: totalSummary.spendings.totalFoodSpendings,
+            home: totalSummary.spendings.totalHomeSpendings,
+            gifts: totalSummary.spendings.totalGiftsSpendings,
+            travel: totalSummary.spendings.totalTravelSpendings,
+            entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+            dogs: totalSummary.spendings.totalDogSpendings
+          },
+
+          totalTestCredits: {
+            total: totalSummary.credits.totalCredits,
+            food: totalSummary.credits.totalFoodCredits,
+            home: totalSummary.credits.totalHomeCredits,
+            gifts: totalSummary.credits.totalGiftsCredits,
+            travel: totalSummary.credits.totalTravelCredits,
+            entertainment: totalSummary.credits.totalEntertainmentCredits,
+            dogs: totalSummary.credits.totalDogCredits
+          },
+
+          totalTestFixed: {
+            total: totalSummary.fixed.totalFixed,
+            groceries: totalSummary.fixed.totalGroceries,
+            gas: totalSummary.fixed.totalGas,
+            fixedEtc: totalSummary.fixed.totalFixedEtc,
+          },
+
+          others: {
+            totalRemaining: totalSummary.others.totalRemaining,
+            budget: totalSummary.others.budget
+          }
+
+        });
+
       })
   }
 
