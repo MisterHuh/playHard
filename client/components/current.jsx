@@ -12,21 +12,10 @@ export default class Current extends React.Component {
 
       current: [],
 
-      spendings: 0,
-      credits: 0,
-      budget: 0,
-      remaining: 0,
-
-      fixed: 0,
-      groceries: 0,
-      gas: 0,
-      fixedEtc: 0,
-
-      todayDate: "",
-      startDate: "",
-      endDate: "",
-
-      currentWeekNumber: 1,
+      week: {
+        currentWeekNumber: 0,
+        queryWeekNumber: 0
+      },
 
       totalTestSpendings: {
         total: 0,
@@ -60,19 +49,17 @@ export default class Current extends React.Component {
         budget: 0
       },
 
-      currentWeekNumber: 1,
+      todayDate: "",
+      startDate: "",
+      endDate: ""
 
-      week: {
-        currentWeekNumber: 0,
-        queryWeekNumber: 0
-      }
     }
 
+    this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
     this.setWeek = this.setWeek.bind(this);
 
     this.deleteEntry = this.deleteEntry.bind(this);
-    this.currentSummary = this.currentSummary.bind(this);
-    this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
+
     this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDate = this.formatDate.bind(this);
     this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
@@ -135,7 +122,7 @@ export default class Current extends React.Component {
 
         });
 
-        this.findStartEndDates();
+        // this.findStartEndDates();
       })
 
   }
@@ -257,60 +244,6 @@ export default class Current extends React.Component {
 
   }
 
-/* is there too much happening here? */
-  currentSummary() {
-
-    /* these 2 lines of code will probably replace getWeekNum */
-    let currentWeekNumber = this.props.currentWeekNumber;
-    this.setState({ currentWeekNumber })
-
-    let current = this.state.current;
-
-    let totalSpendings = 0;
-    let totalCredits = 0;
-    let totalBudget = this.props.budget;
-    let totalRemaining = 0;
-
-    let totalFixed = 0;
-    let totalGroceries = 0;
-    let totalGas = 0;
-    let totalFixedEtc = 0;
-
-    for (let index = 0; index < current.length; index++) {
-      if (current[index]["category"] === "Spendings") {
-        totalSpendings += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] === "Credits") {
-        totalCredits += parseFloat(current[index]["amount"]);
-      } else if (current[index]["category"] === "Fixed") {
-        if (current[index]["subcategory"] === "Groceries") {
-          totalGroceries += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Gas") {
-          totalGas += parseFloat(current[index]["amount"]);
-        } else if (current[index]["subcategory"] === "Utility" || current[index]["subcategory"] === "Health" || current[index]["subcategory"] === "Entertainment") {
-          totalFixedEtc += parseFloat(current[index]["amount"]);
-        };
-        totalFixed += parseFloat(current[index]["amount"]);
-      }
-    }
-
-    totalSpendings = totalSpendings.toFixed(2);
-    totalCredits = totalCredits.toFixed(2);
-    totalFixed = totalFixed.toFixed(2);
-    totalRemaining = totalBudget - totalCredits - totalSpendings;
-
-    this.setState({
-      spendings: totalSpendings,
-      credits: totalCredits,
-      budget: totalBudget,
-      remaining: totalRemaining,
-      fixed: totalFixed,
-      groceries: totalGroceries,
-      gas: totalGas,
-      fixedEtc: totalFixedEtc
-    })
-
-  }
-
   deleteEntry(id) {
     console.log("current deleteEntry fired");
     let entryId = id;
@@ -345,7 +278,6 @@ export default class Current extends React.Component {
     // for rendering this.state.currentWeekNumber for table
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
-
     this.retrieveCurrentData(defaultWeekNumber);
   }
 

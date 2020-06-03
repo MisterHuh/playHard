@@ -12,7 +12,7 @@ export default class App extends React.Component {
 
       currentWeekNumber: 1,
 
-      view: "history",
+      view: "current",
       budget: 150,
 
       current: [],
