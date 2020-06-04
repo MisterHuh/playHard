@@ -279,6 +279,7 @@ export default class Current extends React.Component {
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
     this.retrieveCurrentData(defaultWeekNumber);
+    console.log("current week num is: ", currentWeekNumber);
   }
 
   render() {

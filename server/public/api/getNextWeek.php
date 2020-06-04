@@ -5,6 +5,7 @@ require_once("db_connection.php");
 set_exception_handler("error_handler");
 startUp();
 
+
 $query = "SELECT * FROM `2020`
 
             -- WHERE YEARWEEK(`date`, 1) = YEARWEEK( CURDATE() - INTERVAL 1 WEEK, 1)

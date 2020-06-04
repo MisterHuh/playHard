@@ -370,6 +370,7 @@ export default class History extends React.Component {
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
+    console.log("current week num is: ", currentWeekNumber);
 
   }
 
