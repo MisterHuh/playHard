@@ -232,3 +232,9 @@ export const TotalSummary = (week, current, budget) => {
     return totalSummary;
 
 }
+
+
+export const FormatDate = (notFormattedDate) => {
+  let formattedDate = notFormattedDate.getFullYear() + "-" + (notFormattedDate.getMonth() + 1) + "-" + notFormattedDate.getDate();
+  return formattedDate;
+};

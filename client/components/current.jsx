@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData, FormatDate } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -131,6 +131,9 @@ export default class Current extends React.Component {
 
     /*
       1. onClick, grab today's date
+          helper function to format the start and end date;
+            apply to history.jsx (for when notFormatted -> formatted)
+
       2. go back to Sunday
       3. subtract 7 days for start date
       4. add 7 days for end date
@@ -140,53 +143,60 @@ export default class Current extends React.Component {
 
     */
 
+    let today = new Date();
+    let day = today.getWeek();
+    alert(today);
+    alert(day);
+    today = FormatDate(today);
+
+
     let budget = this.props.budget;
     let week = 1;
     let totalBudget = budget * week;
 
-    fetch(`/api/getNextWeek.php`)
-      .then(response => response.json())
-      .then(current => {
-        this.setState({ current });
+    // fetch(`/api/getNextWeek.php`)
+    //   .then(response => response.json())
+    //   .then(current => {
+    //     this.setState({ current });
 
-        let totalSummary = TotalSummary(week, current, totalBudget);
+    //     let totalSummary = TotalSummary(week, current, totalBudget);
 
-        this.setState({
-          totalTestSpendings: {
-            total: totalSummary.spendings.totalSpendings,
-            food: totalSummary.spendings.totalFoodSpendings,
-            home: totalSummary.spendings.totalHomeSpendings,
-            gifts: totalSummary.spendings.totalGiftsSpendings,
-            travel: totalSummary.spendings.totalTravelSpendings,
-            entertainment: totalSummary.spendings.totalEntertainmentSpendings,
-            dogs: totalSummary.spendings.totalDogSpendings
-          },
+    //     this.setState({
+    //       totalTestSpendings: {
+    //         total: totalSummary.spendings.totalSpendings,
+    //         food: totalSummary.spendings.totalFoodSpendings,
+    //         home: totalSummary.spendings.totalHomeSpendings,
+    //         gifts: totalSummary.spendings.totalGiftsSpendings,
+    //         travel: totalSummary.spendings.totalTravelSpendings,
+    //         entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+    //         dogs: totalSummary.spendings.totalDogSpendings
+    //       },
 
-          totalTestCredits: {
-            total: totalSummary.credits.totalCredits,
-            food: totalSummary.credits.totalFoodCredits,
-            home: totalSummary.credits.totalHomeCredits,
-            gifts: totalSummary.credits.totalGiftsCredits,
-            travel: totalSummary.credits.totalTravelCredits,
-            entertainment: totalSummary.credits.totalEntertainmentCredits,
-            dogs: totalSummary.credits.totalDogCredits
-          },
+    //       totalTestCredits: {
+    //         total: totalSummary.credits.totalCredits,
+    //         food: totalSummary.credits.totalFoodCredits,
+    //         home: totalSummary.credits.totalHomeCredits,
+    //         gifts: totalSummary.credits.totalGiftsCredits,
+    //         travel: totalSummary.credits.totalTravelCredits,
+    //         entertainment: totalSummary.credits.totalEntertainmentCredits,
+    //         dogs: totalSummary.credits.totalDogCredits
+    //       },
 
-          totalTestFixed: {
-            total: totalSummary.fixed.totalFixed,
-            groceries: totalSummary.fixed.totalGroceries,
-            gas: totalSummary.fixed.totalGas,
-            fixedEtc: totalSummary.fixed.totalFixedEtc,
-          },
+    //       totalTestFixed: {
+    //         total: totalSummary.fixed.totalFixed,
+    //         groceries: totalSummary.fixed.totalGroceries,
+    //         gas: totalSummary.fixed.totalGas,
+    //         fixedEtc: totalSummary.fixed.totalFixedEtc,
+    //       },
 
-          others: {
-            totalRemaining: totalSummary.others.totalRemaining,
-            budget: totalSummary.others.budget
-          }
+    //       others: {
+    //         totalRemaining: totalSummary.others.totalRemaining,
+    //         budget: totalSummary.others.budget
+    //       }
 
-        });
+    //     });
 
-      })
+    //   })
   }
 
   findStartEndDates() {
