@@ -129,6 +129,17 @@ export default class Current extends React.Component {
 
   retrieveNextWeek() {
 
+    /*
+      1. onClick, grab today's date
+      2. go back to Sunday
+      3. subtract 7 days for start date
+      4. add 7 days for end date
+      5. send to historySearchQuery?
+      6. setState start date
+      7. setState end date
+
+    */
+
     let budget = this.props.budget;
     let week = 1;
     let totalBudget = budget * week;
