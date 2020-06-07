@@ -49,15 +49,16 @@ export default class Current extends React.Component {
         budget: 0
       },
 
-      retrievePrevWeek: {
-        prevWeekDate: "",
-        startDate: "",
-        endDate: ""
-      },
+      // retrievePrevWeek: {
+      //   prevWeekDate: "",
+      //   startDate: "",
+      //   endDate: ""
+      // },
 
       todayDate: "",
       startDate: "",
-      endDate: ""
+      endDate: "",
+      prevWeekStartdate: ""
 
     }
 
@@ -130,7 +131,7 @@ export default class Current extends React.Component {
 
         });
 
-        // this.findStartEndDates();
+        this.findStartEndDates();
       })
 
   }
@@ -139,10 +140,16 @@ export default class Current extends React.Component {
 
     //                 0          1          2         3             4          5         6
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let currentDay;
 
     // grabs full date. example below
     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
-    let currentDay = new Date();
+    if (this.state.prevWeekStartdate === "") {
+      currentDay = new Date();
+    } else {
+      currentDay = new Date(this.state.prevWeekStartdate);
+    }
+
     let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
     // alert(currentDay);
     // alert(dayIndex);
@@ -189,14 +196,58 @@ export default class Current extends React.Component {
     alert(queryWeekNumber);
 
     /*
-      upon load,
+      upon load for the first time, render:
+        Current Week
+        Start Date
+        End Date
+
+      after search, render:
+        Current Week as queryWeekNumber
+        Start Date as startDate
+        End Date as End Date
+
+        but now?
+
+        this.state.dates {
+          todayDate: "",
+          startDate: "",
+          endDate: "",
+          prevWeekStartdate: ""
+        }
+
+        when retrievePrevWeek() is fired,
+        setState({
+          todaydate: will be todayDate
+          startDate: startDate
+          endDate: endDate,
+          prevWeekStartDate: startDate
+        })
+
+        add conditional:
+        if (prevWeekStartDate === "") {
+          let currentDay = new Date();
+        } else {
+          let currentDay = new Date(this.state.prevWeekStartDate);
+        }
+
+        would this work?
     */
 
+    let curTimestamp = new Date();
+    let unixTimestamp = curTimestamp.getTime();
+    let todayDate = this.formatDate(unixTimestamp);
+
     this.setState({
-      retrievePrevWeek: {
-        startDate,
-        endDate
-      },
+      // retrievePrevWeek: {
+      //   startDate,
+      //   endDate
+      // },
+
+      todayDate,
+      startDate,
+      endDate,
+      prevWeekStartdate: startDate,
+
       week: {
         currentWeekNumber: 0,
         queryWeekNumber
@@ -406,17 +457,20 @@ export default class Current extends React.Component {
 
                 <tr className="">
                   <th>Current Week</th>
-                  <td>{this.state.week.currentWeekNumber}</td>
+                  <td>{(this.state.week.currentWeekNumber)
+                          ? this.state.week.currentWeekNumber
+                          : this.state.week.queryWeekNumber}
+                  </td>
                 </tr>
 
                 <tr className="">
                   <th>Start Date</th>
-                  <td>{this.state.startDate ? this.state.retrievePrevWeek.startDate : '\xa0'}/20</td>
+                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}/20</td>
                 </tr>
 
                 <tr className="">
                   <th>End Date</th>
-                  <td>{this.state.endDate ? this.state.retrievePrevWeek.endDate : '\xa0'}/20</td>
+                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}/20</td>
                 </tr>
 
                 <tr className="">
