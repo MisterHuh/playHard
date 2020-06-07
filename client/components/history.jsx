@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData, FormatDate } from "./helperFunctions";
 
 import Dropdown from "react-dropdown";
 import 'react-dropdown/historyDropdown.css'
@@ -199,11 +199,8 @@ export default class History extends React.Component {
   };
 
   retrieveSearchData() {
-    let notFormattedStartDate = this.state.startDate;
-    let formattedStartDate = notFormattedStartDate.getFullYear() + "-" + (notFormattedStartDate.getMonth() + 1) + "-" + notFormattedStartDate.getDate();
-
-    let notFormattedEndDate = this.state.endDate;
-    let formattedEndDate = notFormattedEndDate.getFullYear() + "-" + (notFormattedEndDate.getMonth() + 1) + "-" + notFormattedEndDate.getDate();
+    let formattedStartDate = FormatDate(this.state.startDate);
+    let formattedEndDate = FormatDate(this.state.endDate)
 
     const req = {
       method: 'PUT',

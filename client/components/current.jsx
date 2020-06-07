@@ -143,11 +143,43 @@ export default class Current extends React.Component {
 
     */
 
-    let today = new Date();
-    let day = today.getWeek();
-    alert(today);
-    alert(day);
-    today = FormatDate(today);
+    //                 0          1          2         3             4          5         6
+    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+    // grabs full date. example below
+    // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
+    let currentDay = new Date();
+    let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
+    let startDay, endDay;
+
+    if (!currentDay) {
+      startDay = currentDay.setDate(currentDay.getDate() + 7);
+      endDay = currentDay.setDate(currentDay.getDate() + 13);
+    } else if (dayIndex === 1) {
+      endDay = currentDay.setDate(currentDay.getDate() + 6);
+    } else if (dayIndex === 2) {
+      endDay = currentDay.setDate(currentDay.getDate() + 5);
+    } else if (dayIndex === 3) {
+      endDay = currentDay.setDate(currentDay.getDate() + 4);
+    } else if (dayIndex === 4) {
+      endDay = currentDay.setDate(currentDay.getDate() + 3);
+    } else if (dayIndex === 5) {
+      endDay = currentDay.setDate(currentDay.getDate() + 2);
+    } else if (dayIndex === 6) {
+      startDay = currentDay.setDate(currentDay.getDate() + 1);
+      endDay = currentDay.setDate(currentDay.getDate() + 7);
+    };
+
+    startDay = new Date(startDay);
+    endDay = new Date(endDay);
+
+    startDay = FormatDate(startDay)
+    endDay = FormatDate(endDay)
+
+    alert(startDay);
+    alert(endDay);
+
+
 
 
     let budget = this.props.budget;
