@@ -61,6 +61,22 @@ export const GetCurrentWeekNum = () => {
   return currentWeekNum;
 }
 
+export const GetQueryWeekNum = (startDate) => {
+  let timestamp = new Date(startDate);
+  let sundayChecker = timestamp.getDay();
+  let currentWeek = require("current-week-number");
+  let queryWeekNum;
+
+  if (sundayChecker === 0) {
+    let followingDay = new Date(timestamp.getTime() + 86400000);
+    queryWeekNum = currentWeek(followingDay);
+  } else {
+    queryWeekNum = currentWeek(timestamp);
+  }
+
+  return queryWeekNum;
+}
+
 /* for TotalSummary, budget is Total Budget */
 /* for some reason, week is needed as an argument for this to work */
 export const TotalSummary = (week, current, budget) => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, RenderData, FormatDate } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -68,6 +68,7 @@ export default class Current extends React.Component {
 
     this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDate = this.formatDate.bind(this);
+
     this.retrievePrevWeek = this.retrievePrevWeek.bind(this);
     this.prevWeekQuery = this.prevWeekQuery.bind(this);
   };
@@ -160,10 +161,7 @@ export default class Current extends React.Component {
     // alert(currentDay);
     // alert(dayIndex);
 
-    // let test = currentDay.getDate();
-    // alert(test);
-
-    let startDate, endDate;
+    let startDate;
 
     if (!dayIndex) {
       startDate = currentDay.setDate(currentDay.getDate() - 7);
@@ -181,7 +179,7 @@ export default class Current extends React.Component {
       startDate = currentDay.setDate(currentDay.getDate() - 13);
     };
 
-    endDate = currentDay.setDate(currentDay.getDate() + 6);
+    let endDate = currentDay.setDate(currentDay.getDate() + 6);
 
     startDate = new Date(startDate);
     endDate = new Date(endDate);
@@ -189,8 +187,8 @@ export default class Current extends React.Component {
     startDate = FormatDate(startDate)
     endDate = FormatDate(endDate)
 
-    // alert(startDate);
-    // alert(endDate);
+    alert(startDate);
+    alert(endDate);
 
     const req = {
       method: 'PUT',
@@ -201,138 +199,67 @@ export default class Current extends React.Component {
       })
     };
 
-    let test2 = Math.round((new Date(startDate)).getTime() / 1000);
-    // let test3 = test2 / (1000 * 3600 * 24);
-    // alert(test2);
+    let queryWeekNumber = GetQueryWeekNum(startDate);
+    alert(queryWeekNumber);
 
-    let timestamp = new Date(startDate);
-    let sundayChecker = timestamp.getDay();
-    let currentWeek = require("current-week-number");
-    let currentWeekNum;
+    this.setState({
+      week: {
+        currentWeekNumber: 0,
+        queryWeekNumber
+      }
+    });
 
-    if (sundayChecker === 0) {
-      let followingDay = new Date(timestamp.getTime() + 86400000);
-      currentWeekNum = currentWeek(followingDay);
-    } else {
-      currentWeekNum = currentWeek(timestamp);
-    }
+    this.prevWeekQuery(req, queryWeekNumber);
+    // this.prevWeekQuery(req);
 
-    alert(currentWeekNum);
-    // let notFormattedDateDiff = new Date(startDate) - new Date(endDate)
-    // let notFormattedQueryWeekNumber = notFormattedDateDiff / (-1000 * 3600 * 24);
-
-    // let modulusTest = notFormattedQueryWeekNumber % 7
-    // let divisionTest = notFormattedQueryWeekNumber / 7
-    // let queryWeekNumber;
-
-    // if (!modulusTest) {
-    //   queryWeekNumber = divisionTest;
-    // } else {
-    //   queryWeekNumber = Math.ceil(divisionTest);
-    // };
-
-    // alert(queryWeekNumber);
-
-
-
-
-    // alert(this.state.week.currentWeekNumber);
-
-    this.prevWeekQuery(req);
-
-
-    let totalBudget = this.props.budget;
-    let week = 1;
-    // let totalBudget = budget * week;
-
-    // fetch(`/api/getNextWeek.php`)
-    //   .then(response => response.json())
-    //   .then(current => {
-    //     this.setState({ current });
-
-    //     let totalSummary = TotalSummary(week, current, totalBudget);
-
-    //     this.setState({
-    //       totalTestSpendings: {
-    //         total: totalSummary.spendings.totalSpendings,
-    //         food: totalSummary.spendings.totalFoodSpendings,
-    //         home: totalSummary.spendings.totalHomeSpendings,
-    //         gifts: totalSummary.spendings.totalGiftsSpendings,
-    //         travel: totalSummary.spendings.totalTravelSpendings,
-    //         entertainment: totalSummary.spendings.totalEntertainmentSpendings,
-    //         dogs: totalSummary.spendings.totalDogSpendings
-    //       },
-
-    //       totalTestCredits: {
-    //         total: totalSummary.credits.totalCredits,
-    //         food: totalSummary.credits.totalFoodCredits,
-    //         home: totalSummary.credits.totalHomeCredits,
-    //         gifts: totalSummary.credits.totalGiftsCredits,
-    //         travel: totalSummary.credits.totalTravelCredits,
-    //         entertainment: totalSummary.credits.totalEntertainmentCredits,
-    //         dogs: totalSummary.credits.totalDogCredits
-    //       },
-
-    //       totalTestFixed: {
-    //         total: totalSummary.fixed.totalFixed,
-    //         groceries: totalSummary.fixed.totalGroceries,
-    //         gas: totalSummary.fixed.totalGas,
-    //         fixedEtc: totalSummary.fixed.totalFixedEtc,
-    //       },
-
-    //       others: {
-    //         totalRemaining: totalSummary.others.totalRemaining,
-    //         budget: totalSummary.others.budget
-    //       }
-
-    //     });
-
-    //   })
   }
 
-  prevWeekQuery(req) {
+  prevWeekQuery(req, queryWeekNumber) {
+
+    let totalBudget = this.props.budget;
+
     fetch(`/api/getNextWeek.php`, req)
       .then(response => response.json())
       .then(current => {
         console.log(current);
         this.setState({ current });
 
-        // let totalSummary = TotalSummary(queryWeekNumber, current, totalBudget);
+        let totalSummary = TotalSummary(queryWeekNumber, current, totalBudget);
 
-        // this.setState({
-        //   totalTestSpendings: {
-        //     total: totalSummary.spendings.totalSpendings,
-        //     food: totalSummary.spendings.totalFoodSpendings,
-        //     home: totalSummary.spendings.totalHomeSpendings,
-        //     gifts: totalSummary.spendings.totalGiftsSpendings,
-        //     travel: totalSummary.spendings.totalTravelSpendings,
-        //     entertainment: totalSummary.spendings.totalEntertainmentSpendings,
-        //     dogs: totalSummary.spendings.totalDogSpendings
-        //   },
+        this.setState({
+          totalTestSpendings: {
+            total: totalSummary.spendings.totalSpendings,
+            food: totalSummary.spendings.totalFoodSpendings,
+            home: totalSummary.spendings.totalHomeSpendings,
+            gifts: totalSummary.spendings.totalGiftsSpendings,
+            travel: totalSummary.spendings.totalTravelSpendings,
+            entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+            dogs: totalSummary.spendings.totalDogSpendings
+          },
 
-        //   totalTestCredits: {
-        //     total: totalSummary.credits.totalCredits,
-        //     food: totalSummary.credits.totalFoodCredits,
-        //     home: totalSummary.credits.totalHomeCredits,
-        //     gifts: totalSummary.credits.totalGiftsCredits,
-        //     travel: totalSummary.credits.totalTravelCredits,
-        //     entertainment: totalSummary.credits.totalEntertainmentCredits,
-        //     dogs: totalSummary.credits.totalDogCredits
-        //   },
+          totalTestCredits: {
+            total: totalSummary.credits.totalCredits,
+            food: totalSummary.credits.totalFoodCredits,
+            home: totalSummary.credits.totalHomeCredits,
+            gifts: totalSummary.credits.totalGiftsCredits,
+            travel: totalSummary.credits.totalTravelCredits,
+            entertainment: totalSummary.credits.totalEntertainmentCredits,
+            dogs: totalSummary.credits.totalDogCredits
+          },
 
-        //   totalTestFixed: {
-        //     total: totalSummary.fixed.totalFixed,
-        //     groceries: totalSummary.fixed.totalGroceries,
-        //     gas: totalSummary.fixed.totalGas,
-        //     fixedEtc: totalSummary.fixed.totalFixedEtc,
-        //   },
+          totalTestFixed: {
+            total: totalSummary.fixed.totalFixed,
+            groceries: totalSummary.fixed.totalGroceries,
+            gas: totalSummary.fixed.totalGas,
+            fixedEtc: totalSummary.fixed.totalFixedEtc,
+          },
 
-        //   others: {
-        //     totalRemaining: totalSummary.others.totalRemaining,
-        //     budget: totalSummary.others.budget
-        //   }
+          others: {
+            totalRemaining: totalSummary.others.totalRemaining,
+            budget: totalSummary.others.budget
+          }
 
-        // });
+        });
 
       })
   };

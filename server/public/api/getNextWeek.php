@@ -23,8 +23,6 @@ $query = "SELECT * FROM `2020`
 	        WHERE date between '$startDate' and '$endDate'
           ORDER BY date DESC";
 
-          echo $query;
-
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
