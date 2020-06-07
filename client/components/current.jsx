@@ -50,7 +50,7 @@ export default class Current extends React.Component {
       },
 
       retrievePrevWeek: {
-
+        prevWeekDate: "",
         startDate: "",
         endDate: ""
       },
@@ -137,20 +137,6 @@ export default class Current extends React.Component {
 
   retrievePrevWeek() {
 
-    /*
-      1. onClick, grab today's date
-          helper function to format the start and end date;
-            apply to history.jsx (for when notFormatted -> formatted)
-
-      2. go back to Sunday
-      3. subtract 7 days for start date
-      4. add 7 days for end date
-      5. send to historySearchQuery?
-      6. setState start date
-      7. setState end date
-
-    */
-
     //                 0          1          2         3             4          5         6
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
@@ -202,7 +188,15 @@ export default class Current extends React.Component {
     let queryWeekNumber = GetQueryWeekNum(startDate);
     alert(queryWeekNumber);
 
+    /*
+      upon load,
+    */
+
     this.setState({
+      retrievePrevWeek: {
+        startDate,
+        endDate
+      },
       week: {
         currentWeekNumber: 0,
         queryWeekNumber
@@ -417,12 +411,12 @@ export default class Current extends React.Component {
 
                 <tr className="">
                   <th>Start Date</th>
-                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}/20</td>
+                  <td>{this.state.startDate ? this.state.retrievePrevWeek.startDate : '\xa0'}/20</td>
                 </tr>
 
                 <tr className="">
                   <th>End Date</th>
-                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}/20</td>
+                  <td>{this.state.endDate ? this.state.retrievePrevWeek.endDate : '\xa0'}/20</td>
                 </tr>
 
                 <tr className="">
@@ -431,7 +425,7 @@ export default class Current extends React.Component {
                 </tr>
 
                 <tr className="meter">
-                  <td colSpan="4">meter</td>
+                  <td colSpan="4">Reset</td>
                 </tr>
 
 
