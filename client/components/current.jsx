@@ -49,6 +49,12 @@ export default class Current extends React.Component {
         budget: 0
       },
 
+      retrievePrevWeek: {
+
+        startDate: "",
+        endDate: ""
+      },
+
       todayDate: "",
       startDate: "",
       endDate: ""
@@ -62,7 +68,8 @@ export default class Current extends React.Component {
 
     this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDate = this.formatDate.bind(this);
-    this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
+    this.retrievePrevWeek = this.retrievePrevWeek.bind(this);
+    this.prevWeekQuery = this.prevWeekQuery.bind(this);
   };
 
   retrieveCurrentData(currentWeekNumber) {
@@ -127,7 +134,7 @@ export default class Current extends React.Component {
 
   }
 
-  retrieveNextWeek() {
+  retrievePrevWeek() {
 
     /*
       1. onClick, grab today's date
@@ -150,41 +157,55 @@ export default class Current extends React.Component {
     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
     let currentDay = new Date();
     let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
-    let startDay, endDay;
+    let startDate, endDate;
 
     if (!currentDay) {
-      startDay = currentDay.setDate(currentDay.getDate() + 7);
-      endDay = currentDay.setDate(currentDay.getDate() + 13);
+      startDate = currentDay.setDate(currentDay.getDate() - 7);
+      endDate = currentDay.setDate(currentDay.getDate() - 13);
     } else if (dayIndex === 1) {
-      endDay = currentDay.setDate(currentDay.getDate() + 6);
+      startDate = currentDay.setDate(currentDay.getDate() - 6);
+      endDate = currentDay.setDate(currentDay.getDate() - 12);
     } else if (dayIndex === 2) {
-      endDay = currentDay.setDate(currentDay.getDate() + 5);
+      startDate = currentDay.setDate(currentDay.getDate() - 5);
+      endDate = currentDay.setDate(currentDay.getDate() - 11);
     } else if (dayIndex === 3) {
-      endDay = currentDay.setDate(currentDay.getDate() + 4);
+      startDate = currentDay.setDate(currentDay.getDate() - 4);
+      endDate = currentDay.setDate(currentDay.getDate() - 10);
     } else if (dayIndex === 4) {
-      endDay = currentDay.setDate(currentDay.getDate() + 3);
+      startDate = currentDay.setDate(currentDay.getDate() - 3);
+      endDate = currentDay.setDate(currentDay.getDate() - 9);
     } else if (dayIndex === 5) {
-      endDay = currentDay.setDate(currentDay.getDate() + 2);
+      startDate = currentDay.setDate(currentDay.getDate() - 2);
+      endDate = currentDay.setDate(currentDay.getDate() - 8);
     } else if (dayIndex === 6) {
-      startDay = currentDay.setDate(currentDay.getDate() + 1);
-      endDay = currentDay.setDate(currentDay.getDate() + 7);
+      startDate = currentDay.setDate(currentDay.getDate() - 1);
+      endDate = currentDay.setDate(currentDay.getDate() - 7);
     };
 
-    startDay = new Date(startDay);
-    endDay = new Date(endDay);
+    startDate = new Date(startDate);
+    endDate = new Date(endDate);
 
-    startDay = FormatDate(startDay)
-    endDay = FormatDate(endDay)
+    startDate = FormatDate(startDate)
+    endDate = FormatDate(endDate)
 
-    alert(startDay);
-    alert(endDay);
+    alert(startDate);
+    alert(endDate);
+
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        startDate,
+        endDate
+      })
+    };
+
+    this.prevWeekQuery(req);
 
 
-
-
-    let budget = this.props.budget;
+    let totalBudget = this.props.budget;
     let week = 1;
-    let totalBudget = budget * week;
+    // let totalBudget = budget * week;
 
     // fetch(`/api/getNextWeek.php`)
     //   .then(response => response.json())
@@ -230,6 +251,53 @@ export default class Current extends React.Component {
 
     //   })
   }
+
+  prevWeekQuery(req) {
+    fetch(`/api/getNextWeek.php`, req)
+      .then(response => response.json())
+      .then(current => {
+        console.log(current);
+        this.setState({ current });
+
+        // let totalSummary = TotalSummary(queryWeekNumber, current, totalBudget);
+
+        // this.setState({
+        //   totalTestSpendings: {
+        //     total: totalSummary.spendings.totalSpendings,
+        //     food: totalSummary.spendings.totalFoodSpendings,
+        //     home: totalSummary.spendings.totalHomeSpendings,
+        //     gifts: totalSummary.spendings.totalGiftsSpendings,
+        //     travel: totalSummary.spendings.totalTravelSpendings,
+        //     entertainment: totalSummary.spendings.totalEntertainmentSpendings,
+        //     dogs: totalSummary.spendings.totalDogSpendings
+        //   },
+
+        //   totalTestCredits: {
+        //     total: totalSummary.credits.totalCredits,
+        //     food: totalSummary.credits.totalFoodCredits,
+        //     home: totalSummary.credits.totalHomeCredits,
+        //     gifts: totalSummary.credits.totalGiftsCredits,
+        //     travel: totalSummary.credits.totalTravelCredits,
+        //     entertainment: totalSummary.credits.totalEntertainmentCredits,
+        //     dogs: totalSummary.credits.totalDogCredits
+        //   },
+
+        //   totalTestFixed: {
+        //     total: totalSummary.fixed.totalFixed,
+        //     groceries: totalSummary.fixed.totalGroceries,
+        //     gas: totalSummary.fixed.totalGas,
+        //     fixedEtc: totalSummary.fixed.totalFixedEtc,
+        //   },
+
+        //   others: {
+        //     totalRemaining: totalSummary.others.totalRemaining,
+        //     budget: totalSummary.others.budget
+        //   }
+
+        // });
+
+      })
+  };
 
   findStartEndDates() {
 
@@ -471,7 +539,7 @@ export default class Current extends React.Component {
                     </i>
                   Date
                   <i
-                    onClick={() => this.retrieveNextWeek()}
+                    onClick={() => this.retrievePrevWeek()}
                     className="arrow fas fa-caret-right">
                   </i>
               </div>
