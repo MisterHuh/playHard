@@ -213,6 +213,11 @@ export default class History extends React.Component {
       })
     };
 
+    /* below queryWeekNumber update is based
+      (the difference of startDate - end date) / 7
+      to get the queryWeekNumber, which is used for totalBudget
+    */
+
     let notFormattedDateDiff = new Date(formattedStartDate) - new Date(formattedEndDate)
     let notFormattedQueryWeekNumber = notFormattedDateDiff / (-1000 * 3600 * 24);
 

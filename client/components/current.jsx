@@ -155,13 +155,13 @@ export default class Current extends React.Component {
 
     // grabs full date. example below
     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
-    let currentDay = new Date(2020, 5, 13);
+    let currentDay = new Date();
     let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
     // alert(currentDay);
     // alert(dayIndex);
 
-    let test = currentDay.getDate();
-    alert(test);
+    // let test = currentDay.getDate();
+    // alert(test);
 
     let startDate, endDate;
 
@@ -189,8 +189,8 @@ export default class Current extends React.Component {
     startDate = FormatDate(startDate)
     endDate = FormatDate(endDate)
 
-    alert(startDate); // 05/24
-    alert(endDate); // 05/17
+    // alert(startDate);
+    // alert(endDate);
 
     const req = {
       method: 'PUT',
@@ -200,6 +200,43 @@ export default class Current extends React.Component {
         endDate
       })
     };
+
+    let test2 = Math.round((new Date(startDate)).getTime() / 1000);
+    // let test3 = test2 / (1000 * 3600 * 24);
+    // alert(test2);
+
+    let timestamp = new Date(startDate);
+    let sundayChecker = timestamp.getDay();
+    let currentWeek = require("current-week-number");
+    let currentWeekNum;
+
+    if (sundayChecker === 0) {
+      let followingDay = new Date(timestamp.getTime() + 86400000);
+      currentWeekNum = currentWeek(followingDay);
+    } else {
+      currentWeekNum = currentWeek(timestamp);
+    }
+
+    alert(currentWeekNum);
+    // let notFormattedDateDiff = new Date(startDate) - new Date(endDate)
+    // let notFormattedQueryWeekNumber = notFormattedDateDiff / (-1000 * 3600 * 24);
+
+    // let modulusTest = notFormattedQueryWeekNumber % 7
+    // let divisionTest = notFormattedQueryWeekNumber / 7
+    // let queryWeekNumber;
+
+    // if (!modulusTest) {
+    //   queryWeekNumber = divisionTest;
+    // } else {
+    //   queryWeekNumber = Math.ceil(divisionTest);
+    // };
+
+    // alert(queryWeekNumber);
+
+
+
+
+    // alert(this.state.week.currentWeekNumber);
 
     this.prevWeekQuery(req);
 

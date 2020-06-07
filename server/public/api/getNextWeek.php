@@ -25,27 +25,6 @@ $query = "SELECT * FROM `2020`
 
           echo $query;
 
-
-// $query = "SELECT * FROM `2020`
-
-//             -- WHERE YEARWEEK(`date`, 1) = YEARWEEK( CURDATE() - INTERVAL 1 WEEK, 1)
-//             -- WHERE date < CURDATE() + INTERVAL 7 DAY
-//             -- WHERE date < DATE_ADD(CURDATE(), INTERVAL 7 DAY)
-//             -- WHERE YEARWEEK(date)=YEARWEEK(NOW())
-
-//             WHERE date >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
-//             AND date < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
-
-//             ORDER BY date DESC";
-
-            // WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 WEEK))
-
-//             "NOW()" back 1 week
-// "DATE_SUB(NOW(), '1 week')
-
-
-// $query = "SELECT * FROM `2020` WHERE YEARWEEK(date) = YEARWEEK( DATESUB( NOW(), INTERVAL 1 week)) ORDER BY date ASC";
-
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
