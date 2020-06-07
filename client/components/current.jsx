@@ -68,7 +68,7 @@ export default class Current extends React.Component {
     this.deleteEntry = this.deleteEntry.bind(this);
 
     this.findStartEndDates = this.findStartEndDates.bind(this);
-    this.formatDate = this.formatDate.bind(this);
+    this.formatDateString = this.formatDateString.bind(this);
 
     this.retrievePrevWeek = this.retrievePrevWeek.bind(this);
     this.prevWeekQuery = this.prevWeekQuery.bind(this);
@@ -79,7 +79,7 @@ export default class Current extends React.Component {
     // let endPoint = "getCurrent";
     let curTimestamp = new Date();
     let unixTimestamp = curTimestamp.getTime();
-    let todayDate = this.formatDate(unixTimestamp);
+    let todayDate = this.formatDateString(unixTimestamp);
     this.setState({ todayDate });
 
     // let week = currentWeekNumber;
@@ -140,21 +140,15 @@ export default class Current extends React.Component {
 
     //                 0          1          2         3             4          5         6
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let currentDay;
+    let currentDay, startDate;
 
     // grabs full date. example below
     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
-    if (this.state.prevWeekStartdate === "") {
-      currentDay = new Date();
-    } else {
-      currentDay = new Date(this.state.prevWeekStartdate);
-    }
+    (!this.state.prevWeekStartdate)
+      ? currentDay = new Date()
+      : currentDay = new Date(this.state.prevWeekStartdate);
 
     let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
-    // alert(currentDay);
-    // alert(dayIndex);
-
-    let startDate;
 
     if (!dayIndex) {
       startDate = currentDay.setDate(currentDay.getDate() - 7);
@@ -174,11 +168,8 @@ export default class Current extends React.Component {
 
     let endDate = currentDay.setDate(currentDay.getDate() + 6);
 
-    startDate = new Date(startDate);
-    endDate = new Date(endDate);
-
-    startDate = FormatDate(startDate)
-    endDate = FormatDate(endDate)
+    startDate = FormatDate(new Date(startDate))
+    endDate = FormatDate(new Date(endDate))
 
     alert(startDate);
     alert(endDate);
@@ -195,54 +186,11 @@ export default class Current extends React.Component {
     let queryWeekNumber = GetQueryWeekNum(startDate);
     alert(queryWeekNumber);
 
-    /*
-      upon load for the first time, render:
-        Current Week
-        Start Date
-        End Date
-
-      after search, render:
-        Current Week as queryWeekNumber
-        Start Date as startDate
-        End Date as End Date
-
-        but now?
-
-        this.state.dates {
-          todayDate: "",
-          startDate: "",
-          endDate: "",
-          prevWeekStartdate: ""
-        }
-
-        when retrievePrevWeek() is fired,
-        setState({
-          todaydate: will be todayDate
-          startDate: startDate
-          endDate: endDate,
-          prevWeekStartDate: startDate
-        })
-
-        add conditional:
-        if (prevWeekStartDate === "") {
-          let currentDay = new Date();
-        } else {
-          let currentDay = new Date(this.state.prevWeekStartDate);
-        }
-
-        would this work?
-    */
-
     let curTimestamp = new Date();
     let unixTimestamp = curTimestamp.getTime();
-    let todayDate = this.formatDate(unixTimestamp);
+    let todayDate = this.formatDateString(unixTimestamp);
 
     this.setState({
-      // retrievePrevWeek: {
-      //   startDate,
-      //   endDate
-      // },
-
       todayDate,
       startDate,
       endDate,
@@ -255,8 +203,6 @@ export default class Current extends React.Component {
     });
 
     this.prevWeekQuery(req, queryWeekNumber);
-    // this.prevWeekQuery(req);
-
   }
 
   prevWeekQuery(req, queryWeekNumber) {
@@ -266,7 +212,6 @@ export default class Current extends React.Component {
     fetch(`/api/getNextWeek.php`, req)
       .then(response => response.json())
       .then(current => {
-        console.log(current);
         this.setState({ current });
 
         let totalSummary = TotalSummary(queryWeekNumber, current, totalBudget);
@@ -349,14 +294,14 @@ export default class Current extends React.Component {
     rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
     rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
 
-    let startDate = this.formatDate(rawStartDate);
-    let endDate = this.formatDate(rawEndDate);
+    let startDate = this.formatDateString(rawStartDate);
+    let endDate = this.formatDateString(rawEndDate);
 
     this.setState({ startDate, endDate })
 
   }
 
-  formatDate(date) {
+  formatDateString(date) {
 
     /* grabbing the unix time stamp differenciates the start / today / end date */
     let timestamp = new Date(date);
