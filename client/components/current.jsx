@@ -270,7 +270,7 @@ export default class Current extends React.Component {
 
     let totalBudget = this.props.budget;
 
-    fetch(`/api/getNextWeek.php`, req)
+    fetch(`/api/weekToggleQuery.php`, req)
       .then(response => response.json())
       .then(current => {
         this.setState({ current });

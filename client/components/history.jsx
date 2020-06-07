@@ -81,7 +81,7 @@ export default class History extends React.Component {
 
       categoryFilter: "All",
       ccFilter: "All",
-      startDate: new Date(2019, 5, 10),
+      startDate: new Date(2019, 11, 29),
       endDate: new Date(),
       query: "SELECT * FROM `2020` ORDER BY date DESC",
       order: "DESC",
