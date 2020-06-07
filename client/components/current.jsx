@@ -155,32 +155,33 @@ export default class Current extends React.Component {
 
     // grabs full date. example below
     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
-    let currentDay = new Date();
+    let currentDay = new Date(2020, 5, 13);
     let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
+    // alert(currentDay);
+    // alert(dayIndex);
+
+    let test = currentDay.getDate();
+    alert(test);
+
     let startDate, endDate;
 
-    if (!currentDay) {
+    if (!dayIndex) {
       startDate = currentDay.setDate(currentDay.getDate() - 7);
-      endDate = currentDay.setDate(currentDay.getDate() - 13);
     } else if (dayIndex === 1) {
-      startDate = currentDay.setDate(currentDay.getDate() - 6);
-      endDate = currentDay.setDate(currentDay.getDate() - 12);
+      startDate = currentDay.setDate(currentDay.getDate() - 8);
     } else if (dayIndex === 2) {
-      startDate = currentDay.setDate(currentDay.getDate() - 5);
-      endDate = currentDay.setDate(currentDay.getDate() - 11);
+      startDate = currentDay.setDate(currentDay.getDate() - 9);
     } else if (dayIndex === 3) {
-      startDate = currentDay.setDate(currentDay.getDate() - 4);
-      endDate = currentDay.setDate(currentDay.getDate() - 10);
+      startDate = currentDay.setDate(currentDay.getDate() - 10);
     } else if (dayIndex === 4) {
-      startDate = currentDay.setDate(currentDay.getDate() - 3);
-      endDate = currentDay.setDate(currentDay.getDate() - 9);
+      startDate = currentDay.setDate(currentDay.getDate() - 11);
     } else if (dayIndex === 5) {
-      startDate = currentDay.setDate(currentDay.getDate() - 2);
-      endDate = currentDay.setDate(currentDay.getDate() - 8);
+      startDate = currentDay.setDate(currentDay.getDate() - 12);
     } else if (dayIndex === 6) {
-      startDate = currentDay.setDate(currentDay.getDate() - 1);
-      endDate = currentDay.setDate(currentDay.getDate() - 7);
+      startDate = currentDay.setDate(currentDay.getDate() - 13);
     };
+
+    endDate = currentDay.setDate(currentDay.getDate() + 6);
 
     startDate = new Date(startDate);
     endDate = new Date(endDate);
@@ -188,8 +189,8 @@ export default class Current extends React.Component {
     startDate = FormatDate(startDate)
     endDate = FormatDate(endDate)
 
-    alert(startDate);
-    alert(endDate);
+    alert(startDate); // 05/24
+    alert(endDate); // 05/17
 
     const req = {
       method: 'PUT',
