@@ -49,16 +49,11 @@ export default class Current extends React.Component {
         budget: 0
       },
 
-      // retrievePrevWeek: {
-      //   prevWeekDate: "",
-      //   startDate: "",
-      //   endDate: ""
-      // },
-
       todayDate: "",
       startDate: "",
       endDate: "",
-      prevWeekStartdate: ""
+      prevWeekStartdate: "",
+      endpointToggle: true
 
     }
 
@@ -70,8 +65,9 @@ export default class Current extends React.Component {
     this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDateString = this.formatDateString.bind(this);
 
+    this.retrieveNextWeek = this.retrieveNextWeek.bind(this);
     this.retrievePrevWeek = this.retrievePrevWeek.bind(this);
-    this.prevWeekQuery = this.prevWeekQuery.bind(this);
+    this.weekToggleQuery = this.weekToggleQuery.bind(this);
   };
 
   retrieveCurrentData(currentWeekNumber) {
@@ -142,13 +138,12 @@ export default class Current extends React.Component {
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     let currentDay, startDate;
 
-    // grabs full date. example below
-    // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
     (!this.state.prevWeekStartdate)
-      ? currentDay = new Date()
+      ? currentDay = new Date()     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
       : currentDay = new Date(this.state.prevWeekStartdate);
 
-    let dayIndex = currentDay.getDay(); // grabs the ween index. refer to daysList
+    let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
+    alert(dayIndex);
 
     if (!dayIndex) {
       startDate = currentDay.setDate(currentDay.getDate() - 7);
@@ -184,7 +179,6 @@ export default class Current extends React.Component {
     };
 
     let queryWeekNumber = GetQueryWeekNum(startDate);
-    alert(queryWeekNumber);
 
     let curTimestamp = new Date();
     let unixTimestamp = curTimestamp.getTime();
@@ -202,10 +196,77 @@ export default class Current extends React.Component {
       }
     });
 
-    this.prevWeekQuery(req, queryWeekNumber);
+    this.weekToggleQuery(req, queryWeekNumber);
   }
 
-  prevWeekQuery(req, queryWeekNumber) {
+  retrieveNextWeek() {
+
+    //                 0          1          2         3             4          5         6
+    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let currentDay, startDate;
+
+    (!this.state.prevWeekStartdate)
+      ? currentDay = new Date()     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
+      : currentDay = new Date(this.state.prevWeekStartdate);
+
+    let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
+    alert(dayIndex);
+
+    if (!dayIndex) {
+      startDate = currentDay.setDate(currentDay.getDate() + 7);
+    } else if (dayIndex === 1) {
+      startDate = currentDay.setDate(currentDay.getDate() + 8);
+    } else if (dayIndex === 2) {
+      startDate = currentDay.setDate(currentDay.getDate() + 9);
+    } else if (dayIndex === 3) {
+      startDate = currentDay.setDate(currentDay.getDate() + 10);
+    } else if (dayIndex === 4) {
+      startDate = currentDay.setDate(currentDay.getDate() + 11);
+    } else if (dayIndex === 5) {
+      startDate = currentDay.setDate(currentDay.getDate() + 12);
+    } else if (dayIndex === 6) {
+      startDate = currentDay.setDate(currentDay.getDate() + 13);
+    };
+
+    let endDate = currentDay.setDate(currentDay.getDate() + 6);
+
+    startDate = FormatDate(new Date(startDate))
+    endDate = FormatDate(new Date(endDate))
+
+    alert(startDate);
+    alert(endDate);
+
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        startDate,
+        endDate
+      })
+    };
+
+    let queryWeekNumber = GetQueryWeekNum(startDate);
+
+    let curTimestamp = new Date();
+    let unixTimestamp = curTimestamp.getTime();
+    let todayDate = this.formatDateString(unixTimestamp);
+
+    this.setState({
+      todayDate,
+      startDate,
+      endDate,
+      prevWeekStartdate: startDate,
+
+      week: {
+        currentWeekNumber: 0,
+        queryWeekNumber
+      }
+    });
+
+    this.weekToggleQuery(req, queryWeekNumber);
+  }
+
+  weekToggleQuery(req, queryWeekNumber) {
 
     let totalBudget = this.props.budget;
 
@@ -491,7 +552,7 @@ export default class Current extends React.Component {
           <div className="currentData1">
             <div className="currentDataHeader">
                 <i
-                    onClick={() => this.retrieveCurrentData()}
+                    onClick={() => this.retrieveNextWeek()}
                     className="arrow fas fa-caret-left">
 
                     </i>
