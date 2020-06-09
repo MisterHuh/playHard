@@ -143,7 +143,7 @@ export default class Current extends React.Component {
       : currentDay = new Date(this.state.prevWeekStartdate);
 
     let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
-    alert(dayIndex);
+    // alert(dayIndex);
 
     if (!dayIndex) {
       startDate = currentDay.setDate(currentDay.getDate() - 7);
@@ -166,8 +166,8 @@ export default class Current extends React.Component {
     startDate = FormatDate(new Date(startDate))
     endDate = FormatDate(new Date(endDate))
 
-    alert(startDate);
-    alert(endDate);
+    // alert(startDate);
+    // alert(endDate);
 
     const req = {
       method: 'PUT',
@@ -210,7 +210,7 @@ export default class Current extends React.Component {
       : currentDay = new Date(this.state.prevWeekStartdate);
 
     let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
-    alert(dayIndex);
+    // alert(dayIndex);
 
     if (!dayIndex) {
       startDate = currentDay.setDate(currentDay.getDate() + 7);
@@ -230,11 +230,14 @@ export default class Current extends React.Component {
 
     let endDate = currentDay.setDate(currentDay.getDate() + 6);
 
+    console.log(new Date(startDate));
+    console.log(new Date(endDate));
+
     startDate = FormatDate(new Date(startDate))
     endDate = FormatDate(new Date(endDate))
 
-    alert(startDate);
-    alert(endDate);
+    // alert(startDate);
+    // alert(endDate);
 
     const req = {
       method: 'PUT',
@@ -358,6 +361,11 @@ export default class Current extends React.Component {
     let startDate = this.formatDateString(rawStartDate);
     let endDate = this.formatDateString(rawEndDate);
 
+    console.log(rawStartDate);
+    console.log(rawEndDate);
+    console.log(startDate);
+    console.log(endDate);
+
     this.setState({ startDate, endDate })
 
   }
@@ -450,7 +458,7 @@ export default class Current extends React.Component {
     const others = this.state.others;
 
     const week = this.state.week;
-    const { currentWeekNumber, queryWeekNumber } = week;
+    // const { currentWeekNumber, queryWeekNumber } = week;
 
       return (
 
@@ -471,17 +479,17 @@ export default class Current extends React.Component {
 
                 <tr className="">
                   <th>Start Date</th>
-                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}/20</td>
+                  <td>{this.state.startDate ? this.state.startDate : '\xa0'}</td>
                 </tr>
 
                 <tr className="">
                   <th>End Date</th>
-                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}/20</td>
+                  <td>{this.state.endDate ? this.state.endDate : '\xa0'}</td>
                 </tr>
 
                 <tr className="">
                   <th>Today's Date</th>
-                  <td>{this.state.todayDate ? this.state.todayDate : '\xa0'}/20</td>
+                  <td>{this.state.todayDate ? this.state.todayDate : '\xa0'}</td>
                 </tr>
 
                 <tr className="meter">
