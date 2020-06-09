@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate, FormatDate1 } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -397,7 +397,11 @@ export default class Current extends React.Component {
     console.log("new Date(startDate) is: ", new Date(startDate));
     // console.log(new Date(endDate));
 
-    let test = FormatDate(new Date(startDate))
+    let ah = new Date(startDate)
+
+    let testOne = FormatDate1(ah);
+
+    let test = FormatDate(new Date(startDate));
     console.log("test is: ", test);
     // endDate = FormatDate(new Date(endDate))
 
