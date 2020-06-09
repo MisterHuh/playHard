@@ -366,6 +366,41 @@ export default class Current extends React.Component {
     console.log(startDate);
     console.log(endDate);
 
+    //                 0          1          2         3             4          5         6
+    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let currentDay, startDate;
+
+    (!this.state.prevWeekStartdate)
+      ? currentDay = new Date()     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
+      : currentDay = new Date(this.state.prevWeekStartdate);
+
+    let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
+    // alert(dayIndex);
+
+    if (!dayIndex) {
+      startDate = currentDay.setDate(currentDay.getDate() + 7);
+    } else if (dayIndex === 1) {
+      startDate = currentDay.setDate(currentDay.getDate() + 8);
+    } else if (dayIndex === 2) {
+      startDate = currentDay.setDate(currentDay.getDate() + 9);
+    } else if (dayIndex === 3) {
+      startDate = currentDay.setDate(currentDay.getDate() + 10);
+    } else if (dayIndex === 4) {
+      startDate = currentDay.setDate(currentDay.getDate() + 11);
+    } else if (dayIndex === 5) {
+      startDate = currentDay.setDate(currentDay.getDate() + 12);
+    } else if (dayIndex === 6) {
+      startDate = currentDay.setDate(currentDay.getDate() + 13);
+    };
+
+    let endDate = currentDay.setDate(currentDay.getDate() + 6);
+
+    console.log(new Date(startDate));
+    console.log(new Date(endDate));
+
+    startDate = FormatDate(new Date(startDate))
+    endDate = FormatDate(new Date(endDate))
+
     this.setState({ startDate, endDate })
 
   }
