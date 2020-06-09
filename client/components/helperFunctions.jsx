@@ -250,7 +250,10 @@ export const TotalSummary = (week, current, budget) => {
 }
 
 
+// re-name to FormatDateForQuery
 export const FormatDate = (notFormattedDate) => {
   let formattedDate = notFormattedDate.getFullYear() + "-" + (notFormattedDate.getMonth() + 1) + "-" + notFormattedDate.getDate();
   return formattedDate;
 };
+
+// export const FormatDate

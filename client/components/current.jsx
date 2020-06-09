@@ -322,65 +322,65 @@ export default class Current extends React.Component {
 
     let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-    let rawStartDate, rawEndDate;
-    let start = new Date();
-    let end = new Date();
+    // let rawStartDate, rawEndDate;
+    // let start = new Date();
+    // let end = new Date();
 
-    let startIndex = 0; // to find the start date
-    let endIndex = 0; // to find the end date
+    // let startIndex = 0; // to find the start date
+    // let endIndex = 0; // to find the end date
 
-    let day = daysList[start.getDay()]; // finds the current day from daysList
+    // let day = daysList[start.getDay()]; // finds the current day from daysList
 
-    /* determines how many days to add / subtract */
-    if (day === "Sunday") {
-      startIndex = 0;
-      endIndex = 6;
-    } else if (day === "Monday") {
-      startIndex = -1;
-      endIndex = 5;
-    } else if (day === "Tuesday") {
-      startIndex = -2;
-      endIndex = 4;
-    } else if (day === "Wednesday") {
-      startIndex = -3;
-      endIndex = 3;
-    } else if (day === "Thursday") {
-      startIndex = -4;
-      endIndex = 2;
-    } else if (day === "Friday") {
-      startIndex = -5;
-      endIndex = 1;
-    } else if (day === "Saturday") {
-      startIndex = -6;
-      endIndex = 0;
-    }
+    // /* determines how many days to add / subtract */
+    // if (day === "Sunday") {
+    //   startIndex = 0;
+    //   endIndex = 6;
+    // } else if (day === "Monday") {
+    //   startIndex = -1;
+    //   endIndex = 5;
+    // } else if (day === "Tuesday") {
+    //   startIndex = -2;
+    //   endIndex = 4;
+    // } else if (day === "Wednesday") {
+    //   startIndex = -3;
+    //   endIndex = 3;
+    // } else if (day === "Thursday") {
+    //   startIndex = -4;
+    //   endIndex = 2;
+    // } else if (day === "Friday") {
+    //   startIndex = -5;
+    //   endIndex = 1;
+    // } else if (day === "Saturday") {
+    //   startIndex = -6;
+    //   endIndex = 0;
+    // }
 
-    rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
-    rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
+    // rawStartDate = start.setTime(start.getTime() + (startIndex * 24 * 60 * 60 * 1000));
+    // rawEndDate = end.setTime(end.getTime() + (endIndex * 24 * 60 * 60 * 1000));
 
-    let startDate = this.formatDateString(rawStartDate);
-    let endDate = this.formatDateString(rawEndDate);
+    // let startDate = this.formatDateString(rawStartDate);
+    // let endDate = this.formatDateString(rawEndDate);
 
-    console.log(rawStartDate);
-    console.log(rawEndDate);
-    console.log(startDate);
-    console.log(endDate);
+    // console.log(rawStartDate);
+    // console.log(rawEndDate);
+    // console.log(startDate);
+    // console.log(endDate);
+
+
 
     //                 0          1          2         3             4          5         6
-    let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let currentDay, startDate;
-
-    (!this.state.prevWeekStartdate)
-      ? currentDay = new Date()     // Sat Jun 06 2020 19:57:03 GMT-0700 (Pacific Daylight Time)
-      : currentDay = new Date(this.state.prevWeekStartdate);
-
+    // let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    let currentDay = new Date();
     let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
     // alert(dayIndex);
 
+    let startDate;
+
+
     if (!dayIndex) {
-      startDate = currentDay.setDate(currentDay.getDate() + 7);
+      startDate = currentDay.setDate(currentDay.getDate());
     } else if (dayIndex === 1) {
-      startDate = currentDay.setDate(currentDay.getDate() + 8);
+      startDate = currentDay.setDate(currentDay.getDate() - 1);
     } else if (dayIndex === 2) {
       startDate = currentDay.setDate(currentDay.getDate() + 9);
     } else if (dayIndex === 3) {
@@ -393,15 +393,15 @@ export default class Current extends React.Component {
       startDate = currentDay.setDate(currentDay.getDate() + 13);
     };
 
-    let endDate = currentDay.setDate(currentDay.getDate() + 6);
+    console.log("startDate is: ", startDate);
+    console.log("new Date(startDate) is: ", new Date(startDate));
+    // console.log(new Date(endDate));
 
-    console.log(new Date(startDate));
-    console.log(new Date(endDate));
+    let test = FormatDate(new Date(startDate))
+    console.log("test is: ", test);
+    // endDate = FormatDate(new Date(endDate))
 
-    startDate = FormatDate(new Date(startDate))
-    endDate = FormatDate(new Date(endDate))
-
-    this.setState({ startDate, endDate })
+    // this.setState({ startDate, endDate })
 
   }
 
