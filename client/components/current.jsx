@@ -74,8 +74,12 @@ export default class Current extends React.Component {
 
     // let endPoint = "getCurrent";
     let curTimestamp = new Date();
+
+    let justin = curTimestamp.setDate(curTimestamp.getDate() + 6);
+    // alert(justin);
     let unixTimestamp = curTimestamp.getTime();
     let todayDate = this.formatDateString(unixTimestamp);
+    alert(todayDate);
     this.setState({ todayDate });
 
     // let week = currentWeekNumber;
@@ -127,7 +131,7 @@ export default class Current extends React.Component {
 
         });
 
-        this.findStartEndDates();
+        // this.findStartEndDates();
       })
 
   }
@@ -370,42 +374,50 @@ export default class Current extends React.Component {
 
     //                 0          1          2         3             4          5         6
     // let daysList = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    let currentDay = new Date();
-    let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
+    // let currentDay = new Date();
+    // let dayIndex = currentDay.getDay(); // grabs the week index. refer to $daysList
     // alert(dayIndex);
 
-    let startDate;
+    let curTimestamp = new Date();
+    let startDate = FormatDate1(curTimestamp);
+    let endDate = FormatDate1(curTimestamp);
+    // let unixTimestamp = curTimestamp.getTime();
+    // let todayDate = this.formatDateString(unixTimestamp);
+
+    alert(startDate);
+    alert(endDate);
+    // let startDate;
 
 
-    if (!dayIndex) {
-      startDate = currentDay.setDate(currentDay.getDate());
-    } else if (dayIndex === 1) {
-      startDate = currentDay.setDate(currentDay.getDate() - 1);
-    } else if (dayIndex === 2) {
-      startDate = currentDay.setDate(currentDay.getDate() + 9);
-    } else if (dayIndex === 3) {
-      startDate = currentDay.setDate(currentDay.getDate() + 10);
-    } else if (dayIndex === 4) {
-      startDate = currentDay.setDate(currentDay.getDate() + 11);
-    } else if (dayIndex === 5) {
-      startDate = currentDay.setDate(currentDay.getDate() + 12);
-    } else if (dayIndex === 6) {
-      startDate = currentDay.setDate(currentDay.getDate() + 13);
-    };
+    // if (!dayIndex) {
+    //   startDate = currentDay.setDate(currentDay.getDate());
+    // } else if (dayIndex === 1) {
+    //   startDate = currentDay.setDate(currentDay.getDate() - 1);
+    // } else if (dayIndex === 2) {
+    //   startDate = currentDay.setDate(currentDay.getDate() + 9);
+    // } else if (dayIndex === 3) {
+    //   startDate = currentDay.setDate(currentDay.getDate() + 10);
+    // } else if (dayIndex === 4) {
+    //   startDate = currentDay.setDate(currentDay.getDate() + 11);
+    // } else if (dayIndex === 5) {
+    //   startDate = currentDay.setDate(currentDay.getDate() + 12);
+    // } else if (dayIndex === 6) {
+    //   startDate = currentDay.setDate(currentDay.getDate() + 13);
+    // };
 
-    console.log("startDate is: ", startDate);
-    console.log("new Date(startDate) is: ", new Date(startDate));
+    // console.log("startDate is: ", startDate);
+    // console.log("new Date(startDate) is: ", new Date(startDate));
     // console.log(new Date(endDate));
 
-    let ah = new Date(startDate)
+    // let ah =
 
-    let testOne = FormatDate1(ah);
+    // let testOne = FormatDate1(new Date(startDate));
 
-    let test = FormatDate(new Date(startDate));
-    console.log("test is: ", test);
+    // let test = FormatDate(new Date(startDate));
+    // console.log("test is: ", test);
     // endDate = FormatDate(new Date(endDate))
 
-    // this.setState({ startDate, endDate })
+    this.setState({ startDate, endDate })
 
   }
 

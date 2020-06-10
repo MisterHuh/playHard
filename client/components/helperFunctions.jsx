@@ -256,4 +256,34 @@ export const FormatDate = (notFormattedDate) => {
   return formattedDate;
 };
 
-// export const FormatDate
+export const FormatDate1 = (notFormattedDate) => {
+  let year = notFormattedDate.getFullYear();
+  let month = (notFormattedDate.getMonth() + 1);
+  let date = notFormattedDate.getDate();
+
+  // alert("formatDate1 fired");
+  // alert(month);
+  // alert(date);
+
+  // alert(notFormattedDate.setDate(date.getDate() + 1));
+
+  if (month < 10) {
+    month = "0" + month;
+    date = "0" + date;
+  };
+
+  let formattedDate = month + " / " + date;
+  alert(formattedDate);
+  // let formattedDate =  + "-" + (notFormattedDate.getMonth() + 1) + "-" + notFormattedDate.getDate();
+  return formattedDate;
+
+
+  // let curTimestamp = new Date();
+  // let unixTimestamp = notFormattedDate.getTime();
+  // alert(unixTimestamp);
+
+  // let todayDate = this.formatDateString(unixTimestamp);
+
+  // return todayDate;
+
+}
