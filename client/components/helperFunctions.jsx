@@ -6,6 +6,8 @@ export const CurrencyFormatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2
 })
 
+export const Deleteentry = props => {};
+
 export const RenderData = props => {
   let entry = props.entry;
   let id = entry["id"];
@@ -21,7 +23,7 @@ export const RenderData = props => {
           </div>
 
           <div className="iconContainer ">
-            <i className="icon fas fa-edit"></i>
+            <i onClick={() => props.editEntry(id)} className="icon fas fa-edit"></i>
           </div>
 
           <div>

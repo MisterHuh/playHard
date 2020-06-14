@@ -53,7 +53,9 @@ export default class Current extends React.Component {
       startDate: "",
       endDate: "",
       prevWeekStartdate: "",
-      endpointToggle: true
+      endpointToggle: true,
+
+      editModal: false
 
     }
 
@@ -61,6 +63,7 @@ export default class Current extends React.Component {
     this.setWeek = this.setWeek.bind(this);
 
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.editEntry = this.editEntry.bind(this);
 
     this.findStartEndDates = this.findStartEndDates.bind(this);
     this.formatDateString = this.formatDateString.bind(this);
@@ -440,6 +443,15 @@ export default class Current extends React.Component {
 
   }
 
+  editEntry(id) {
+    alert(this.state.editModal);
+    console.log("id for seleted is: ", id);
+    let editModal = this.state.editModal;
+    this.setState({
+      editModal: !editModal
+    });
+  }
+
   deleteEntry(id) {
     console.log("current deleteEntry fired");
     let entryId = id;
@@ -475,7 +487,7 @@ export default class Current extends React.Component {
     let currentWeekNumber = GetCurrentWeekNum();
     this.setWeek(currentWeekNumber);
     this.retrieveCurrentData(defaultWeekNumber);
-    console.log("current week num is: ", currentWeekNumber);
+    // console.log("current week num is: ", currentWeekNumber);
   }
 
   render() {
@@ -499,9 +511,9 @@ export default class Current extends React.Component {
 
     ]
 
-    const textCenter = {
-      textAlignLast: "center"
-    };
+    // const textCenter = {
+    //   textAlignLast: "center"
+    // };
 
     const totalSpendings = this.state.totalTestSpendings;
     const totalCredits = this.state.totalTestCredits;
@@ -509,7 +521,11 @@ export default class Current extends React.Component {
     const others = this.state.others;
 
     const week = this.state.week;
-    // const { currentWeekNumber, queryWeekNumber } = week;
+
+    let test;
+    (this.state.editModal)
+      ? test = "test"
+      : test = "";
 
       return (
 
@@ -635,7 +651,8 @@ export default class Current extends React.Component {
                     current={this.state.current}
                     entry={entry}
                     key={entry["id"]}
-                    deleteEntry={this.deleteEntry}/>
+                    deleteEntry={this.deleteEntry}
+                    editEntry={this.editEntry}/>
                   )
               })}
           </React.Fragment>
