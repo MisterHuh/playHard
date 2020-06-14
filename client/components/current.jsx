@@ -79,7 +79,7 @@ export default class Current extends React.Component {
     // alert(justin);
     let unixTimestamp = curTimestamp.getTime();
     let todayDate = this.formatDateString(unixTimestamp);
-    alert(todayDate);
+    // alert(todayDate);
     this.setState({ todayDate });
 
     // let week = currentWeekNumber;

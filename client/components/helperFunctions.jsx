@@ -212,7 +212,7 @@ export const TotalSummary = (week, current, budget) => {
     creditsDogPercent = ((totalDogCredits / totalCredits) * 100).toFixed();
 
     totalFixed = totalFixed.toFixed(2);
-    totalRemaining = budget - totalCredits - totalSpendings - totalFixed ;
+    totalRemaining = budget - totalCredits - totalSpendings ;
 
     let totalSummary = {
       spendings: {
