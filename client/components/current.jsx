@@ -444,12 +444,24 @@ export default class Current extends React.Component {
   }
 
   editEntry(id) {
-    alert(this.state.editModal);
+    // alert(this.state.editModal);
+    console.log("this.state.current: ", this.state.current);
     console.log("id for seleted is: ", id);
+    // console.log("this.state.current[id][amount]", this.state.current[ + id + ']["amount"]');
+
+    fetch(`/api/getCurrent.php`)
+      .then(response => response.json())
+      .then(current => {
+        this.setState({ current });
+        this.setState({  });
+      })
+
     let editModal = this.state.editModal;
     this.setState({
       editModal: !editModal
     });
+
+
   }
 
   deleteEntry(id) {
