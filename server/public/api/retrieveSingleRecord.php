@@ -13,10 +13,27 @@ if ($bodyData["id"]) {
   throw new Exception("id required");
 };
 
-$query = "DELETE FROM `2020` WHERE id = " . $id;
+$query = "SELECT * FROM `2020` WHERE id = " . $id;
 
 $result = mysqli_query($conn, $query);
 
 if (!$result) {
   throw new Exception('error with query: ' . mysqli_error($conn));
 };
+
+
+$singleRecord = mysqli_fetch_assoc($result);
+echo "here";
+print(json_encode($singleRecord));
+
+// $currentData = [];
+// while ($row = mysqli_fetch_assoc($result)) {
+//   $currentData[] = $row;
+// };
+
+// if ($currentData === []) {
+//   print("[]");
+//   exit();
+// } else {
+//   print(json_encode($currentData));
+// };

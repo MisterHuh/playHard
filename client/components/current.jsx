@@ -93,6 +93,7 @@ export default class Current extends React.Component {
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
+        console.log("current.jsx current is: ", current);
         this.setState({ current });
 
         // this.currentSummary();
@@ -445,15 +446,20 @@ export default class Current extends React.Component {
 
   editEntry(id) {
     // alert(this.state.editModal);
-    console.log("this.state.current: ", this.state.current);
-    console.log("id for seleted is: ", id);
+    // console.log("this.state.current: ", this.state.current);
+    // console.log("id for seleted is: ", id);
     // console.log("this.state.current[id][amount]", this.state.current[ + id + ']["amount"]');
 
-    fetch(`/api/getCurrent.php`)
+    const req = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({id})
+    };
+
+    fetch(`/api/retrieveSingleRecord.php`, req)
       .then(response => response.json())
-      .then(current => {
-        this.setState({ current });
-        this.setState({  });
+      .then(singleRecord => {
+        console.log(singleRecord);
       })
 
     let editModal = this.state.editModal;
