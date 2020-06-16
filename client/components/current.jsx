@@ -63,6 +63,7 @@ export default class Current extends React.Component {
     this.setWeek = this.setWeek.bind(this);
 
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.selectEntry = this.selectEntry.bind(this);
     this.editEntry = this.editEntry.bind(this);
 
     this.findStartEndDates = this.findStartEndDates.bind(this);
@@ -444,7 +445,7 @@ export default class Current extends React.Component {
 
   }
 
-  editEntry(id) {
+  selectEntry(id) {
     // alert(this.state.editModal);
     // console.log("this.state.current: ", this.state.current);
     // console.log("id for seleted is: ", id);
@@ -452,7 +453,11 @@ export default class Current extends React.Component {
 
     const req = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true
+      },
       body: JSON.stringify({id})
     };
 
@@ -460,14 +465,24 @@ export default class Current extends React.Component {
       .then(response => response.json())
       .then(singleRecord => {
         console.log(singleRecord);
+        this.editEntry(singleRecord);
+
       })
+
+
 
     let editModal = this.state.editModal;
     this.setState({
       editModal: !editModal
     });
 
+  }
 
+  editEntry(singleRecord) {
+    alert("editEntry fired");
+    return(
+      <div>test</div>
+    )
   }
 
   deleteEntry(id) {
@@ -670,7 +685,7 @@ export default class Current extends React.Component {
                     entry={entry}
                     key={entry["id"]}
                     deleteEntry={this.deleteEntry}
-                    editEntry={this.editEntry}/>
+                    selectEntry={this.selectEntry}/>
                   )
               })}
           </React.Fragment>

@@ -23,7 +23,7 @@ export const RenderData = props => {
           </div>
 
           <div className="iconContainer ">
-            <i onClick={() => props.editEntry(id)} className="icon fas fa-edit"></i>
+            <i onClick={() => props.selectEntry(id)} className="icon fas fa-edit"></i>
           </div>
 
           <div>
@@ -45,6 +45,14 @@ export const RenderData = props => {
   }
 
 }
+
+// export const EditData = props => {
+//   let entry = props.entry;
+
+//   if (entry) {
+
+//   }
+// }
 
 export const GetCurrentWeekNum = () => {
 
@@ -250,7 +258,6 @@ export const TotalSummary = (week, current, budget) => {
     return totalSummary;
 
 }
-
 
 // re-name to FormatDateForQuery
 export const FormatDate = (notFormattedDate) => {
