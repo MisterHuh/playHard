@@ -21,19 +21,14 @@ if (!$result) {
   throw new Exception('error with query: ' . mysqli_error($conn));
 };
 
+$query = "SELECT * FROM `2020` WHERE id = ?";
+$stmt = $PDO->prepare($query);
+$stmt -> execute($id);
+$result = $statement->fetch();
 
-$singleRecord = mysqli_fetch_assoc($result);
-echo "here";
-print(json_encode($singleRecord));
+echo $result;
 
-// $currentData = [];
-// while ($row = mysqli_fetch_assoc($result)) {
-//   $currentData[] = $row;
-// };
 
-// if ($currentData === []) {
-//   print("[]");
-//   exit();
-// } else {
-//   print(json_encode($currentData));
-// };
+// $singleRecord = mysqli_fetch_assoc($result);
+// echo "here";
+// print(json_encode($singleRecord));
