@@ -446,11 +446,6 @@ export default class Current extends React.Component {
   }
 
   selectEntry(id) {
-    // alert(this.state.editModal);
-    // console.log("this.state.current: ", this.state.current);
-    // console.log("id for seleted is: ", id);
-    // console.log("this.state.current[id][amount]", this.state.current[ + id + ']["amount"]');
-
     const req = {
       method: 'PUT',
       headers: {
@@ -480,9 +475,7 @@ export default class Current extends React.Component {
 
   editEntry(singleRecord) {
     alert("editEntry fired");
-    return(
-      <div>test</div>
-    )
+
   }
 
   deleteEntry(id) {
@@ -544,10 +537,6 @@ export default class Current extends React.Component {
 
     ]
 
-    // const textCenter = {
-    //   textAlignLast: "center"
-    // };
-
     const totalSpendings = this.state.totalTestSpendings;
     const totalCredits = this.state.totalTestCredits;
     const totalFixed = this.state.totalTestFixed;
@@ -563,6 +552,19 @@ export default class Current extends React.Component {
       return (
 
         <React.Fragment>
+
+          <React.Fragment>
+            {this.state.current.map(entry => {
+              return (
+                <RenderData
+                  current={this.state.current}
+                  entry={entry}
+                  key={entry["id"]}
+                  deleteEntry={this.deleteEntry}
+                  selectEntry={this.selectEntry} />
+              )
+            })}
+          </React.Fragment>
 
         <div className="currentWrapperTop">
 
