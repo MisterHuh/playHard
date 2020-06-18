@@ -55,7 +55,7 @@ export const EditDataModal = props => {
           />
         </div>
 
-        {/* date */}
+        {/* category */}
         <div className="mx-4 addInput">
           <div className="formValidationContainer"></div>
 
@@ -68,7 +68,6 @@ export const EditDataModal = props => {
             <div id="Wedding" className="catButton" value="Wedding">Wedding</div>
           </div>
         </div>
-
 
         {/* subCategory */}
         <div className="mx-4 addInput">
@@ -95,6 +94,72 @@ export const EditDataModal = props => {
             <div id="Freedom" className="catButton" >Freedom</div>
             <div id="BB" className="catButton" >BB</div>
           </div>
+        </div>
+
+        {/* amount */}
+        <div className="mx-4 addInput test">
+
+          <div className="formValidationContainer">
+            {/* <div className="textFadeOutContainer">
+              {this.state.formErrors.amount.length > 0 && (
+                <div className="textFadeOut ">{this.state.formErrors.amount}</div>
+              )}
+            </div> */}
+          </div>
+
+          <input
+            // id={shakeIt_amount}
+            type="number"
+            // value={this.state.amount}
+            // onChange={this.inputHandleChange}
+            placeholder="$ 00.00"
+            name="amount"
+            className="amount"
+          />
+        </div>
+
+        {/* where */}
+        <div className="mx-4 addInput test">
+
+          <div className="formValidationContainer">
+            {/* <div className="textFadeOutContainer">
+              {this.state.formErrors.where.length > 0 && (
+                <div className="textFadeOut">{this.state.formErrors.where}</div>
+              )}
+            </div> */}
+          </div>
+
+          <input
+            // id={shakeIt_where}
+            // value={this.state.where}
+            // onChange={this.inputHandleChange}
+            placeholder="Where?"
+            name="where"
+            // className={"amount " + shakeIt_where}
+            className="amount"
+          />
+        </div>
+
+        {/* notes */}
+        <div className="mx-4 addInput">
+          <div className="formValidationContainer"></div>
+          <input
+            // value={this.state.notes}
+            // onChange={this.inputHandleChange}
+            placeholder="Notes"
+            name="notes"
+            className="amount "
+          />
+        </div>
+
+        {/* button */}
+        <div className="mx-4 addInput">
+          <div className="formValidationContainer"></div>
+          <div
+            // onClick={() => this.handleSubmit()}
+            className={"addButton text-center "}
+            > Edit
+              </div>
         </div>
 
       </div>
