@@ -43,35 +43,6 @@ export const RenderData = props => {
       </div>
     )
   }
-
-}
-
-export const EditDataModal = props => {
-  let entry = props.entry;
-  let modalStatus = props.editModal;
-  console.log("EditDataModal entry is: ", entry);
-  console.log("EditDataModal entry.d is: ", entry.id);
-  console.log("modalStatus is: ", modalStatus);
-
-  if (modalStatus) {
-    return(
-      <div>
-        <div>{entry.id}</div>
-        <div>{entry.date}</div>
-        <div>{entry.category}</div>
-        <div>{entry.subCategory}</div>
-        <div>{entry.cc}</div>
-        <div>{entry.amount}</div>
-        <div>{entry.where}</div>
-        <div>{entry.notes}</div>
-      </div>
-
-    )
-  } else {
-    return(
-      <div>you failed</div>
-    )
-  }
 }
 
 export const GetCurrentWeekNum = () => {

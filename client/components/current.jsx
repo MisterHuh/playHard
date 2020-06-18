@@ -1,6 +1,7 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate, FormatDate1, EditDataModal } from "./helperFunctions";
+import { EditDataModal } from "./editDataModal";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate, FormatDate1 } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -55,7 +56,7 @@ export default class Current extends React.Component {
       prevWeekStartdate: "",
       endpointToggle: true,
 
-      editModal: false,
+      editModal: true,
       editEntry: {
         id: 0,
         date: "",
@@ -558,19 +559,6 @@ export default class Current extends React.Component {
       return (
 
         <React.Fragment>
-
-          {/* <React.Fragment>
-            {this.state.current.map(entry => {
-              return (
-                <RenderData
-                  current={this.state.current}
-                  entry={entry}
-                  key={entry["id"]}
-                  deleteEntry={this.deleteEntry}
-                  selectEntry={this.selectEntry} />
-              )
-            })}
-          </React.Fragment> */}
 
           <EditDataModal
             entry={this.state.editEntry}
