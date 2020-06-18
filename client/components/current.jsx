@@ -1,6 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
-import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate, FormatDate1 } from "./helperFunctions";
+import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate, FormatDate1, EditDataModal } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -55,7 +55,18 @@ export default class Current extends React.Component {
       prevWeekStartdate: "",
       endpointToggle: true,
 
-      editModal: false
+      editModal: false,
+      editEntry: {
+        id: 0,
+        date: "",
+        category: "",
+        subCategory: "",
+        cc: "",
+        amount: "",
+        where: "",
+        notes: ""
+
+      }
 
     }
 
@@ -458,24 +469,19 @@ export default class Current extends React.Component {
 
     fetch(`/api/retrieveSingleRecord.php`, req)
       .then(response => response.json())
-      .then(singleRecord => {
-        console.log(singleRecord);
-        this.editEntry(singleRecord);
-
+      .then(editEntry => {
+        console.log(editEntry);
+        this.setState({
+          editEntry,
+          editModal: !this.state.editModal
+         });
+        console.log("this.state.editEntry is: ", this.state.editEntry);
       })
-
-
-
-    let editModal = this.state.editModal;
-    this.setState({
-      editModal: !editModal
-    });
 
   }
 
-  editEntry(singleRecord) {
-    alert("editEntry fired");
-
+  editEntry(editEntry) {
+    // alert("editEntry fired");
   }
 
   deleteEntry(id) {
@@ -553,7 +559,7 @@ export default class Current extends React.Component {
 
         <React.Fragment>
 
-          <React.Fragment>
+          {/* <React.Fragment>
             {this.state.current.map(entry => {
               return (
                 <RenderData
@@ -564,7 +570,14 @@ export default class Current extends React.Component {
                   selectEntry={this.selectEntry} />
               )
             })}
-          </React.Fragment>
+          </React.Fragment> */}
+
+          <EditDataModal
+            entry={this.state.editEntry}
+            editModal={this.state.editModal}
+          />
+
+        {/* <div {this.state}>here</div> */}
 
         <div className="currentWrapperTop">
 
