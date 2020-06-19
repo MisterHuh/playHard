@@ -59,13 +59,13 @@ export default class Current extends React.Component {
       editModal: true,
       editEntry: {
         id: 0,
-        date: "",
-        category: "",
-        subCategory: "",
-        cc: "",
-        amount: "",
-        where: "",
-        notes: ""
+        date: "2020-06-14",
+        category: "Spendings",
+        subCategory: "Food",
+        cc: "Sapphire",
+        amount: "16.15",
+        where: "Target",
+        notes: "Firestick"
 
       }
 

@@ -45,9 +45,9 @@ export const EditDataModal = props => {
     return (
       <div className="editDataModalContainer addForm centered">
         {/* date */}
-        <div className="mx-4 addFormSpacing">
+        <div className="mx-4 addFormSpacing border border-primary">
 
-          <div className="formValidationContainer"></div>
+          {/* <div className="formValidationContainer"></div> */}
           <DatePicker
             // selected={this.state.date}
             // onChange={this.dateHandleChange}
@@ -57,9 +57,8 @@ export const EditDataModal = props => {
 
         {/* category */}
         <div className="mx-4 addInput">
-          <div className="formValidationContainer"></div>
+          {/* <div className="formValidationContainer"></div> */}
 
-          {/* category */}
           <div className="catButtonContainer">
             <div id="Spendings" className="catButton" value="Spendings">Spendings</div>
             <div id="Fixed" className="catButton" value="Fixed">Fixed</div>
@@ -71,7 +70,7 @@ export const EditDataModal = props => {
 
         {/* subCategory */}
         <div className="mx-4 addInput">
-          <div className="formValidationContainer"></div>
+          {/* <div className="formValidationContainer"></div> */}
           <Dropdown
             // onChange={this.subCategoryHandleChange}
             options={dropdownOptions1}
@@ -85,7 +84,7 @@ export const EditDataModal = props => {
 
         {/* CC */}
         <div className="mx-4 addInput">
-          <div className="formValidationContainer"></div>
+          {/* <div className="formValidationContainer"></div> */}
 
           <div className="catButtonContainer">
             <div id="Sapphire" className="catButton">Sapphire</div>
@@ -99,13 +98,13 @@ export const EditDataModal = props => {
         {/* amount */}
         <div className="mx-4 addInput test">
 
-          <div className="formValidationContainer">
+          {/* <div className="formValidationContainer"> */}
             {/* <div className="textFadeOutContainer">
               {this.state.formErrors.amount.length > 0 && (
                 <div className="textFadeOut ">{this.state.formErrors.amount}</div>
               )}
             </div> */}
-          </div>
+          {/* </div> */}
 
           <input
             // id={shakeIt_amount}
@@ -121,13 +120,13 @@ export const EditDataModal = props => {
         {/* where */}
         <div className="mx-4 addInput test">
 
-          <div className="formValidationContainer">
+          {/* <div className="formValidationContainer"> */}
             {/* <div className="textFadeOutContainer">
               {this.state.formErrors.where.length > 0 && (
                 <div className="textFadeOut">{this.state.formErrors.where}</div>
               )}
             </div> */}
-          </div>
+          {/* </div> */}
 
           <input
             // id={shakeIt_where}
@@ -142,7 +141,7 @@ export const EditDataModal = props => {
 
         {/* notes */}
         <div className="mx-4 addInput">
-          <div className="formValidationContainer"></div>
+          {/* <div className="formValidationContainer"></div> */}
           <input
             // value={this.state.notes}
             // onChange={this.inputHandleChange}
@@ -154,7 +153,7 @@ export const EditDataModal = props => {
 
         {/* button */}
         <div className="mx-4 addInput">
-          <div className="formValidationContainer"></div>
+          {/* <div className="formValidationContainer"></div> */}
           <div
             // onClick={() => this.handleSubmit()}
             className={"addButton text-center "}
