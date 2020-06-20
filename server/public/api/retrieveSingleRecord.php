@@ -14,21 +14,23 @@ if ($bodyData["id"]) {
   throw new Exception("id required");
 };
 
-// $query = "SELECT * FROM `2020` WHERE id = " . $id;
+$query = "SELECT * FROM `2020` WHERE id = " . $id;
 
-// $result = mysqli_query($conn, $query);
+$result = mysqli_query($conn, $query);
 
-// if (!$result) {
-//   throw new Exception('error with query: ' . mysqli_error($conn));
-// };
+if (!$result) {
+  throw new Exception('error with query: ' . mysqli_error($conn));
+};
 
 
-// $singleRecord = json_encode(mysqli_fetch_assoc($result));
-// echo $singleRecord;
+$singleRecord = mysqli_fetch_assoc($result);
+print (json_encode($singleRecord));
 
-$query = "SELECT * FROM `2020` WHERE id = ?";
-$stmt = $pdo->prepare($query);
-$stmt -> execute([$id]);
-$result = $stmt->fetch();
+// $query = "SELECT * FROM `2020` WHERE id = ?";
+// $stmt = $pdo->prepare($query);
+// $stmt -> execute([$id]);
+// $result = $stmt->fetch();
+// $test = json_encode($result);
 
-var_dump($result);
+// return $test;
+// var_dump($test);

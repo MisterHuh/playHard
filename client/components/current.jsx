@@ -57,17 +57,28 @@ export default class Current extends React.Component {
       endpointToggle: true,
 
       editModal: false,
+      // editEntry: {
+      //   id: 0,
+      //   date: "2020-06-14",
+      //   category: "Spendings",
+      //   subCategory: "Food",
+      //   cc: "Sapphire",
+      //   amount: "16.15",
+      //   where: "Target",
+      //   notes: "Firestick"
+      // }
       editEntry: {
         id: 0,
-        date: "2020-06-14",
-        category: "Spendings",
-        subCategory: "Food",
-        cc: "Sapphire",
-        amount: "16.15",
-        where: "Target",
-        notes: "Firestick"
-
+        date: "",
+        category: "",
+        subCategory: "",
+        cc: "",
+        amount: "",
+        store: "",
+        notes: ""
       }
+      // editEntry: {}
+
 
     }
 
@@ -106,7 +117,7 @@ export default class Current extends React.Component {
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("current.jsx current is: ", current);
+        // console.log("current.jsx current is: ", current);
         this.setState({ current });
 
         // this.currentSummary();
@@ -469,13 +480,16 @@ export default class Current extends React.Component {
     };
 
     fetch(`/api/retrieveSingleRecord.php`, req)
-      .then(response => response.json())
+      .then(response => {
+        console.log(response);
+        response.json()
+      })
       .then(editEntry => {
         console.log(editEntry);
-        this.setState({
-          editEntry,
-          editModal: !this.state.editModal
-         });
+        // this.setState({
+        //   editEntry,
+        //   editModal: !this.state.editModal
+        //  });
         console.log("this.state.editEntry is: ", this.state.editEntry);
       })
 
