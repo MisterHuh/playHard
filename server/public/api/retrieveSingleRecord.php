@@ -23,17 +23,11 @@ if (!$result) {
 
 
 $singleRecord = mysqli_fetch_assoc($result);
-echo "here";
 print(json_encode($singleRecord));
 
-// $currentData = [];
-// while ($row = mysqli_fetch_assoc($result)) {
-//   $currentData[] = $row;
-// };
-
-// if ($currentData === []) {
-//   print("[]");
-//   exit();
-// } else {
-//   print(json_encode($currentData));
-// };
+// $query = "SELECT * FROM `2020` WHERE id = ?";
+// $stmt = $pdo->prepare($query);
+// $stmt->execute([$id]);
+// $result = $stmt->fetch();
+// $test = json_encode($result);
+// var_dump($test);

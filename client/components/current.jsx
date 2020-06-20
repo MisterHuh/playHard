@@ -1,5 +1,6 @@
 import React from "react";
 import { Accordion } from "./accordion";
+import { EditDataModal } from "./editDataModal";
 import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum, GetQueryWeekNum, RenderData, FormatDate, FormatDate1 } from "./helperFunctions";
 
 import DatePicker from "react-datepicker";
@@ -458,16 +459,13 @@ export default class Current extends React.Component {
 
     fetch(`/api/retrieveSingleRecord.php`, req)
       .then(response => response.json())
-      .then(singleRecord => {
-        console.log(singleRecord);
+      .then(editEntry => {
+        console.log(editEntry);
+        this.setState({
+          editEntry,
+          editModal: !this.state.editModal
+        })
       })
-
-    let editModal = this.state.editModal;
-    this.setState({
-      editModal: !editModal
-    });
-
-
   }
 
   deleteEntry(id) {
@@ -529,10 +527,6 @@ export default class Current extends React.Component {
 
     ]
 
-    // const textCenter = {
-    //   textAlignLast: "center"
-    // };
-
     const totalSpendings = this.state.totalTestSpendings;
     const totalCredits = this.state.totalTestCredits;
     const totalFixed = this.state.totalTestFixed;
@@ -540,14 +534,19 @@ export default class Current extends React.Component {
 
     const week = this.state.week;
 
-    let test;
-    (this.state.editModal)
-      ? test = "test"
-      : test = "";
+    // let test;
+    // (this.state.editModal)
+    //   ? test = "test"
+    //   : test = "";
 
       return (
 
         <React.Fragment>
+
+          <EditDataModal
+            entry={this.state.editEntry}
+            editModal={this.state.editModal}
+          />
 
         <div className="currentWrapperTop">
 
