@@ -155,7 +155,7 @@ export const EditDataModal = props => {
         <div className="mx-4 addInput">
           {/* <div className="formValidationContainer"></div> */}
           <div
-            // onClick={() => this.handleSubmit()}
+            onClick={() => HandleEditSubmit()}
             className={"addButton text-center "}
             > Edit
               </div>
@@ -167,4 +167,11 @@ export const EditDataModal = props => {
   } else {
     return null;
   }
+}
+
+export const HandleEditSubmit = () => {
+  alert("handleEditSubmit fired");
+  fetch(`/api/editEntry.php`)
+    .then(response => response.json())
+    // .catch(error => {});
 }
