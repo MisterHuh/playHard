@@ -56,7 +56,29 @@ export default class Current extends React.Component {
       prevWeekStartdate: "",
       endpointToggle: true,
 
-      editModal: false
+      editModal: false,
+      // editEntry: {
+      //   id: 0,
+      //   date: "2020-06-14",
+      //   category: "Spendings",
+      //   subCategory: "Food",
+      //   cc: "Sapphire",
+      //   amount: "16.15",
+      //   where: "Target",
+      //   notes: "Firestick"
+      // }
+      editEntry: {
+        id: 0,
+        date: "",
+        category: "",
+        subCategory: "",
+        cc: "",
+        amount: "",
+        store: "",
+        notes: ""
+      }
+      // editEntry: {}
+
 
     }
 
@@ -64,6 +86,7 @@ export default class Current extends React.Component {
     this.setWeek = this.setWeek.bind(this);
 
     this.deleteEntry = this.deleteEntry.bind(this);
+    this.selectEntry = this.selectEntry.bind(this);
     this.editEntry = this.editEntry.bind(this);
 
     this.findStartEndDates = this.findStartEndDates.bind(this);
@@ -94,7 +117,7 @@ export default class Current extends React.Component {
     fetch(`/api/getCurrent.php`)
       .then(response => response.json())
       .then(current => {
-        console.log("current.jsx current is: ", current);
+        // console.log("current.jsx current is: ", current);
         this.setState({ current });
 
         // this.currentSummary();
@@ -445,19 +468,19 @@ export default class Current extends React.Component {
 
   }
 
-  editEntry(id) {
-    // alert(this.state.editModal);
-    // console.log("this.state.current: ", this.state.current);
-    // console.log("id for seleted is: ", id);
-    // console.log("this.state.current[id][amount]", this.state.current[ + id + ']["amount"]');
-
+  selectEntry(id) {
     const req = {
       method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Credentials": true
+      },
       body: JSON.stringify({id})
     };
 
     fetch(`/api/retrieveSingleRecord.php`, req)
+<<<<<<< HEAD
       .then(response => response.json())
       .then(editEntry => {
         console.log(editEntry);
@@ -466,6 +489,25 @@ export default class Current extends React.Component {
           editModal: !this.state.editModal
         })
       })
+=======
+      .then(response => {
+        console.log(response);
+        response.json()
+      })
+      .then(editEntry => {
+        console.log(editEntry);
+        // this.setState({
+        //   editEntry,
+        //   editModal: !this.state.editModal
+        //  });
+        console.log("this.state.editEntry is: ", this.state.editEntry);
+      })
+
+  }
+
+  editEntry(editEntry) {
+    // alert("editEntry fired");
+>>>>>>> 17c0ec503e35c94af08cd17e5792c4c963a5f440
   }
 
   deleteEntry(id) {
@@ -548,6 +590,11 @@ export default class Current extends React.Component {
             editModal={this.state.editModal}
           />
 
+<<<<<<< HEAD
+=======
+        {/* <div {this.state}>here</div> */}
+
+>>>>>>> 17c0ec503e35c94af08cd17e5792c4c963a5f440
         <div className="currentWrapperTop">
 
             <table id="tabla" className="currentSummaryContainer">
@@ -669,7 +716,7 @@ export default class Current extends React.Component {
                     entry={entry}
                     key={entry["id"]}
                     deleteEntry={this.deleteEntry}
-                    editEntry={this.editEntry}/>
+                    selectEntry={this.selectEntry}/>
                   )
               })}
           </React.Fragment>

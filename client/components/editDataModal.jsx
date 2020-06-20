@@ -37,9 +37,15 @@ export const EditDataModal = props => {
     { value: 'Automobile', label: 'Automobile' }
   ];
 
+<<<<<<< HEAD
   console.log("EditDataModal entry is: ", entry);
   // console.log("EditDataModal entry.d is: ", entry.id);
   console.log("modalStatus is: ", modalStatus);
+=======
+  // console.log("EditDataModal entry is: ", entry);
+  // console.log("EditDataModal entry.d is: ", entry.id);
+  // console.log("modalStatus is: ", modalStatus);
+>>>>>>> 17c0ec503e35c94af08cd17e5792c4c963a5f440
 
   if (modalStatus) {
     return (
