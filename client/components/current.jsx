@@ -480,7 +480,6 @@ export default class Current extends React.Component {
     };
 
     fetch(`/api/retrieveSingleRecord.php`, req)
-<<<<<<< HEAD
       .then(response => response.json())
       .then(editEntry => {
         console.log(editEntry);
@@ -489,25 +488,10 @@ export default class Current extends React.Component {
           editModal: !this.state.editModal
         })
       })
-=======
-      .then(response => {
-        console.log(response);
-        response.json()
-      })
-      .then(editEntry => {
-        console.log(editEntry);
-        // this.setState({
-        //   editEntry,
-        //   editModal: !this.state.editModal
-        //  });
-        console.log("this.state.editEntry is: ", this.state.editEntry);
-      })
-
   }
 
   editEntry(editEntry) {
     // alert("editEntry fired");
->>>>>>> 17c0ec503e35c94af08cd17e5792c4c963a5f440
   }
 
   deleteEntry(id) {
@@ -590,11 +574,6 @@ export default class Current extends React.Component {
             editModal={this.state.editModal}
           />
 
-<<<<<<< HEAD
-=======
-        {/* <div {this.state}>here</div> */}
-
->>>>>>> 17c0ec503e35c94af08cd17e5792c4c963a5f440
         <div className="currentWrapperTop">
 
             <table id="tabla" className="currentSummaryContainer">
