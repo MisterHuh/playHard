@@ -56,7 +56,7 @@ export default class Current extends React.Component {
       prevWeekStartdate: "",
       endpointToggle: true,
 
-      editModal: true,
+      editModal: false,
       editEntry: {
         id: 0,
         date: "2020-06-14",
