@@ -57,29 +57,17 @@ export default class Current extends React.Component {
       endpointToggle: true,
 
       editModal: false,
+      editEntry: {}
       // editEntry: {
       //   id: 0,
-      //   date: "2020-06-14",
-      //   category: "Spendings",
-      //   subCategory: "Food",
-      //   cc: "Sapphire",
-      //   amount: "16.15",
-      //   where: "Target",
-      //   notes: "Firestick"
+      //   date: "",
+      //   category: "",
+      //   subCategory: "",
+      //   cc: "",
+      //   amount: "",
+      //   store: "",
+      //   notes: ""
       // }
-      editEntry: {
-        id: 0,
-        date: "",
-        category: "",
-        subCategory: "",
-        cc: "",
-        amount: "",
-        store: "",
-        notes: ""
-      }
-      // editEntry: {}
-
-
     }
 
     this.retrieveCurrentData = this.retrieveCurrentData.bind(this);
