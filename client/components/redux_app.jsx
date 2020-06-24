@@ -54,6 +54,9 @@ export const ReduxApp = () => {
   return (
     <div>
       <h1>export const</h1>
+      <h1>export const</h1>
+      <h1>export const</h1>
+      <h1>export const</h1>
     </div>
   )
 }
