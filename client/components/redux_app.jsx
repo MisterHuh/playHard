@@ -39,6 +39,7 @@ const counter = (state = 0, action) => {
   }
 }
 
+// store is create on this step, instead of creating it from the beginning
 let store = createStore(counter);
 
 // display it on the console
