@@ -372,7 +372,6 @@ export default class Add extends React.Component {
 
           {/* right */}
           <div className="addForm">
-                onChange={this.inputHandleChange}
 
             {/* Date */}
             <div className="mx-4 addFormSpacing">
