@@ -5,7 +5,7 @@ import App from './components/app';
 import { ReduxApp } from "./components/redux_app"
 
 ReactDOM.render(
-  <ReduxApp />,
-  // <App />,
+  // <ReduxApp />,
+  <App />,
   document.querySelector('#root')
 );

@@ -265,7 +265,6 @@ export default class Add extends React.Component {
       ]
     ];
 
-
     let colorFormatter;
     if (this.state.category === "Spendings") {
       colorFormatter = "addButtonSpendings spendings"
@@ -347,8 +346,6 @@ export default class Add extends React.Component {
       ? ccButtonBB = " ccSelector"
       : "";
 
-
-
     switch (this.state.category) {
       case "Spendings":
         catButtonSpendings = "catButtonSpendings";
@@ -375,6 +372,9 @@ export default class Add extends React.Component {
 
           {/* right */}
           <div className="addForm">
+                onChange={this.inputHandleChange}
+
+            {/* Date */}
             <div className="mx-4 addFormSpacing">
 
               <div className="formValidationContainer"></div>
@@ -385,6 +385,7 @@ export default class Add extends React.Component {
               />
             </div>
 
+            {/* Category */}
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
 
@@ -407,6 +408,7 @@ export default class Add extends React.Component {
               /> */}
             </div>
 
+            {/* Sub-Category */}
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
               <Dropdown
@@ -420,6 +422,7 @@ export default class Add extends React.Component {
               />
             </div>
 
+            {/* CC */}
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
 
@@ -444,6 +447,7 @@ export default class Add extends React.Component {
 
             </div>
 
+            {/* Amount */}
             <div className="mx-4 addInput test">
 
               <div className="formValidationContainer">
@@ -467,6 +471,7 @@ export default class Add extends React.Component {
               />
             </div>
 
+            {/* Where */}
             <div className="mx-4 addInput test">
 
               <div className="formValidationContainer">
@@ -490,6 +495,7 @@ export default class Add extends React.Component {
               />
             </div>
 
+            {/* Notes */}
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
               <input
@@ -501,6 +507,7 @@ export default class Add extends React.Component {
               />
             </div>
 
+            {/* Button */}
             <div className="mx-4 addInput">
               <div className="formValidationContainer"></div>
               <div
