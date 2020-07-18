@@ -6,6 +6,12 @@ import Current from "./current";
 import History from "./history"
 
 import { Provider } from "react-redux";
+import { store } from "../store";
+
+import { Posts } from "./Posts";
+
+// import { createStore, applyMiddleware } from "redux";
+// const store = createStore( () => [], {}, applyMiddleware());
 
 
 export default class App extends React.Component {
@@ -235,14 +241,16 @@ export default class App extends React.Component {
       displayView = <Add setView={this.setView} />;
     } else if (currentView === "current") {
       displayView =
-        <Current
-          budget={this.state.budget}
-          currentWeekNumber={this.state.currentWeekNumber}
-          deleteEntry={this.deleteEntry}
-          current={this.state.current}
-        // currentSummary={this.currentSummary}
+        // <Current
+        //   budget={this.state.budget}
+        //   currentWeekNumber={this.state.currentWeekNumber}
+        //   deleteEntry={this.deleteEntry}
+        //   current={this.state.current}
+        // // currentSummary={this.currentSummary}
 
-        />
+        // />
+
+        <Posts />
     } else if (currentView === "history") {
       displayView =
         <History
@@ -254,7 +262,7 @@ export default class App extends React.Component {
 
     return (
 
-      <Provider>
+      <Provider store={store}>
         <div>
           <Navbar setView={this.setView} currentView={currentView} />
           {displayView}
