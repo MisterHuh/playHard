@@ -5,6 +5,18 @@ import Add from "./add";
 import Current from "./current";
 import History from "./history"
 
+<<<<<<< HEAD
+=======
+import { Provider } from "react-redux";
+import { store } from "../store";
+
+import { Posts } from "./Posts";
+
+// import { createStore, applyMiddleware } from "redux";
+// const store = createStore( () => [], {}, applyMiddleware());
+
+
+>>>>>>> 0f73a68789ed32b0a347f4e871133834df42feb8
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -232,6 +244,7 @@ export default class App extends React.Component {
       displayView = <Add setView={this.setView} />;
     } else if (currentView === "current") {
       displayView =
+<<<<<<< HEAD
         <Current
           budget={this.state.budget}
           currentWeekNumber={this.state.currentWeekNumber}
@@ -240,6 +253,18 @@ export default class App extends React.Component {
           // currentSummary={this.currentSummary}
 
           />
+=======
+        // <Current
+        //   budget={this.state.budget}
+        //   currentWeekNumber={this.state.currentWeekNumber}
+        //   deleteEntry={this.deleteEntry}
+        //   current={this.state.current}
+        // // currentSummary={this.currentSummary}
+
+        // />
+
+        <Posts />
+>>>>>>> 0f73a68789ed32b0a347f4e871133834df42feb8
     } else if (currentView === "history") {
       displayView =
         <History
@@ -250,10 +275,20 @@ export default class App extends React.Component {
     }
 
     return (
+<<<<<<< HEAD
       <div>
         <Navbar setView={this.setView} currentView={currentView}/>
         {displayView}
       </div>
+=======
+
+      <Provider store={store}>
+        <div>
+          <Navbar setView={this.setView} currentView={currentView} />
+          {displayView}
+        </div>
+      </Provider>
+>>>>>>> 0f73a68789ed32b0a347f4e871133834df42feb8
     )
   }
 }
