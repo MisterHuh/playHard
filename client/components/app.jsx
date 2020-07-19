@@ -5,9 +5,6 @@ import Add from "./add";
 import Current from "./current";
 import History from "./history"
 
-import { Provider } from "react-redux";
-
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -77,7 +74,7 @@ export default class App extends React.Component {
   }
 
   setView(view) {
-    this.setState({ view })
+    this.setState({  view  })
   };
 
   /* is there too much happening here? */
@@ -240,9 +237,9 @@ export default class App extends React.Component {
           currentWeekNumber={this.state.currentWeekNumber}
           deleteEntry={this.deleteEntry}
           current={this.state.current}
-        // currentSummary={this.currentSummary}
+          // currentSummary={this.currentSummary}
 
-        />
+          />
     } else if (currentView === "history") {
       displayView =
         <History
@@ -253,13 +250,10 @@ export default class App extends React.Component {
     }
 
     return (
-
-      <Provider>
-        <div>
-          <Navbar setView={this.setView} currentView={currentView} />
-          {displayView}
-        </div>
-      </Provider>
+      <div>
+        <Navbar setView={this.setView} currentView={currentView}/>
+        {displayView}
+      </div>
     )
   }
 }
