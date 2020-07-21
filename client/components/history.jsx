@@ -8,8 +8,10 @@ import 'react-dropdown/historyDropdown.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import Pagination from "react-js-pagination";
+// import Pagination from "react-js-pagination";
 // require("bootstrap/less/bootstrap.less");
+
+import ReactPaginate from 'react-paginate';
 
 export default class History extends React.Component {
   constructor(props) {
@@ -17,6 +19,10 @@ export default class History extends React.Component {
     this.state = {
 
       current: [],
+
+      offset: 0,
+      perPage: 10,
+      currentPage: 0,
 
       week: {
         currentWeekNumber: 0,
@@ -93,7 +99,8 @@ export default class History extends React.Component {
       // },
 
       /* pagination */
-      activePage: 1,
+      /* react-js-paginatino */
+      // activePage: 1,
       // users: null, // data you loop over => this.state.current
       // total: null, // helps with calculating page logic => this.state.current.length
       // per_page: null, // helps with calculating page logic => 20
@@ -116,11 +123,20 @@ export default class History extends React.Component {
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
 
-    this.handlePageChange = this.handlePageChange.bind(this);
+    // this.handlePageChange = this.handlePageChange.bind(this);
   }
 
-  handlePageChange(pageNumber) {
-    this.setState({ activePage: pageNumber });
+  // handlePageChange(pageNumber) {
+  //   this.setState({ activePage: pageNumber });
+  // }
+
+  handlePageClick(data) {
+    let selected = data.selected;
+    let offset = Math.ceil(selected * this.props.perPage);
+
+    this.setState({ offset: offset}), () => {
+      this.retrieveAllData();
+    }
   }
 
   sortByDate() {
@@ -308,6 +324,9 @@ export default class History extends React.Component {
           let totalSummary = TotalSummary(week, current, totalBudget);
 
           this.setState({
+
+            pageCount: current.length,
+
             totalTestSpendings: {
               total: totalSummary.spendings.totalSpendings,
               food: totalSummary.spendings.totalFoodSpendings,
@@ -546,12 +565,26 @@ export default class History extends React.Component {
 
         </div>
 
-        <Pagination
+        {/* <Pagination
           activePage={this.state.activePage}
           itemsCountPerPage={10}
           totalItemsCount={this.state.current.length}
           pageRangeDisplayed={5}
           onChange={this.handlePageChange}
+        /> */}
+
+        <ReactPaginate
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          pageCount={this.state.pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={5}
+          onPageChange={this.handlePageClick}
+          containerClassName={'pagination'}
+          subContainerClassName={'pages pagination'}
+          activeClassName={'active'}
         />
 
         <div className="currentWrapperBottom">
