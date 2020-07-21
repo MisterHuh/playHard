@@ -8,7 +8,7 @@ import 'react-dropdown/historyDropdown.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-// import Pagination from "react-js-pagination";
+import Pagination from "react-js-pagination";
 // require("bootstrap/less/bootstrap.less");
 
 export default class History extends React.Component {
@@ -93,7 +93,7 @@ export default class History extends React.Component {
       // },
 
       /* pagination */
-      // activePage: 20,
+      activePage: 1,
       // users: null, // data you loop over => this.state.current
       // total: null, // helps with calculating page logic => this.state.current.length
       // per_page: null, // helps with calculating page logic => 20
@@ -302,6 +302,7 @@ export default class History extends React.Component {
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
+          console.log("current.length is: ", current.length);
           this.setState({ current });
 
           let totalSummary = TotalSummary(week, current, totalBudget);
@@ -545,13 +546,13 @@ export default class History extends React.Component {
 
         </div>
 
-        {/* <Pagination
+        <Pagination
           activePage={this.state.activePage}
           itemsCountPerPage={10}
           totalItemsCount={this.state.current.length}
-          pageRangeDisplayed={10}
-          onChange={this.handlePageChange.bind(this)}
-        /> */}
+          pageRangeDisplayed={5}
+          onChange={this.handlePageChange}
+        />
 
         <div className="currentWrapperBottom">
           <div className="currentData1">
