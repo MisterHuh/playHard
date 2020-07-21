@@ -124,6 +124,7 @@ export default class History extends React.Component {
     this.sortByDate = this.sortByDate.bind(this);
 
     // this.handlePageChange = this.handlePageChange.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
   }
 
   // handlePageChange(pageNumber) {
@@ -132,11 +133,18 @@ export default class History extends React.Component {
 
   handlePageClick(data) {
     let selected = data.selected;
-    let offset = Math.ceil(selected * this.props.perPage);
+    let offset = Math.ceil(selected * this.state.perPage);
 
-    this.setState({ offset: offset}), () => {
-      this.retrieveAllData();
-    }
+    this.setState({
+      currentPage: selected,
+      offset: offset
+    }, () => {
+      this.retrieveAllData()
+    });
+
+    // this.setState({ offset: offset}), () => {
+    //   this.retrieveAllData();
+    // }
   }
 
   sortByDate() {
@@ -318,14 +326,16 @@ export default class History extends React.Component {
       fetch(`/api/retrieveAllData.php`)
         .then(response => response.json())
         .then(current => {
-          console.log("current.length is: ", current.length);
+          // console.log("current.length is: ", current.length);
           this.setState({ current });
 
           let totalSummary = TotalSummary(week, current, totalBudget);
 
+          // const slice = current.slice(this.state.offset, this.state.offset + this.state.perPage);
+
           this.setState({
 
-            pageCount: current.length,
+            pageCount: Math.ceil(current.length / this.state.perPage),
 
             totalTestSpendings: {
               total: totalSummary.spendings.totalSpendings,
