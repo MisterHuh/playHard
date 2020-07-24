@@ -3,7 +3,7 @@
 // such as creating a new post
 
 // for actions, we must create TYPES, which are constants
-// these constants wil lbe stored in ./actions./types.jsx
+// these constants will be stored in ./actions./types.jsx
 import { FETCH_POSTS, NEW_POST } from "../actions/types";
 
 // from our postREducer, we want to create our initial state
@@ -27,3 +27,10 @@ export default function(state = initialState, action) {
       return state;
   }
 }
+
+// export default function(state = initialState, action) {
+//   switch(action.type) {
+//     default:
+//       return state;
+//   }
+// }
