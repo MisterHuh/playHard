@@ -7,7 +7,7 @@
 import { FETCH_POSTS, NEW_POST } from "../actions/types";
 
 // from our postREducer, we want to create our initial state
-// this is the state tree that you will be using
+// this is the state tree that you will be using from the main component
 
 const initialState = {
   items: [],
