@@ -42,6 +42,36 @@ export const RenderData = props => {
 
       </div>
     )
+  } else {
+
+    <div>Hello World</div>
+
+    // <div className={"currentData"} >
+    //   <div className={"currentDataHeader renderDataHover"}>
+
+    //     <div className="iconContainer ">
+    //       <i onClick={() => props.deleteEntry(id)} className="icon fas fa-times"></i>
+    //     </div>
+
+    //     <div className="iconContainer ">
+    //       <i onClick={() => props.selectEntry(id)} className="icon fas fa-edit"></i>
+    //     </div>
+
+    //     <div>
+    //       <div className=""></div>
+    //     </div>
+
+    //   </div>
+    //   <div
+    //     onClick={props.deleteEntry}
+    //     className={"currentDataHeader"}></div>
+
+    //   <div className={"currentDataHeader "}></div>
+    //   <div className={"currentDataHeader " + " " + creditsFontColor}></div>
+    //   <div className={"currentDataHeader "}></div>
+    //   <div className={"currentDataHeader "}></div>
+
+    // </div>
   }
 }
 
