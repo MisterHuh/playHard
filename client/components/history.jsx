@@ -451,12 +451,12 @@ class History extends React.Component {
       : spendingsDispaly = "sDisplayOff";
 
 
-    // const postItems = this.props.posts.map(post => (
-    //   <div key={post.id}>
-    //     <h3>{post.title}</h3>
-    //     <p>{post.body}</p>
-    //   </div>
-    // ));
+    const postItems = this.props.posts.map(post => (
+      <div key={post.id}>
+        <h3>{post.title}</h3>
+        <p>{post.body}</p>
+      </div>
+    ));
 
     return (
 
@@ -614,7 +614,7 @@ class History extends React.Component {
         <div className="currentWrapperBottom">
 
           <div>
-            {/* {postItems} */}
+            {postItems}
           </div>
 
           <div className="currentData1">
@@ -672,5 +672,9 @@ class History extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  posts: state.posts.items
+})
+
 // export default History;
-export default connect(null, { fetchPosts })(History);
+export default connect(mapStateToProps, { fetchPosts })(History);
