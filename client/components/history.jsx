@@ -408,6 +408,8 @@ class History extends React.Component {
     this.retrieveAllData(currentWeekNumber);
     console.log("current week num is: ", currentWeekNumber);
 
+    this.props.fetchPosts();
+
   }
 
   render() {
@@ -447,6 +449,14 @@ class History extends React.Component {
     (this.state.spendingsDisplay)
       ? spendingsDisplay = "sDisplayOn"
       : spendingsDispaly = "sDisplayOff";
+
+
+    // const postItems = this.props.posts.map(post => (
+    //   <div key={post.id}>
+    //     <h3>{post.title}</h3>
+    //     <p>{post.body}</p>
+    //   </div>
+    // ));
 
     return (
 
@@ -587,7 +597,7 @@ class History extends React.Component {
           onChange={this.handlePageChange}
         /> */}
 
-        <ReactPaginate
+        {/* <ReactPaginate
           previousLabel={'previous'}
           nextLabel={'next'}
           breakLabel={'...'}
@@ -599,9 +609,14 @@ class History extends React.Component {
           containerClassName={'pagination'}
           subContainerClassName={'pages pagination'}
           activeClassName={'active'}
-        />
+        /> */}
 
         <div className="currentWrapperBottom">
+
+          <div>
+            {/* {postItems} */}
+          </div>
+
           <div className="currentData1">
             <div className="currentDataHeader">
                 Date

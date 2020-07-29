@@ -16,6 +16,7 @@ import { FETCH_POSTS, NEW_POST } from "./types";
 
 // cleaned up with es6
 export const fetchPosts = () => dispatch => {
+  console.log("fetching");
   fetch("https://jsonplaceholder.typicode.com/posts")
   // fetch(`/api/retrieveAllData.php`)
     .then(res => res.json())

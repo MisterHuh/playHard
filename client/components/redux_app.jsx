@@ -226,7 +226,7 @@ export default class ReduxApp extends React.Component {
 
   componentDidMount() {
 
-    console.log("2. CDM app.jsx");
+    // console.log("2. CDM app.jsx");
 
     // const currentWeekNumber = GetCurrentWeekNum();
     // this.setState({ currentWeekNumber });
