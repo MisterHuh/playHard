@@ -13,7 +13,11 @@ import "react-datepicker/dist/react-datepicker.css";
 
 import ReactPaginate from 'react-paginate';
 
-export default class History extends React.Component {
+/* redux */
+import { connect } from 'react-redux';
+import { fetchPosts } from '../actions/postActions';
+
+class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -652,3 +656,6 @@ export default class History extends React.Component {
     )
   }
 }
+
+// export default History;
+export default connect(null, { fetchPosts })(History);
