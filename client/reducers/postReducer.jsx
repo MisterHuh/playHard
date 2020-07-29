@@ -14,7 +14,7 @@ const initialState = {
   item: {}
 }
 
-
+/* this is step 7e, after the action has been created */
 // this function evaluates what TYPE of action that we are dealing with
 export default function(state = initialState, action) {
   switch(action.type) {
@@ -28,6 +28,7 @@ export default function(state = initialState, action) {
   }
 }
 
+/* this is step 6, where we are declaring the function but no actions have been created yet */
 // export default function(state = initialState, action) {
 //   switch(action.type) {
 //     default:
