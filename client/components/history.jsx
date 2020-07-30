@@ -673,7 +673,7 @@ class History extends React.Component {
   }
 }
 
-Posts.propTypes = {
+History.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
   posts: PropTypes.array.isRequired
 }
