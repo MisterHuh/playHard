@@ -15,7 +15,14 @@ const initialState = {};
 
 /* this is an actual store */
 // const store = createStore(rootReducer, initialState, applyMiddleware(...middleware));
-const store = createStore(rootReducer, initialState, applyMiddleware(thunk));
+const store = createStore(
+  rootReducer,
+  initialState,
+  compose(
+    applyMiddleware(thunk),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 
 // const store = createStore(
