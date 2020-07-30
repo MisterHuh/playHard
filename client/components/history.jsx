@@ -16,6 +16,7 @@ import ReactPaginate from 'react-paginate';
 /* redux */
 import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/postActions';
+import PropTypes from 'prop-types';
 
 class History extends React.Component {
   constructor(props) {
@@ -670,6 +671,11 @@ class History extends React.Component {
 
     )
   }
+}
+
+Posts.propTypes = {
+  fetchPosts: PropTypes.func.isRequired,
+  posts: PropTypes.array.isRequired
 }
 
 const mapStateToProps = state => ({
