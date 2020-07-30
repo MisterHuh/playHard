@@ -675,7 +675,8 @@ class History extends React.Component {
 
 History.propTypes = {
   fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired
+  posts: PropTypes.array.isRequired,
+  // propTypeTest: PropTypes.string.isRequired
 }
 
 const mapStateToProps = state => ({

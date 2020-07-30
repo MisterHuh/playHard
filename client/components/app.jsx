@@ -246,6 +246,7 @@ export default class App extends React.Component {
           budget={this.state.budget}
           currentWeekNumber={this.state.currentWeekNumber}
           current={this.state.current}
+          // propTypeTest={"true"}
         />
     }
 
