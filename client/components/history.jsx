@@ -471,7 +471,8 @@ class History extends React.Component {
 
     const currentItems = this.props.current
     console.log("currentItems is:", currentItems);
-    console.log("currentItems type is: ", typeof(currentItems));
+    // console.log("currentItems type is: ", typeof (currentItems));
+    console.log("this.props.current type is: ", typeof (this.props.current));
 
     return (
 
