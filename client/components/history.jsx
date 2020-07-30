@@ -15,6 +15,7 @@ import ReactPaginate from 'react-paginate';
 
 /* redux */
 import { connect } from 'react-redux';
+import { retrieveAllData } from "../actions/retrieveAllDataAction"
 import { fetchPosts } from '../actions/postActions';
 import PropTypes from 'prop-types';
 
@@ -409,7 +410,9 @@ class History extends React.Component {
     this.retrieveAllData(currentWeekNumber);
     console.log("current week num is: ", currentWeekNumber);
 
-    this.props.fetchPosts();
+    // this.props.fetchPosts();
+
+    this.props.retrieveAllData();
 
   }
 
@@ -452,12 +455,12 @@ class History extends React.Component {
       : spendingsDispaly = "sDisplayOff";
 
 
-    const postItems = this.props.posts.map(post => (
-      <div key={post.id}>
-        <h3>{post.title}</h3>
-        <p>{post.body}</p>
-      </div>
-    ));
+    // const postItems = this.props.posts.map(post => (
+    //   <div key={post.id}>
+    //     <h3>{post.title}</h3>
+    //     <p>{post.body}</p>
+    //   </div>
+    // ));
 
     return (
 
@@ -615,7 +618,7 @@ class History extends React.Component {
         <div className="currentWrapperBottom">
 
           <div>
-            {postItems}
+            {/* {postItems} */}
           </div>
 
           <div className="currentData1">
@@ -673,15 +676,20 @@ class History extends React.Component {
   }
 }
 
-History.propTypes = {
-  fetchPosts: PropTypes.func.isRequired,
-  posts: PropTypes.array.isRequired,
-  // propTypeTest: PropTypes.string.isRequired
-}
+// History.propTypes = {
+//   fetchPosts: PropTypes.func.isRequired,
+//   posts: PropTypes.array.isRequired,
+//   propTypeTest: PropTypes.string.isRequired
+// }
 
-const mapStateToProps = state => ({
-  posts: state.posts.items
-})
+// const mapStateToProps = state => ({
+//   posts: state.posts.items
+// })
+
+// const mapStateToProps = state => ({
+
+// })
 
 // export default History;
-export default connect(mapStateToProps, { fetchPosts })(History);
+// export default connect(mapStateToProps, { fetchPosts })(History);
+export default connect(null, { retrieveAllData })(History);

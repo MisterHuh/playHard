@@ -4,8 +4,10 @@
 
 import { combineReducers } from "redux";
 import postReducer from "./postReducer";
+import retrieveAllDataReducer from "./retrieveAllDataReducer";
 
 
 export default combineReducers({
-  posts: postReducer
+  posts: postReducer,
+  current: retrieveAllDataReducer
 });
