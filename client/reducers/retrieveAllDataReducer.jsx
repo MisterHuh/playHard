@@ -12,6 +12,7 @@ export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_ALL_DATA:
       console.log("fetchAlldata reducing");
+      console.log("initialState is: ", initialState);
       return {
         ...state,
         current: action.payload

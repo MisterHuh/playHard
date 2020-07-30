@@ -462,17 +462,18 @@ class History extends React.Component {
     //   </div>
     // ));
 
-    // const currentItems = this.props.current.map(entry => (
-    //   <div key={entry.id}>
-    //     <h3>CC is {entry.cc}</h3>
-    //     <h4>Store is {entry.store}</h4>
-    //   </div>
-    // ));
+    const currentItems = this.props.current.map(entry => (
+      <div key={entry.id}>
+        <h3>CC is {entry.cc}</h3>
+        <h4>Store is {entry.store}</h4>
+      </div>
+    ));
 
-    const currentItems = this.props.current
-    console.log("currentItems is:", currentItems);
-    // console.log("currentItems type is: ", typeof (currentItems));
-    console.log("this.props.current type is: ", typeof (this.props.current));
+    // const currentItems = this.props.current
+    // console.log("currentItems is:", currentItems);
+    // console.log("this.props.current:", this.props.current);
+    // console.log("this.props.current[0]:", this.props.current[0]);
+    // console.log("this.props.current type is: ", typeof (this.props.current));
 
     return (
 
@@ -609,7 +610,7 @@ class History extends React.Component {
 
           <div>
             {/* {postItems} */}
-            {/* {currentItems} */}
+            {currentItems}
           </div>
 
           <div className="currentData1">
