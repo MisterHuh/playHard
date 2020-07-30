@@ -462,6 +462,17 @@ class History extends React.Component {
     //   </div>
     // ));
 
+    // const currentItems = this.props.current.map(entry => (
+    //   <div key={entry.id}>
+    //     <h3>CC is {entry.cc}</h3>
+    //     <h4>Store is {entry.store}</h4>
+    //   </div>
+    // ));
+
+    const currentItems = this.props.current
+    console.log("currentItems is:", currentItems);
+    console.log("currentItems type is: ", typeof(currentItems));
+
     return (
 
       <React.Fragment>
@@ -593,32 +604,11 @@ class History extends React.Component {
 
         </div>
 
-        {/* <Pagination
-          activePage={this.state.activePage}
-          itemsCountPerPage={10}
-          totalItemsCount={this.state.current.length}
-          pageRangeDisplayed={5}
-          onChange={this.handlePageChange}
-        /> */}
-
-        {/* <ReactPaginate
-          previousLabel={'previous'}
-          nextLabel={'next'}
-          breakLabel={'...'}
-          breakClassName={'break-me'}
-          pageCount={this.state.pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={5}
-          onPageChange={this.handlePageClick}
-          containerClassName={'pagination'}
-          subContainerClassName={'pages pagination'}
-          activeClassName={'active'}
-        /> */}
-
         <div className="currentWrapperBottom">
 
           <div>
             {/* {postItems} */}
+            {/* {currentItems} */}
           </div>
 
           <div className="currentData1">
@@ -679,17 +669,26 @@ class History extends React.Component {
 // History.propTypes = {
 //   fetchPosts: PropTypes.func.isRequired,
 //   posts: PropTypes.array.isRequired,
-//   propTypeTest: PropTypes.string.isRequired
+//   // propTypeTest: PropTypes.string.isRequired
 // }
 
 // const mapStateToProps = state => ({
 //   posts: state.posts.items
 // })
 
-// const mapStateToProps = state => ({
-
-// })
 
 // export default History;
 // export default connect(mapStateToProps, { fetchPosts })(History);
-export default connect(null, { retrieveAllData })(History);
+
+
+// History.propTypes = {
+//   retrieveAllData: PropTypes.func.isRequired,
+//   current: PropTypes.array.isRequired
+// }
+
+
+const mapStateToProps = state => ({
+  current: state.current.current
+})
+
+export default connect(mapStateToProps, { retrieveAllData })(History);

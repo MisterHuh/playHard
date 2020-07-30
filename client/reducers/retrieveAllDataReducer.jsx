@@ -1,5 +1,7 @@
 import { FETCH_ALL_DATA } from "../actions/types";
 
+// const current = []
+
 const initialState = {
   current: []
 }
