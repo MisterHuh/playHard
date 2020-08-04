@@ -18,6 +18,7 @@ import { fetchAllData } from '../actions/fetchAllData';
 
 class SummaryBox extends React.Component {
   componentDidMount() {
+    console.log("componentDidMoun fired");
     this.props.fetchAllData();
   }
 
@@ -56,7 +57,7 @@ class SummaryBox extends React.Component {
 // })
 
 const mapStateToProps = state => ({
-    posts: state.posts.items
+    posts: state.current.items
 })
 
 // export default SummaryBox;
