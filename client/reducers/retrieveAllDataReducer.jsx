@@ -3,7 +3,8 @@ import { FETCH_ALL_DATA } from "../actions/types";
 // const current = []
 
 const initialState = {
-  current: []
+  // current: []
+  items: []
 }
 
 /* this is step 7e, after the action has been created */
@@ -15,7 +16,7 @@ export default function (state = initialState, action) {
       // console.log("initialState is: ", initialState);
       return {
         ...state,
-        current: action.payload
+        items: action.payload
       }
     default:
       return state;
