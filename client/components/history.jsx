@@ -24,6 +24,11 @@ class History extends React.Component {
     super(props);
     this.state = {
 
+      /* for redux practice*/
+      title: "",
+      body: "",
+      /* for redux practice*/
+
       current: [],
 
       offset: 0,
@@ -131,6 +136,40 @@ class History extends React.Component {
 
     // this.handlePageChange = this.handlePageChange.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
+
+    /* for redux practice */
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    /* for redux practice */
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const post = {
+      title: this.state.title,
+      body: this.state.body
+    };
+
+    // fetch('https://jsonplaceholder.typicode.com/posts', {
+    //   method: "POST",
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   },
+    //   body: JSON.stringify(post)
+    // })
+    //   .then(res => res.json())
+    //   .then(data => console.log(data))
+
+    /* call action here */
+    this.props.createPost(post);
+
   }
 
   // handlePageChange(pageNumber) {
@@ -605,6 +644,32 @@ class History extends React.Component {
           <div>
             {/* {postItems} */}
             {/* {currentItems} */}
+
+            <div>
+              <h1>Add Form</h1>
+
+              <form onSubmit={this.onSubmit}>
+
+                <div>
+                  <label>Title: </label>
+                  <br />
+                  <input type="text" name="title" value={this.state.title} onChange={this.onChange} />
+                </div>
+                <br />
+
+                <div>
+                  <label>Body: </label>
+                  <br />
+                  <textarea name="body" value={this.state.body} onChange={this.onChange} />
+                </div>
+                <br />
+
+                <button type="submit">Submit</button>
+
+              </form>
+
+            </div>
+
           </div>
 
           <div className="currentData1">
