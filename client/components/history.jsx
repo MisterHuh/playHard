@@ -469,12 +469,6 @@ class History extends React.Component {
       </div>
     ));
 
-    // const currentItems = this.props.current
-    // console.log("currentItems is:", currentItems);
-    // console.log("this.props.current:", this.props.current);
-    // console.log("this.props.current[0]:", this.props.current[0]);
-    // console.log("this.props.current type is: ", typeof (this.props.current));
-
     return (
 
       <React.Fragment>
@@ -610,7 +604,7 @@ class History extends React.Component {
 
           <div>
             {/* {postItems} */}
-            {currentItems}
+            {/* {currentItems} */}
           </div>
 
           <div className="currentData1">
@@ -683,10 +677,10 @@ class History extends React.Component {
 // export default connect(mapStateToProps, { fetchPosts })(History);
 
 
-// History.propTypes = {
-//   retrieveAllData: PropTypes.func.isRequired,
-//   current: PropTypes.array.isRequired
-// }
+History.propTypes = {
+  retrieveAllData: PropTypes.func.isRequired,
+  current: PropTypes.array.isRequired
+}
 
 
 const mapStateToProps = state => ({

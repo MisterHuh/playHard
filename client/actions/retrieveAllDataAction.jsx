@@ -27,17 +27,28 @@ import { FETCH_ALL_DATA } from "./types";
 // }
 
 
-export function retrieveAllData() {
-  return function (dispatch) {
-    console.log("fetchAlldata fetching")
-    fetch(`/api/retrieveAllData.php`)
-      .then(res => res.json())
-      .then(data => dispatch({
-        type: FETCH_ALL_DATA,
-        payload: data
-      }))
-  }
-}
+// export function retrieveAllData() {
+//   return function (dispatch) {
+//     console.log("fetchAlldata fetching")
+//     fetch(`/api/retrieveAllData.php`)
+//       .then(res => res.json())
+//       .then(data => dispatch({
+//         type: FETCH_ALL_DATA,
+//         payload: data
+//       }))
+//   }
+// }
+
+// cleaned up with es6
+export const retrieveAllData = () => dispatch => {
+  console.log("fetchAlldata fetching")
+  fetch(`/api/retrieveAllData.php`)
+    .then(res => res.json())
+    .then(data => dispatch({
+      type: FETCH_ALL_DATA,
+      payload: data
+    }))
+};
 
 // export const retrieveAllData = () => dispatch => {
 //   console.log("retrieveAlldata fetching")
