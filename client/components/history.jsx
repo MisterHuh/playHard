@@ -452,7 +452,7 @@ class History extends React.Component {
 
     // this.props.fetchPosts();
 
-    this.props.retrieveAllData();
+    // this.props.retrieveAllData();
 
   }
 
@@ -742,15 +742,23 @@ class History extends React.Component {
 // export default History;
 // export default connect(mapStateToProps, { fetchPosts })(History);
 
+/* redux practice for retrieveAllData */
+// History.propTypes = {
+//   retrieveAllData: PropTypes.func.isRequired,
+//   current: PropTypes.array.isRequired
+// }
+
+
+// const mapStateToProps = state => ({
+//   current: state.current.current
+// })
+
+// export default connect(mapStateToProps, { retrieveAllData })(History);
+
+/* redux practice for POSTing a title & body */
 
 History.propTypes = {
-  retrieveAllData: PropTypes.func.isRequired,
-  current: PropTypes.array.isRequired
+  createPosts:PropTypes.func.isRequired
 }
 
-
-const mapStateToProps = state => ({
-  current: state.current.current
-})
-
-export default connect(mapStateToProps, { retrieveAllData })(History);
+export default connect(null, { createPosts })(History);
