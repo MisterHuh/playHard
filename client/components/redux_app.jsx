@@ -5,8 +5,11 @@ import Current from "./current";
 // import History from "./history"
 import History from './redux_history';
 
+/* redux */
 import { Provider } from "react-redux";
 import store from "../store";
+
+import SummaryBox from './redux_summaryBox';
 
 
 export default class ReduxApp extends React.Component {
@@ -38,10 +41,10 @@ export default class ReduxApp extends React.Component {
     return (
 
       <Provider store={store}>
-        <div>
           <Navbar setView={this.setView} />
-        </div>
+          <SummaryBox />
       </Provider>
+
     )
   }
 }
