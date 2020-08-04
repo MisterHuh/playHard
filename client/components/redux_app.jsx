@@ -3,7 +3,8 @@ import { CurrencyFormatter, TotalSummary, GetCurrentWeekNum } from "./helperFunc
 import { Navbar } from "./navbar";
 import Add from "./add";
 import Current from "./current";
-import History from "./history"
+// import History from "./history"
+import History from './redux_history';
 
 import { Provider } from "react-redux";
 // import { createStore, applyMiddleware } from "redux";

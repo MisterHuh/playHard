@@ -8,12 +8,27 @@ import 'react-dropdown/historyDropdown.css'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
+// import Pagination from "react-js-pagination";
+// require("bootstrap/less/bootstrap.less");
+
 import ReactPaginate from 'react-paginate';
+
+/* redux */
+import { connect } from 'react-redux';
+import { retrieveAllData } from "../actions/retrieveAllDataAction"
+import { fetchPosts } from '../actions/postActions';
+import { createPosts } from '../actions/postActions';
+import PropTypes from 'prop-types';
 
 class History extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
+      /* for redux practice*/
+      title: "",
+      body: "",
+      /* for redux practice*/
 
       current: [],
 
@@ -93,7 +108,15 @@ class History extends React.Component {
       //   categoryFilter: "all",
       //   startDate: new Date(2019,11,29),
       //   endDate: new Date()
-      // }
+      // },
+
+      /* pagination */
+      /* react-js-paginatino */
+      // activePage: 1,
+      // users: null, // data you loop over => this.state.current
+      // total: null, // helps with calculating page logic => this.state.current.length
+      // per_page: null, // helps with calculating page logic => 20
+      // current_page: null, // style the active pagination link => 1
 
     }
 
@@ -111,6 +134,63 @@ class History extends React.Component {
 
     this.extractQueryAndOrder = this.extractQueryAndOrder.bind(this);
     this.sortByDate = this.sortByDate.bind(this);
+
+    // this.handlePageChange = this.handlePageChange.bind(this);
+    this.handlePageClick = this.handlePageClick.bind(this);
+
+    /* for redux practice */
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    /* for redux practice */
+  }
+
+  onChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+
+  onSubmit(e) {
+    e.preventDefault();
+
+    const post = {
+      title: this.state.title,
+      body: this.state.body
+    };
+
+    // fetch('https://jsonplaceholder.typicode.com/posts', {
+    //   method: "POST",
+    //   headers: {
+    //     'content-type': 'application/json'
+    //   },
+    //   body: JSON.stringify(post)
+    // })
+    //   .then(res => res.json())
+    //   .then(data => console.log(data))
+
+    /* call action here */
+    this.props.createPosts(post);
+
+  }
+
+  // handlePageChange(pageNumber) {
+  //   this.setState({ activePage: pageNumber });
+  // }
+
+  handlePageClick(data) {
+    let selected = data.selected;
+    let offset = Math.ceil(selected * this.state.perPage);
+
+    this.setState({
+      currentPage: selected,
+      offset: offset
+    }, () => {
+      this.retrieveAllData()
+    });
+
+    // this.setState({ offset: offset}), () => {
+    //   this.retrieveAllData();
+    // }
   }
 
   sortByDate() {
@@ -369,6 +449,11 @@ class History extends React.Component {
     this.setWeek(currentWeekNumber);
     this.retrieveAllData(currentWeekNumber);
     console.log("current week num is: ", currentWeekNumber);
+
+    // this.props.fetchPosts();
+
+    // this.props.retrieveAllData();
+
   }
 
   render() {
@@ -408,6 +493,21 @@ class History extends React.Component {
     (this.state.spendingsDisplay)
       ? spendingsDisplay = "sDisplayOn"
       : spendingsDispaly = "sDisplayOff";
+
+
+    // const postItems = this.props.posts.map(post => (
+    //   <div key={post.id}>
+    //     <h3>{post.title}</h3>
+    //     <p>{post.body}</p>
+    //   </div>
+    // ));
+
+    const currentItems = this.props.current.map(entry => (
+      <div key={entry.id}>
+        <h3>CC is {entry.cc}</h3>
+        <h4>Store is {entry.store}</h4>
+      </div>
+    ));
 
     return (
 
@@ -542,8 +642,63 @@ class History extends React.Component {
 
         <div className="currentWrapperBottom">
 
+          <div>
+            {/* {postItems} */}
+            {/* {currentItems} */}
+
+            {/* <div>
+              <h1>Add Form</h1>
+
+              <form onSubmit={this.onSubmit}>
+
+                <div>
+                  <label>Title: </label>
+                  <br />
+                  <input type="text" name="title" value={this.state.title} onChange={this.onChange} />
+                </div>
+                <br />
+
+                <div>
+                  <label>Body: </label>
+                  <br />
+                  <textarea name="body" value={this.state.body} onChange={this.onChange} />
+                </div>
+                <br />
+
+                <button type="submit">Submit</button>
+
+              </form>
+
+            </div> */}
+
+          </div>
+
           <div className="currentData1">
-            <div className="currentDataHeader">Date</div>
+            <div className="currentDataHeader">
+                Date
+
+              {/* <i
+                onClick={() => this.props.deleteEntry()}
+                className="fas fa-sort-up">
+              </i>
+
+              <i
+                onClick={() => this.sortByDate()}
+                className="fas fa-chevron-up border">
+              </i>
+
+              <i
+                onClick={() => this.sortByDate()}
+                className="fas fa-angle-up border">
+              </i>
+
+              <i
+                onClick={() => this.sortByDate()}
+                className="fas fa-caret-square-up">
+              </i> */}
+
+            </div>
+
             <div className="currentDataHeader">subCategory</div>
             <div className="currentDataHeader">cc</div>
             <div className="currentDataHeader">Amount</div>
@@ -573,4 +728,37 @@ class History extends React.Component {
   }
 }
 
-export default History;
+// History.propTypes = {
+//   fetchPosts: PropTypes.func.isRequired,
+//   posts: PropTypes.array.isRequired,
+//   // propTypeTest: PropTypes.string.isRequired
+// }
+
+// const mapStateToProps = state => ({
+//   posts: state.posts.items
+// })
+
+
+// export default History;
+// export default connect(mapStateToProps, { fetchPosts })(History);
+
+/* redux practice for retrieveAllData */
+// History.propTypes = {
+//   retrieveAllData: PropTypes.func.isRequired,
+//   current: PropTypes.array.isRequired
+// }
+
+
+// const mapStateToProps = state => ({
+//   current: state.current.current
+// })
+
+// export default connect(mapStateToProps, { retrieveAllData })(History);
+
+/* redux practice for POSTing a title & body */
+
+History.propTypes = {
+  createPosts:PropTypes.func.isRequired
+}
+
+export default connect(null, { createPosts })(History);
