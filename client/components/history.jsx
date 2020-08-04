@@ -17,6 +17,7 @@ import ReactPaginate from 'react-paginate';
 import { connect } from 'react-redux';
 import { retrieveAllData } from "../actions/retrieveAllDataAction"
 import { fetchPosts } from '../actions/postActions';
+import { createPosts } from '../actions/postActions';
 import PropTypes from 'prop-types';
 
 class History extends React.Component {
@@ -168,7 +169,7 @@ class History extends React.Component {
     //   .then(data => console.log(data))
 
     /* call action here */
-    this.props.createPost(post);
+    this.props.createPosts(post);
 
   }
 

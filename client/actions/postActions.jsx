@@ -18,10 +18,26 @@ import { FETCH_POSTS, NEW_POST } from "./types";
 export const fetchPosts = () => dispatch => {
   console.log("fetching");
   fetch("https://jsonplaceholder.typicode.com/posts")
-  // fetch(`/api/retrieveAllData.php`)
+    // fetch(`/api/retrieveAllData.php`)
     .then(res => res.json())
     .then(posts => dispatch({
       type: FETCH_POSTS,
       payload: posts
     }));
+}
+
+export function createPosts(postdata) {
+  return function (dispatch) {
+    console.log("POSTing");
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+      method: "POST",
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(postData)
+    })
+      .then(res => res.json())
+      .then(postData => dispatch({
+        type: NEW_POSTS,
+        payload: postData
+      }))
+  }
 }

@@ -41,7 +41,7 @@ import { FETCH_ALL_DATA } from "./types";
 
 // cleaned up with es6
 export const retrieveAllData = () => dispatch => {
-  console.log("fetchAlldata fetching")
+  // console.log("fetchAlldata fetching")
   fetch(`/api/retrieveAllData.php`)
     .then(res => res.json())
     .then(data => dispatch({
