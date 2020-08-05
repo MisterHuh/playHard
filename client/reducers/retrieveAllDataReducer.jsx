@@ -3,9 +3,11 @@ import { FETCH_ALL_DATA } from "../actions/types";
 // const current = []
 
 const initialState = {
-  // current: []
-  items: []
+  all_data: [],
+  current_data: []
 }
+
+// const initialState = [];
 
 /* this is step 7e, after the action has been created */
 // this function evaluates what TYPE of action that we are dealing with
@@ -16,7 +18,7 @@ export default function (state = initialState, action) {
       // console.log("initialState is: ", initialState);
       return {
         ...state,
-        items: action.payload
+        all_data: action.payload
       }
     default:
       return state;

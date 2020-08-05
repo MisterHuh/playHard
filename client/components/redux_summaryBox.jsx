@@ -1,19 +1,19 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchAllData } from '../actions/fetchAllData';
 
 class SummaryBox extends React.Component {
   componentDidMount() {
-    console.log("componentDidMoun fired");
     this.props.fetchAllData();
   }
 
   render() {
 
-    const postItems = this.props.posts.map(post => (
-      <div key={post.id}>
-        <p>{post.category}</p>
-        <p>{post.amount}</p>
+    const postItems = this.props.all_data.map(entry => (
+      <div key={entry.id}>
+        <p>{entry.category}</p>
+        <p>{entry.amount}</p>
         <hr />
       </div>
     ));
@@ -29,8 +29,14 @@ class SummaryBox extends React.Component {
   }
 }
 
+SummaryBox.propTypes = {
+  fetchAllData:PropTypes.func.isRequired,
+
+}
+
 const mapStateToProps = state => ({
-  posts: state.current.items
+  all_data: state.data.all_data,
+
 })
 
 export default connect(
