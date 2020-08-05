@@ -1,4 +1,4 @@
-import { FETCH_ALL_DATA } from "./types";
+import { FETCH_CURRENT_DATA } from "./types";
 
 // thunk middleware allows us to call the dispatch function directly so that we can make async request
 
