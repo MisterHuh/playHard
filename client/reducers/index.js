@@ -9,5 +9,5 @@ import data from "./retrieveAllDataReducer";
 
 export default combineReducers({
   // posts: postReducer,
-  data: data
+  data
 });

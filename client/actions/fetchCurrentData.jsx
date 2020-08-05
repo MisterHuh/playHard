@@ -2,13 +2,13 @@ import { FETCH_ALL_DATA } from "./types";
 
 // thunk middleware allows us to call the dispatch function directly so that we can make async request
 
-export function fetchAllData() {
+export function fetchCurrentData() {
   return function (dispatch) {
     console.log("action: FETCH_CURRENT_DATA")
-    fetch(`/api/retrieveAllData.php`)
+    fetch(`/api/getCurrent.php`)
     .then(res => res.json())
     .then(data => dispatch({
-      type: FETCH_ALL_DATA,
+      type: FETCH_CURRENT_DATA,
       payload: data
     }))
   }

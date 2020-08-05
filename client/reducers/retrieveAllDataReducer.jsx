@@ -1,34 +1,27 @@
-import { FETCH_ALL_DATA } from "../actions/types";
+import { FETCH_ALL_DATA, FETCH_CURRENT_DATA } from "../actions/types";
 
-// const current = []
 
 const initialState = {
   all_data: [],
   current_data: []
 }
 
-// const initialState = [];
-
-/* this is step 7e, after the action has been created */
 // this function evaluates what TYPE of action that we are dealing with
 export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_ALL_DATA:
-      console.log("reducing: fetchAlldata");
-      // console.log("initialState is: ", initialState);
+      console.log("reducing: FETCH_ALL_DATA");
       return {
         ...state,
         all_data: action.payload
+      }
+    case FETCH_CURRENT_DATA:
+      console.log("reducing: FETCH_CURRENT_DATA");
+      return {
+        ...state,
+        current_data: action.payload
       }
     default:
       return state;
   }
 }
-
-/* this is step 6, where we are declaring the function but no actions have been created yet */
-// export default function(state = initialState, action) {
-//   switch(action.type) {
-//     default:
-//       return state;
-//   }
-// }
