@@ -32,7 +32,6 @@ class SummaryBox extends React.Component {
 
 SummaryBox.propTypes = {
   fetchCurrentData: PropTypes.func.isRequired,
-  // current_data:PropTypes.array.isRequired
   current_data: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
@@ -45,9 +44,20 @@ SummaryBox.propTypes = {
   }))
 }
 
-// SummaryBox.defaultProps = {
-//   currentData:
-// }
+SummaryBox.defaultProps = {
+  current_Data: [
+    {
+      id: 0,
+      date: "01/01/2020",
+      category: "Spendings",
+      subcategory: "Food",
+      cc: "Sapphire",
+      amount: "4.20",
+      store: "Albertsons",
+      notes: "notes"
+    }
+  ]
+}
 
 const mapStateToProps = state => ({
   current_data: state.data.current_data
