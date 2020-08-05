@@ -1,18 +1,17 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { fetchAllData } from '../actions/fetchAllData';
 import { fetchCurrentData } from '../actions/fetchCurrentData';
 
 class SummaryBox extends React.Component {
   componentDidMount() {
-    // this.props.fetchAllData();
+    // console.log("SummaryBox CDM fired");
     this.props.fetchCurrentData();
   }
 
   render() {
 
-    const postItems = this.props.all_data.map(entry => (
+    const postItems = this.props.current_data.map(entry => (
       <div key={entry.id}>
         <p>{entry.category}</p>
         <p>{entry.amount}</p>
@@ -31,18 +30,30 @@ class SummaryBox extends React.Component {
   }
 }
 
-// SummaryBox.propTypes = {
-//   fetchAllData:PropTypes.func.isRequired,
+SummaryBox.propTypes = {
+  fetchCurrentData: PropTypes.func.isRequired,
+  // current_data:PropTypes.array.isRequired
+  current_data: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    subcategory: PropTypes.string.isRequired,
+    cc: PropTypes.string.isRequired,
+    amount: PropTypes.string.isRequired,
+    store: PropTypes.string.isRequired,
+    notes: PropTypes.string
+  }))
+}
+
+// SummaryBox.defaultProps = {
+//   currentData:
 // }
 
 const mapStateToProps = state => ({
-  // all_data: state.data.all_data
-  all_data: state.data.current_data
-
+  current_data: state.data.current_data
 })
 
 export default connect(
   mapStateToProps,
-  // { fetchAllData }
   { fetchCurrentData }
 )(SummaryBox)
