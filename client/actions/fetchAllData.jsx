@@ -42,7 +42,8 @@ import { FETCH_ALL_DATA } from "./types";
 export function fetchAllData() {
   return function (dispatch) {
     console.log("action: fetchAlldata")
-    fetch(`https://jsonplaceholder.typicode.com/posts`)
+    // fetch(`https://jsonplaceholder.typicode.com/posts`)
+    fetch(`/api/retrieveAllData.php`)
     .then(res => res.json())
     .then(data => dispatch({
       type: FETCH_ALL_DATA,
