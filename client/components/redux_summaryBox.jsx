@@ -5,14 +5,7 @@ import { fetchCurrentData } from '../actions/fetchCurrentData';
 
 class SummaryBox extends React.Component {
   componentDidMount() {
-    // console.log("SummaryBox CDM fired");
     this.props.fetchCurrentData();
-  }
-
-  calculateTotal(array, filter) {
-    array.reduce(function (acc, val) {
-      return val.category == filter ? acc + Number(val.amount) : acc;
-    }, 0)
   }
 
   render() {
@@ -37,18 +30,18 @@ class SummaryBox extends React.Component {
       return val.category == 'Fixed' ? acc + Number(val.amount) : acc;
     }, 0)
 
-    // const spendings = calculateTotal(this.props.current_data, 'Spendings');
+    const budget = 150.00;
+    const remaining = budget - spendings - credits - fixed;
+
 
     return (
       <div>
 
+        <h1>Total budget is: {budget.toFixed(2)}</h1>
         <h1>Spendings is: {spendings.toFixed(2)}</h1>
         <h1>Credits is: {credits.toFixed(2)}</h1>
         <h1>Fixed is: {fixed.toFixed(2)}</h1>
-        <hr />
-        <h3>Data Retrieved</h3>
-        {postItems}
-
+        <h1>Remaining is: {remaining.toFixed(2)}</h1>
 
       </div>
     )
@@ -69,20 +62,20 @@ SummaryBox.propTypes = {
   }))
 }
 
-SummaryBox.defaultProps = {
-  current_Data: [
-    {
-      id: 0,
-      date: "01/01/2020",
-      category: "Spendings",
-      subcategory: "Food",
-      cc: "Sapphire",
-      amount: "4.20",
-      store: "Albertsons",
-      notes: "notes"
-    }
-  ]
-}
+// SummaryBox.defaultProps = {
+//   current_Data: [
+//     {
+//       id: 0,
+//       date: "01/01/2020",
+//       category: "Spendings",
+//       subcategory: "Food",
+//       cc: "Sapphire",
+//       amount: "4.20",
+//       store: "Albertsons",
+//       notes: "notes"
+//     }
+//   ]
+// }
 
 const mapStateToProps = state => ({
   current_data: state.data.current_data
