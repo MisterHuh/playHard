@@ -7,16 +7,24 @@ class SummaryBox extends React.Component {
   componentDidMount() {
     // console.log("SummaryBox CDM fired");
     this.props.fetchCurrentData();
-    let current_data = this.props.current_data;
 
-    if (this.props.current_data) {
-      let credits = current_data.reduce(function (acc, val) {
-        acc.amount + val.amount;
-      }, 0);
+    // let current_data = this.props.current_data;
+    // if (current_data) {
+    //   let spendings = current_data.reduce(function (acc, val) {
+    //     return val.category == 'Spendings' ? acc + Number(val.amount) : acc;
+    //   }, 0)
+    //   console.log("spendings is: ", spendings);
 
-      console.log("credits is: ", credits);
-      console.log("this.props.current_data is: ", this.props.current_data);
-    }
+    //   let credits = current_data.reduce(function (acc, val) {
+    //     return val.category == 'Credits' ? acc + Number(val.amount) : acc;
+    //   }, 0)
+    //   console.log("credits is: ", credits);
+
+    //   let fixed = current_data.reduce(function (acc, val) {
+    //     return val.category == 'Fixed' ? acc + Number(val.amount) : acc;
+    //   }, 0)
+    //   console.log("fixed is: ", fixed);
+    // }
 
 
 
@@ -32,11 +40,17 @@ class SummaryBox extends React.Component {
       </div>
     ));
 
+    const spendings = this.props.current_data.reduce(function (acc, val) {
+      return val.category == 'Spendings' ? acc + Number(val.amount) : acc;
+    }, 0)
+
     return (
       <div>
 
+        <div>Spendings is: {spendings}</div>
         <h3>Data Retrieved</h3>
         {postItems}
+
 
       </div>
     )
