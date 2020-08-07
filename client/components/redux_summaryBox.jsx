@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { fetchCurrentData } from '../actions/fetchCurrentData';
 
-class SummaryBox extends React.Component {
+class SummaryBox extends Component {
   componentDidMount() {
+    console.log("SummaryBox cmd fired");
     this.props.fetchCurrentData();
   }
 
@@ -37,11 +38,11 @@ class SummaryBox extends React.Component {
     return (
       <div>
 
-        <h1>Total budget is: {budget.toFixed(2)}</h1>
-        <h1>Spendings is: {spendings.toFixed(2)}</h1>
-        <h1>Credits is: {credits.toFixed(2)}</h1>
-        <h1>Fixed is: {fixed.toFixed(2)}</h1>
-        <h1>Remaining is: {remaining.toFixed(2)}</h1>
+        <div>Total budget is: {budget.toFixed(2)}</div>
+        <div>Spendings is: {spendings.toFixed(2)}</div>
+        <div>Credits is: {credits.toFixed(2)}</div>
+        <div>Fixed is: {fixed.toFixed(2)}</div>
+        <div>Remaining is: {remaining.toFixed(2)}</div>
 
       </div>
     )
