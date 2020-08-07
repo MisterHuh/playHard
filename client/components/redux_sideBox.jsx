@@ -14,9 +14,7 @@ class SideBox extends Component {
 
     // const { all_data } = this.props.all_data;
     const all_data = this.props.all_data;
-    console.log("all_data is:", all_data);
-    console.log("all_data.length is:", all_data.length);
-    console.log("all_data[0] is:", all_data[0]);
+
 
     if (all_data.length) {
       return (
@@ -29,11 +27,18 @@ class SideBox extends Component {
           <div>Amount is {}</div>
           <div>Description is {}</div>
           <div>Notes is {}</div>
+          <div>
+            <button>Decrease index</button>
+            <button>Incraese index</button>
+          </div>
         </div>
       )
     } else {
       return (
-        <div>nothing to see here</div>
+        <div>
+          <h1>SideBox</h1>
+          <div>nothing to see here</div>
+        </div>
       )
     }
 
