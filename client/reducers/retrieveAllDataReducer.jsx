@@ -6,7 +6,6 @@ const initialState = {
   current_data: []
 }
 
-// this function evaluates what TYPE of action that we are dealing with
 export default function (state = initialState, action) {
   switch (action.type) {
     case FETCH_ALL_DATA:

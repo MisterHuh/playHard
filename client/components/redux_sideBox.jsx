@@ -11,9 +11,33 @@ class SideBox extends Component {
   }
 
   render() {
-    return (
-      <div>SideBox</div>
-    )
+
+    // const { all_data } = this.props.all_data;
+    const all_data = this.props.all_data;
+    console.log("all_data is:", all_data);
+    console.log("all_data.length is:", all_data.length);
+    console.log("all_data[0] is:", all_data[0]);
+
+    if (all_data.length) {
+      return (
+        <div>
+          <h1>SideBox</h1>
+          <div>Date is {all_data[0]['date']}</div>
+          <div>Category is {}</div>
+          <div>Subcategory is {}</div>
+          <div>Credit Card is {}</div>
+          <div>Amount is {}</div>
+          <div>Description is {}</div>
+          <div>Notes is {}</div>
+        </div>
+      )
+    } else {
+      return (
+        <div>nothing to see here</div>
+      )
+    }
+
+
   }
 }
 
@@ -21,7 +45,36 @@ const mapStateToProps = (state) => ({
   all_data: state.data.all_data
 })
 
-export default connect (
+SideBox.propTypes = {
+  fetchAllData: PropTypes.func.isRequired,
+  current_data: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    date: PropTypes.string.isRequired,
+    category: PropTypes.string.isRequired,
+    subcategory: PropTypes.string.isRequired,
+    cc: PropTypes.string.isRequired,
+    amount: PropTypes.string.isRequired,
+    store: PropTypes.string.isRequired,
+    notes: PropTypes.string
+  }))
+}
+
+SideBox.defaultProps = {
+  all_data: [
+    {
+      id: 0,
+      date: "01/01/2020",
+      category: "Spendings",
+      subcategory: "Food",
+      cc: "Sapphire",
+      amount: "4.20",
+      store: "Albertsons",
+      notes: "notes"
+    }
+  ]
+}
+
+export default connect(
   mapStateToProps,
   { fetchAllData }
 )(SideBox);
