@@ -7,27 +7,12 @@ class SummaryBox extends React.Component {
   componentDidMount() {
     // console.log("SummaryBox CDM fired");
     this.props.fetchCurrentData();
+  }
 
-    // let current_data = this.props.current_data;
-    // if (current_data) {
-    //   let spendings = current_data.reduce(function (acc, val) {
-    //     return val.category == 'Spendings' ? acc + Number(val.amount) : acc;
-    //   }, 0)
-    //   console.log("spendings is: ", spendings);
-
-    //   let credits = current_data.reduce(function (acc, val) {
-    //     return val.category == 'Credits' ? acc + Number(val.amount) : acc;
-    //   }, 0)
-    //   console.log("credits is: ", credits);
-
-    //   let fixed = current_data.reduce(function (acc, val) {
-    //     return val.category == 'Fixed' ? acc + Number(val.amount) : acc;
-    //   }, 0)
-    //   console.log("fixed is: ", fixed);
-    // }
-
-
-
+  calculateTotal(array, filter) {
+    array.reduce(function (acc, val) {
+      return val.category == filter ? acc + Number(val.amount) : acc;
+    }, 0)
   }
 
   render() {
@@ -44,10 +29,23 @@ class SummaryBox extends React.Component {
       return val.category == 'Spendings' ? acc + Number(val.amount) : acc;
     }, 0)
 
+    const credits = this.props.current_data.reduce(function (acc, val) {
+      return val.category == 'Credits' ? acc + Number(val.amount) : acc;
+    }, 0)
+
+    const fixed = this.props.current_data.reduce(function (acc, val) {
+      return val.category == 'Fixed' ? acc + Number(val.amount) : acc;
+    }, 0)
+
+    // const spendings = calculateTotal(this.props.current_data, 'Spendings');
+
     return (
       <div>
 
-        <div>Spendings is: {spendings}</div>
+        <h1>Spendings is: {spendings.toFixed(2)}</h1>
+        <h1>Credits is: {credits.toFixed(2)}</h1>
+        <h1>Fixed is: {fixed.toFixed(2)}</h1>
+        <hr />
         <h3>Data Retrieved</h3>
         {postItems}
 
