@@ -7,6 +7,19 @@ class SummaryBox extends React.Component {
   componentDidMount() {
     // console.log("SummaryBox CDM fired");
     this.props.fetchCurrentData();
+    let current_data = this.props.current_data;
+
+    if (this.props.current_data) {
+      let credits = current_data.reduce(function (acc, val) {
+        acc.amount + val.amount;
+      }, 0);
+
+      console.log("credits is: ", credits);
+      console.log("this.props.current_data is: ", this.props.current_data);
+    }
+
+
+
   }
 
   render() {
