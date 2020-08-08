@@ -47,7 +47,8 @@ class SideBox extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  all_data: state.data.all_data
+  all_data: state.data.all_data,
+  current_index: state.data.current_index
 })
 
 SideBox.propTypes = {
