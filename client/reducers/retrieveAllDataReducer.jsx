@@ -27,6 +27,12 @@ export default function (state = initialState, action) {
         ...state,
         current_index: state.current_index + action.payload
       }
+    case NEXT_ENTRY:
+      console.log("reducing: NEXT_ENTRY");
+      return {
+        ...state,
+        current_index: state.current_index - 1
+      }
 
     default:
       return state;

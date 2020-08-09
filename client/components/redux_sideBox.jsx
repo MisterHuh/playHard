@@ -3,9 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { fetchAllData } from '../actions/fetchAllData';
-import { previousEntry } from '../actions/counter';
-
-import SideBoxButtons from './sideBoxButtons';
+import { previousEntry, nextEntry } from '../actions/counter';
 
 class SideBox extends Component {
   componentDidMount() {
@@ -36,7 +34,7 @@ class SideBox extends Component {
           {/* <SideBoxButtons /> */}
           <div>
             <button onClick={this.props.previousEntry}>Decrease index</button>
-            <button>Incraese index</button>
+            <button onClick={this.props.nextEntry}>Incraese index</button>
           </div>
         </div>
       )
@@ -90,8 +88,5 @@ SideBox.defaultProps = {
 
 export default connect(
   mapStateToProps,
-  { fetchAllData, previousEntry }
+  { fetchAllData, previousEntry, nextEntry }
 )(SideBox);
-
-
-// export default SideBox;

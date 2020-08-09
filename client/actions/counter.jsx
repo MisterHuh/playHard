@@ -8,6 +8,14 @@ export const previousEntry = () => dispatch => {
   })
 }
 
+export const nextEntry = () => dispatch => {
+  console.log("action: NEXT_ENTRY");
+  dispatch({
+    type: NEXT_ENTRY
+    // payload: 1
+  })
+}
+
 // export function previousEntry() {
 //   console.log("action: PREVIOUS_ENTRY");
 //   return function (dispatch) {
