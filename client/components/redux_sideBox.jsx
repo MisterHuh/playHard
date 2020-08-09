@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { fetchAllData } from '../actions/fetchAllData';
 import { previousEntry } from '../actions/counter';
 
+import SideBoxButtons from './sideBoxButtons';
+
 class SideBox extends Component {
   componentDidMount() {
     console.log("SideBox cmd fired");
@@ -30,6 +32,8 @@ class SideBox extends Component {
           <div>Description is {all_data[current_index]['store']}</div>
           <div>Notes is {all_data[current_index]['notes']}</div>
           <div>current index is {current_index}</div>
+
+          {/* <SideBoxButtons /> */}
           <div>
             <button onClick={this.props.previousEntry}>Decrease index</button>
             <button>Incraese index</button>

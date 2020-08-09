@@ -3,8 +3,8 @@ import { PREVIOUS_ENTRY, NEXT_ENTRY } from './types';
 export const previousEntry = () => dispatch => {
   console.log("action: PREVIOUS_ENTRY");
   dispatch({
-    type: PREVIOUS_ENTRY
-    // payload: 1
+    type: PREVIOUS_ENTRY,
+    payload: 1
   })
 }
 

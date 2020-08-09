@@ -8,14 +8,12 @@ const initialState = {
 }
 
 export default function (state = initialState, action) {
-  console.log("REDUCER TRIGGERED");
   switch (action.type) {
     case FETCH_ALL_DATA:
       console.log("reducing: FETCH_ALL_DATA");
       return {
         ...state,
         all_data: action.payload
-        // current_index: action.payload.length - 1
       }
     case FETCH_CURRENT_DATA:
       console.log("reducing: FETCH_CURRENT_DATA");
@@ -27,9 +25,9 @@ export default function (state = initialState, action) {
       console.log("reducing: PREVIOUS_ENTRY");
       return {
         ...state,
-        // current_index: current_index + action.payload
-        current_index: current_index++
+        current_index: state.current_index + action.payload
       }
+
     default:
       return state;
   }
