@@ -31,7 +31,7 @@ class SideBox extends Component {
           <div>Notes is {all_data[current_index]['notes']}</div>
           <div>current index is {current_index}</div>
           <div>
-            <button onClick={this.props.previousEntry()}>Decrease index</button>
+            <button onClick={this.props.previousEntry}>Decrease index</button>
             <button>Incraese index</button>
           </div>
         </div>
