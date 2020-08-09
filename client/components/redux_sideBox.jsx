@@ -14,19 +14,21 @@ class SideBox extends Component {
 
     // const { all_data } = this.props.all_data;
     const all_data = this.props.all_data;
+    const current_index = this.props.current_index;
 
 
     if (all_data.length) {
       return (
         <div>
           <h1>SideBox</h1>
-          <div>Date is {all_data[0]['date']}</div>
-          <div>Category is {}</div>
-          <div>Subcategory is {}</div>
-          <div>Credit Card is {}</div>
-          <div>Amount is {}</div>
-          <div>Description is {}</div>
-          <div>Notes is {}</div>
+          <div>Date is {all_data[current_index]['date']}</div>
+          <div>Category is {all_data[current_index]['category']}</div>
+          <div>Subcategory is {all_data[current_index]['subcategory']}</div>
+          <div>Credit Card is {all_data[current_index]['cc']}</div>
+          <div>Amount is {all_data[current_index]['amount']}</div>
+          <div>Description is {all_data[current_index]['store']}</div>
+          <div>Notes is {all_data[current_index]['notes']}</div>
+          <div>current index is {current_index}</div>
           <div>
             <button>Decrease index</button>
             <button>Incraese index</button>
@@ -62,7 +64,8 @@ SideBox.propTypes = {
     amount: PropTypes.string.isRequired,
     store: PropTypes.string.isRequired,
     notes: PropTypes.string
-  }))
+  })),
+  current_index: PropTypes.number.isRequired
 }
 
 SideBox.defaultProps = {
