@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { fetchAllData } from '../actions/fetchAllData';
+import { previousEntry } from '../actions/counter';
 
 class SideBox extends Component {
   componentDidMount() {
@@ -30,7 +31,7 @@ class SideBox extends Component {
           <div>Notes is {all_data[current_index]['notes']}</div>
           <div>current index is {current_index}</div>
           <div>
-            <button>Decrease index</button>
+            <button onClick={this.props.previousEntry()}>Decrease index</button>
             <button>Incraese index</button>
           </div>
         </div>
@@ -85,7 +86,7 @@ SideBox.defaultProps = {
 
 export default connect(
   mapStateToProps,
-  { fetchAllData }
+  { fetchAllData, previousEntry }
 )(SideBox);
 
 
