@@ -8,3 +8,6 @@ export const FETCH_CURRENT_DATA = "FETCH_CURRENT_DATA";
 /* counter for sideBox */
 export const PREVIOUS_ENTRY = "PREVIOUS_ENTRY";
 export const NEXT_ENTRY = "NEXT_ENTRY";
+
+/* for adding from Form */
+export const POST_DATA = 'POST_DATA';
