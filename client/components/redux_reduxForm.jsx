@@ -5,20 +5,21 @@ const renderInput = (props) => (
   <input {...props.input} type='text' />
 )
 
-const ReduxForm = () => (
+const onSubmit = values => {
+  alert(JSON.stringify(values));
+}
+
+const ReduxForm = ({handleSubmit}) => (
   <div>
     <h2>Redux Form</h2>
-    <form action="">
-      <Field
-        name='customer-id'
-        component={renderInput}
-      />
-
+    <form onSubmit={handleSubmit}>
+      <Field name='customer-id' component={renderInput}/>
       <button type='submit'>Submit</button>
     </form>
   </div>
 )
 
 export default reduxForm({
-  form: 'my-customer-registration-form'
+  form: 'my-customer-registration-form',
+  onSubmit
 })(ReduxForm)
