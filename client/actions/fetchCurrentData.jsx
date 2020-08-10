@@ -16,7 +16,7 @@ import { FETCH_CURRENT_DATA } from "./types";
 
 // cleaned up with es6
 export const fetchCurrentData = () => dispatch => {
-  console.log("action: FETCH_CURRENT_DATA")
+  // console.log("action: FETCH_CURRENT_DATA")
   fetch(`/api/getCurrent.php`)
     .then(res => res.json())
     .then(data => dispatch({

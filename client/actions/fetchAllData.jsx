@@ -4,7 +4,7 @@ import { FETCH_ALL_DATA } from "./types";
 
 export function fetchAllData() {
   return function (dispatch) {
-    console.log("action: FETCH_ALL_DATA")
+    // console.log("action: FETCH_ALL_DATA")
     fetch(`/api/retrieveAllData.php`)
     .then(res => res.json())
     .then(data => dispatch({

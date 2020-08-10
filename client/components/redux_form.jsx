@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { postData } from '../actions/postData';
 
@@ -74,6 +75,10 @@ class Form extends Component {
       </div>
     )
   }
+}
+
+Form.propTypes = {
+  postData: PropTypes.func.isRequired
 }
 
 // export default Form;
