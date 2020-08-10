@@ -22,6 +22,7 @@
   "dependencies": {
     "bootstrap": "^4.4.1",
     "current-week-number": "^1.0.7",
+    "final-form": "^4.20.1",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
     "moment-timezone": "^0.5.27",
@@ -34,6 +35,7 @@
     "react-dom": "^16.13.1",
     "react-dropdown": "^1.6.4",
     "react-dropdown-input": "^0.1.11",
+    "react-final-form": "^6.5.1",
     "react-js-pagination": "^3.0.3",
     "react-moment": "^0.9.7",
     "react-paginate": "^6.3.2",
