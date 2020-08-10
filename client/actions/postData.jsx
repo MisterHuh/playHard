@@ -2,14 +2,20 @@ import { POST_DATA } from './types'
 
 export const postData = (entry) => dispatch => {
   console.log("action: POST_DATA");
-  fetch('/api/add.php', {
+
+  const req = {
     method: 'POST',
-    headers: { 'Content-Type':'application/json'},
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(entry)
-  })
-  .then(res => res.json())
-  .then(entry => dispatch({
-    type: POST_DATA,
-    payload: entry
-  }))
+  };
+
+  fetch('/api/add.php', req)
+    .then(res => res.json())
+    .then(data => {
+      console.log("data is: ", data),
+        dispatch({
+          type: POST_DATA,
+          payload: data
+        })
+    })
 }

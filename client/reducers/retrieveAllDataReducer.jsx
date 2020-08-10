@@ -1,4 +1,5 @@
 import { FETCH_ALL_DATA, FETCH_CURRENT_DATA, PREVIOUS_ENTRY, NEXT_ENTRY, POST_DATA } from "../actions/types";
+// import * as Types from '../actions/types';
 
 
 const initialState = {
@@ -26,7 +27,7 @@ export default function (state = initialState, action) {
       console.log("reducing: PREVIOUS_ENTRY");
       return {
         ...state,
-        current_index: state.current_index + action.payload
+        current_index: state.current_index + 1
       }
     case NEXT_ENTRY:
       console.log("reducing: NEXT_ENTRY");
