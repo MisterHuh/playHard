@@ -1,4 +1,10 @@
-import { FETCH_ALL_DATA, FETCH_CURRENT_DATA, PREVIOUS_ENTRY, NEXT_ENTRY, POST_DATA } from "../actions/types";
+import {
+  FETCH_ALL_DATA,
+  FETCH_CURRENT_DATA,
+  PREVIOUS_ENTRY,
+  NEXT_ENTRY,
+  POST_DATA
+} from "../actions/types";
 // import * as Types from '../actions/types';
 
 

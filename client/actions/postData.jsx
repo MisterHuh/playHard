@@ -11,11 +11,25 @@ export const postData = (entry) => dispatch => {
 
   fetch('/api/add.php', req)
     .then(res => res.json())
-    .then(data => {
-      console.log("data is: ", data),
-        dispatch({
+
+    // .then((data) => {
+    //   resolve(data ? JSON.parse(data) : {})
+    // })
+    // .catch((error) => {
+    //   reject(error)
+    // })
+
+    .then(data => dispatch({
           type: POST_DATA,
-          payload: data
+          payload: entry
         })
-    })
+    )
+
+    // .then(data => {
+    //   console.log("data is: ", data),
+    //     dispatch({
+    //       type: POST_DATA,
+    //       payload: data
+    //     })
+    // })
 }

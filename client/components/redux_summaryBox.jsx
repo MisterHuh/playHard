@@ -38,6 +38,8 @@ class SummaryBox extends Component {
     return (
       <div>
 
+        <h1>SummaryBox</h1>
+
         <div>Total budget is: {budget.toFixed(2)}</div>
         <div>Spendings is: {spendings.toFixed(2)}</div>
         <div>Credits is: {credits.toFixed(2)}</div>
