@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
-import { reduxForm } from 'redux-form';
+import { reduxForm, Field } from 'redux-form';
+
+const renderInput = (props) => (
+  <input {...props.input} type='text' />
+)
 
 const ReduxForm = () => (
   <div>
     <h2>Redux Form</h2>
     <form action="">
-      <input name='customer-id' type='text' id='customer-id' />
+      <Field
+        name='customer-id'
+        component={renderInput}
+      />
+
       <button type='submit'>Submit</button>
     </form>
   </div>
