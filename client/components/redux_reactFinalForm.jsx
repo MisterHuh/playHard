@@ -12,15 +12,37 @@ const ReactFinalForm = () => (
     <h1>React Final Form</h1>
 
     <Form onSubmit={showResults}>
-      {({ handleSubmit }) => <form onSubmit={handleSubmit}>
+      {({ handleSubmit, submitting, values }) => <form onSubmit={handleSubmit}>
+
         <div>
           <label>First Name</label>
           <Field
             name='firstName'
             component='input'
-            placeholder='Fist Name' />
+            placeholder='Fist Name'
+            validate={value => value ? undefined : 'Required'}
+          />
         </div>
-        <button type='submit'>Submit</button>
+
+        <div>
+          <label>Last Name</label>
+          <Field
+            name='lastName'
+            component='input'
+            placeholder='Last Name'
+          />
+        </div>
+
+        <div>
+          <label>Email</label>
+          <Field
+            name='email'
+            component='input'
+            placeholder='email'
+          />
+        </div>
+        <button type='submit' disabled={submitting}>Submit</button>
+        <pre>{JSON.stringify(values, undefined, 2)}</pre>
       </form>}
     </Form>
 
