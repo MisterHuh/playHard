@@ -1,6 +1,6 @@
 import React from "react";
 import { Form, Field } from "react-final-form";
-import createDecorator from 'final-form-focus';
+import createDecorator from "final-form-focus";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const showResults = async (values) => {
@@ -16,8 +16,7 @@ const ReactFinalForm = () => (
   <div>
     <h1>React Final Form</h1>
 
-    <Form onSubmit={showResults}
-    decorators={[focusOnError]}>
+    <Form onSubmit={showResults} decorators={[focusOnError]}>
       {({ handleSubmit, submitting, values }) => (
         <form onSubmit={handleSubmit}>
           <div>
