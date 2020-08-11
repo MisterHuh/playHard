@@ -16,11 +16,10 @@ const ReactFinalForm = () => (
     <Form onSubmit={showResults}>
       {({ handleSubmit, submitting, values }) => (
         <form onSubmit={handleSubmit}>
-
           <div>
             <Field name="firstName" placeholder="Fist Name" validate={required}>
               {({ input, meta, placeholder }) => (
-                <div>
+                <div className={meta.active ? "active" : ""}>
                   <label>First Name</label>
                   <input {...input} placeholder={placeholder} />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
@@ -58,7 +57,6 @@ const ReactFinalForm = () => (
           </button>
 
           <pre>{JSON.stringify(values, undefined, 2)}</pre>
-
         </form>
       )}
     </Form>
