@@ -42,12 +42,23 @@ const ReactFinalForm = () => (
           </div>
 
           <div>
-            <Field name="email" placeholder="email" validate={required} />
+            <Field name="email" placeholder="email" validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div>
+                  <label>Email</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
           </div>
+
           <button type="submit" disabled={submitting}>
             Submit
           </button>
+
           <pre>{JSON.stringify(values, undefined, 2)}</pre>
+
         </form>
       )}
     </Form>
