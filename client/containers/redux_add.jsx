@@ -19,11 +19,11 @@ const Add = () => (
         {/* <Form />, */}
 
         <Form2 />
-        <SummaryBox />,
-        <SideBox />
+        {/* <SummaryBox />, */}
+        {/* <SideBox /> */}
 
         {/* practice react-final-form */}
-        {/* <ReactFinalForm> */}
+        {/* <ReactFinalForm /> */}
 
         {/* practice redux-form */}
         {/* <ReduxForm /> */}
