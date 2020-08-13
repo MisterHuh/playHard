@@ -4,7 +4,7 @@ import { Form, Field } from 'react-final-form';
 import createDecorator from 'final-form-focus'
 
 import { connect } from 'react-redux';
-import { postData } from '../actions/postActions'
+import { postData } from '../actions/postData';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -18,7 +18,7 @@ const showResults = async (values) => {
 };
 
 const test = (values) => {
-  this.props.postData(values);
+  props.postData(values);
   console.log("onSubmit values is: ", values);
 }
 
