@@ -1,9 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Form, Field } from 'react-final-form';
 import createDecorator from 'final-form-focus'
 
+import { connect } from 'react-redux';
+import { postData } from '../actions/postActions'
+
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+
+// const submit = postData();
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 const showResults = async (values) => {
@@ -11,27 +17,31 @@ const showResults = async (values) => {
   window.alert(JSON.stringify(values, undefined, 2));
 };
 
+const test = (values) => {
+  this.props.postData(values);
+  console.log("onSubmit values is: ", values);
+}
+
 const required = (value) => (value ? undefined : 'Required');
 const focusOnError = createDecorator();
 
 const Form2 = () => (
   <div>
     <h1>React Final Form</h1>
-    <Form onSubmit={showResults} decorators={[focusOnError]}>
+    <Form onSubmit={test} decorators={[focusOnError]}>
       {({ handleSubmit, values, submitting }) => (
         <form onSubmit={handleSubmit}>
           <div>
-            <label>Date</label>
-            {/* <Field
-              name="date"
-              component={DatePicker}
-              placeholder="Date"
-              onChange={(event) => {
-                console.log("changing date to", event.target.value);
-                change("date", event.target.value);
-              }}
-            /> */}
-            <DatePicker value={values} />
+            <Field name="date" placeholder="Date" validate={required} >
+              {({ input, meta, placeholder }) => (
+                <div className={meta.active ? "active" : ""}>
+                  <label>Date</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+            {/* <DatePicker value={values} /> */}
           </div>
 
           <div>
@@ -47,7 +57,11 @@ const Form2 = () => (
           </div>
 
           <div>
-            <Field name="subCategory" placeholder="SubCategory" validate={required}>
+            <Field
+              name="subCategory"
+              placeholder="SubCategory"
+              validate={required}
+            >
               {({ input, meta, placeholder }) => (
                 <div className={meta.active ? "active" : ""}>
                   <label>SubCategory</label>
@@ -59,7 +73,11 @@ const Form2 = () => (
           </div>
 
           <div>
-            <Field name='creditCard' placeholder="Credit Card" validate={required}>
+            <Field
+              name="creditCard"
+              placeholder="Credit Card"
+              validate={required}
+            >
               {({ input, meta, placeholder }) => (
                 <div className={meta.active ? "active" : ""}>
                   <label>Credit Card</label>
@@ -95,12 +113,12 @@ const Form2 = () => (
           </div>
 
           <div>
-            <Field name="notes" placeholder="Notes" validate={required}>
+            <Field name="notes" placeholder="Notes">
               {({ input, meta, placeholder }) => (
                 <div className={meta.active ? "active" : ""}>
                   <label>Notes</label>
                   <input {...input} placeholder={placeholder} />
-                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                  {/* {meta.error && meta.touched && <span>{meta.error}</span>} */}
                 </div>
               )}
             </Field>
@@ -117,4 +135,9 @@ const Form2 = () => (
   </div>
 );
 
-export default Form2;
+Form2.propTypes = {
+  postData: PropTypes.func.isRequired,
+};
+
+// export default Form2;
+export default connect (null, { postData })(Form2);
