@@ -37,8 +37,68 @@ const Form2 = () => (
           <div>
             <Field name="category" placeholder="Category" validate={required}>
               {({ input, meta, placeholder }) => (
-                <div className={meta.active ? 'active' : ''}>
+                <div className={meta.active ? "active" : ""}>
                   <label>Category</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div>
+            <Field name="subCategory" placeholder="SubCategory" validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div className={meta.active ? "active" : ""}>
+                  <label>SubCategory</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div>
+            <Field name='creditCard' placeholder="Credit Card" validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div className={meta.active ? "active" : ""}>
+                  <label>Credit Card</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div>
+            <Field name="amount" placeholder="Amount" validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div className={meta.active ? "active" : ""}>
+                  <label>Amount</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div>
+            <Field name="desc" placeholder="Description" validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div className={meta.active ? "active" : ""}>
+                  <label>Description</label>
+                  <input {...input} placeholder={placeholder} />
+                  {meta.error && meta.touched && <span>{meta.error}</span>}
+                </div>
+              )}
+            </Field>
+          </div>
+
+          <div>
+            <Field name="notes" placeholder="Notes" validate={required}>
+              {({ input, meta, placeholder }) => (
+                <div className={meta.active ? "active" : ""}>
+                  <label>Notes</label>
                   <input {...input} placeholder={placeholder} />
                   {meta.error && meta.touched && <span>{meta.error}</span>}
                 </div>
