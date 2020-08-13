@@ -4,7 +4,8 @@ import { Form, Field } from 'react-final-form';
 import createDecorator from 'final-form-focus'
 
 import { connect } from 'react-redux';
-import { postData } from '../actions/postData';
+import { POST_DATA } from "../actions/types";
+// import { postData } from '../actions/postData';
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -17,10 +18,52 @@ const showResults = async (values) => {
   window.alert(JSON.stringify(values, undefined, 2));
 };
 
-const test = (values) => {
-  props.postData(values);
-  console.log("onSubmit values is: ", values);
-}
+// const test = (values) => {
+//   props.postData(values);
+//   console.log("onSubmit values is: ", values);
+// }
+
+// const postData = (values) => (dispatch) => {
+
+//   const req = {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(values)
+//     };
+
+//   console.log("action: POST_DATA");
+//   fetch("/api/add.php", req)
+//     .then((res) => res.json())
+//     .then((data) =>
+//       dispatch({
+//         type: POST_DATA,
+//         payload: entry,
+//       })
+//     );
+// };
+
+const postData = (values) => (
+
+  fetch("/api/add.php", {
+    method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(values)
+  })
+    .then((res) => res.json())
+    // .then((data) =>
+    //   dispatch({
+    //     type: POST_DATA,
+    //     payload: entry,
+    //   })
+    // );
+)
+
+
+const onSubmit = (values) => {
+  console.log("onSubmit...");
+  return;
+};
+
 
 const required = (value) => (value ? undefined : 'Required');
 const focusOnError = createDecorator();
@@ -28,11 +71,11 @@ const focusOnError = createDecorator();
 const Form2 = () => (
   <div>
     <h1>React Final Form</h1>
-    <Form onSubmit={test} decorators={[focusOnError]}>
+    <Form onSubmit={postData} decorators={[focusOnError]}>
       {({ handleSubmit, values, submitting }) => (
         <form onSubmit={handleSubmit}>
           <div>
-            <Field name="date" placeholder="Date" validate={required} >
+            <Field name="date" placeholder="Date" validate={required}>
               {({ input, meta, placeholder }) => (
                 <div className={meta.active ? "active" : ""}>
                   <label>Date</label>
@@ -136,7 +179,7 @@ const Form2 = () => (
 );
 
 Form2.propTypes = {
-  postData: PropTypes.func.isRequired,
+  // postData: PropTypes.func.isRequired,
 };
 
 // export default Form2;
